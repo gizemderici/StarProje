@@ -1,30 +1,43 @@
-# OpenStudio OSM Veri Okuma Projesi
+# OpenStudio OSM Veri Okuma ve Analiz Projesi
 
-Bu proje, Python ve OpenStudio API kullanilarak bir `.osm` model dosyasini okumak, model icindeki temel bina verilerini cikarmak ve bu verileri JSON formatinda disa aktarmak amaciyla gelistirilmistir.
+Bu proje, Python ve OpenStudio API kullanilarak bir `.osm` bina modelinin okunmasi, model verilerinin yapilandirilmis formata donusturulmesi, analiz edilmesi ve CSV tablolari olarak disa aktarilmasi amaciyla gelistirilmistir.
 
-## Proje Ozeti
+## Amac
 
-Bu calismada su ana kadar asagidaki adimlar tamamlanmistir:
+Bu calismanin temel amaci, OpenStudio modelini yalnizca acmak degil, model icindeki verileri programatik olarak okuyup daha sonra kullanilabilecek bir veri altyapisi haline getirmektir.
 
-- OpenStudio Python API'nin calisip calismadigi kontrol edildi
-- `.osm` model dosyasi Python uzerinden yuklendi
-- Modelin temel ozet bilgileri okundu
-- Zone, space, duvar, pencere, malzeme ve construction verileri cikartildi
-- Yapi elemanlari siniflandirildi
-- Elde edilen veriler terminale yazdirildi
-- Ayni veriler JSON formatinda disa aktarildi
-- JSON verisi uzerinden analiz raporu uretilmeye baslandi
-- JSON verisi CSV formatinda disa aktarilabilir hale getirildi
+Bu kapsamda proje su ihtiyaclara cevap verir:
 
-Bu yapi, sonraki asamalarda veri analizi, raporlama ve farkli formatlara donusum icin temel olusturmaktadir.
+- `.osm` model dosyasini Python ile okumak
+- model icindeki temel bina elemanlarini cikarmak
+- elemanlar arasi iliskileri koruyarak JSON uretmek
+- elde edilen verileri analiz etmek
+- verileri Excel'de acilabilecek CSV dosyalarina donusturmek
 
-## Su Ana Kadar Yapilanlar
+## Proje Kapsami
 
-### 1. OpenStudio API kontrolu
+Su anda sistem asagidaki veri gruplarini okuyabilmektedir:
 
-Ilk olarak OpenStudio Python API'nin ortamda erisilebilir olup olmadigini kontrol etmek icin bir test scripti hazirlandi.
+- thermal zone bilgileri
+- space bilgileri
+- duvar bilgileri
+- cati bilgileri
+- doseme bilgileri
+- pencere ve diger aciklik bilgileri
+- malzeme bilgileri
+- construction bilgileri
+- construction katman bilgileri
+- eleman siniflandirma bilgileri
 
-Dosya:
+## Gelistirme Sureci
+
+Asagida, proje boyunca yapilan calismalar adim adim ozetlenmistir.
+
+### 1. OpenStudio Python API erisiminin dogrulanmasi
+
+Ilk adimda OpenStudio Python API'nin ortamda calisip calismadigi kontrol edilmistir.
+
+Bu is icin olusturulan dosya:
 
 - [check_openstudio_api.py](c:\StarProje\check_openstudio_api.py)
 
@@ -32,86 +45,93 @@ Bu script:
 
 - `openstudio` modulunu import etmeyi dener
 - import basariliysa OpenStudio surumunu yazdirir
-- import basarisizsa hata mesaji verir
+- import basarisizsa uygun hata bilgisini verir
 
-Bu adim ile Python tarafinda OpenStudio API'nin kullanilabilir oldugu dogrulanmistir.
+Bu adim, sonraki tum gelistirmelerin saglikli ilerleyebilmesi icin temel dogrulama katmanidir.
 
-### 2. OSM modelinin yuklenmesi
+### 2. OSM model dosyasinin yuklenmesi
 
-Sonraki adimda `.osm` dosyasini yukleyip modelin temel bilgilerini gosteren script olusturuldu.
+Ikinci adimda `.osm` model dosyasinin OpenStudio uzerinden yuklenmesi saglanmistir.
 
-Dosya:
+Bu is icin olusturulan dosya:
 
 - [openstudio_model_info.py](c:\StarProje\openstudio_model_info.py)
 
 Bu script:
 
-- `VersionTranslator` kullanarak modeli acar
-- model basarili yuklenirse temel model bilgilerini yazar
+- `VersionTranslator` kullanarak modeli yukler
+- model yuklenirse temel model ozetini terminale yazar
 
-Yazdirilan temel bilgiler:
+Bu asamada asagidaki temel bilgiler alinmistir:
 
 - OpenStudio surumu
-- Space sayisi
-- Thermal Zone sayisi
-- Surface sayisi
-- Construction sayisi
-- Material sayisi
+- space sayisi
+- thermal zone sayisi
+- surface sayisi
+- construction sayisi
+- material sayisi
 
-Bu asamada modelin Python ve OpenStudio API ile dogru sekilde okunabildigi goruldu.
+Bu adim ile modelin Python tarafindan basarili sekilde okunabildigi gosterilmistir.
 
 ### 3. Detayli model verilerinin cikartilmasi
 
-Model icindeki daha ayrintili verileri cekmek icin yeni bir script gelistirildi.
+Ucuncu adimda modelin icindeki daha ayrintili verileri okumak icin ana veri cikarma scripti gelistirilmistir.
 
-Dosya:
+Bu is icin olusturulan dosya:
 
 - [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py)
 
-Bu script ile su bilgiler alinmaktadir:
+Bu script modelden su bilgileri cikarir:
 
-- Zone bilgileri
-- Duvar bilgileri
-- Cati bilgileri
-- Doseme bilgileri
-- Pencere bilgileri
-- Tum aciklik bilgileri
-- Space bilgileri
-- Alan bilgileri
-- Hacim bilgileri
-- Malzeme bilgileri
-- Construction bilgileri
-- Construction katman bilgileri
-- Eleman siniflandirma bilgileri
+- zones
+- walls
+- roofs
+- floors
+- windows
+- openings
+- spaces
+- materials
+- constructions
 
-### 4. Teknik sorunlarin cozulmesi
+Ayrica bu script:
 
-Gelistirme sirasinda OpenStudio Python binding yapisina bagli bazi teknik sorunlar cozuldu.
+- alan ve hacim bilgilerini okur
+- elemanlar arasi baglantilari kurar
+- verileri terminale yazdirir
+- tum verileri JSON formatinda kaydeder
 
-#### `openstudio.path(...)` kullanimi
+### 4. Teknik problemlerin giderilmesi
 
-`.osm` dosya yolu OpenStudio'nun bekledigi formatta verilerek model yukleme duzeltildi.
+Gelistirme sirasinda OpenStudio Python binding yapisina bagli cesitli teknik problemlerle karsilasildi ve cozumler eklendi.
 
-#### OSM dosya yolu kontrolu
+#### 4.1 OSM yolunun uygun formatta verilmesi
 
-Script calismadan once `OSM_PATH` icindeki dosyanin gercekten var olup olmadigi kontrol edilmektedir.
+Model dosya yolu OpenStudio'nun bekledigi bicimde tanimlandi:
 
-Bu sayede:
+```python
+openstudio.path(OSM_PATH)
+```
 
-- yanlis dosya yolu verildiginde script dogrudan bilgi verir
-- model yuklenemediginde hata ayiklama daha kolay olur
-- `Model yuklenemedi` durumunun nedeni daha net anlasilir
+#### 4.2 OSM dosya yolu dogrulamasi
 
-#### Optional sayisal degerlerin okunmasi
-
-Bazi OpenStudio fonksiyonlari dogrudan sayi yerine `OptionalDouble` dondurdugu icin yardimci fonksiyonlar eklendi.
+Model yuklenmeden once dosyanin gercekten var olup olmadigi kontrol edildi.
 
 Bu sayede:
 
-- veri varsa sayi olarak kullaniliyor
-- veri yoksa hata vermek yerine `N/A` veya `None` donuluyor
+- hatali yol kullanildiginda dogrudan bilgi verilir
+- hata ayiklama daha kolay olur
 
-Bu duzeltme ozellikle su alanlarda gerekli oldu:
+#### 4.3 Optional sayisal degerlerin guvenli okunmasi
+
+Bazi OpenStudio fonksiyonlari dogrudan sayi yerine `OptionalDouble` dondugu icin yardimci donusum fonksiyonlari eklendi.
+
+Bu duzeltme sayesinde:
+
+- veri varsa sayiya cevrilir
+- veri yoksa `N/A` veya `None` kullanilir
+- script calismasi hata nedeniyle kesilmez
+
+Bu ozellikle su alanlarda gerekli oldu:
 
 - zone volume
 - space volume
@@ -119,83 +139,123 @@ Bu duzeltme ozellikle su alanlarda gerekli oldu:
 - gross area
 - azimuth
 
-#### Malzeme donusum metodlarinin uyarlanmasi
+#### 4.4 Malzeme donusum metodlarinin uyarlanmasi
 
-OpenStudio Python API'de malzeme tip donusum metodlari Python binding kurallarina gore kullanildi.
+OpenStudio Python API'de malzeme donusum metodlari C++ orneklerinden farkli isimlerle gelebilmektedir.
 
-Ornek:
+Bu nedenle su metodlar Python binding'e uygun sekilde kullanildi:
 
 - `to_StandardOpaqueMaterial()`
 - `to_MasslessOpaqueMaterial()`
 - `to_SimpleGlazing()`
 
-Bu sayede malzeme verileri script tarafinda dogru okunabilir hale getirildi.
+Bu sayede malzeme ozellikleri dogru sekilde okunabilir hale getirildi.
 
-#### Construction ve katman bilgisinin eklenmesi
+### 5. Construction ve katman verisinin eklenmesi
 
-Modeldeki `construction` nesneleri de okunacak sekilde script genisletildi.
+Bir sonraki adimda yalnizca elemanlari listelemek yerine, bu elemanlarin teknik yapisini da okuyabilmek amaciyla `construction` verisi eklendi.
 
 Bu kapsamda:
 
-- tum construction nesneleri listelenir
-- her construction icin katman sayisi okunur
-- katmanlardaki malzemeler JSON icine eklenir
+- tum construction nesneleri okundu
+- her construction icin katman sayisi belirlendi
+- katmanlardaki malzemeler JSON icine dahil edildi
 
-Bu sayede su iliski kurulabilir:
+Bu sayede su teknik iliski kurulmus oldu:
 
 - duvar -> construction -> katmanlar -> malzemeler
 
-#### Yapi elemanlarinin siniflandirilmasi
+Bu adim, projeyi yalnizca geometri/veri sayma asamasindan yapi bileşeni analizi asamasina tasimistir.
 
-Modeldeki yuzeyler ve acikliklar turlerine ve baglanti kosullarina gore siniflandirildi.
+### 6. Yapi elemanlarinin siniflandirilmasi
 
-Bu kapsamda:
+Model icindeki yuzeyler ve acikliklar daha anlamli analiz yapabilmek icin siniflandirildi.
 
-- duvarlar `dis_duvar` ve `ic_duvar` olarak
-- tavan/cati elemanlari `cati` ve `ic_tavan` olarak
-- dosemeler `zemin_dosemesi`, `ic_doseme` ve `dis_doseme` olarak
-- acikliklar `dis_pencere`, `ic_aciklik`, `dis_kapi`, `ic_kapi` gibi siniflarla
+Eklenen siniflandirmalar:
 
-etiketlenmektedir.
+- duvarlar icin `dis_duvar`, `ic_duvar`
+- cati/tavan icin `cati`, `ic_tavan`
+- dosemeler icin `zemin_dosemesi`, `ic_doseme`, `dis_doseme`
+- acikliklar icin `dis_pencere`, `ic_aciklik`, `dis_kapi`, `ic_kapi`
 
-Bu siniflandirma sayesinde model verisi daha anlamli hale gelir ve daha kolay analiz edilebilir.
+Bu sayede:
 
-### 5. JSON verisi uzerinden analiz yapilmasi
+- elemanlar yalnizca tur bazinda degil, islev bazinda da ayristirilabilir hale geldi
+- dis kabuk analizi yapmak kolaylasti
+- daha anlamli alan ve kullanim raporlari uretilebilir hale gelindi
 
-Modelden cekilen verileri daha anlamli hale getirmek icin JSON dosyasini okuyup ozet rapor olusturan yeni bir script eklendi.
+### 7. JSON cikti altyapisinin kurulmasi
 
-Dosya:
+Modelden cekilen tum veriler yapilandirilmis bir JSON dosyasina aktarildi.
+
+Uretilen dosya:
+
+- [model_data.json](c:\StarProje\model_data.json)
+
+JSON icindeki ana bolumler:
+
+- `model_summary`
+- `zones`
+- `walls`
+- `roofs`
+- `floors`
+- `windows`
+- `openings`
+- `spaces`
+- `materials`
+- `constructions`
+
+Eklenen iliskisel alanlara ornekler:
+
+- duvar icin `space_name`
+- duvar icin `construction_name`
+- duvar icin `element_class`
+- pencere icin `host_surface_name`
+- pencere icin `construction_name`
+- pencere icin `element_class`
+- space icin `thermal_zone_name`
+- construction icin `layers`
+
+Bu yapi sayesinde veri, sonraki adimlarda tekrar tekrar islenebilecek bir arakatman haline getirilmistir.
+
+### 8. JSON uzerinden analiz raporlarinin uretilmesi
+
+Veri cikarma katmanindan sonra ikinci bir asama olarak, JSON uzerinden rapor ureten analiz scripti gelistirildi.
+
+Bu is icin olusturulan dosya:
 
 - [analyze_model_data.py](c:\StarProje\analyze_model_data.py)
 
-Bu script su analizleri yapar:
+Bu script asagidaki analizleri yapar:
 
-- model ozetini yazdirir
-- toplam dis duvar alanini hesaplar
-- toplam ic duvar alanini hesaplar
-- toplam cati alanini hesaplar
-- toplam doseme alanini hesaplar
-- toplam dis pencere alanini hesaplar
-- eleman siniflandirma ozetini verir
-- zone bazinda alan ozetini verir
-- construction bazinda kullanim ozetini verir
-- en sik gecen malzemeleri listeler
+- model ozeti
+- toplam dis duvar alani
+- toplam ic duvar alani
+- toplam cati alani
+- toplam doseme alani
+- toplam dis pencere alani
+- eleman siniflandirma ozeti
+- zone bazinda alan ozeti
+- construction kullanim ozeti
+- malzeme kullanim ozeti
 
-### 6. CSV export eklenmesi
+Bu adim ile proje yalnizca veri ureten degil, veri yorumlayan bir yapiya donusmustur.
 
-JSON verisinin tablo formatinda incelenebilmesi icin CSV export scripti eklendi.
+### 9. CSV export altyapisinin eklenmesi
 
-Dosya:
+Verilerin Excel veya benzeri tablo araclarinda kolayca incelenebilmesi icin CSV export scripti eklendi.
+
+Bu is icin olusturulan dosya:
 
 - [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py)
 
 Bu script:
 
 - `model_data.json` dosyasini okur
-- verileri ayri CSV dosyalarina yazar
-- CSV dosyalarini `csv_output` klasoru altinda olusturur
+- her veri grubunu ayri CSV dosyasina yazar
+- ciktilari [csv_output](c:\StarProje\csv_output) klasoru altinda olusturur
 
-Uretilen CSV dosyalarina ornekler:
+Uretilen baslica CSV dosyalari:
 
 - `model_summary.csv`
 - `zones.csv`
@@ -209,130 +269,53 @@ Uretilen CSV dosyalarina ornekler:
 - `constructions.csv`
 - `construction_layers.csv`
 
-Bu sayede veriler Excel veya benzeri tablo araclarinda kolayca acilip filtrelenebilir hale gelir.
+CSV dosyalari `utf-8-sig` ile yazildigi icin Excel'de daha saglikli acilmasi hedeflenmistir.
 
-### 7. CSV dosyalarinin Excel'de kullanilmasi
+## Elde Edilen Sonuclar
 
-Uretilen CSV dosyalari Excel'de dogrudan acilabilir.
-
-Izlenecek temel yol:
-
-- `csv_output` klasorunu acmak
-- istenen `.csv` dosyasina cift tiklamak
-- veya Excel icinden `Dosya > Ac` ile ilgili CSV dosyasini secmek
-
-Ozellikle su dosyalar pratik kullanim icin faydalidir:
-
-- `walls.csv`
-- `windows.csv`
-- `spaces.csv`
-- `materials.csv`
-- `construction_layers.csv`
-
-CSV dosyalari `utf-8-sig` ile yazildigi icin Excel'de karakterlerin daha dogru gorunmesi hedeflenmistir.
-
-## Elde Edilen Veriler
-
-Calistirilan modelden su ozet veriler alinmistir:
+Su ana kadar test edilen modelden elde edilen temel ozet veriler sunlardir:
 
 - 9 thermal zone
 - 37 duvar
+- 13 cati
+- 10 doseme
 - 16 pencere
+- 17 aciklik
 - 9 space
 - 16 malzeme
+- 11 construction
 - toplam taban alani: `176.0 m2`
 - toplam hacim: `528.0 m3`
 
-Ayrica su detaylar da listelenebilmektedir:
-
-- Zone bazinda bagli space sayisi
-- Duvar bazinda alan, sinir kosulu ve azimut
-- Duvar bazinda eleman sinifi
-- Pencere bazinda alan ve tip
-- Pencere bazinda eleman sinifi
-- Cati ve doseme elemanlari
-- Space bazinda alan ve hacim
-- Malzeme bazinda kalinlik, iletkenlik veya thermal resistance gibi ozellikler
-- Construction bazinda katman sayisi
-- Construction bazinda katman/malzeme listesi
-
-## JSON Ciktisi
-
-Modelden cekilen veriler yalnizca terminale yazdirilmakla kalmamis, ayni zamanda JSON formatinda kaydedilecek sekilde gelistirilmistir.
-
-Uretilen dosya:
-
-- [model_data.json](c:\StarProje\model_data.json)
-
-JSON dosyasinda su bolumler bulunmaktadir:
-
-- `model_summary`
-- `zones`
-- `walls`
-- `roofs`
-- `floors`
-- `windows`
-- `openings`
-- `spaces`
-- `materials`
-- `constructions`
-
-Ayrica nesneler arasi iliskiler de eklenmistir:
-
-- duvar icin `space_name`
-- duvar icin `construction_name`
-- duvar icin `element_class`
-- pencere icin `host_surface_name`
-- pencere icin `construction_name`
-- pencere icin `element_class`
-- space icin `thermal_zone_name`
-- zone icin `space_names`
-- construction icin `layers`
-
-Bu yapi sayesinde veriler sonraki asamalarda kolayca filtrelenebilir, analiz edilebilir ve farkli formatlara donusturulebilir.
-
-## Analiz Ciktisi
-
-JSON verisi uretildikten sonra bu veri uzerinde ikinci asama analiz yapilabilmektedir.
-
-Bu analiz ile:
-
-- modeldeki toplam alanlar ozetlenir
-- dis ve ic duvar alanlari ayrilir
-- cati ve doseme alanlari toplanir
-- dis pencere alanlari hesaplanir
-- yuzey ve aciklik siniflari ozetlenir
-- zone bazinda ozet bilgi uretilir
-- construction kullanim sikligi hesaplanir
-- malzeme kullanim yogunlugu gorulur
+Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigini gostermektedir.
 
 ## Dosya Yapisi
 
 | Dosya | Aciklama |
 | --- | --- |
-| [check_openstudio_api.py](c:\StarProje\check_openstudio_api.py) | OpenStudio Python API'nin erisilebilir olup olmadigini kontrol eder. |
-| [openstudio_model_info.py](c:\StarProje\openstudio_model_info.py) | OSM modelini yukler ve temel ozet bilgileri yazdirir. |
-| [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py) | Detayli model verilerini, eleman siniflarini, construction katmanlarini ve JSON ciktiyi uretir. |
-| [analyze_model_data.py](c:\StarProje\analyze_model_data.py) | `model_data.json` dosyasini okuyup alan, siniflandirma ve kullanim analizleri uretir. |
-| [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | `model_data.json` dosyasini ayri CSV tablolarina aktarir. |
-| [model_data.json](c:\StarProje\model_data.json) | Uretilen yapilandirilmis veri dosyasidir. |
-| [csv_output](c:\StarProje\csv_output) | CSV export sonrasinda olusan tablo dosyalarinin klasorudur. |
+| [check_openstudio_api.py](c:\StarProje\check_openstudio_api.py) | OpenStudio Python API erisimini kontrol eder. |
+| [openstudio_model_info.py](c:\StarProje\openstudio_model_info.py) | OSM modelini yukler ve temel ozet bilgilerini yazdirir. |
+| [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py) | Modelden detayli veri cikarir, siniflandirma yapar ve JSON uretir. |
+| [analyze_model_data.py](c:\StarProje\analyze_model_data.py) | JSON verisi uzerinden ozet analiz raporu uretir. |
+| [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | JSON verisini CSV tablolarina aktarir. |
+| [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
+| [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
-## Nasil Calistirilir
+## Kullanim
 
-### OpenStudio API kontrolu
+### 1. OpenStudio API kontrolu
 
 ```powershell
 python check_openstudio_api.py
 ```
 
-### Model ozetini alma
+### 2. Model ozetini alma
 
 ```powershell
 python openstudio_model_info.py
 ```
 
-### Detayli veri cikarma ve JSON olusturma
+### 3. Detayli veri cikarma ve JSON olusturma
 
 ```powershell
 python extract_openstudio_data.py
@@ -340,10 +323,10 @@ python extract_openstudio_data.py
 
 Bu komut sonucunda:
 
-- terminale model verileri yazdirilir
+- model verileri terminale yazdirilir
 - `model_data.json` dosyasi olusturulur
 
-### JSON verisini analiz etme
+### 4. JSON verisini analiz etme
 
 ```powershell
 python analyze_model_data.py
@@ -352,9 +335,9 @@ python analyze_model_data.py
 Bu komut sonucunda:
 
 - `model_data.json` okunur
-- ozet analiz raporu terminale yazdirilir
+- analiz raporu terminale yazdirilir
 
-### JSON verisini CSV olarak disa aktarma
+### 5. JSON verisini CSV olarak disa aktarma
 
 ```powershell
 python export_model_data_to_csv.py
@@ -364,20 +347,30 @@ Bu komut sonucunda:
 
 - `model_data.json` okunur
 - `csv_output` klasoru olusturulur
-- her veri grubu icin ayri CSV dosyasi yazilir
+- her veri grubu icin ayri CSV dosyasi uretilir
 
-### CSV dosyalarini Excel'de acma
+### 6. CSV dosyalarini Excel'de acma
+
+CSV dosyalarini kullanmak icin:
 
 - [csv_output](c:\StarProje\csv_output) klasorunu acin
 - istediginiz `.csv` dosyasina cift tiklayin
-- veya Excel'i acip `Dosya > Ac` yoluyla CSV dosyasini secin
+- veya Excel uzerinden `Dosya > Ac` yoluyla ilgili dosyayi secin
 
-## Sonraki Adimlar
+Pratik kullanim icin one cikan dosyalar:
 
-Bu altyapi bir sonraki asamada su gelistirmeler icin uygundur:
+- [csv_output/walls.csv](c:\StarProje\csv_output\walls.csv)
+- [csv_output/windows.csv](c:\StarProje\csv_output\windows.csv)
+- [csv_output/spaces.csv](c:\StarProje\csv_output\spaces.csv)
+- [csv_output/materials.csv](c:\StarProje\csv_output\materials.csv)
+- [csv_output/construction_layers.csv](c:\StarProje\csv_output\construction_layers.csv)
 
-- Yapi elemanlarini zone ve space ile daha detayli esleme
-- CSV veya Excel ciktilari olusturma
-- Enerji analizi icin veri hazirlama
-- Geometri uyarilarini analiz etme
-- Otomatik rapor ciktilari uretme
+## Sonraki Olası Adimlar
+
+Bu altyapi bundan sonraki asamada su gelistirmeler icin uygundur:
+
+- zone ve space bazinda daha ayrintili eleman esleme
+- daha gelismis raporlama ciktilari
+- CSV disinda Excel formatinda dogrudan export
+- geometri uyari ve tutarsizliklarinin analizi
+- enerji analizi icin hazir veri setleri uretme
