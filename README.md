@@ -9,9 +9,10 @@ Bu calismada su ana kadar asagidaki adimlar tamamlanmistir:
 - OpenStudio Python API'nin calisip calismadigi kontrol edildi
 - `.osm` model dosyasi Python uzerinden yuklendi
 - Modelin temel ozet bilgileri okundu
-- Zone, space, duvar, pencere ve malzeme verileri cikartildi
+- Zone, space, duvar, pencere, malzeme ve construction verileri cikartildi
 - Elde edilen veriler terminale yazdirildi
 - Ayni veriler JSON formatinda disa aktarildi
+- JSON verisi uzerinden analiz raporu uretilmeye baslandi
 
 Bu yapi, sonraki asamalarda veri analizi, raporlama ve farkli formatlara donusum icin temel olusturmaktadir.
 
@@ -74,6 +75,8 @@ Bu script ile su bilgiler alinmaktadir:
 - Alan bilgileri
 - Hacim bilgileri
 - Malzeme bilgileri
+- Construction bilgileri
+- Construction katman bilgileri
 
 ### 4. Teknik sorunlarin cozulmesi
 
@@ -82,6 +85,16 @@ Gelistirme sirasinda OpenStudio Python binding yapisina bagli bazi teknik sorunl
 #### `openstudio.path(...)` kullanimi
 
 `.osm` dosya yolu OpenStudio'nun bekledigi formatta verilerek model yukleme duzeltildi.
+
+#### OSM dosya yolu kontrolu
+
+Script calismadan once `OSM_PATH` icindeki dosyanin gercekten var olup olmadigi kontrol edilmektedir.
+
+Bu sayede:
+
+- yanlis dosya yolu verildiginde script dogrudan bilgi verir
+- model yuklenemediginde hata ayiklama daha kolay olur
+- `Model yuklenemedi` durumunun nedeni daha net anlasilir
 
 #### Optional sayisal degerlerin okunmasi
 
@@ -112,6 +125,38 @@ Ornek:
 
 Bu sayede malzeme verileri script tarafinda dogru okunabilir hale getirildi.
 
+#### Construction ve katman bilgisinin eklenmesi
+
+Modeldeki `construction` nesneleri de okunacak sekilde script genisletildi.
+
+Bu kapsamda:
+
+- tum construction nesneleri listelenir
+- her construction icin katman sayisi okunur
+- katmanlardaki malzemeler JSON icine eklenir
+
+Bu sayede su iliski kurulabilir:
+
+- duvar -> construction -> katmanlar -> malzemeler
+
+### 5. JSON verisi uzerinden analiz yapilmasi
+
+Modelden cekilen verileri daha anlamli hale getirmek icin JSON dosyasini okuyup ozet rapor olusturan yeni bir script eklendi.
+
+Dosya:
+
+- [analyze_model_data.py](c:\StarProje\analyze_model_data.py)
+
+Bu script su analizleri yapar:
+
+- model ozetini yazdirir
+- toplam dis duvar alanini hesaplar
+- toplam ic duvar alanini hesaplar
+- toplam pencere alanini hesaplar
+- zone bazinda alan ozetini verir
+- construction bazinda kullanim ozetini verir
+- en sik gecen malzemeleri listeler
+
 ## Elde Edilen Veriler
 
 Calistirilan modelden su ozet veriler alinmistir:
@@ -131,6 +176,8 @@ Ayrica su detaylar da listelenebilmektedir:
 - Pencere bazinda alan ve tip
 - Space bazinda alan ve hacim
 - Malzeme bazinda kalinlik, iletkenlik veya thermal resistance gibi ozellikler
+- Construction bazinda katman sayisi
+- Construction bazinda katman/malzeme listesi
 
 ## JSON Ciktisi
 
@@ -148,6 +195,7 @@ JSON dosyasinda su bolumler bulunmaktadir:
 - `windows`
 - `spaces`
 - `materials`
+- `constructions`
 
 Ayrica nesneler arasi iliskiler de eklenmistir:
 
@@ -157,8 +205,22 @@ Ayrica nesneler arasi iliskiler de eklenmistir:
 - pencere icin `construction_name`
 - space icin `thermal_zone_name`
 - zone icin `space_names`
+- construction icin `layers`
 
 Bu yapi sayesinde veriler sonraki asamalarda kolayca filtrelenebilir, analiz edilebilir ve farkli formatlara donusturulebilir.
+
+## Analiz Ciktisi
+
+JSON verisi uretildikten sonra bu veri uzerinde ikinci asama analiz yapilabilmektedir.
+
+Bu analiz ile:
+
+- modeldeki toplam alanlar ozetlenir
+- dis ve ic duvar alanlari ayrilir
+- pencere alanlari toplanir
+- zone bazinda ozet bilgi uretilir
+- construction kullanim sikligi hesaplanir
+- malzeme kullanim yogunlugu gorulur
 
 ## Dosya Yapisi
 
@@ -166,7 +228,8 @@ Bu yapi sayesinde veriler sonraki asamalarda kolayca filtrelenebilir, analiz edi
 | --- | --- |
 | [check_openstudio_api.py](c:\StarProje\check_openstudio_api.py) | OpenStudio Python API'nin erisilebilir olup olmadigini kontrol eder. |
 | [openstudio_model_info.py](c:\StarProje\openstudio_model_info.py) | OSM modelini yukler ve temel ozet bilgileri yazdirir. |
-| [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py) | Detayli model verilerini ceker ve JSON cikti uretir. |
+| [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py) | Detayli model verilerini, construction katmanlarini ve JSON ciktiyi uretir. |
+| [analyze_model_data.py](c:\StarProje\analyze_model_data.py) | `model_data.json` dosyasini okuyup ozet analiz raporu uretir. |
 | [model_data.json](c:\StarProje\model_data.json) | Uretilen yapilandirilmis veri dosyasidir. |
 
 ## Nasil Calistirilir
@@ -194,11 +257,23 @@ Bu komut sonucunda:
 - terminale model verileri yazdirilir
 - `model_data.json` dosyasi olusturulur
 
+### JSON verisini analiz etme
+
+```powershell
+python analyze_model_data.py
+```
+
+Bu komut sonucunda:
+
+- `model_data.json` okunur
+- ozet analiz raporu terminale yazdirilir
+
 ## Sonraki Adimlar
 
 Bu altyapi bir sonraki asamada su gelistirmeler icin uygundur:
 
-- Construction katmanlarini cikarma
 - Yapi elemanlarini zone ve space ile daha detayli esleme
 - CSV veya Excel ciktilari olusturma
 - Enerji analizi icin veri hazirlama
+- Geometri uyarilarini analiz etme
+- Otomatik rapor ciktilari uretme

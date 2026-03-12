@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import openstudio as openstudio
 
@@ -8,9 +9,14 @@ OUTPUT_JSON_PATH = "model_data.json"
 
 
 def load_model(osm_path: str):
+    if not Path(osm_path).exists():
+        print(f"OSM dosyasi bulunamadi: {osm_path}")
+        return None
+
     translator = openstudio.osversion.VersionTranslator()
     model_optional = translator.loadModel(openstudio.path(osm_path))
     if not model_optional.is_initialized():
+        print(f"Model yuklenemedi: {osm_path}")
         return None
     return model_optional.get()
 
@@ -130,6 +136,36 @@ def material_to_dict(material) -> dict:
     return data
 
 
+def get_construction_layers(construction):
+    if hasattr(construction, "layers"):
+        try:
+            return construction.layers()
+        except Exception:
+            pass
+
+    if hasattr(construction, "to_LayeredConstruction"):
+        layered = construction.to_LayeredConstruction()
+        if hasattr(layered, "is_initialized") and layered.is_initialized():
+            return layered.get().layers()
+
+    if hasattr(construction, "to_Construction"):
+        standard = construction.to_Construction()
+        if hasattr(standard, "is_initialized") and standard.is_initialized():
+            return standard.get().layers()
+
+    return []
+
+
+def construction_to_dict(construction) -> dict:
+    layers = get_construction_layers(construction)
+    return {
+        "name": safe_name(construction),
+        "type": construction.iddObjectType().valueName(),
+        "layer_count": len(layers),
+        "layers": [material_to_dict(layer) for layer in layers],
+    }
+
+
 def export_model_data(model) -> dict:
     zones = model.getThermalZones()
     walls = [surface for surface in model.getSurfaces() if surface.surfaceType() == "Wall"]
@@ -137,6 +173,7 @@ def export_model_data(model) -> dict:
     windows = [sub_surface for sub_surface in model.getSubSurfaces() if sub_surface.subSurfaceType() in window_types]
     spaces = model.getSpaces()
     materials = model.getMaterials()
+    constructions = model.getConstructions()
 
     return {
         "model_summary": {
@@ -146,6 +183,7 @@ def export_model_data(model) -> dict:
             "window_count": len(windows),
             "space_count": len(spaces),
             "material_count": len(materials),
+            "construction_count": len(constructions),
             "total_floor_area_m2": round(sum(optional_number(space.floorArea()) or 0.0 for space in spaces), 2),
             "total_volume_m3": round(sum(optional_number(space.volume()) or 0.0 for space in spaces), 2),
         },
@@ -154,6 +192,7 @@ def export_model_data(model) -> dict:
         "windows": [window_to_dict(window) for window in windows],
         "spaces": [space_to_dict(space) for space in spaces],
         "materials": [material_to_dict(material) for material in materials],
+        "constructions": [construction_to_dict(construction) for construction in constructions],
     }
 
 
@@ -238,6 +277,23 @@ def print_materials(model) -> None:
         print(f"... {len(materials) - 20} adet malzeme daha var")
 
 
+def print_constructions(model) -> None:
+    constructions = model.getConstructions()
+    print("\n=== CONSTRUCTIONS ===")
+    print("Toplam construction sayisi:", len(constructions))
+
+    for construction in constructions[:20]:
+        layers = get_construction_layers(construction)
+        layer_names = [safe_name(layer) for layer in layers]
+        print(f"- Construction: {safe_name(construction)}")
+        print("  Tip:", construction.iddObjectType().valueName())
+        print("  Katman sayisi:", len(layers))
+        print("  Katmanlar:", ", ".join(layer_names) if layer_names else "N/A")
+
+    if len(constructions) > 20:
+        print(f"... {len(constructions) - 20} adet construction daha var")
+
+
 def main() -> None:
     model = load_model(OSM_PATH)
     if model is None:
@@ -253,6 +309,7 @@ def main() -> None:
     print_windows(model)
     print_areas(model)
     print_materials(model)
+    print_constructions(model)
     write_json(model_data, OUTPUT_JSON_PATH)
     print(f"\nJSON dosyasi olusturuldu: {OUTPUT_JSON_PATH}")
 
