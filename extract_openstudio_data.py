@@ -267,7 +267,7 @@ def write_json(data: dict, output_path: str) -> None:
 
 def print_zones(model) -> None:
     zones = model.getThermalZones()
-    print("\n=== ZONES ===")
+    print("\nZONES")
     print("Toplam zone sayisi:", len(zones))
 
     for zone in zones:
@@ -280,7 +280,7 @@ def print_zones(model) -> None:
 
 def print_walls(model) -> None:
     walls = [surface for surface in model.getSurfaces() if surface.surfaceType() == "Wall"]
-    print("\n=== DUVARLAR ===")
+    print("\nDUVARLAR")
     print("Toplam duvar sayisi:", len(walls))
 
     for wall in walls[:20]:
@@ -298,7 +298,7 @@ def print_windows(model) -> None:
     window_types = {"FixedWindow", "OperableWindow", "Skylight"}
     windows = [sub_surface for sub_surface in model.getSubSurfaces() if sub_surface.subSurfaceType() in window_types]
 
-    print("\n=== PENCERELER ===")
+    print("\nPENCERELER")
     print("Toplam pencere sayisi:", len(windows))
 
     for window in windows[:20]:
@@ -316,7 +316,7 @@ def print_areas(model) -> None:
     total_floor_area = sum(optional_number(space.floorArea()) or 0.0 for space in spaces)
     total_volume = sum(optional_number(space.volume()) or 0.0 for space in spaces)
 
-    print("\n=== ALANLAR ===")
+    print("\nALANLAR")
     print("Toplam space sayisi:", len(spaces))
     print("Toplam taban alani (m2):", round(total_floor_area, 2))
     print("Toplam hacim (m3):", round(total_volume, 2))
@@ -344,7 +344,7 @@ def print_surface_classes(model) -> None:
         opening_class = classify_opening(opening)
         opening_classes[opening_class] = opening_classes.get(opening_class, 0) + 1
 
-    print("\n=== ELEMAN SINIFLARI ===")
+    print("\nELEMAN SINIFLARI")
     print("Yuzey siniflari:")
     for class_name, count in sorted(wall_classes.items()):
         print(f"  {class_name}: {count}")
@@ -356,7 +356,7 @@ def print_surface_classes(model) -> None:
 
 def print_materials(model) -> None:
     materials = model.getMaterials()
-    print("\n=== MALZEMELER ===")
+    print("\nMALZEMELER")
     print("Toplam malzeme sayisi:", len(materials))
 
     for material in materials[:20]:
@@ -369,7 +369,7 @@ def print_materials(model) -> None:
 
 def print_constructions(model) -> None:
     constructions = model.getConstructions()
-    print("\n=== CONSTRUCTIONS ===")
+    print("\nCONSTRUCTIONS")
     print("Toplam construction sayisi:", len(constructions))
 
     for construction in constructions[:20]:

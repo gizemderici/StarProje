@@ -71,7 +71,7 @@ def print_classification_report(data: dict) -> None:
     surface_counter = Counter(item.get("element_class", "bilinmiyor") for item in surface_items)
     opening_counter = Counter(item.get("element_class", "bilinmiyor") for item in opening_items)
 
-    print("\n=== ELEMAN SINIFLANDIRMA OZETI ===")
+    print("\nELEMAN SINIFLANDIRMA OZETI")
     print("Yuzey siniflari:")
     for class_name, count in sorted(surface_counter.items()):
         print(f"- {class_name}: {count}")
@@ -84,7 +84,7 @@ def print_classification_report(data: dict) -> None:
 def print_zone_report(data: dict) -> None:
     zones = data.get("zones", [])
 
-    print("\n=== ZONE OZETI ===")
+    print("\nZONE OZETI")
     for zone in zones:
         print(
             f"- {zone.get('name', 'N/A')}: "
@@ -106,7 +106,7 @@ def print_construction_report(data: dict) -> None:
         if window.get("construction_name"):
             construction_usage[window["construction_name"]] += 1
 
-    print("\n=== CONSTRUCTION OZETI ===")
+    print("\nCONSTRUCTION OZETI")
     for construction in constructions:
         name = construction.get("name", "N/A")
         layer_count = construction.get("layer_count", 0)
@@ -124,7 +124,7 @@ def print_material_usage_report(data: dict) -> None:
             if material_name:
                 material_counter[material_name] += 1
 
-    print("\n=== MALZEME KULLANIM OZETI ===")
+    print("\nMALZEME KULLANIM OZETI")
     for material_name, count in material_counter.most_common(10):
         print(f"- {material_name}: {count} construction katmaninda geciyor")
 
