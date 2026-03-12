@@ -1,0 +1,14 @@
+﻿name,surface_type,element_class,gross_area_m2,outside_boundary_condition,azimuth_rad,space_name,construction_name
+Surface 2,RoofCeiling,ic_tavan,12.0,Surface,1.57,kuzeydogu,asma tavan
+Surface 3,RoofCeiling,ic_tavan,9.0,Surface,1.57,batı,asma tavan
+Face 9,RoofCeiling,ic_tavan,18.0,Surface,1.57,kuzeydogu,zemin
+Surface 5,RoofCeiling,ic_tavan,15.0,Surface,1.57,batı,asma tavan
+Surface 4,RoofCeiling,ic_tavan,10.0,Surface,1.57,batı,asma tavan
+Face 83,RoofCeiling,cati,6.0,Outdoors,1.57,kuzey_k1,cati
+Face 40,RoofCeiling,cati,9.0,Outdoors,1.57,kuzeybatı_k1,cati
+Face 19,RoofCeiling,ic_tavan,6.0,Surface,1.57,batı,asma tavan
+Face 88,RoofCeiling,cati,15.0,Outdoors,1.57,guneybatı_k1,cati
+Face 86,RoofCeiling,cati,10.0,Outdoors,1.57,guney_k1,cati
+Face 1,RoofCeiling,ic_tavan,18.0,Surface,1.57,guneydogu,asma tavan
+Face 31,RoofCeiling,cati,30.0,Outdoors,1.57,guneydogu_k1,cati
+Face 54,RoofCeiling,cati,18.0,Outdoors,1.57,kuzeydogu_k1,cati

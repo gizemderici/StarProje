@@ -1,0 +1,11 @@
+﻿name,surface_type,element_class,gross_area_m2,outside_boundary_condition,azimuth_rad,space_name,construction_name
+Face 8,Floor,zemin_dosemesi,30.0,Ground,1.57,kuzeydogu,zemin
+Face 30,Floor,ic_doseme,18.0,Surface,1.57,guneydogu_k1,asma tavan
+Face 18,Floor,zemin_dosemesi,40.0,Ground,1.57,batı,zemin
+Face 82,Floor,ic_doseme,6.0,Surface,1.57,kuzey_k1,asma tavan
+Face 85,Floor,ic_doseme,10.0,Surface,1.57,guney_k1,asma tavan
+Face 0,Floor,zemin_dosemesi,18.0,Ground,1.57,guneydogu,zemin
+Face 87,Floor,ic_doseme,15.0,Surface,1.57,guneybatı_k1,asma tavan
+Face 53,Floor,ic_doseme,18.0,Surface,1.57,kuzeydogu_k1,zemin
+Face 89,Floor,ic_doseme,9.0,Surface,1.57,kuzeybatı_k1,asma tavan
+Surface 1,Floor,ic_doseme,12.0,Surface,1.57,guneydogu_k1,asma tavan

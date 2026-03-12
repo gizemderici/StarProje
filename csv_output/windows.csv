@@ -1,0 +1,17 @@
+﻿name,sub_surface_type,element_class,gross_area_m2,host_surface_name,construction_name
+Face 57,FixedWindow,dis_pencere,0.72,Face 56,pencere
+Face 24,FixedWindow,dis_pencere,1.04,Face 23,pencere
+Face 13,FixedWindow,dis_pencere,0.72,Face 11,pencere
+Face 58,FixedWindow,dis_pencere,0.72,Face 56,pencere
+Face 15,FixedWindow,dis_pencere,0.72,Face 14,pencere
+Face 12,FixedWindow,dis_pencere,0.72,Face 11,pencere
+Face 21,FixedWindow,dis_pencere,1.04,Face 20,pencere
+Face 66,FixedWindow,dis_pencere,1.04,Face 65,pencere
+Face 22,FixedWindow,dis_pencere,1.04,Face 20,pencere
+Face 5,FixedWindow,dis_pencere,0.72,Face 4,pencere
+Face 67,FixedWindow,dis_pencere,0.72,Face 65,pencere
+Face 60,FixedWindow,dis_pencere,1.04,Face 59,pencere
+Face 42,FixedWindow,dis_pencere,1.04,Face 41,pencere
+Face 35,FixedWindow,dis_pencere,0.72,Face 34,pencere
+Face 44,FixedWindow,dis_pencere,1.04,Face 43,pencere
+Face 36,FixedWindow,dis_pencere,0.72,Face 34,pencere

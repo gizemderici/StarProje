@@ -1,0 +1,17 @@
+﻿name,type,thickness_m,conductivity_w_per_mk,thermal_resistance_m2k_per_w
+tugla,OS_Material,0.19,0.5,
+beton,OS_Material,0.2,1.75,
+siva(harc),OS_Material,0.01,0.15,
+ahsap,OS_Material,0.05,0.15,
+Matal celik,OS_Material,0.04,55.0,
+izolasyon,OS_Material_NoMass,,,1.5
+pencere cami,OS_WindowMaterial_Glazing,,,
+cam arasi gaz,OS_WindowMaterial_Gas,,,
+pencere cami1,OS_WindowMaterial_Glazing,,,
+boya,OS_Material,0.001,0.5,
+alcı siva,OS_Material,0.01,0.35,
+kaba siva,OS_Material,0.02,0.72,
+yapistirma harci (kalekim),OS_Material,0.005,0.75,
+mineral siva,OS_Material,0.002,0.7,
+fileli yalitim sivasi,OS_Material,0.004,0.85,
+izolasyon kopugu,OS_Material,0.1,0.032,

@@ -1,0 +1,45 @@
+﻿construction_name,construction_type,layer_index,name,type,thickness_m,conductivity_w_per_mk
+disduvar,OS_Construction,1,siva(harc),OS_Material,0.01,0.15
+disduvar,OS_Construction,2,fileli yalitim sivasi,OS_Material,0.004,0.85
+disduvar,OS_Construction,3,izolasyon kopugu,OS_Material,0.1,0.032
+disduvar,OS_Construction,4,yapistirma harci (kalekim),OS_Material,0.005,0.75
+disduvar,OS_Construction,5,beton,OS_Material,0.2,1.75
+disduvar,OS_Construction,6,siva(harc),OS_Material,0.01,0.15
+disduvar,OS_Construction,7,boya,OS_Material,0.001,0.5
+ickapi,OS_Construction,1,ahsap,OS_Material,0.05,0.15
+diskapi,OS_Construction,1,Matal celik,OS_Material,0.04,55.0
+pencere,OS_Construction,1,pencere cami,OS_WindowMaterial_Glazing,,
+pencere,OS_Construction,2,cam arasi gaz,OS_WindowMaterial_Gas,,
+pencere,OS_Construction,3,pencere cami,OS_WindowMaterial_Glazing,,
+pencere1,OS_Construction,1,pencere cami1,OS_WindowMaterial_Glazing,,
+pencere1,OS_Construction,2,cam arasi gaz,OS_WindowMaterial_Gas,,
+pencere1,OS_Construction,3,pencere cami1,OS_WindowMaterial_Glazing,,
+icduvar,OS_Construction,1,siva(harc),OS_Material,0.01,0.15
+icduvar,OS_Construction,2,tugla,OS_Material,0.19,0.5
+icduvar,OS_Construction,3,siva(harc),OS_Material,0.01,0.15
+zemin,OS_Construction,1,beton,OS_Material,0.2,1.75
+yeni dis duvar (sor),OS_Construction,1,boya,OS_Material,0.001,0.5
+yeni dis duvar (sor),OS_Construction,2,mineral siva,OS_Material,0.002,0.7
+yeni dis duvar (sor),OS_Construction,3,fileli yalitim sivasi,OS_Material,0.004,0.85
+yeni dis duvar (sor),OS_Construction,4,yapistirma harci (kalekim),OS_Material,0.005,0.75
+yeni dis duvar (sor),OS_Construction,5,kaba siva,OS_Material,0.02,0.72
+yeni dis duvar (sor),OS_Construction,6,tugla,OS_Material,0.19,0.5
+yeni dis duvar (sor),OS_Construction,7,kaba siva,OS_Material,0.02,0.72
+yeni dis duvar (sor),OS_Construction,8,alcı siva,OS_Material,0.01,0.35
+yeni dis duvar (sor),OS_Construction,9,boya,OS_Material,0.001,0.5
+cati,OS_Construction,1,ahsap,OS_Material,0.05,0.15
+cati,OS_Construction,2,siva(harc),OS_Material,0.01,0.15
+cati,OS_Construction,3,beton,OS_Material,0.2,1.75
+yeni ic duvar (sor),OS_Construction,1,boya,OS_Material,0.001,0.5
+yeni ic duvar (sor),OS_Construction,2,alcı siva,OS_Material,0.01,0.35
+yeni ic duvar (sor),OS_Construction,3,kaba siva,OS_Material,0.02,0.72
+yeni ic duvar (sor),OS_Construction,4,tugla,OS_Material,0.19,0.5
+yeni ic duvar (sor),OS_Construction,5,kaba siva,OS_Material,0.02,0.72
+yeni ic duvar (sor),OS_Construction,6,alcı siva,OS_Material,0.01,0.35
+yeni ic duvar (sor),OS_Construction,7,boya,OS_Material,0.001,0.5
+asma tavan,OS_Construction,1,fileli yalitim sivasi,OS_Material,0.004,0.85
+asma tavan,OS_Construction,2,izolasyon kopugu,OS_Material,0.1,0.032
+asma tavan,OS_Construction,3,yapistirma harci (kalekim),OS_Material,0.005,0.75
+asma tavan,OS_Construction,4,beton,OS_Material,0.2,1.75
+asma tavan,OS_Construction,5,siva(harc),OS_Material,0.01,0.15
+asma tavan,OS_Construction,6,boya,OS_Material,0.001,0.5

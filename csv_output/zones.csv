@@ -1,0 +1,10 @@
+﻿name,space_count,space_names,floor_area_m2,volume_m3
+TZ_BATI,1,batı,40.0,
+TZ_GUNEYDOGU,1,guneydogu,18.0,
+TZ_KUZEYDOGU,1,kuzeydogu,30.0,
+TZ_KUZEYDOGU_K1,1,kuzeydogu_k1,18.0,
+TZ_GUNEYDOGU_K1,1,guneydogu_k1,30.0,
+TZ_KUZEYBATI_K1,1,kuzeybatı_k1,9.0,
+TZ_KUZEY_K1,1,kuzey_k1,6.0,
+TZ_GUNEYBATI_K1,1,guneybatı_k1,15.0,
+TZ_GUNEY_K1,1,guney_k1,10.0,

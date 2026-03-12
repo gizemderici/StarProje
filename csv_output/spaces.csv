@@ -1,0 +1,10 @@
+﻿name,floor_area_m2,volume_m3,thermal_zone_name
+kuzeydogu_k1,18.0,54.0,TZ_KUZEYDOGU_K1
+kuzeydogu,30.0,90.0,TZ_KUZEYDOGU
+guneydogu_k1,30.0,90.0,TZ_GUNEYDOGU_K1
+guneydogu,18.0,54.0,TZ_GUNEYDOGU
+kuzeybatı_k1,9.0,27.0,TZ_KUZEYBATI_K1
+guneybatı_k1,15.0,45.0,TZ_GUNEYBATI_K1
+batı,40.0,120.0,TZ_BATI
+kuzey_k1,6.0,18.0,TZ_KUZEY_K1
+guney_k1,10.0,30.0,TZ_GUNEY_K1

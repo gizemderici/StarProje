@@ -3,9 +3,13 @@
     "openstudio_version": "3.11.0",
     "zone_count": 9,
     "wall_count": 37,
+    "roof_count": 13,
+    "floor_count": 10,
     "window_count": 16,
+    "opening_count": 17,
     "space_count": 9,
     "material_count": 16,
+    "construction_count": 11,
     "total_floor_area_m2": 176.0,
     "total_volume_m3": 528.0
   },
@@ -96,6 +100,7 @@
     {
       "name": "Face 50",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 6.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 0.0,
@@ -105,6 +110,7 @@
     {
       "name": "Face 14",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 1.57,
@@ -114,6 +120,7 @@
     {
       "name": "Face 11",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 0.0,
@@ -123,6 +130,7 @@
     {
       "name": "Face 10",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -132,6 +140,7 @@
     {
       "name": "Face 77",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 6.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 3.14,
@@ -141,6 +150,7 @@
     {
       "name": "Face 75",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 6.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 0.0,
@@ -150,6 +160,7 @@
     {
       "name": "Face 16",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 3.14,
@@ -159,6 +170,7 @@
     {
       "name": "Face 3",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 0.0,
@@ -168,6 +180,7 @@
     {
       "name": "Face 23",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 0.0,
@@ -177,6 +190,7 @@
     {
       "name": "Face 56",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 0.0,
@@ -186,6 +200,7 @@
     {
       "name": "Face 65",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 4.71,
@@ -195,6 +210,7 @@
     {
       "name": "Face 26",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -204,6 +220,7 @@
     {
       "name": "Face 20",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 24.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 4.71,
@@ -213,6 +230,7 @@
     {
       "name": "Face 55",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -222,6 +240,7 @@
     {
       "name": "Face 76",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -231,6 +250,7 @@
     {
       "name": "Face 27",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 3.14,
@@ -240,6 +260,7 @@
     {
       "name": "Face 6",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 3.14,
@@ -249,6 +270,7 @@
     {
       "name": "Face 25",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -258,6 +280,7 @@
     {
       "name": "Face 49",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -267,6 +290,7 @@
     {
       "name": "Face 37",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 3.14,
@@ -276,6 +300,7 @@
     {
       "name": "Face 51",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -285,6 +310,7 @@
     {
       "name": "Face 68",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 0.0,
@@ -294,6 +320,7 @@
     {
       "name": "Face 52",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 6.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 3.14,
@@ -303,6 +330,7 @@
     {
       "name": "Face 84",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -312,6 +340,7 @@
     {
       "name": "Face 2",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -321,6 +350,7 @@
     {
       "name": "Face 4",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 1.57,
@@ -330,6 +360,7 @@
     {
       "name": "Face 70",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 3.14,
@@ -339,6 +370,7 @@
     {
       "name": "Face 69",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -348,6 +380,7 @@
     {
       "name": "Face 61",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 3.14,
@@ -357,6 +390,7 @@
     {
       "name": "Face 32",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 4.71,
@@ -366,6 +400,7 @@
     {
       "name": "Face 59",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 1.57,
@@ -375,6 +410,7 @@
     {
       "name": "Face 46",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 3.14,
@@ -384,6 +420,7 @@
     {
       "name": "Face 41",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 4.71,
@@ -393,6 +430,7 @@
     {
       "name": "Face 43",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 0.0,
@@ -402,6 +440,7 @@
     {
       "name": "Face 45",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 9.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 1.57,
@@ -411,6 +450,7 @@
     {
       "name": "Face 33",
       "surface_type": "Wall",
+      "element_class": "ic_duvar",
       "gross_area_m2": 18.0,
       "outside_boundary_condition": "Surface",
       "azimuth_rad": 0.0,
@@ -420,6 +460,7 @@
     {
       "name": "Face 34",
       "surface_type": "Wall",
+      "element_class": "dis_duvar",
       "gross_area_m2": 15.0,
       "outside_boundary_condition": "Outdoors",
       "azimuth_rad": 1.57,
@@ -427,10 +468,245 @@
       "construction_name": "disduvar"
     }
   ],
+  "roofs": [
+    {
+      "name": "Surface 2",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 12.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeydogu",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Surface 3",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 9.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "batı",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 9",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeydogu",
+      "construction_name": "zemin"
+    },
+    {
+      "name": "Surface 5",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 15.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "batı",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Surface 4",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 10.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "batı",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 83",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 6.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzey_k1",
+      "construction_name": "cati"
+    },
+    {
+      "name": "Face 40",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 9.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeybatı_k1",
+      "construction_name": "cati"
+    },
+    {
+      "name": "Face 19",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 6.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "batı",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 88",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 15.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "guneybatı_k1",
+      "construction_name": "cati"
+    },
+    {
+      "name": "Face 86",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 10.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "guney_k1",
+      "construction_name": "cati"
+    },
+    {
+      "name": "Face 1",
+      "surface_type": "RoofCeiling",
+      "element_class": "ic_tavan",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "guneydogu",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 31",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 30.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "guneydogu_k1",
+      "construction_name": "cati"
+    },
+    {
+      "name": "Face 54",
+      "surface_type": "RoofCeiling",
+      "element_class": "cati",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Outdoors",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeydogu_k1",
+      "construction_name": "cati"
+    }
+  ],
+  "floors": [
+    {
+      "name": "Face 8",
+      "surface_type": "Floor",
+      "element_class": "zemin_dosemesi",
+      "gross_area_m2": 30.0,
+      "outside_boundary_condition": "Ground",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeydogu",
+      "construction_name": "zemin"
+    },
+    {
+      "name": "Face 30",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "guneydogu_k1",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 18",
+      "surface_type": "Floor",
+      "element_class": "zemin_dosemesi",
+      "gross_area_m2": 40.0,
+      "outside_boundary_condition": "Ground",
+      "azimuth_rad": 1.57,
+      "space_name": "batı",
+      "construction_name": "zemin"
+    },
+    {
+      "name": "Face 82",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 6.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzey_k1",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 85",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 10.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "guney_k1",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 0",
+      "surface_type": "Floor",
+      "element_class": "zemin_dosemesi",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Ground",
+      "azimuth_rad": 1.57,
+      "space_name": "guneydogu",
+      "construction_name": "zemin"
+    },
+    {
+      "name": "Face 87",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 15.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "guneybatı_k1",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Face 53",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 18.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeydogu_k1",
+      "construction_name": "zemin"
+    },
+    {
+      "name": "Face 89",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 9.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "kuzeybatı_k1",
+      "construction_name": "asma tavan"
+    },
+    {
+      "name": "Surface 1",
+      "surface_type": "Floor",
+      "element_class": "ic_doseme",
+      "gross_area_m2": 12.0,
+      "outside_boundary_condition": "Surface",
+      "azimuth_rad": 1.57,
+      "space_name": "guneydogu_k1",
+      "construction_name": "asma tavan"
+    }
+  ],
   "windows": [
     {
       "name": "Face 57",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 56",
       "construction_name": "pencere"
@@ -438,6 +714,7 @@
     {
       "name": "Face 24",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 23",
       "construction_name": "pencere"
@@ -445,6 +722,7 @@
     {
       "name": "Face 13",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 11",
       "construction_name": "pencere"
@@ -452,6 +730,7 @@
     {
       "name": "Face 58",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 56",
       "construction_name": "pencere"
@@ -459,6 +738,7 @@
     {
       "name": "Face 15",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 14",
       "construction_name": "pencere"
@@ -466,6 +746,7 @@
     {
       "name": "Face 12",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 11",
       "construction_name": "pencere"
@@ -473,6 +754,7 @@
     {
       "name": "Face 21",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 20",
       "construction_name": "pencere"
@@ -480,6 +762,7 @@
     {
       "name": "Face 66",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 65",
       "construction_name": "pencere"
@@ -487,6 +770,7 @@
     {
       "name": "Face 22",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 20",
       "construction_name": "pencere"
@@ -494,6 +778,7 @@
     {
       "name": "Face 5",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 4",
       "construction_name": "pencere"
@@ -501,6 +786,7 @@
     {
       "name": "Face 67",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 65",
       "construction_name": "pencere"
@@ -508,6 +794,7 @@
     {
       "name": "Face 60",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 59",
       "construction_name": "pencere"
@@ -515,6 +802,7 @@
     {
       "name": "Face 42",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 41",
       "construction_name": "pencere"
@@ -522,6 +810,7 @@
     {
       "name": "Face 35",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 34",
       "construction_name": "pencere"
@@ -529,6 +818,7 @@
     {
       "name": "Face 44",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 1.04,
       "host_surface_name": "Face 43",
       "construction_name": "pencere"
@@ -536,6 +826,145 @@
     {
       "name": "Face 36",
       "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 34",
+      "construction_name": "pencere"
+    }
+  ],
+  "openings": [
+    {
+      "name": "Face 57",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 56",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 24",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 23",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 13",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 11",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 58",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 56",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 15",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 14",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 12",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 11",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 21",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 20",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 66",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 65",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 22",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 20",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 28",
+      "sub_surface_type": "Door",
+      "element_class": "dis_kapi",
+      "gross_area_m2": 3.08,
+      "host_surface_name": "Face 27",
+      "construction_name": "diskapi"
+    },
+    {
+      "name": "Face 5",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 4",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 67",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 65",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 60",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 59",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 42",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 41",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 35",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 0.72,
+      "host_surface_name": "Face 34",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 44",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
+      "gross_area_m2": 1.04,
+      "host_surface_name": "Face 43",
+      "construction_name": "pencere"
+    },
+    {
+      "name": "Face 36",
+      "sub_surface_type": "FixedWindow",
+      "element_class": "dis_pencere",
       "gross_area_m2": 0.72,
       "host_surface_name": "Face 34",
       "construction_name": "pencere"
@@ -686,6 +1115,337 @@
       "type": "OS_Material",
       "thickness_m": 0.1,
       "conductivity_w_per_mk": 0.032
+    }
+  ],
+  "constructions": [
+    {
+      "name": "disduvar",
+      "type": "OS_Construction",
+      "layer_count": 7,
+      "layers": [
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "fileli yalitim sivasi",
+          "type": "OS_Material",
+          "thickness_m": 0.004,
+          "conductivity_w_per_mk": 0.85
+        },
+        {
+          "name": "izolasyon kopugu",
+          "type": "OS_Material",
+          "thickness_m": 0.1,
+          "conductivity_w_per_mk": 0.032
+        },
+        {
+          "name": "yapistirma harci (kalekim)",
+          "type": "OS_Material",
+          "thickness_m": 0.005,
+          "conductivity_w_per_mk": 0.75
+        },
+        {
+          "name": "beton",
+          "type": "OS_Material",
+          "thickness_m": 0.2,
+          "conductivity_w_per_mk": 1.75
+        },
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        }
+      ]
+    },
+    {
+      "name": "ickapi",
+      "type": "OS_Construction",
+      "layer_count": 1,
+      "layers": [
+        {
+          "name": "ahsap",
+          "type": "OS_Material",
+          "thickness_m": 0.05,
+          "conductivity_w_per_mk": 0.15
+        }
+      ]
+    },
+    {
+      "name": "diskapi",
+      "type": "OS_Construction",
+      "layer_count": 1,
+      "layers": [
+        {
+          "name": "Matal celik",
+          "type": "OS_Material",
+          "thickness_m": 0.04,
+          "conductivity_w_per_mk": 55.0
+        }
+      ]
+    },
+    {
+      "name": "pencere",
+      "type": "OS_Construction",
+      "layer_count": 3,
+      "layers": [
+        {
+          "name": "pencere cami",
+          "type": "OS_WindowMaterial_Glazing"
+        },
+        {
+          "name": "cam arasi gaz",
+          "type": "OS_WindowMaterial_Gas"
+        },
+        {
+          "name": "pencere cami",
+          "type": "OS_WindowMaterial_Glazing"
+        }
+      ]
+    },
+    {
+      "name": "pencere1",
+      "type": "OS_Construction",
+      "layer_count": 3,
+      "layers": [
+        {
+          "name": "pencere cami1",
+          "type": "OS_WindowMaterial_Glazing"
+        },
+        {
+          "name": "cam arasi gaz",
+          "type": "OS_WindowMaterial_Gas"
+        },
+        {
+          "name": "pencere cami1",
+          "type": "OS_WindowMaterial_Glazing"
+        }
+      ]
+    },
+    {
+      "name": "icduvar",
+      "type": "OS_Construction",
+      "layer_count": 3,
+      "layers": [
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "tugla",
+          "type": "OS_Material",
+          "thickness_m": 0.19,
+          "conductivity_w_per_mk": 0.5
+        },
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        }
+      ]
+    },
+    {
+      "name": "zemin",
+      "type": "OS_Construction",
+      "layer_count": 1,
+      "layers": [
+        {
+          "name": "beton",
+          "type": "OS_Material",
+          "thickness_m": 0.2,
+          "conductivity_w_per_mk": 1.75
+        }
+      ]
+    },
+    {
+      "name": "yeni dis duvar (sor)",
+      "type": "OS_Construction",
+      "layer_count": 9,
+      "layers": [
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        },
+        {
+          "name": "mineral siva",
+          "type": "OS_Material",
+          "thickness_m": 0.002,
+          "conductivity_w_per_mk": 0.7
+        },
+        {
+          "name": "fileli yalitim sivasi",
+          "type": "OS_Material",
+          "thickness_m": 0.004,
+          "conductivity_w_per_mk": 0.85
+        },
+        {
+          "name": "yapistirma harci (kalekim)",
+          "type": "OS_Material",
+          "thickness_m": 0.005,
+          "conductivity_w_per_mk": 0.75
+        },
+        {
+          "name": "kaba siva",
+          "type": "OS_Material",
+          "thickness_m": 0.02,
+          "conductivity_w_per_mk": 0.72
+        },
+        {
+          "name": "tugla",
+          "type": "OS_Material",
+          "thickness_m": 0.19,
+          "conductivity_w_per_mk": 0.5
+        },
+        {
+          "name": "kaba siva",
+          "type": "OS_Material",
+          "thickness_m": 0.02,
+          "conductivity_w_per_mk": 0.72
+        },
+        {
+          "name": "alcı siva",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.35
+        },
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        }
+      ]
+    },
+    {
+      "name": "cati",
+      "type": "OS_Construction",
+      "layer_count": 3,
+      "layers": [
+        {
+          "name": "ahsap",
+          "type": "OS_Material",
+          "thickness_m": 0.05,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "beton",
+          "type": "OS_Material",
+          "thickness_m": 0.2,
+          "conductivity_w_per_mk": 1.75
+        }
+      ]
+    },
+    {
+      "name": "yeni ic duvar (sor)",
+      "type": "OS_Construction",
+      "layer_count": 7,
+      "layers": [
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        },
+        {
+          "name": "alcı siva",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.35
+        },
+        {
+          "name": "kaba siva",
+          "type": "OS_Material",
+          "thickness_m": 0.02,
+          "conductivity_w_per_mk": 0.72
+        },
+        {
+          "name": "tugla",
+          "type": "OS_Material",
+          "thickness_m": 0.19,
+          "conductivity_w_per_mk": 0.5
+        },
+        {
+          "name": "kaba siva",
+          "type": "OS_Material",
+          "thickness_m": 0.02,
+          "conductivity_w_per_mk": 0.72
+        },
+        {
+          "name": "alcı siva",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.35
+        },
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        }
+      ]
+    },
+    {
+      "name": "asma tavan",
+      "type": "OS_Construction",
+      "layer_count": 6,
+      "layers": [
+        {
+          "name": "fileli yalitim sivasi",
+          "type": "OS_Material",
+          "thickness_m": 0.004,
+          "conductivity_w_per_mk": 0.85
+        },
+        {
+          "name": "izolasyon kopugu",
+          "type": "OS_Material",
+          "thickness_m": 0.1,
+          "conductivity_w_per_mk": 0.032
+        },
+        {
+          "name": "yapistirma harci (kalekim)",
+          "type": "OS_Material",
+          "thickness_m": 0.005,
+          "conductivity_w_per_mk": 0.75
+        },
+        {
+          "name": "beton",
+          "type": "OS_Material",
+          "thickness_m": 0.2,
+          "conductivity_w_per_mk": 1.75
+        },
+        {
+          "name": "siva(harc)",
+          "type": "OS_Material",
+          "thickness_m": 0.01,
+          "conductivity_w_per_mk": 0.15
+        },
+        {
+          "name": "boya",
+          "type": "OS_Material",
+          "thickness_m": 0.001,
+          "conductivity_w_per_mk": 0.5
+        }
+      ]
     }
   ]
 }

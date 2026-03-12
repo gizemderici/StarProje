@@ -1,0 +1,13 @@
+﻿metric,value
+openstudio_version,3.11.0
+zone_count,9
+wall_count,37
+roof_count,13
+floor_count,10
+window_count,16
+opening_count,17
+space_count,9
+material_count,16
+construction_count,11
+total_floor_area_m2,176.0
+total_volume_m3,528.0
