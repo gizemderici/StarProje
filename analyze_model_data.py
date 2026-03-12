@@ -32,7 +32,10 @@ def print_model_summary(data: dict) -> None:
     print("Zone sayisi:", summary.get("zone_count", 0))
     print("Space sayisi:", summary.get("space_count", 0))
     print("Duvar sayisi:", summary.get("wall_count", 0))
+    print("Cati sayisi:", summary.get("roof_count", 0))
+    print("Doseme sayisi:", summary.get("floor_count", 0))
     print("Pencere sayisi:", summary.get("window_count", 0))
+    print("Aciklik sayisi:", summary.get("opening_count", 0))
     print("Malzeme sayisi:", summary.get("material_count", 0))
     print("Construction sayisi:", summary.get("construction_count", 0))
     print("Toplam taban alani (m2):", summary.get("total_floor_area_m2", 0))
@@ -43,17 +46,39 @@ def print_area_report(data: dict) -> None:
     walls = data.get("walls", [])
     windows = data.get("windows", [])
     spaces = data.get("spaces", [])
+    roofs = data.get("roofs", [])
+    floors = data.get("floors", [])
 
-    outdoor_wall_area = sum_area(walls, "gross_area_m2", "outside_boundary_condition", "Outdoors")
-    indoor_wall_area = sum_area(walls, "gross_area_m2", "outside_boundary_condition", "Surface")
-    total_window_area = sum_area(windows, "gross_area_m2")
+    outdoor_wall_area = sum_area(walls, "gross_area_m2", "element_class", "dis_duvar")
+    indoor_wall_area = sum_area(walls, "gross_area_m2", "element_class", "ic_duvar")
+    roof_area = sum_area(roofs, "gross_area_m2", "element_class", "cati")
+    floor_area = sum_area(floors, "gross_area_m2")
+    total_window_area = sum_area(windows, "gross_area_m2", "element_class", "dis_pencere")
     total_space_area = sum_area(spaces, "floor_area_m2")
 
     print("\n=== ALAN RAPORU ===")
     print("Toplam space alani (m2):", total_space_area)
     print("Toplam dis duvar alani (m2):", outdoor_wall_area)
     print("Toplam ic duvar alani (m2):", indoor_wall_area)
-    print("Toplam pencere alani (m2):", total_window_area)
+    print("Toplam cati alani (m2):", roof_area)
+    print("Toplam doseme alani (m2):", floor_area)
+    print("Toplam dis pencere alani (m2):", total_window_area)
+
+
+def print_classification_report(data: dict) -> None:
+    surface_items = data.get("walls", []) + data.get("roofs", []) + data.get("floors", [])
+    opening_items = data.get("openings", [])
+    surface_counter = Counter(item.get("element_class", "bilinmiyor") for item in surface_items)
+    opening_counter = Counter(item.get("element_class", "bilinmiyor") for item in opening_items)
+
+    print("\n=== ELEMAN SINIFLANDIRMA OZETI ===")
+    print("Yuzey siniflari:")
+    for class_name, count in sorted(surface_counter.items()):
+        print(f"- {class_name}: {count}")
+
+    print("Aciklik siniflari:")
+    for class_name, count in sorted(opening_counter.items()):
+        print(f"- {class_name}: {count}")
 
 
 def print_zone_report(data: dict) -> None:
@@ -111,6 +136,7 @@ def main() -> None:
 
     print_model_summary(data)
     print_area_report(data)
+    print_classification_report(data)
     print_zone_report(data)
     print_construction_report(data)
     print_material_usage_report(data)

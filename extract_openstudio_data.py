@@ -61,12 +61,65 @@ def zone_to_dict(zone) -> dict:
     }
 
 
+def classify_surface(surface) -> str:
+    surface_type = surface.surfaceType()
+    boundary = surface.outsideBoundaryCondition()
+
+    if surface_type == "Wall":
+        if boundary == "Outdoors":
+            return "dis_duvar"
+        if boundary == "Surface":
+            return "ic_duvar"
+        return "diger_duvar"
+
+    if surface_type == "RoofCeiling":
+        if boundary == "Outdoors":
+            return "cati"
+        if boundary == "Surface":
+            return "ic_tavan"
+        return "diger_tavan"
+
+    if surface_type == "Floor":
+        if boundary in {"Ground", "GroundFCfactorMethod", "GroundSlabPreprocessorAverage", "GroundBasementPreprocessorAverageWall", "GroundBasementPreprocessorAverageFloor"}:
+            return "zemin_dosemesi"
+        if boundary == "Surface":
+            return "ic_doseme"
+        if boundary == "Outdoors":
+            return "dis_doseme"
+        return "diger_doseme"
+
+    return "siniflandirilmadi"
+
+
+def classify_opening(sub_surface) -> str:
+    sub_surface_type = sub_surface.subSurfaceType()
+    host_surface = optional_number(sub_surface.surface())
+    boundary = host_surface.outsideBoundaryCondition() if host_surface is not None else None
+
+    if sub_surface_type in {"FixedWindow", "OperableWindow", "Skylight"}:
+        if boundary == "Outdoors":
+            return "dis_pencere"
+        if boundary == "Surface":
+            return "ic_aciklik"
+        return "diger_pencere"
+
+    if sub_surface_type in {"Door", "GlassDoor", "OverheadDoor"}:
+        if boundary == "Outdoors":
+            return "dis_kapi"
+        if boundary == "Surface":
+            return "ic_kapi"
+        return "diger_kapi"
+
+    return "siniflandirilmadi"
+
+
 def wall_to_dict(wall) -> dict:
     space = optional_number(wall.space())
     construction = optional_number(wall.construction())
     return {
         "name": safe_name(wall),
         "surface_type": wall.surfaceType(),
+        "element_class": classify_surface(wall),
         "gross_area_m2": rounded_number(wall.grossArea()),
         "outside_boundary_condition": wall.outsideBoundaryCondition(),
         "azimuth_rad": rounded_number(wall.azimuth()),
@@ -81,6 +134,7 @@ def window_to_dict(window) -> dict:
     return {
         "name": safe_name(window),
         "sub_surface_type": window.subSurfaceType(),
+        "element_class": classify_opening(window),
         "gross_area_m2": rounded_number(window.grossArea()),
         "host_surface_name": safe_name(surface) if surface is not None else None,
         "construction_name": safe_name(construction) if construction is not None else None,
@@ -168,9 +222,13 @@ def construction_to_dict(construction) -> dict:
 
 def export_model_data(model) -> dict:
     zones = model.getThermalZones()
-    walls = [surface for surface in model.getSurfaces() if surface.surfaceType() == "Wall"]
+    surfaces = model.getSurfaces()
+    walls = [surface for surface in surfaces if surface.surfaceType() == "Wall"]
+    roofs = [surface for surface in surfaces if surface.surfaceType() == "RoofCeiling"]
+    floors = [surface for surface in surfaces if surface.surfaceType() == "Floor"]
     window_types = {"FixedWindow", "OperableWindow", "Skylight"}
     windows = [sub_surface for sub_surface in model.getSubSurfaces() if sub_surface.subSurfaceType() in window_types]
+    openings = model.getSubSurfaces()
     spaces = model.getSpaces()
     materials = model.getMaterials()
     constructions = model.getConstructions()
@@ -180,7 +238,10 @@ def export_model_data(model) -> dict:
             "openstudio_version": openstudio.openStudioVersion(),
             "zone_count": len(zones),
             "wall_count": len(walls),
+            "roof_count": len(roofs),
+            "floor_count": len(floors),
             "window_count": len(windows),
+            "opening_count": len(openings),
             "space_count": len(spaces),
             "material_count": len(materials),
             "construction_count": len(constructions),
@@ -189,7 +250,10 @@ def export_model_data(model) -> dict:
         },
         "zones": [zone_to_dict(zone) for zone in zones],
         "walls": [wall_to_dict(wall) for wall in walls],
+        "roofs": [wall_to_dict(roof) for roof in roofs],
+        "floors": [wall_to_dict(floor) for floor in floors],
         "windows": [window_to_dict(window) for window in windows],
+        "openings": [window_to_dict(opening) for opening in openings],
         "spaces": [space_to_dict(space) for space in spaces],
         "materials": [material_to_dict(material) for material in materials],
         "constructions": [construction_to_dict(construction) for construction in constructions],
@@ -221,6 +285,7 @@ def print_walls(model) -> None:
 
     for wall in walls[:20]:
         print(f"- Duvar: {safe_name(wall)}")
+        print("  Sinif:", classify_surface(wall))
         print("  Alan (m2):", format_number(wall.grossArea()))
         print("  Dis sinir kosulu:", wall.outsideBoundaryCondition())
         print("  Azimut:", format_number(wall.azimuth()))
@@ -239,6 +304,7 @@ def print_windows(model) -> None:
     for window in windows[:20]:
         print(f"- Pencere: {safe_name(window)}")
         print("  Tip:", window.subSurfaceType())
+        print("  Sinif:", classify_opening(window))
         print("  Alan (m2):", format_number(window.grossArea()))
 
     if len(windows) > 20:
@@ -262,6 +328,30 @@ def print_areas(model) -> None:
 
     if len(spaces) > 20:
         print(f"... {len(spaces) - 20} adet space daha var")
+
+
+def print_surface_classes(model) -> None:
+    surfaces = model.getSurfaces()
+    openings = model.getSubSurfaces()
+
+    wall_classes = {}
+    for surface in surfaces:
+        surface_class = classify_surface(surface)
+        wall_classes[surface_class] = wall_classes.get(surface_class, 0) + 1
+
+    opening_classes = {}
+    for opening in openings:
+        opening_class = classify_opening(opening)
+        opening_classes[opening_class] = opening_classes.get(opening_class, 0) + 1
+
+    print("\n=== ELEMAN SINIFLARI ===")
+    print("Yuzey siniflari:")
+    for class_name, count in sorted(wall_classes.items()):
+        print(f"  {class_name}: {count}")
+
+    print("Aciklik siniflari:")
+    for class_name, count in sorted(opening_classes.items()):
+        print(f"  {class_name}: {count}")
 
 
 def print_materials(model) -> None:
@@ -308,6 +398,7 @@ def main() -> None:
     print_walls(model)
     print_windows(model)
     print_areas(model)
+    print_surface_classes(model)
     print_materials(model)
     print_constructions(model)
     write_json(model_data, OUTPUT_JSON_PATH)
