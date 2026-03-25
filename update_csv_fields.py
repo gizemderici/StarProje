@@ -19,7 +19,20 @@ SUPPORTED_FILES = {
             "u_factor_w_per_m2k": "float",
             "shgc": "float",
         },
-    }
+    },
+    "construction_layers.csv": {
+        "key_columns": {"construction_name", "layer_index", "name"},
+        "editable_columns": {
+            "construction_name": "string",
+            "layer_index": "integer",
+            "name": "string",
+            "thickness_m": "float",
+            "conductivity_w_per_mk": "float",
+            "thermal_resistance_m2k_per_w": "float",
+            "u_factor_w_per_m2k": "float",
+            "shgc": "float",
+        },
+    },
 }
 
 
@@ -135,6 +148,17 @@ def validate_value(value: str, value_type: str, column: str) -> None:
         except ValueError as error:
             raise CsvUpdateError(
                 f"'{column}' kolonu sayisal bir deger bekliyor. Alinan deger: '{value}'"
+            ) from error
+        return
+
+    if value_type == "integer":
+        if value == "":
+            raise CsvUpdateError(f"'{column}' kolonu bos birakilamaz.")
+        try:
+            int(value)
+        except ValueError as error:
+            raise CsvUpdateError(
+                f"'{column}' kolonu tam sayi bir deger bekliyor. Alinan deger: '{value}'"
             ) from error
         return
 

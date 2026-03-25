@@ -448,6 +448,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [analyze_model_data.py](c:\StarProje\analyze_model_data.py) | JSON verisi uzerinden ozet analiz raporu uretir. |
 | [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | JSON verisini CSV tablolarina aktarir. |
 | [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
+| [apply_update_scenarios.py](c:\StarProje\apply_update_scenarios.py) | Parametreli senaryolarla toplu CSV guncellemesi yapar ve ayri cikti uretir. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
@@ -580,3 +581,93 @@ Uretilen log kayitlarinda en az su alanlar yer alir:
 - `kolon`
 - `eski_deger`
 - `yeni_deger`
+
+### 8. Senaryo bazli toplu veri guncelleme
+
+`apply_update_scenarios.py`, tek tek manuel degisiklik yerine parametreli senaryolarla toplu veri guncellemesi yapar. Her senaryo:
+
+- belirli bir kosula uyan satirlari topluca gunceller
+- ayri bir cikti CSV dosyasi uretir
+- ayri bir degisiklik logu olusturur
+
+Genel kullanim:
+
+```powershell
+python apply_update_scenarios.py `
+  --scenario SENARYO_ADI `
+  --input GIRDI_DOSYASI `
+  --output CIKTI_DOSYASI `
+  --param anahtar=deger `
+  --param anahtar=deger
+```
+
+Ilk surumde tanimli 3 ornek senaryo vardir:
+
+1. `insulation_thickness_boost`
+
+Amac:
+- izolasyon veya yalitim iceren malzemelerin kalinligini carpana gore artirmak
+
+Parametreler:
+- `factor`: zorunlu, carpim katsayisi
+- `keywords`: istege bagli, varsayilan `izolasyon,yalitim`
+
+Ornek:
+
+```powershell
+python apply_update_scenarios.py `
+  --scenario insulation_thickness_boost `
+  --input csv_output/materials.csv `
+  --output csv_output/materials_insulation_boost.csv `
+  --param factor=1.15
+```
+
+2. `material_conductivity_override`
+
+Amac:
+- secilen malzemelerin iletkenlik degerlerini topluca degistirmek
+
+Parametreler:
+- `names`: zorunlu, virgul ile ayrilmis malzeme adlari
+- `value`: zorunlu, yeni iletkenlik degeri
+
+Ornek:
+
+```powershell
+python apply_update_scenarios.py `
+  --scenario material_conductivity_override `
+  --input csv_output/materials.csv `
+  --output csv_output/materials_conductivity_override.csv `
+  --param names=tugla,beton `
+  --param value=0.65
+```
+
+3. `construction_layer_update`
+
+Amac:
+- belirli bir construction icindeki secili katmanlari topluca guncellemek
+
+Parametreler:
+- `construction_name`: zorunlu
+- `layer_name`: istege bagli
+- `layer_index`: istege bagli
+- `thickness_delta`: istege bagli, mevcut kalinliga eklenir
+- `conductivity_value`: istege bagli, iletkenligi dogrudan bu degere ceker
+
+Not:
+- `layer_name` veya `layer_index` parametrelerinden en az biri verilmelidir
+- `thickness_delta` veya `conductivity_value` parametrelerinden en az biri verilmelidir
+
+Ornek:
+
+```powershell
+python apply_update_scenarios.py `
+  --scenario construction_layer_update `
+  --input csv_output/construction_layers.csv `
+  --output csv_output/construction_layers_updated.csv `
+  --param construction_name=disduvar `
+  --param layer_name=izolasyon kopugu `
+  --param thickness_delta=0.02
+```
+
+Bu senaryolar, ozellikle simulasyon oncesi alternatif malzeme ve katman varyasyonlari hazirlamak icin kullanilabilir.
