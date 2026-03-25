@@ -624,6 +624,7 @@ Ilk surumde arayuz:
 - ana ekran acar
 - kullanicinin CSV dosyasi secmesini saglar
 - secilen CSV dosyasini tablo olarak gosterir
+- temel arama ile tablo satirlarini filtreler
 
 Desteklenen kaynaklar:
 
@@ -640,6 +641,7 @@ Not:
 
 - NiceGUI kurulumu yoksa once `pip install nicegui` gerekebilir
 - performans icin ilk surumde tabloda en fazla ilk 200 satir gosterilir
+- varsayilan ilk secim olarak `materials.csv` acilmaya calisilir
 - amac sade ama calisir bir izleme iskeleti sunmaktir
 
 ### 7. CSV alanlarini Python ile guncelleme

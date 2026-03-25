@@ -28,7 +28,16 @@ def read_csv_rows(csv_path: Path) -> tuple[list[dict], list[str]]:
 
 csv_files = collect_csv_files()
 file_options = [path.as_posix() for path in csv_files]
-initial_value = file_options[0] if file_options else None
+
+
+def get_initial_value(options: list[str]) -> str | None:
+    for option in options:
+        if option.endswith("materials.csv"):
+            return option
+    return options[0] if options else None
+
+
+initial_value = get_initial_value(file_options)
 
 
 @ui.page("/")
@@ -51,6 +60,10 @@ def main_page() -> None:
                 value=initial_value,
                 label="CSV dosyasi",
             ).classes("w-full")
+            search_input = ui.input(
+                label="Tabloda ara",
+                placeholder="Bir deger veya kolon icigi ara",
+            ).classes("w-full")
             info_label = ui.label("").classes("text-sm text-slate-600")
 
         table_container = ui.column().classes("w-full")
@@ -68,8 +81,18 @@ def main_page() -> None:
                 return
 
             rows, fieldnames = read_csv_rows(csv_path)
+            search_query = (search_input.value or "").strip().lower()
+            filtered_rows = rows
+            if search_query:
+                filtered_rows = [
+                    row
+                    for row in rows
+                    if any(search_query in str(value).lower() for value in row.values())
+                ]
+
             info_label.set_text(
-                f"Dosya: {csv_path.as_posix()} | Toplam satir: {len(rows)} | Gosterilen: {min(len(rows), MAX_ROWS)}"
+                f"Dosya: {csv_path.as_posix()} | Toplam satir: {len(rows)} | "
+                f"Filtrelenen: {len(filtered_rows)} | Gosterilen: {min(len(filtered_rows), MAX_ROWS)}"
             )
 
             with table_container:
@@ -79,17 +102,18 @@ def main_page() -> None:
 
                 ui.table(
                     columns=[{"name": name, "label": name, "field": name, "sortable": True} for name in fieldnames],
-                    rows=rows[:MAX_ROWS],
+                    rows=filtered_rows[:MAX_ROWS],
                     row_key=fieldnames[0],
                     pagination={"rowsPerPage": 20},
                 ).classes("w-full")
 
-                if len(rows) > MAX_ROWS:
+                if len(filtered_rows) > MAX_ROWS:
                     ui.label(
                         f"Performans icin ilk {MAX_ROWS} satir gosteriliyor."
                     ).classes("text-sm text-amber-700")
 
         file_select.on_value_change(lambda _: refresh_table())
+        search_input.on_value_change(lambda _: refresh_table())
         ui.button("Tabloyu Yenile", on_click=refresh_table).props("outline")
 
         refresh_table()
