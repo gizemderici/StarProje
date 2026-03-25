@@ -1,10 +1,17 @@
 import csv
+from copy import deepcopy
+import json
 from pathlib import Path
 
 from nicegui import ui
 
+from apply_scenario_definition import load_scenario_definition, run_scenario_definition
+from build_simulation_output import build_manifest, build_output_paths, write_manifest
+from update_csv_fields import CsvUpdateError
+
 
 CSV_SEARCH_DIRS = [Path("csv_output"), Path("simulation_outputs")]
+SCENARIO_DIR = Path("scenario_definitions")
 MAX_ROWS = 200
 
 
@@ -26,8 +33,21 @@ def read_csv_rows(csv_path: Path) -> tuple[list[dict], list[str]]:
         return rows, reader.fieldnames
 
 
+def collect_scenario_files() -> list[Path]:
+    if not SCENARIO_DIR.exists():
+        return []
+    return sorted(SCENARIO_DIR.rglob("*.json"))
+
+
+def read_scenario_preview(scenario_path: Path) -> dict:
+    with scenario_path.open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
 csv_files = collect_csv_files()
 file_options = [path.as_posix() for path in csv_files]
+scenario_files = collect_scenario_files()
+scenario_options = [path.as_posix() for path in scenario_files]
 
 
 def get_initial_value(options: list[str]) -> str | None:
@@ -67,6 +87,106 @@ def main_page() -> None:
             info_label = ui.label("").classes("text-sm text-slate-600")
 
         table_container = ui.column().classes("w-full")
+
+        with ui.card().classes("w-full"):
+            ui.label("Simulasyon Senaryolari").classes("text-base font-medium")
+            scenario_select = ui.select(
+                options=scenario_options,
+                value=scenario_options[0] if scenario_options else None,
+                label="Senaryo dosyasi",
+            ).classes("w-full")
+            scenario_info = ui.label("").classes("text-sm text-slate-600")
+            scenario_detail = ui.markdown("").classes("w-full text-sm")
+
+            def refresh_scenario_detail() -> None:
+                selected_scenario = scenario_select.value
+                if not selected_scenario:
+                    scenario_info.set_text("Goruntulenecek bir senaryo dosyasi secin.")
+                    scenario_detail.set_content("")
+                    return
+
+                scenario_path = Path(selected_scenario)
+                if not scenario_path.exists():
+                    scenario_info.set_text(f"Senaryo dosyasi bulunamadi: {selected_scenario}")
+                    scenario_detail.set_content("")
+                    return
+
+                try:
+                    scenario = read_scenario_preview(scenario_path)
+                except Exception as error:
+                    scenario_info.set_text(f"Senaryo okunamadi: {error}")
+                    scenario_detail.set_content("")
+                    return
+
+                operations = scenario.get("operations", [])
+                scenario_info.set_text(
+                    f"Senaryo: {scenario.get('scenario_name', '-') } | Islem sayisi: {len(operations)}"
+                )
+
+                operation_lines = []
+                for operation in operations:
+                    match = operation.get("match", {})
+                    updates = operation.get("updates", {})
+                    update_text = ", ".join(f"{key}={value}" for key, value in updates.items())
+                    operation_lines.append(
+                        f"- **{operation.get('name', 'islem')}**: "
+                        f"`{match.get('column', '-')}` = `{match.get('value', '-')}` -> {update_text}"
+                    )
+
+                scenario_detail.set_content(
+                    "\n".join(
+                        [
+                            f"**Aciklama:** {scenario.get('description', '-')}",
+                            f"**Girdi:** `{scenario.get('input', '-')}`",
+                            f"**Varsayilan cikti:** `{scenario.get('output', '-')}`",
+                            "",
+                            "**Degisiklikler:**",
+                            *operation_lines,
+                        ]
+                    )
+                )
+
+            def run_scenario_preparation() -> None:
+                selected_scenario = scenario_select.value
+                if not selected_scenario:
+                    ui.notify("Lutfen once bir senaryo secin.", color="warning")
+                    return
+
+                try:
+                    scenario_path = Path(selected_scenario)
+                    scenario = load_scenario_definition(scenario_path)
+                    scenario_copy = deepcopy(scenario)
+                    input_path = Path(scenario_copy["input"])
+                    data_output, log_output, manifest_output = build_output_paths(
+                        scenario_copy["scenario_name"],
+                        input_path,
+                        Path("simulation_outputs"),
+                    )
+                    scenario_copy["output"] = str(data_output)
+                    scenario_copy["log_output"] = str(log_output)
+
+                    output_path, written_log_output, change_count = run_scenario_definition(scenario_copy)
+                    manifest = build_manifest(
+                        scenario_copy,
+                        scenario_path,
+                        input_path,
+                        output_path,
+                        written_log_output,
+                        change_count,
+                    )
+                    write_manifest(manifest_output, manifest)
+                    ui.notify(
+                        f"Senaryo hazirlik cikti paketi olusturuldu: {scenario_copy['scenario_name']}",
+                        color="positive",
+                    )
+                    refresh_table()
+                    refresh_scenario_detail()
+                except CsvUpdateError as error:
+                    ui.notify(f"Hata: {error}", color="negative")
+
+            scenario_select.on_value_change(lambda _: refresh_scenario_detail())
+            ui.button("Hazirlik Akisini Baslat", on_click=run_scenario_preparation).props("color=primary")
+            refresh_scenario_detail()
 
         def refresh_table() -> None:
             table_container.clear()

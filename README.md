@@ -625,6 +625,9 @@ Ilk surumde arayuz:
 - kullanicinin CSV dosyasi secmesini saglar
 - secilen CSV dosyasini tablo olarak gosterir
 - temel arama ile tablo satirlarini filtreler
+- kayitli senaryolari listeler
+- secilen senaryonun detaylarini gosterir
+- senaryo bazli hazirlik akisina baslangic butonu sunar
 
 Desteklenen kaynaklar:
 
@@ -642,6 +645,7 @@ Not:
 - NiceGUI kurulumu yoksa once `pip install nicegui` gerekebilir
 - performans icin ilk surumde tabloda en fazla ilk 200 satir gosterilir
 - varsayilan ilk secim olarak `materials.csv` acilmaya calisilir
+- senaryo butonu ilk surumde gercek simulasyon yerine hazirlik cikti akisini calistirir
 - amac sade ama calisir bir izleme iskeleti sunmaktir
 
 ### 7. CSV alanlarini Python ile guncelleme
