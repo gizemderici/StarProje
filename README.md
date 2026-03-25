@@ -449,6 +449,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | JSON verisini CSV tablolarina aktarir. |
 | [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
 | [apply_update_scenarios.py](c:\StarProje\apply_update_scenarios.py) | Parametreli senaryolarla toplu CSV guncellemesi yapar ve ayri cikti uretir. |
+| [validate_csv_data.py](c:\StarProje\validate_csv_data.py) | CSV dosyalarinda eksik kolon, bos alan, sayisal format ve tekrarli kayit denetimi yapar. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
@@ -671,3 +672,53 @@ python apply_update_scenarios.py `
 ```
 
 Bu senaryolar, ozellikle simulasyon oncesi alternatif malzeme ve katman varyasyonlari hazirlamak icin kullanilabilir.
+
+### 9. CSV veri dogrulama
+
+`validate_csv_data.py`, CSV dosyalarindaki eksik veri, hatali format ve tekrar eden kayitlari otomatik olarak tespit eder.
+
+Ilk surumde yalnizca `csv_output/materials.csv` dosyasi desteklenir.
+
+Bu script su kontrolleri yapar:
+
+- gerekli kolonlar var mi
+- kritik alanlar bos mu
+- sayisal alanlarda gecersiz veri var mi
+- tekrar eden kayit var mi
+
+Terminale yazdirma ornegi:
+
+```powershell
+python validate_csv_data.py `
+  --input csv_output/materials.csv
+```
+
+Raporu dosyaya yazdirma ornegi:
+
+```powershell
+python validate_csv_data.py `
+  --input csv_output/materials.csv `
+  --report-output csv_output/materials_validation_report.json
+```
+
+veya
+
+```powershell
+python validate_csv_data.py `
+  --input csv_output/materials.csv `
+  --report-output csv_output/materials_validation_report.csv
+```
+
+Ilk surumde `materials.csv` icin uygulanan kurallar:
+
+- gerekli kolonlar: `name`, `type`, `thickness_m`, `conductivity_w_per_mk`, `thermal_resistance_m2k_per_w`
+- kritik alanlar: `name`, `type`
+- sayisal alanlar: `thickness_m`, `conductivity_w_per_mk`, `thermal_resistance_m2k_per_w`
+- tekrar kontrolu: `name` kolonuna gore
+
+Raporlanan baslica sorun kategorileri:
+
+- `eksik_kolon`
+- `bos_kritik_alan`
+- `gecersiz_sayisal_deger`
+- `tekrarli_kayit`
