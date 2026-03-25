@@ -517,6 +517,49 @@ Pratik kullanim icin one cikan dosyalar:
 - [csv_output/materials.csv](c:\StarProje\csv_output\materials.csv)
 - [csv_output/construction_layers.csv](c:\StarProje\csv_output\construction_layers.csv)
 
+### 6.1 Rainbow CSV ile hizli kontrol
+
+Gelistirme sirasinda CSV dosyalarindaki veri hatalarini erken fark etmek icin Rainbow CSV kullanimini standart yaklasim olarak benimsemek onerilir.
+
+Kisa kullanim:
+
+- VS Code icinde ilgili `.csv` dosyasini acin
+- Rainbow CSV eklentisinin delimiter algilamasini kontrol edin
+- bu projedeki CSV dosyalari varsayilan olarak `,` delimiter kullanir
+- kolonlari renkli gorunumde satir satir inceleyin
+- supheli kayitlarda ayni kolonu asagi dogru takip ederek tutarsizlik arayin
+
+Oncelikli kontrol edilmesi gereken CSV dosyalari:
+
+- [csv_output/materials.csv](c:\StarProje\csv_output\materials.csv)
+- [csv_output/construction_layers.csv](c:\StarProje\csv_output\construction_layers.csv)
+- [csv_output/walls.csv](c:\StarProje\csv_output\walls.csv)
+- [csv_output/floors.csv](c:\StarProje\csv_output\floors.csv)
+- [csv_output/windows.csv](c:\StarProje\csv_output\windows.csv)
+
+Kolon bazli kontrol yaklasimi:
+
+- `materials.csv`:
+- `name` ve `type` kolonlarinin bos olmadigini kontrol edin
+- `thickness_m`, `conductivity_w_per_mk`, `thermal_resistance_m2k_per_w` kolonlarinda sayisal format ve beklenmeyen bosluklari kontrol edin
+- benzer malzeme adlarinda yazim farki veya tekrar kayit olup olmadigina bakin
+
+- `construction_layers.csv`:
+- `construction_name`, `layer_index`, `name` kolonlarini birlikte izleyin
+- ayni construction icinde katman sirasinin bozulup bozulmadigini kontrol edin
+- `thickness_m` ve `conductivity_w_per_mk` kolonlarinda katman tipine uymayan bos veya hatali degerleri arayin
+
+- `walls.csv`, `floors.csv`, `windows.csv`:
+- `name` ve bagli iliski kolonlarini (`space_name`, `construction_name`, `host_surface_name`) kontrol edin
+- alan kolonlarinda (`gross_area_m2`) metin, bosluk veya beklenmeyen sifir degerleri gozden gecirin
+- `element_class` ve `surface_type` gibi siniflandirma kolonlarinda beklenmeyen deger olup olmadigina bakin
+
+Pratik notlar:
+
+- Rainbow CSV, kolon kaymalarini ve delimiter kaynakli bozulmalari erken fark etmek icin ozellikle faydalidir
+- once renkli kolon kontrolu, sonra `validate_csv_data.py` gibi script tabanli dogrulama kullanmak daha hizli bir akis saglar
+- cikti CSV dosyalarinda beklenmeyen kolon sayisi veya hizalama bozulmasi gorurseniz once delimiter ayarini kontrol edin
+
 ### 7. CSV alanlarini Python ile guncelleme
 
 Ilk surumde `update_csv_fields.py`, yalnizca `csv_output/materials.csv` dosyasini kontrollu sekilde gunceller.
