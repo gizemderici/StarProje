@@ -622,17 +622,25 @@ CSV verilerini ve veri degisikliklerini tarayabilmek icin baslangic seviyesinde 
 Ilk surumde arayuz:
 
 - ana ekran acar
+- veri, log, senaryo ve analiz bolumlerini sekmeli yapiyla ayirir
 - kullanicinin CSV dosyasi secmesini saglar
+- sik kullanilan CSV dosyalari icin hizli erisim butonlari sunar
 - secilen CSV dosyasini tablo olarak gosterir
 - temel arama ile tablo satirlarini filtreler
+- kolon bazli filtreleme yapar
+- satira tiklaninca detay bilgisini acabilir
 - ozet metrik kartlari gosterir
-- senaryo sonuclarini basit grafik ile gosterir
+- senaryo sonuclarini grafiklerle gosterir
 - senaryolari degisen alan sayisi ve islem sayisi uzerinden karsilastirir
 - degisiklik loglarini listeler
+- loglari dosya, kolon ve islem bazinda filtreler
 - eski ve yeni degeri tablo halinde gosterir
 - hangi dosyada ve hangi kolonda degisiklik oldugunu gosterir
 - kayitli senaryolari listeler
+- senaryolari kart gorunumu ile sunar
 - secilen senaryonun detaylarini gosterir
+- son calistirilan senaryolari ozetler
+- senaryo cikti veri ve log dosyasina arayuzden gecis saglar
 - senaryo bazli hazirlik akisina baslangic butonu sunar
 
 Desteklenen kaynaklar:
@@ -649,10 +657,11 @@ python nicegui_csv_viewer.py
 Not:
 
 - NiceGUI kurulumu yoksa once `pip install nicegui` gerekebilir
-- performans icin ilk surumde tabloda en fazla ilk 200 satir gosterilir
+- performans icin ilk surumde tabloda en fazla ilk 500 satir gosterilir
 - varsayilan ilk secim olarak `materials.csv` acilmaya calisilir
 - senaryo butonu ilk surumde gercek simulasyon yerine hazirlik cikti akisini calistirir
-- amac sade ama calisir bir izleme iskeleti sunmaktir
+- tema gecisi icin koyu/acik mod anahtari bulunur
+- amac sade ama calisir bir izleme ve karar destek iskeleti sunmaktir
 
 ### 7. CSV alanlarini Python ile guncelleme
 

@@ -1,5 +1,6 @@
 import argparse
 import csv
+from datetime import datetime
 import json
 import sys
 from pathlib import Path
@@ -38,6 +39,10 @@ SUPPORTED_FILES = {
 
 class CsvUpdateError(Exception):
     pass
+
+
+def current_timestamp() -> str:
+    return datetime.now().isoformat(timespec="seconds")
 
 
 def parse_args() -> argparse.Namespace:
@@ -182,6 +187,7 @@ def update_rows(
                     continue
                 change_logs.append(
                     {
+                        "zaman": current_timestamp(),
                         "dosya": str(input_path),
                         "satir": row[ROW_NUMBER_FIELD],
                         "kolon": column,
@@ -234,7 +240,7 @@ def write_change_log(log_output_path: Path, change_logs: list[dict]) -> None:
             json.dump(change_logs, file, ensure_ascii=False, indent=2)
         return
 
-    fieldnames = ["dosya", "satir", "kolon", "eski_deger", "yeni_deger"]
+    fieldnames = ["zaman", "dosya", "satir", "kolon", "eski_deger", "yeni_deger"]
     with log_output_path.open("w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()

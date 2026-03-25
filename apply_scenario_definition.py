@@ -1,4 +1,5 @@
 import argparse
+from datetime import datetime
 import json
 import sys
 from pathlib import Path
@@ -13,6 +14,10 @@ from update_csv_fields import (
     write_change_log,
     write_rows,
 )
+
+
+def current_timestamp() -> str:
+    return datetime.now().isoformat(timespec="seconds")
 
 
 def parse_args() -> argparse.Namespace:
@@ -123,6 +128,7 @@ def apply_operation(
             changed_any = True
             change_logs.append(
                 {
+                    "zaman": current_timestamp(),
                     "dosya": str(input_path),
                     "satir": row["__row_number"],
                     "kolon": column,
