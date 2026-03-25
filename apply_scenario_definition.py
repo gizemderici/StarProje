@@ -146,32 +146,42 @@ def apply_operation(
     return change_logs
 
 
+def apply_scenario_to_rows(scenario: dict) -> tuple[list[dict], list[str], list[dict], Path]:
+    input_path = Path(scenario["input"])
+    rows, fieldnames = load_rows(input_path)
+    rules = get_file_rules(input_path)
+    ensure_columns_exist(fieldnames, set(rules["key_columns"]), input_path)
+
+    all_change_logs = []
+    for index, operation in enumerate(scenario["operations"], start=1):
+        all_change_logs.extend(
+            apply_operation(index, operation, rows, input_path, fieldnames, rules)
+        )
+
+    return rows, fieldnames, all_change_logs, input_path
+
+
+def run_scenario_definition(scenario: dict) -> tuple[Path, Path, int]:
+    output_path = Path(scenario["output"])
+    log_output_path = get_log_output_path(output_path, scenario.get("log_output"))
+    rows, fieldnames, all_change_logs, _ = apply_scenario_to_rows(scenario)
+
+    write_rows(output_path, rows, fieldnames)
+    write_change_log(log_output_path, all_change_logs)
+    return output_path, log_output_path, len(all_change_logs)
+
+
 def main() -> int:
     args = parse_args()
     scenario_path = Path(args.scenario_file)
 
     try:
         scenario = load_scenario_definition(scenario_path)
-        input_path = Path(scenario["input"])
-        output_path = Path(scenario["output"])
-        log_output_path = get_log_output_path(output_path, scenario.get("log_output"))
-
-        rows, fieldnames = load_rows(input_path)
-        rules = get_file_rules(input_path)
-        ensure_columns_exist(fieldnames, set(rules["key_columns"]), input_path)
-
-        all_change_logs = []
-        for index, operation in enumerate(scenario["operations"], start=1):
-            all_change_logs.extend(
-                apply_operation(index, operation, rows, input_path, fieldnames, rules)
-            )
-
-        write_rows(output_path, rows, fieldnames)
-        write_change_log(log_output_path, all_change_logs)
+        output_path, log_output_path, change_count = run_scenario_definition(scenario)
 
         print(
             f"Senaryo uygulandi: {scenario['scenario_name']}. "
-            f"{len(all_change_logs)} alan degisti. "
+            f"{change_count} alan degisti. "
             f"Cikti dosyasi: {output_path}. Log dosyasi: {log_output_path}"
         )
         return 0

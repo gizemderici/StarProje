@@ -500,6 +500,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
 | [apply_update_scenarios.py](c:\StarProje\apply_update_scenarios.py) | Parametreli senaryolarla toplu CSV guncellemesi yapar ve ayri cikti uretir. |
 | [apply_scenario_definition.py](c:\StarProje\apply_scenario_definition.py) | JSON tabanli senaryo dosyasini okuyup veri guncellemesi uygular. |
+| [build_simulation_output.py](c:\StarProje\build_simulation_output.py) | Senaryo tanimindan simulasyon icin tekrar edilebilir cikti paketi uretir. |
 | [validate_csv_data.py](c:\StarProje\validate_csv_data.py) | CSV dosyalarinda eksik kolon, bos alan, sayisal format ve tekrarli kayit denetimi yapar. |
 | [compare_csv_versions.py](c:\StarProje\compare_csv_versions.py) | Bir CSV dosyasinin eski ve yeni surumu arasindaki farklari raporlar. |
 | [scenario_definitions](c:\StarProje\scenario_definitions) | Standart simulasyon senaryo tanim dosyalarini icerir. |
@@ -921,3 +922,42 @@ Bu komut sonucunda:
 - degisiklik logu uretilir
 
 Ilk surumde bu yapi `materials.csv` ve `construction_layers.csv` gibi `update_csv_fields.py` tarafindan desteklenen CSV yapilarini kullanacak sekilde tasarlanmistir.
+
+### 12. Simulasyon icin cikti uretme akisi
+
+Guncellenen veri setlerinden simulasyon icin kullanilacak ciktiyi standart ve tekrar edilebilir bicimde uretmek icin `build_simulation_output.py` eklenmistir.
+
+Bu akis:
+
+- JSON senaryo tanimini alir
+- veri guncellemesini uygular
+- senaryo bazli cikti dosyasi uretir
+- log ve manifest dosyasi olusturur
+
+Ornek kullanim:
+
+```powershell
+python build_simulation_output.py `
+  --scenario-file scenario_definitions/materials_upgrade_scenario.json
+```
+
+Bu komut sonucunda varsayilan olarak su yapi olusur:
+
+- `simulation_outputs/materials_upgrade_scenario/materials_upgrade_scenario__materials.csv`
+- `simulation_outputs/materials_upgrade_scenario/materials_upgrade_scenario__changes.json`
+- `simulation_outputs/materials_upgrade_scenario/materials_upgrade_scenario__manifest.json`
+
+Bu isimlendirme sayesinde:
+
+- dosya adi senaryo bazli olur
+- ayni senaryo ayni yapida tekrar calistirilabilir
+- veri cikti, log ve ozet bilgi tek klasorde toplanir
+
+Manifest dosyasi su bilgileri ozetler:
+
+- senaryo adi
+- kullanilan senaryo dosyasi
+- girdi veri seti
+- uretilecek cikti veri seti
+- log dosyasi
+- degisen alan sayisi
