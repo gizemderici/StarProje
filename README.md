@@ -271,6 +271,155 @@ Uretilen baslica CSV dosyalari:
 
 CSV dosyalari `utf-8-sig` ile yazildigi icin Excel'de daha saglikli acilmasi hedeflenmistir.
 
+## Veri Sozlugu
+
+Bu bolum, `model_data.json` ve `csv_output` altindaki temel CSV dosyalarinin alanlarini hizli okumak icin hazirlanmistir.
+
+### Genel notlar
+
+- `model_data.json` bu projenin ana ara veri formatidir; CSV dosyalari bu JSON'dan uretilir.
+- CSV dosyalari teknik olarak duzenlenebilir, ancak `export_model_data_to_csv.py` yeniden calistirildiginda uzerine yazilir.
+- Bu nedenle `csv_output` altindaki degisiklikler "kalici kaynak veri" degil, gecici tablo duzenlemesi olarak dusunulmelidir.
+- `guncellenebilir` ifadesi, alanin anlamsal olarak elle guncellenmeye uygun olup olmadigini gosterir:
+- `hayir (turetilmis)`: script tarafindan hesaplanir veya siniflandirilir.
+- `sinirli`: referans/deger alani olarak duzenlenebilir, fakat kaynak OSM/JSON ile tutarlilik kontrolu gerekir.
+- `evet`: dogrudan veri degeri olarak guncellenmesi anlamlidir.
+
+### model_data.json
+
+`model_data.json` su ana anahtar gruplarini icerir:
+
+| Alan | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `model_summary` | object | Modelin sayisal ozeti ve toplamlari | hayir (turetilmis) |
+| `zones` | array<object> | Thermal zone kayitlari | sinirli |
+| `walls` | array<object> | Duvar yuzeyleri | sinirli |
+| `roofs` | array<object> | Cati/tavan yuzeyleri | sinirli |
+| `floors` | array<object> | Doseme/yuzey kayitlari | sinirli |
+| `windows` | array<object> | Pencere alt-yuzeyleri | sinirli |
+| `openings` | array<object> | Tum acikliklar, kapilar dahil | sinirli |
+| `spaces` | array<object> | Mekan kayitlari | sinirli |
+| `materials` | array<object> | Malzeme teknik verileri | evet |
+| `constructions` | array<object> | Construction tanimlari ve katmanlari | evet |
+
+### Temel CSV dosyalari
+
+| Dosya | Amac | Birincil kullanim |
+| --- | --- | --- |
+| `materials.csv` | Malzeme fiziksel/termal ozellikleri | Construction ve katman analizi |
+| `walls.csv` | Duvar yuzeyleri ve bagli construction bilgisi | Kabuk ve alan analizi |
+| `construction_layers.csv` | Construction katmanlarini satir bazinda acar | Katman sirasi ve malzeme takibi |
+| `constructions.csv` | Construction ozet listesi | Katman sayisi ve construction envanteri |
+| `spaces.csv` | Mekan bazli alan ve hacim | Zone eslestirme ve alan raporu |
+| `zones.csv` | Thermal zone bazli toplulastirilmis veri | Zone ozetleri |
+| `windows.csv` | Pencere kayitlari | Cephe/aciklik analizi |
+| `openings.csv` | Tum alt-yuzeyler | Kapi + pencere birlikte analiz |
+
+### materials.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Malzeme adi | evet |
+| `type` | string | OpenStudio malzeme tipi (`OS_Material`, `OS_MasslessOpaqueMaterial`, `OS_SimpleGlazing` vb.) | sinirli |
+| `thickness_m` | float | Katman kalinligi, metre cinsinden | evet |
+| `conductivity_w_per_mk` | float | Isil iletkenlik | evet |
+| `thermal_resistance_m2k_per_w` | float | Kutlesiz malzeme icin isi direnci | evet |
+| `u_factor_w_per_m2k` | float | Basit camlama icin U-degeri | evet |
+| `shgc` | float | Basit camlama icin solar heat gain coefficient | evet |
+
+Not: Her satir tum kolonlari kullanmaz. Kolonlar malzeme tipine gore bos kalabilir.
+
+### walls.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Yuzey adi | sinirli |
+| `surface_type` | string | OpenStudio yuzey tipi; bu dosyada genelde `Wall` | hayir (turetilmis) |
+| `element_class` | string | Script tarafindan uretilen sinif (`dis_duvar`, `ic_duvar` vb.) | hayir (turetilmis) |
+| `gross_area_m2` | float | Brut yuzey alani | sinirli |
+| `outside_boundary_condition` | string | Dis sinir kosulu (`Outdoors`, `Surface` vb.) | sinirli |
+| `azimuth_rad` | float | Yuzey yonlenmesi, radyan cinsinden | sinirli |
+| `space_name` | string | Bagli oldugu mekan | sinirli |
+| `construction_name` | string | Kullanilan construction adi | evet |
+
+Not: `element_class`, `surface_type` ve kismen `gross_area_m2` gibi alanlar kaynaktan yeniden uretildigi icin CSV uzerinden kalici veri bakimi icin uygun degildir.
+
+### construction_layers.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `construction_name` | string | Katmanin ait oldugu construction | sinirli |
+| `construction_type` | string | Construction nesne tipi | hayir (turetilmis) |
+| `layer_index` | integer | Katman sirasi, 1'den baslar | evet |
+| `name` | string | Katmandaki malzeme adi | evet |
+| `type` | string | Katman malzeme tipi | sinirli |
+| `thickness_m` | float | Katman kalinligi | evet |
+| `conductivity_w_per_mk` | float | Katman malzemesinin iletkenligi | evet |
+| `thermal_resistance_m2k_per_w` | float | Kutlesiz malzeme katmani isi direnci | evet |
+| `u_factor_w_per_m2k` | float | Cam katman U-degeri | evet |
+| `shgc` | float | Cam katman SHGC degeri | evet |
+
+Not: Bu dosya `constructions[].layers[]` alaninin satirlastirilmis halidir; ayni construction birden fazla satirda gorunur.
+
+### constructions.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Construction adi | evet |
+| `type` | string | Construction nesne tipi | sinirli |
+| `layer_count` | integer | Katman sayisi | hayir (turetilmis) |
+
+### spaces.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Mekan adi | evet |
+| `floor_area_m2` | float | Mekan taban alani | sinirli |
+| `volume_m3` | float | Mekan hacmi | sinirli |
+| `thermal_zone_name` | string | Bagli thermal zone adi | evet |
+
+### zones.csv
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Thermal zone adi | evet |
+| `space_count` | integer | Zone icindeki mekan sayisi | hayir (turetilmis) |
+| `space_names` | string/list | Zone'a bagli mekan adlari; CSV'de ` | ` ile birlesir | hayir (turetilmis) |
+| `floor_area_m2` | float | Zone toplam taban alani | hayir (turetilmis) |
+| `volume_m3` | float | Zone toplam hacmi | hayir (turetilmis) |
+
+### windows.csv ve openings.csv
+
+Bu iki dosya ayni kolon mantigini kullanir; `windows.csv` yalnizca pencere tiplerini, `openings.csv` ise tum alt-yuzeyleri icerir.
+
+| Kolon | Tip | Aciklama | Guncellenebilir |
+| --- | --- | --- | --- |
+| `name` | string | Alt-yuzey adi | sinirli |
+| `sub_surface_type` | string | Alt-yuzey tipi (`FixedWindow`, `Door` vb.) | sinirli |
+| `element_class` | string | Script siniflandirmasi (`dis_pencere`, `dis_kapi` vb.) | hayir (turetilmis) |
+| `gross_area_m2` | float | Alt-yuzey alani | sinirli |
+| `host_surface_name` | string | Bagli oldugu ana yuzey | sinirli |
+| `construction_name` | string | Kullanilan construction | evet |
+
+### roofs.csv ve floors.csv
+
+Bu iki dosya, `walls.csv` ile ayni kolon setini kullanir:
+
+- `name` (`string`)
+- `surface_type` (`string`)
+- `element_class` (`string`, turetilmis)
+- `gross_area_m2` (`float`)
+- `outside_boundary_condition` (`string`)
+- `azimuth_rad` (`float`)
+- `space_name` (`string`)
+- `construction_name` (`string`)
+
+Pratik yorum:
+
+- `construction_name`, `thermal_zone_name`, `name` gibi baglanti ve tanim alanlari en anlamli guncellenebilir alanlardir.
+- `layer_count`, `space_count`, `element_class`, `surface_type` gibi alanlar hesaplanan/turetilen alanlardir; dogrudan elle surdurulmesi onerilmez.
+- Alan, hacim, azimut gibi geometrik degerler teorik olarak duzenlenebilir olsa da ana kaynak OSM modelidir; bu nedenle kalici degisiklik icin CSV degil kaynak model veya JSON uretim katmani esas alinmalidir.
+
 ## Elde Edilen Sonuclar
 
 Su ana kadar test edilen modelden elde edilen temel ozet veriler sunlardir:
