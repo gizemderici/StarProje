@@ -420,6 +420,56 @@ Pratik yorum:
 - `layer_count`, `space_count`, `element_class`, `surface_type` gibi alanlar hesaplanan/turetilen alanlardir; dogrudan elle surdurulmesi onerilmez.
 - Alan, hacim, azimut gibi geometrik degerler teorik olarak duzenlenebilir olsa da ana kaynak OSM modelidir; bu nedenle kalici degisiklik icin CSV degil kaynak model veya JSON uretim katmani esas alinmalidir.
 
+## Simulasyona Etkili Alanlar
+
+Bu bolum, simulasyon sonucunu dogrudan veya dolayli etkileyebilecek veri alanlarini ayirmak icin hazirlanmistir. Amac, kontrolsuz veri degisikligi yapilmasini onlemek ve hangi alanlarin teknik olarak dikkatle ele alinmasi gerektigini netlestirmektir.
+
+### Degistirilebilir alanlar
+
+Bu alanlar simulasyona etki eder ve teknik amacla degistirilebilir; ancak degisiklikler bilincli yapilmalidir.
+
+| Veri grubu | Alan | Teknik aciklama |
+| --- | --- | --- |
+| `materials.csv` | `thickness_m` | Malzeme katman kalinligini belirler; isi iletimi ve toplam katman direncini etkiler. |
+| `materials.csv` | `conductivity_w_per_mk` | Malzemenin isil iletkenligidir; U-degeri ve isi gecisi hesaplarina etki eder. |
+| `materials.csv` | `thermal_resistance_m2k_per_w` | Kutlesiz malzemelerde isi direnci olarak kullanilir; kabuk performansini dogrudan etkiler. |
+| `materials.csv` | `u_factor_w_per_m2k` | Camsi veya pencere bilesenlerinde isi gecis katsayisidir; pencere performansini etkiler. |
+| `materials.csv` | `shgc` | Gunes kazancini belirler; gunes yukleri ve ic kazanc uzerinde etkilidir. |
+| `constructions.csv` | `name` | Construction atamasinda referans olarak kullanilir; degisirse bagli yuzey ve katman eslesmeleri gozden gecirilmelidir. |
+| `construction_layers.csv` | `layer_index` | Katman sirasini belirler; katman dizilimi degistiginde construction davranisi etkilenebilir. |
+| `construction_layers.csv` | `name` | Katmanda hangi malzemenin kullanildigini belirler; malzeme degisimi construction performansini degistirir. |
+| `construction_layers.csv` | `thickness_m` | Katman bazli kalinlik bilgisidir; toplam construction direncini etkiler. |
+| `construction_layers.csv` | `conductivity_w_per_mk` | Katman bazli iletkenliktir; isi gecis hesabina dogrudan etkir. |
+| `construction_layers.csv` | `thermal_resistance_m2k_per_w` | Kutlesiz katmanlar icin isi direncidir; construction davranisini dogrudan etkiler. |
+| `construction_layers.csv` | `u_factor_w_per_m2k` | Cam katman veya glazing benzeri katmanlarda isi gecisini etkiler. |
+| `construction_layers.csv` | `shgc` | Gunes kazanciyla ilgili katman davranisini etkiler. |
+| Yuzey CSV'leri (`walls.csv`, `floors.csv`, `roofs.csv`, `windows.csv`) | `construction_name` | Yuzeye atanan construction'i belirler; dogrudan simulasyon girdisini degistirir. |
+
+### Sabit kalmali veya dikkatle korunmali alanlar
+
+Bu alanlar genelde kimlik, iliski, siniflandirma veya turetilmis bilgi niteligindedir. Rastgele degistirilmeleri onerilmez.
+
+| Veri grubu | Alan | Teknik aciklama |
+| --- | --- | --- |
+| `materials.csv` | `name` | Malzeme referans adidir; degisirse construction ve katman baglantilari bozulabilir. |
+| `materials.csv` | `type` | OpenStudio malzeme tipidir; veri yorumlama mantigini belirler, gelisiguzel degistirilmemelidir. |
+| `constructions.csv` | `type` | Construction nesne tipidir; sistem tarafindan yorumlanan yapi bilgisidir. |
+| `constructions.csv` | `layer_count` | Turetilmis alandir; katman listesinden hesaplanir, elle bakimi onerilmez. |
+| `construction_layers.csv` | `construction_name` | Katmanin ait oldugu construction referansidir; dikkatli degistirilmelidir. |
+| `construction_layers.csv` | `construction_type` | Turetilmis/teknik tip bilgisidir; elle degistirilmesi onerilmez. |
+| `construction_layers.csv` | `type` | Katman malzeme tipidir; teknik veri yorumunu degistirebilir, kontrollu ele alinmalidir. |
+| `walls.csv`, `floors.csv`, `roofs.csv` | `surface_type` | Yuzey tipi sinifidir; genelde model geometrisinden gelir ve sabit kabul edilmelidir. |
+| `walls.csv`, `floors.csv`, `roofs.csv`, `windows.csv`, `openings.csv` | `element_class` | Script tarafindan uretilen siniflandirma bilgisidir; simulasyon girdisi degil, analiz etiketidir. |
+| `walls.csv`, `floors.csv`, `roofs.csv` | `outside_boundary_condition` | Geometrik/iliskisel sinir kosuludur; ana kaynagi modeldir, CSV uzerinden rastgele degistirilmemelidir. |
+| `walls.csv`, `floors.csv`, `roofs.csv` | `space_name` | Mekan baglantisini gosterir; iliski alanidir, yanlis degisiklik model bagini bozar. |
+| `windows.csv`, `openings.csv` | `host_surface_name` | Acikligin bagli oldugu ana yuzeyi tanimlar; referans bilgisidir. |
+
+### Kisa kontrol kurali
+
+- Isil davranis, gunes kazanci veya construction atamasi degistirecek alanlar simulasyona etkilidir.
+- Kimlik, baglanti, siniflandirma ve turetilmis alanlar varsayilan olarak sabit kabul edilmelidir.
+- Bir alan degistirilmeden once, ayni alanin baska bir CSV veya JSON iliskisini etkileyip etkilemedigi kontrol edilmelidir.
+
 ## Elde Edilen Sonuclar
 
 Su ana kadar test edilen modelden elde edilen temel ozet veriler sunlardir:
@@ -450,6 +500,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
 | [apply_update_scenarios.py](c:\StarProje\apply_update_scenarios.py) | Parametreli senaryolarla toplu CSV guncellemesi yapar ve ayri cikti uretir. |
 | [validate_csv_data.py](c:\StarProje\validate_csv_data.py) | CSV dosyalarinda eksik kolon, bos alan, sayisal format ve tekrarli kayit denetimi yapar. |
+| [compare_csv_versions.py](c:\StarProje\compare_csv_versions.py) | Bir CSV dosyasinin eski ve yeni surumu arasindaki farklari raporlar. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
@@ -765,3 +816,51 @@ Raporlanan baslica sorun kategorileri:
 - `bos_kritik_alan`
 - `gecersiz_sayisal_deger`
 - `tekrarli_kayit`
+
+### 10. CSV surum karsilastirma
+
+`compare_csv_versions.py`, bir CSV dosyasinin eski ve yeni surumu arasindaki farklari otomatik olarak gosterir.
+
+Ilk surumde yalnizca `materials.csv` icin karsilastirma desteklenir.
+
+Bu script su farklari raporlar:
+
+- eklenen satirlar
+- silinen satirlar
+- degisen hucreler
+
+Terminale yazdirma ornegi:
+
+```powershell
+python compare_csv_versions.py `
+  --old csv_output/materials.csv `
+  --new csv_output/materials_updated.csv
+```
+
+Raporu dosyaya yazdirma ornegi:
+
+```powershell
+python compare_csv_versions.py `
+  --old csv_output/materials.csv `
+  --new csv_output/materials_updated.csv `
+  --report-output csv_output/materials_diff_report.json
+```
+
+veya
+
+```powershell
+python compare_csv_versions.py `
+  --old csv_output/materials.csv `
+  --new csv_output/materials_updated.csv `
+  --report-output csv_output/materials_diff_report.csv
+```
+
+Ilk surumde `materials.csv` icin eslestirme anahtari:
+
+- `name`
+
+Okunabilir rapor icerigi:
+
+- eklenen kayitlarda anahtar ve yeni satir verisi
+- silinen kayitlarda anahtar ve eski satir verisi
+- degisen hucrelerde kolon, eski deger ve yeni deger bilgisi
