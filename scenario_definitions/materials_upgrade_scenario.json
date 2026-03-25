@@ -1,0 +1,29 @@
+{
+  "scenario_name": "materials_upgrade_scenario",
+  "description": "Simulasyon oncesi secili malzeme alanlarini guncelleyen ornek senaryo.",
+  "input": "csv_output/materials.csv",
+  "output": "csv_output/materials_upgrade_scenario.csv",
+  "log_output": "csv_output/materials_upgrade_scenario_changes.json",
+  "operations": [
+    {
+      "name": "tugla_kalinlik_artisi",
+      "match": {
+        "column": "name",
+        "value": "tugla"
+      },
+      "updates": {
+        "thickness_m": "0.22"
+      }
+    },
+    {
+      "name": "beton_iletkenlik_duzeltmesi",
+      "match": {
+        "column": "name",
+        "value": "beton"
+      },
+      "updates": {
+        "conductivity_w_per_mk": "1.9"
+      }
+    }
+  ]
+}

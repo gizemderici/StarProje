@@ -499,8 +499,10 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | JSON verisini CSV tablolarina aktarir. |
 | [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
 | [apply_update_scenarios.py](c:\StarProje\apply_update_scenarios.py) | Parametreli senaryolarla toplu CSV guncellemesi yapar ve ayri cikti uretir. |
+| [apply_scenario_definition.py](c:\StarProje\apply_scenario_definition.py) | JSON tabanli senaryo dosyasini okuyup veri guncellemesi uygular. |
 | [validate_csv_data.py](c:\StarProje\validate_csv_data.py) | CSV dosyalarinda eksik kolon, bos alan, sayisal format ve tekrarli kayit denetimi yapar. |
 | [compare_csv_versions.py](c:\StarProje\compare_csv_versions.py) | Bir CSV dosyasinin eski ve yeni surumu arasindaki farklari raporlar. |
+| [scenario_definitions](c:\StarProje\scenario_definitions) | Standart simulasyon senaryo tanim dosyalarini icerir. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
@@ -864,3 +866,58 @@ Okunabilir rapor icerigi:
 - eklenen kayitlarda anahtar ve yeni satir verisi
 - silinen kayitlarda anahtar ve eski satir verisi
 - degisen hucrelerde kolon, eski deger ve yeni deger bilgisi
+
+### 11. Standart simulasyon senaryo formati
+
+Simulasyon akisi ile otomatik veri guncelleme arasinda ortak bir format kullanmak icin JSON tabanli senaryo tanimi eklenmistir.
+
+Bu formatin amaci:
+
+- hangi dosyanin guncellenecegini standartlastirmak
+- hangi alanlarin hangi degerlere degisecegini acikca yazmak
+- Python tarafinda dogrudan okunabilir bir yapi saglamak
+
+Senaryo JSON icindeki temel alanlar:
+
+| Alan | Aciklama |
+| --- | --- |
+| `scenario_name` | Senaryonun kisa adi |
+| `description` | Senaryonun teknik amaci |
+| `input` | Girdi CSV dosyasi |
+| `output` | Uretilecek yeni CSV dosyasi |
+| `log_output` | Uretilecek log dosyasi |
+| `operations` | Uygulanacak degisikliklerin listesi |
+
+Her `operation` icinde su alanlar bulunur:
+
+| Alan | Aciklama |
+| --- | --- |
+| `name` | Islem adi |
+| `match.column` | Hangi kolona gore satir secilecegi |
+| `match.value` | Hangi degerin aranacagi |
+| `updates` | Hangi alanlarin hangi yeni degerlere guncellenecegi |
+
+Ornek senaryo dosyasi:
+
+- [materials_upgrade_scenario.json](c:\StarProje\scenario_definitions\materials_upgrade_scenario.json)
+
+Bu ornek dosyada:
+
+- `tugla` kaydinin `thickness_m` alani `0.22` yapilir
+- `beton` kaydinin `conductivity_w_per_mk` alani `1.9` yapilir
+
+Senaryo dosyasini calistirmak icin:
+
+```powershell
+python apply_scenario_definition.py `
+  --scenario-file scenario_definitions/materials_upgrade_scenario.json
+```
+
+Bu komut sonucunda:
+
+- senaryo JSON dosyasi okunur
+- ilgili CSV kayitlari guncellenir
+- yeni cikti dosyasi olusturulur
+- degisiklik logu uretilir
+
+Ilk surumde bu yapi `materials.csv` ve `construction_layers.csv` gibi `update_csv_fields.py` tarafindan desteklenen CSV yapilarini kullanacak sekilde tasarlanmistir.

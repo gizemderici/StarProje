@@ -1,0 +1,18 @@
+[
+  {
+    "dosya": "csv_output\\materials.csv",
+    "satir": 2,
+    "kolon": "thickness_m",
+    "eski_deger": "0.19",
+    "yeni_deger": "0.22",
+    "islem": "tugla_kalinlik_artisi"
+  },
+  {
+    "dosya": "csv_output\\materials.csv",
+    "satir": 3,
+    "kolon": "conductivity_w_per_mk",
+    "eski_deger": "1.75",
+    "yeni_deger": "1.9",
+    "islem": "beton_iletkenlik_duzeltmesi"
+  }
+]
