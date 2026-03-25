@@ -537,6 +537,7 @@ Bu script:
 - `match-column` ve `match-value` ile satiri bulur
 - izin verilen kolonlarda degisiklik yapar
 - sonucu yeni dosya adiyla kaydeder
+- her alan degisikligi icin ayri bir log kaydi olusturur
 
 Ilk surumde `materials.csv` icin desteklenen guncelleme kolonlari:
 
@@ -554,3 +555,28 @@ Script su durumlarda aciklayici hata verir:
 - `kolon=deger` formati bozuksa
 - sayisal alana gecersiz deger girilirse
 - eslesen satir bulunamazsa
+
+Varsayilan olarak log dosyasi, cikti CSV ile ayni klasorde `*_changes.csv` adiyla olusur. Ornek:
+
+- cikti: `csv_output/materials_updated.csv`
+- log: `csv_output/materials_updated_changes.csv`
+
+Istenirse `--log-output` ile JSON veya CSV log yolu acikca verilebilir:
+
+```powershell
+python update_csv_fields.py `
+  --input csv_output/materials.csv `
+  --output csv_output/materials_updated.csv `
+  --log-output csv_output/materials_updated_changes.json `
+  --match-column name `
+  --match-value tugla `
+  --set thickness_m=0.22
+```
+
+Uretilen log kayitlarinda en az su alanlar yer alir:
+
+- `dosya`
+- `satir`
+- `kolon`
+- `eski_deger`
+- `yeni_deger`

@@ -1,7 +1,11 @@
 import argparse
 import csv
+import json
 import sys
 from pathlib import Path
+
+
+ROW_NUMBER_FIELD = "__row_number"
 
 
 SUPPORTED_FILES = {
@@ -30,6 +34,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", required=True, help="Guncellenecek CSV dosya yolu.")
     parser.add_argument("--output", required=True, help="Yeni olusacak CSV dosya yolu.")
     parser.add_argument(
+        "--log-output",
+        help="Degisiklik kaydinin yazilacagi dosya yolu. .csv veya .json olabilir.",
+    )
+    parser.add_argument(
         "--match-column",
         required=True,
         help="Guncellenecek satiri bulmak icin kullanilacak kolon.",
@@ -57,7 +65,10 @@ def load_rows(input_path: Path) -> tuple[list[dict], list[str]]:
         reader = csv.DictReader(file)
         if reader.fieldnames is None:
             raise CsvUpdateError(f"CSV baslik satiri bulunamadi: {input_path}")
-        rows = list(reader)
+        rows = []
+        for row_number, row in enumerate(reader, start=2):
+            row[ROW_NUMBER_FIELD] = row_number
+            rows.append(row)
         return rows, reader.fieldnames
 
 
@@ -132,17 +143,35 @@ def validate_value(value: str, value_type: str, column: str) -> None:
 
 def update_rows(
     rows: list[dict],
+    input_path: Path,
     match_column: str,
     match_value: str,
     updates: dict[str, str],
-) -> int:
+) -> tuple[int, list[dict]]:
     updated_count = 0
+    change_logs = []
     for row in rows:
         if row.get(match_column) == match_value:
             for column, value in updates.items():
+                old_value = row.get(column, "")
+                if old_value == value:
+                    continue
+                change_logs.append(
+                    {
+                        "dosya": str(input_path),
+                        "satir": row[ROW_NUMBER_FIELD],
+                        "kolon": column,
+                        "eski_deger": old_value,
+                        "yeni_deger": value,
+                    }
+                )
                 row[column] = value
-            updated_count += 1
-    return updated_count
+            if any(
+                log["satir"] == row[ROW_NUMBER_FIELD]
+                for log in change_logs
+            ):
+                updated_count += 1
+    return updated_count, change_logs
 
 
 def write_rows(output_path: Path, rows: list[dict], fieldnames: list[str]) -> None:
@@ -150,7 +179,42 @@ def write_rows(output_path: Path, rows: list[dict], fieldnames: list[str]) -> No
     with output_path.open("w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(
+            {
+                key: value
+                for key, value in row.items()
+                if key in fieldnames
+            }
+            for row in rows
+        )
+
+
+def get_log_output_path(output_path: Path, requested_log_path: str | None) -> Path:
+    if requested_log_path:
+        log_path = Path(requested_log_path)
+    else:
+        log_path = output_path.with_name(f"{output_path.stem}_changes.csv")
+
+    if log_path.suffix.lower() not in {".csv", ".json"}:
+        raise CsvUpdateError(
+            "Log dosyasi uzantisi .csv veya .json olmali."
+        )
+    return log_path
+
+
+def write_change_log(log_output_path: Path, change_logs: list[dict]) -> None:
+    log_output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if log_output_path.suffix.lower() == ".json":
+        with log_output_path.open("w", encoding="utf-8") as file:
+            json.dump(change_logs, file, ensure_ascii=False, indent=2)
+        return
+
+    fieldnames = ["dosya", "satir", "kolon", "eski_deger", "yeni_deger"]
+    with log_output_path.open("w", encoding="utf-8-sig", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(change_logs)
 
 
 def main() -> int:
@@ -161,6 +225,7 @@ def main() -> int:
     try:
         rules = get_file_rules(input_path)
         rows, fieldnames = load_rows(input_path)
+        log_output_path = get_log_output_path(output_path, args.log_output)
         ensure_columns_exist(fieldnames, rules["key_columns"], input_path)
 
         if args.match_column not in rules["key_columns"]:
@@ -176,17 +241,25 @@ def main() -> int:
             {args.match_column} | set(updates.keys()),
             input_path,
         )
-        updated_count = update_rows(rows, args.match_column, args.match_value, updates)
+        updated_count, change_logs = update_rows(
+            rows,
+            input_path,
+            args.match_column,
+            args.match_value,
+            updates,
+        )
 
         if updated_count == 0:
             raise CsvUpdateError(
-                f"Eslestirilen satir bulunamadi: {args.match_column}='{args.match_value}'"
+                "Eslestirilen satir bulunamadi veya verilen degerler mevcut veriyle ayni: "
+                f"{args.match_column}='{args.match_value}'"
             )
 
         write_rows(output_path, rows, fieldnames)
+        write_change_log(log_output_path, change_logs)
         print(
             f"Guncelleme tamamlandi. {updated_count} satir guncellendi. "
-            f"Cikti dosyasi: {output_path}"
+            f"Cikti dosyasi: {output_path}. Log dosyasi: {log_output_path}"
         )
         return 0
 
