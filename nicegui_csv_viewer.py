@@ -34,6 +34,13 @@ def collect_log_files() -> list[Path]:
     return files
 
 
+def collect_manifest_files() -> list[Path]:
+    simulation_dir = Path("simulation_outputs")
+    if not simulation_dir.exists():
+        return []
+    return sorted(simulation_dir.rglob("*__manifest.json"))
+
+
 def read_csv_rows(csv_path: Path) -> tuple[list[dict], list[str]]:
     with csv_path.open("r", encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
@@ -64,6 +71,16 @@ def read_log_rows(log_path: Path) -> tuple[list[dict], list[str]]:
     return read_csv_rows(log_path)
 
 
+def read_manifest_rows() -> list[dict]:
+    manifests = []
+    for manifest_path in collect_manifest_files():
+        with manifest_path.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        if isinstance(data, dict):
+            manifests.append(data)
+    return manifests
+
+
 def collect_scenario_files() -> list[Path]:
     if not SCENARIO_DIR.exists():
         return []
@@ -81,6 +98,7 @@ scenario_files = collect_scenario_files()
 scenario_options = [path.as_posix() for path in scenario_files]
 log_files = collect_log_files()
 log_options = [path.as_posix() for path in log_files]
+manifest_rows = read_manifest_rows()
 
 
 def get_initial_value(options: list[str]) -> str | None:
@@ -105,6 +123,64 @@ def main_page() -> None:
         ui.label("CSV verilerini ve senaryo ciktilarini hizli incelemek icin baslangic arayuzu.").classes(
             "text-base text-slate-700"
         )
+
+        with ui.row().classes("w-full gap-4"):
+            total_scenarios_card = ui.card().classes("w-full")
+            with total_scenarios_card:
+                ui.label("Toplam Senaryo Ciktisi").classes("text-sm text-slate-500")
+                total_scenarios_value = ui.label("0").classes("text-3xl font-bold")
+
+            total_changes_card = ui.card().classes("w-full")
+            with total_changes_card:
+                ui.label("Toplam Degisen Alan").classes("text-sm text-slate-500")
+                total_changes_value = ui.label("0").classes("text-3xl font-bold")
+
+            latest_scenario_card = ui.card().classes("w-full")
+            with latest_scenario_card:
+                ui.label("Son Senaryo").classes("text-sm text-slate-500")
+                latest_scenario_value = ui.label("-").classes("text-lg font-medium")
+
+        with ui.card().classes("w-full"):
+            ui.label("Senaryo Karsilastirma").classes("text-base font-medium")
+            comparison_info = ui.label("").classes("text-sm text-slate-600")
+            comparison_chart = ui.echart(
+                {
+                    "tooltip": {"trigger": "axis"},
+                    "legend": {"data": ["Degisen Alan", "Islem Sayisi"]},
+                    "xAxis": {"type": "category", "data": []},
+                    "yAxis": {"type": "value"},
+                    "series": [
+                        {"name": "Degisen Alan", "type": "bar", "data": []},
+                        {"name": "Islem Sayisi", "type": "line", "data": []},
+                    ],
+                }
+            ).classes("w-full h-80")
+
+        def refresh_metrics() -> None:
+            current_manifests = read_manifest_rows()
+            total_scenarios_value.set_text(str(len(current_manifests)))
+            total_changes_value.set_text(
+                str(sum(int(item.get("changed_field_count", 0)) for item in current_manifests))
+            )
+            latest_scenario_value.set_text(
+                current_manifests[-1]["scenario_name"] if current_manifests else "-"
+            )
+
+            comparison_info.set_text(
+                f"Karsilastirilan senaryo sayisi: {len(current_manifests)}"
+            )
+            comparison_chart.options["xAxis"]["data"] = [
+                item.get("scenario_name", "-") for item in current_manifests
+            ]
+            comparison_chart.options["series"][0]["data"] = [
+                int(item.get("changed_field_count", 0)) for item in current_manifests
+            ]
+            comparison_chart.options["series"][1]["data"] = [
+                int(item.get("operation_count", 0)) for item in current_manifests
+            ]
+            comparison_chart.update()
+
+        refresh_metrics()
 
         with ui.card().classes("w-full"):
             ui.label("Veri Dosyasi Sec").classes("text-base font-medium")
@@ -265,6 +341,7 @@ def main_page() -> None:
                         log_select.value = str(written_log_output).replace("\\", "/")
                     refresh_log_table()
                     refresh_scenario_detail()
+                    refresh_metrics()
                 except CsvUpdateError as error:
                     ui.notify(f"Hata: {error}", color="negative")
 
