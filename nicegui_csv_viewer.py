@@ -24,6 +24,16 @@ def collect_csv_files() -> list[Path]:
     return files
 
 
+def collect_log_files() -> list[Path]:
+    files = []
+    for directory in CSV_SEARCH_DIRS:
+        if not directory.exists():
+            continue
+        files.extend(sorted(directory.rglob("*changes.json")))
+        files.extend(sorted(directory.rglob("*changes.csv")))
+    return files
+
+
 def read_csv_rows(csv_path: Path) -> tuple[list[dict], list[str]]:
     with csv_path.open("r", encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
@@ -31,6 +41,27 @@ def read_csv_rows(csv_path: Path) -> tuple[list[dict], list[str]]:
             return [], []
         rows = list(reader)
         return rows, reader.fieldnames
+
+
+def read_log_rows(log_path: Path) -> tuple[list[dict], list[str]]:
+    if log_path.suffix.lower() == ".json":
+        with log_path.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        if not isinstance(data, list):
+            return [], []
+        rows = [
+            {key: value for key, value in item.items()}
+            for item in data
+            if isinstance(item, dict)
+        ]
+        fieldnames = []
+        for row in rows:
+            for key in row.keys():
+                if key not in fieldnames:
+                    fieldnames.append(key)
+        return rows, fieldnames
+
+    return read_csv_rows(log_path)
 
 
 def collect_scenario_files() -> list[Path]:
@@ -48,6 +79,8 @@ csv_files = collect_csv_files()
 file_options = [path.as_posix() for path in csv_files]
 scenario_files = collect_scenario_files()
 scenario_options = [path.as_posix() for path in scenario_files]
+log_files = collect_log_files()
+log_options = [path.as_posix() for path in log_files]
 
 
 def get_initial_value(options: list[str]) -> str | None:
@@ -87,6 +120,52 @@ def main_page() -> None:
             info_label = ui.label("").classes("text-sm text-slate-600")
 
         table_container = ui.column().classes("w-full")
+
+        with ui.card().classes("w-full"):
+            ui.label("Degisiklik Gecmisi").classes("text-base font-medium")
+            log_select = ui.select(
+                options=log_options,
+                value=log_options[0] if log_options else None,
+                label="Log dosyasi",
+            ).classes("w-full")
+            log_info = ui.label("").classes("text-sm text-slate-600")
+            log_container = ui.column().classes("w-full")
+
+            def refresh_log_table() -> None:
+                log_container.clear()
+                selected_log = log_select.value
+                if not selected_log:
+                    log_info.set_text("Goruntulenecek bir log dosyasi secin.")
+                    return
+
+                log_path = Path(selected_log)
+                if not log_path.exists():
+                    log_info.set_text(f"Log dosyasi bulunamadi: {selected_log}")
+                    return
+
+                rows, fieldnames = read_log_rows(log_path)
+                log_info.set_text(
+                    f"Log dosyasi: {log_path.as_posix()} | Toplam kayit: {len(rows)} | Gosterilen: {min(len(rows), MAX_ROWS)}"
+                )
+
+                with log_container:
+                    if not fieldnames:
+                        ui.label("Log icinde gosterilecek kayit bulunamadi.").classes("text-red-600")
+                        return
+
+                    ui.table(
+                        columns=[
+                            {"name": name, "label": name, "field": name, "sortable": True}
+                            for name in fieldnames
+                        ],
+                        rows=rows[:MAX_ROWS],
+                        row_key=fieldnames[0],
+                        pagination={"rowsPerPage": 10},
+                    ).classes("w-full")
+
+            log_select.on_value_change(lambda _: refresh_log_table())
+            ui.button("Log Tablosunu Yenile", on_click=refresh_log_table).props("outline")
+            refresh_log_table()
 
         with ui.card().classes("w-full"):
             ui.label("Simulasyon Senaryolari").classes("text-base font-medium")
@@ -180,6 +259,11 @@ def main_page() -> None:
                         color="positive",
                     )
                     refresh_table()
+                    updated_logs = collect_log_files()
+                    log_select.options = [path.as_posix() for path in updated_logs]
+                    if str(written_log_output).replace("\\", "/") in log_select.options:
+                        log_select.value = str(written_log_output).replace("\\", "/")
+                    refresh_log_table()
                     refresh_scenario_detail()
                 except CsvUpdateError as error:
                     ui.notify(f"Hata: {error}", color="negative")

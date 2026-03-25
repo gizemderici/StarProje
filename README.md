@@ -625,6 +625,9 @@ Ilk surumde arayuz:
 - kullanicinin CSV dosyasi secmesini saglar
 - secilen CSV dosyasini tablo olarak gosterir
 - temel arama ile tablo satirlarini filtreler
+- degisiklik loglarini listeler
+- eski ve yeni degeri tablo halinde gosterir
+- hangi dosyada ve hangi kolonda degisiklik oldugunu gosterir
 - kayitli senaryolari listeler
 - secilen senaryonun detaylarini gosterir
 - senaryo bazli hazirlik akisina baslangic butonu sunar
