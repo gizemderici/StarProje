@@ -447,6 +447,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [extract_openstudio_data.py](c:\StarProje\extract_openstudio_data.py) | Modelden detayli veri cikarir, siniflandirma yapar ve JSON uretir. |
 | [analyze_model_data.py](c:\StarProje\analyze_model_data.py) | JSON verisi uzerinden ozet analiz raporu uretir. |
 | [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py) | JSON verisini CSV tablolarina aktarir. |
+| [update_csv_fields.py](c:\StarProje\update_csv_fields.py) | Secili CSV alanlarini kontrollu sekilde gunceller ve yeni dosyaya yazar. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
 
@@ -513,3 +514,43 @@ Pratik kullanim icin one cikan dosyalar:
 - [csv_output/spaces.csv](c:\StarProje\csv_output\spaces.csv)
 - [csv_output/materials.csv](c:\StarProje\csv_output\materials.csv)
 - [csv_output/construction_layers.csv](c:\StarProje\csv_output\construction_layers.csv)
+
+### 7. CSV alanlarini Python ile guncelleme
+
+Ilk surumde `update_csv_fields.py`, yalnizca `csv_output/materials.csv` dosyasini kontrollu sekilde gunceller.
+
+Ornek kullanim:
+
+```powershell
+python update_csv_fields.py `
+  --input csv_output/materials.csv `
+  --output csv_output/materials_updated.csv `
+  --match-column name `
+  --match-value tugla `
+  --set thickness_m=0.22 `
+  --set conductivity_w_per_mk=0.55
+```
+
+Bu script:
+
+- belirtilen CSV dosyasini okur
+- `match-column` ve `match-value` ile satiri bulur
+- izin verilen kolonlarda degisiklik yapar
+- sonucu yeni dosya adiyla kaydeder
+
+Ilk surumde `materials.csv` icin desteklenen guncelleme kolonlari:
+
+- `name`
+- `thickness_m`
+- `conductivity_w_per_mk`
+- `thermal_resistance_m2k_per_w`
+- `u_factor_w_per_m2k`
+- `shgc`
+
+Script su durumlarda aciklayici hata verir:
+
+- desteklenmeyen dosya secilirse
+- istenen kolon CSV icinde yoksa
+- `kolon=deger` formati bozuksa
+- sayisal alana gecersiz deger girilirse
+- eslesen satir bulunamazsa
