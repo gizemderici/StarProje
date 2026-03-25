@@ -503,6 +503,7 @@ Bu sonuclar, sistemin modelden hem geometrik hem de teknik verileri cekebildigin
 | [build_simulation_output.py](c:\StarProje\build_simulation_output.py) | Senaryo tanimindan simulasyon icin tekrar edilebilir cikti paketi uretir. |
 | [validate_csv_data.py](c:\StarProje\validate_csv_data.py) | CSV dosyalarinda eksik kolon, bos alan, sayisal format ve tekrarli kayit denetimi yapar. |
 | [compare_csv_versions.py](c:\StarProje\compare_csv_versions.py) | Bir CSV dosyasinin eski ve yeni surumu arasindaki farklari raporlar. |
+| [nicegui_csv_viewer.py](c:\StarProje\nicegui_csv_viewer.py) | CSV dosyalarini NiceGUI ile secip tablo olarak gosterir. |
 | [scenario_definitions](c:\StarProje\scenario_definitions) | Standart simulasyon senaryo tanim dosyalarini icerir. |
 | [model_data.json](c:\StarProje\model_data.json) | Yapilandirilmis veri cikti dosyasi. |
 | [csv_output](c:\StarProje\csv_output) | CSV export sonucu olusan tablo dosyalari. |
@@ -613,6 +614,33 @@ Pratik notlar:
 - Rainbow CSV, kolon kaymalarini ve delimiter kaynakli bozulmalari erken fark etmek icin ozellikle faydalidir
 - once renkli kolon kontrolu, sonra `validate_csv_data.py` gibi script tabanli dogrulama kullanmak daha hizli bir akis saglar
 - cikti CSV dosyalarinda beklenmeyen kolon sayisi veya hizalama bozulmasi gorurseniz once delimiter ayarini kontrol edin
+
+### 6.2 NiceGUI ile CSV izleme
+
+CSV verilerini ve veri degisikliklerini tarayabilmek icin baslangic seviyesinde bir NiceGUI arayuzu eklenmistir.
+
+Ilk surumde arayuz:
+
+- ana ekran acar
+- kullanicinin CSV dosyasi secmesini saglar
+- secilen CSV dosyasini tablo olarak gosterir
+
+Desteklenen kaynaklar:
+
+- `csv_output` altindaki CSV dosyalari
+- `simulation_outputs` altindaki CSV dosyalari
+
+Calistirma ornegi:
+
+```powershell
+python nicegui_csv_viewer.py
+```
+
+Not:
+
+- NiceGUI kurulumu yoksa once `pip install nicegui` gerekebilir
+- performans icin ilk surumde tabloda en fazla ilk 200 satir gosterilir
+- amac sade ama calisir bir izleme iskeleti sunmaktir
 
 ### 7. CSV alanlarini Python ile guncelleme
 
