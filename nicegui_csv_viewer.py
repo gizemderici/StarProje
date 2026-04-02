@@ -9,11 +9,20 @@ from nicegui import ui
 from analyze_csv_dependencies import (
     CsvRepository,
     DependencyAnalysisError,
+    SURFACE_FILES,
+    SUB_SURFACE_FILES,
+    analyze_construction_dependency,
+    analyze_construction_layer_dependency,
+    analyze_material_dependency,
     analyze_row_dependency,
+    analyze_space_dependency,
+    analyze_sub_surface_dependency,
+    analyze_surface_dependency,
+    analyze_zone_dependency,
 )
 from apply_scenario_definition import load_scenario_definition, run_scenario_definition
 from build_simulation_output import build_manifest, build_output_paths, write_manifest
-from update_csv_fields import CsvUpdateError
+from update_csv_fields import CsvUpdateError, SUPPORTED_FILES
 
 
 CSV_SEARCH_DIRS = [Path("csv_output"), Path("simulation_outputs")]
@@ -28,6 +37,17 @@ COMMON_CSV_ORDER = [
     "csv_output/floors.csv",
     "csv_output/windows.csv",
 ]
+
+KEY_COLUMN_TYPES = {
+    "materials.csv": {
+        "name": "string",
+    },
+    "construction_layers.csv": {
+        "construction_name": "string",
+        "layer_index": "integer",
+        "name": "string",
+    },
+}
 
 
 def collect_csv_files() -> list[Path]:
@@ -227,6 +247,121 @@ def format_delta(old_value: object, new_value: object) -> tuple[str, str]:
     return f"{delta:.4f}".rstrip("0").rstrip("."), direction
 
 
+def parse_extra_match_text(extra_match_text: str) -> dict[str, str]:
+    extra_matches = {}
+    normalized = extra_match_text.strip()
+    if not normalized:
+        return extra_matches
+
+    for part in normalized.split(","):
+        item = part.strip()
+        if not item:
+            continue
+        if "=" not in item:
+            raise DependencyAnalysisError(
+                "Ek eslesme alani 'kolon=deger, kolon=deger' formatinda olmali."
+            )
+        column, value = item.split("=", 1)
+        column = column.strip()
+        value = value.strip()
+        if not column or not value:
+            raise DependencyAnalysisError(
+                "Ek eslesme alani icinde kolon ve deger bos birakilamaz."
+            )
+        extra_matches[column] = value
+    return extra_matches
+
+
+def validate_match_value_type(dataset_name: str, match_column: str, match_value: str) -> None:
+    column_types = KEY_COLUMN_TYPES.get(dataset_name, {})
+    value_type = column_types.get(match_column, "string")
+    if value_type == "integer":
+        try:
+            int(match_value)
+        except ValueError as error:
+            raise DependencyAnalysisError(
+                f"{dataset_name} icin '{match_column}' sayisal olmalidir. Girilen deger: {match_value}"
+            ) from error
+
+
+def build_match_hint(dataset_name: str) -> str:
+    if dataset_name == "construction_layers.csv":
+        return (
+            "Opsiyonel: construction_name=disduvar,name=beton "
+            "(tek kaydi netlestirmek icin kullanin)"
+        )
+    return "Opsiyonel: kolon=deger, kolon=deger"
+
+
+def build_simulation_record_choices(dataset_name: str) -> dict[str, dict[str, str]]:
+    csv_path = Path("csv_output") / dataset_name
+    if not csv_path.exists():
+        return {}
+
+    rows, _ = read_csv_rows(csv_path)
+    choices: dict[str, dict[str, str]] = {}
+
+    for row in rows:
+        if dataset_name == "materials.csv":
+            name = str(row.get("name", "")).strip()
+            if not name:
+                continue
+            choices[name] = {
+                "match_column": "name",
+                "match_value": name,
+                "extra_matches": "",
+            }
+            continue
+
+        if dataset_name == "construction_layers.csv":
+            construction_name = str(row.get("construction_name", "")).strip()
+            layer_index = str(row.get("layer_index", "")).strip()
+            name = str(row.get("name", "")).strip()
+            if not all([construction_name, layer_index, name]):
+                continue
+            label = f"{construction_name} | {layer_index} | {name}"
+            choices[label] = {
+                "match_column": "name",
+                "match_value": name,
+                "extra_matches": f"construction_name={construction_name},layer_index={layer_index}",
+            }
+            continue
+
+    return choices
+
+
+def shorten_text(value: object, max_length: int = 36) -> str:
+    text = str(value or "").strip()
+    if len(text) <= max_length:
+        return text
+    return f"{text[: max_length - 3]}..."
+
+
+def build_chart_change_label(source_text: str, changed_field: str) -> str:
+    source_text = str(source_text or "").strip()
+    changed_field = str(changed_field or "").strip()
+
+    if ":" in source_text:
+        dataset_name, row_key = source_text.split(":", 1)
+        dataset_name = dataset_name.replace(".csv", "")
+        parts = [shorten_text(dataset_name, 18)]
+
+        row_bits = [bit.strip() for bit in row_key.split("|") if bit.strip()]
+        if row_bits:
+            last_bit = row_bits[-1]
+            if "=" in last_bit:
+                _, value = last_bit.split("=", 1)
+                parts.append(shorten_text(value, 18))
+            else:
+                parts.append(shorten_text(last_bit, 18))
+
+        if changed_field:
+            parts.append(shorten_text(changed_field, 18))
+        return " / ".join(parts)
+
+    return shorten_text(f"{source_text} / {changed_field}", 36)
+
+
 def build_impact_rows_for_scenario(
     scenario_path: Path, scenario: dict, log_path: Path
 ) -> tuple[list[dict], str]:
@@ -329,6 +464,159 @@ def build_impact_rows_for_scenario(
     )
 
 
+def build_impact_rows_for_change_items(
+    csv_root: Path, change_items: list[dict]
+) -> tuple[list[dict], str]:
+    if len(change_items) < 3:
+        raise DependencyAnalysisError("Simulasyon icin en az 3 degisiklik girilmelidir.")
+
+    repo = CsvRepository(csv_root)
+    impact_rows = []
+
+    for index, change_item in enumerate(change_items, start=1):
+        dataset_name = str(change_item.get("dataset", "")).strip()
+        match_column = str(change_item.get("match_column", "")).strip()
+        match_value = str(change_item.get("match_value", "")).strip()
+        changed_column = str(change_item.get("changed_column", "")).strip()
+        new_value = str(change_item.get("new_value", "")).strip()
+        extra_matches = parse_extra_match_text(str(change_item.get("extra_matches", "")))
+
+        if not all([dataset_name, match_column, match_value, changed_column, new_value]):
+            raise DependencyAnalysisError(f"{index}. degisiklik satiri eksik alan iceriyor.")
+
+        if dataset_name not in SUPPORTED_FILES:
+            raise DependencyAnalysisError(
+                f"{dataset_name} coklu degisim simulasyonunda desteklenmiyor."
+            )
+
+        rules = SUPPORTED_FILES[dataset_name]
+        if match_column not in rules["key_columns"]:
+            allowed = ", ".join(sorted(rules["key_columns"]))
+            raise DependencyAnalysisError(
+                f"{dataset_name} icin eslestirme kolonu gecersiz: {match_column}. Izin verilenler: {allowed}"
+            )
+        if changed_column not in rules["editable_columns"]:
+            allowed = ", ".join(sorted(rules["editable_columns"]))
+            raise DependencyAnalysisError(
+                f"{dataset_name} icin guncelleme kolonu gecersiz: {changed_column}. Izin verilenler: {allowed}"
+            )
+
+        validate_match_value_type(dataset_name, match_column, match_value)
+        for extra_column, extra_value in extra_matches.items():
+            if extra_column not in rules["key_columns"]:
+                allowed = ", ".join(sorted(rules["key_columns"]))
+                raise DependencyAnalysisError(
+                    f"{dataset_name} icin ek eslesme kolonu gecersiz: {extra_column}. Izin verilenler: {allowed}"
+                )
+            validate_match_value_type(dataset_name, extra_column, extra_value)
+
+        matched_rows = repo.find_rows(dataset_name, match_column, match_value)
+        if extra_matches:
+            matched_rows = [
+                row
+                for row in matched_rows
+                if all(str(row.get(column, "")) == value for column, value in extra_matches.items())
+            ]
+        if not matched_rows:
+            raise DependencyAnalysisError(
+                f"{dataset_name} icinde {match_column}={match_value} icin kayit bulunamadi."
+            )
+        if dataset_name == "construction_layers.csv" and len(matched_rows) > 1:
+            raise DependencyAnalysisError(
+                "construction_layers.csv icin birden fazla kayit eslesti. "
+                "Ek eslesme alanina ornek olarak 'construction_name=disduvar,name=beton' yazabilirsiniz."
+            )
+
+        old_values = sorted({str(row.get(changed_column, "")) for row in matched_rows})
+        old_value = old_values[0] if len(old_values) == 1 else f"{len(old_values)} farkli deger"
+        delta_text, direction = format_delta(old_value, new_value)
+        old_number = try_parse_number(old_value)
+        new_number = try_parse_number(new_value)
+        delta_numeric = None
+        if old_number is not None and new_number is not None:
+            delta_numeric = new_number - old_number
+
+        reports = [
+            analyze_specific_row(repo, dataset_name, matched_row, changed_column)
+            for matched_row in matched_rows
+        ]
+
+        for item in reports:
+            source_text = f"{dataset_name}:{item['matched_row']['row_key']}"
+            impacts = item.get("impacts", [])
+            if not impacts:
+                impact_rows.append(
+                    {
+                        "id": f"simulation-{index}-empty",
+                        "degisen_alan": changed_column,
+                        "eski_deger": old_value or "-",
+                        "yeni_deger": new_value or "-",
+                        "degisim_miktari": delta_text,
+                        "degisim_numeric": delta_numeric,
+                        "yon": direction,
+                        "etki_tipi": "Yok",
+                        "etkilenen_veri": "-",
+                        "etkilenen_satir": 0,
+                        "kaynak": source_text,
+                        "neden": "Bagli etki bulunamadi.",
+                    }
+                )
+                continue
+
+            for impact in impacts:
+                impact_rows.append(
+                    {
+                        "id": f"simulation-{index}-{impact['impact_type']}-{impact['dataset']}",
+                        "degisen_alan": changed_column,
+                        "eski_deger": old_value or "-",
+                        "yeni_deger": new_value or "-",
+                        "degisim_miktari": delta_text,
+                        "degisim_numeric": delta_numeric,
+                        "yon": direction,
+                        "etki_tipi": "Dogrudan" if impact["impact_type"] == "direct" else "Dolayli",
+                        "etkilenen_veri": impact["dataset"],
+                        "etkilenen_satir": impact["affected_row_count"],
+                        "kaynak": source_text,
+                        "neden": impact["reason"],
+                    }
+                )
+
+    return impact_rows, f"Coklu degisim simulasyonu | Degisiklik sayisi: {len(change_items)} | Toplam etki kaydi: {len(impact_rows)}"
+
+
+def analyze_specific_row(repo: CsvRepository, dataset_name: str, row: dict, changed_column: str) -> dict:
+    if dataset_name == "materials.csv":
+        report = analyze_material_dependency(repo, row, changed_column)
+    elif dataset_name == "constructions.csv":
+        report = analyze_construction_dependency(repo, row, changed_column)
+    elif dataset_name == "construction_layers.csv":
+        report = analyze_construction_layer_dependency(repo, row, changed_column)
+    elif dataset_name == "spaces.csv":
+        report = analyze_space_dependency(repo, row, changed_column)
+    elif dataset_name == "zones.csv":
+        report = analyze_zone_dependency(repo, row, changed_column)
+    elif dataset_name in SURFACE_FILES:
+        report = analyze_surface_dependency(repo, dataset_name, row, changed_column)
+    elif dataset_name in SUB_SURFACE_FILES:
+        report = analyze_sub_surface_dependency(repo, dataset_name, row, changed_column)
+    else:
+        raise DependencyAnalysisError(f"Bagimlilik analizi desteklenmeyen veri seti: {dataset_name}")
+
+    key_columns = list(KEY_COLUMN_TYPES.get(dataset_name, {}).keys()) or sorted(
+        SUPPORTED_FILES[dataset_name]["key_columns"]
+    )
+    report["matched_row"] = {
+        "row_key": " | ".join(f"{column}={row.get(column, '')}" for column in key_columns),
+        "preview": {
+            key: row.get(key, "")
+            for key in row.keys()
+            if key in SUPPORTED_FILES[dataset_name]["key_columns"]
+            or key == changed_column
+        },
+    }
+    return report
+
+
 def filter_impact_rows(
     impact_rows: list[dict],
     query: str = "",
@@ -427,7 +715,7 @@ def build_impact_chart_model(impact_rows: list[dict]) -> dict:
         change_key = (str(row.get("kaynak", "")), str(row.get("degisen_alan", "")))
         if change_key not in change_groups:
             change_groups[change_key] = {
-                "label": f"{change_key[0]} | {change_key[1]}",
+                "label": build_chart_change_label(change_key[0], change_key[1]),
                 "old_value": row.get("eski_deger", "-"),
                 "new_value": row.get("yeni_deger", "-"),
                 "direct_rows": 0,
@@ -500,7 +788,7 @@ def build_impact_chart_model(impact_rows: list[dict]) -> dict:
         key=lambda value: value["Dogrudan"] + value["Dolayli"],
         reverse=True,
     ):
-        dataset_labels.append(item["dataset"])
+        dataset_labels.append(shorten_text(item["dataset"], 20))
         direct_values.append(item["Dogrudan"])
         indirect_values.append(item["Dolayli"])
 
@@ -515,7 +803,7 @@ def build_impact_chart_model(impact_rows: list[dict]) -> dict:
     for row in impact_rows:
         source_key = (str(row.get("kaynak", "-")), str(row.get("degisen_alan", "-")))
         source_id = f"source::{source_key[0]}::{source_key[1]}"
-        source_label = f"{source_key[0]}\n{source_key[1]}"
+        source_label = build_chart_change_label(source_key[0], source_key[1]).replace(" / ", "\n")
         if source_id not in source_nodes:
             source_nodes[source_id] = {
                 "id": source_id,
@@ -541,7 +829,7 @@ def build_impact_chart_model(impact_rows: list[dict]) -> dict:
             if direct_id not in direct_nodes:
                 direct_nodes[direct_id] = {
                     "id": direct_id,
-                    "name": target_dataset,
+                    "name": shorten_text(target_dataset, 18),
                     "symbolSize": 38,
                     "category": 1,
                     "itemStyle": {"color": "#84cc16", "borderColor": "#4d7c0f", "borderWidth": 2},
@@ -558,7 +846,7 @@ def build_impact_chart_model(impact_rows: list[dict]) -> dict:
             if indirect_id not in indirect_nodes:
                 indirect_nodes[indirect_id] = {
                     "id": indirect_id,
-                    "name": target_dataset,
+                    "name": shorten_text(target_dataset, 18),
                     "symbolSize": 30,
                     "category": 2,
                     "itemStyle": {"color": "#f59e0b", "borderColor": "#b45309", "borderWidth": 2},
@@ -651,6 +939,7 @@ def main_page() -> None:
         "log_files": [path.as_posix() for path in collect_log_files()],
         "scenario_files": [path.as_posix() for path in collect_scenario_files()],
     }
+    simulation_state = {"rows": None, "message": "", "label": ""}
 
     selected_csv = get_initial_csv(state["csv_files"])
     selected_log = get_initial_log(state["log_files"])
@@ -907,6 +1196,57 @@ def main_page() -> None:
                         run_button = ui.button("Hazirlik Akisini Baslat").props("color=primary")
 
                 with ui.card().classes("w-full"):
+                    ui.label("Coklu Degisim Simulasyonu").classes("text-base font-medium")
+                    simulation_info = ui.label(
+                        "Ayni anda 3 degisiklik girerek birlesik etkiyi ozet, liste ve grafiklerde gorebilirsiniz."
+                    ).classes("text-sm text-slate-600")
+                    simulation_rows = []
+                    dataset_options = sorted(SUPPORTED_FILES.keys())
+                    for index in range(3):
+                        with ui.row().classes("w-full gap-3 items-end"):
+                            dataset_select = ui.select(
+                                options=dataset_options,
+                                value="materials.csv",
+                                label=f"Degisiklik {index + 1} Veri Seti",
+                            ).classes("w-48")
+                            record_select = ui.select(
+                                options=[],
+                                value=None,
+                                label="Hazir Kayit",
+                            ).classes("w-full")
+                            match_column_select = ui.select(
+                                options=sorted(SUPPORTED_FILES["materials.csv"]["key_columns"]),
+                                value="name",
+                                label="Eslesme Kolonu",
+                            ).classes("w-40")
+                            match_value_input = ui.input(label="Eslesme Degeri").classes("w-full")
+                            extra_match_input = ui.input(
+                                label="Ek Eslesme",
+                                placeholder=build_match_hint("materials.csv"),
+                            ).classes("w-full")
+                            changed_column_select = ui.select(
+                                options=sorted(SUPPORTED_FILES["materials.csv"]["editable_columns"]),
+                                value="conductivity_w_per_mk",
+                                label="Degisen Alan",
+                            ).classes("w-48")
+                            new_value_input = ui.input(label="Yeni Deger").classes("w-40")
+                            simulation_rows.append(
+                                {
+                                    "dataset_select": dataset_select,
+                                    "record_select": record_select,
+                                    "record_choices": {},
+                                    "match_column_select": match_column_select,
+                                    "match_value_input": match_value_input,
+                                    "extra_match_input": extra_match_input,
+                                    "changed_column_select": changed_column_select,
+                                    "new_value_input": new_value_input,
+                                }
+                            )
+                    with ui.row().classes("gap-2"):
+                        run_simulation_button = ui.button("3 Degisimi Simule Et").props("color=primary")
+                        clear_simulation_button = ui.button("Simulasyonu Temizle").props("outline")
+
+                with ui.card().classes("w-full"):
                     ui.label("Degisim Ozeti").classes("text-base font-medium")
                     summary_hint = ui.label(
                         "Detay listeye girmeden once degisikligin genel etkisi burada gorunecek."
@@ -962,12 +1302,12 @@ def main_page() -> None:
                             "tooltip": {
                                 "trigger": "axis",
                             },
-                            "legend": {"data": ["Eski Deger", "Yeni Deger", "Ana Degisim"]},
-                            "grid": {"left": 48, "right": 24, "top": 48, "bottom": 90},
+                            "legend": {"data": ["Eski Deger", "Yeni Deger", "Ana Degisim"], "top": 8},
+                            "grid": {"left": 56, "right": 24, "top": 64, "bottom": 110, "containLabel": True},
                             "xAxis": {
                                 "type": "category",
                                 "data": [],
-                                "axisLabel": {"interval": 0, "rotate": 20},
+                                "axisLabel": {"interval": 0, "rotate": 12, "fontSize": 11},
                             },
                             "yAxis": {"type": "value"},
                             "series": [
@@ -983,16 +1323,16 @@ def main_page() -> None:
                                 },
                             ],
                         }
-                    ).classes("w-full h-80")
+                    ).classes("w-full h-[26rem]")
                     impact_distribution_chart = ui.echart(
                         {
                             "tooltip": {"trigger": "axis"},
-                            "legend": {"data": ["Dogrudan", "Dolayli"]},
-                            "grid": {"left": 48, "right": 24, "top": 48, "bottom": 90},
+                            "legend": {"data": ["Dogrudan", "Dolayli"], "top": 8},
+                            "grid": {"left": 56, "right": 24, "top": 64, "bottom": 90, "containLabel": True},
                             "xAxis": {
                                 "type": "category",
                                 "data": [],
-                                "axisLabel": {"interval": 0, "rotate": 20},
+                                "axisLabel": {"interval": 0, "rotate": 10, "fontSize": 11},
                             },
                             "yAxis": {"type": "value"},
                             "series": [
@@ -1029,8 +1369,8 @@ def main_page() -> None:
                                     "type": "graph",
                                     "layout": "force",
                                     "roam": True,
-                                    "label": {"show": True, "formatter": "{b}"},
-                                    "force": {"repulsion": 260, "edgeLength": 150, "gravity": 0.08},
+                                    "label": {"show": True, "formatter": "{b}", "fontSize": 11},
+                                    "force": {"repulsion": 320, "edgeLength": 170, "gravity": 0.06},
                                     "draggable": True,
                                     "categories": [],
                                     "data": [],
@@ -1173,11 +1513,92 @@ def main_page() -> None:
                         build_recent_scenarios_markdown(read_manifest_entries())
                     )
 
+                def refresh_simulation_row_options(row_controls: dict) -> None:
+                    dataset_name = row_controls["dataset_select"].value or "materials.csv"
+                    rules = SUPPORTED_FILES.get(dataset_name, SUPPORTED_FILES["materials.csv"])
+                    record_choices = build_simulation_record_choices(dataset_name)
+                    row_controls["record_choices"] = record_choices
+                    row_controls["record_select"].options = list(record_choices.keys())
+                    row_controls["record_select"].update()
+                    if row_controls["record_select"].value not in record_choices:
+                        row_controls["record_select"].set_value(None)
+
+                    row_controls["match_column_select"].options = sorted(rules["key_columns"])
+                    row_controls["match_column_select"].update()
+                    if row_controls["match_column_select"].value not in rules["key_columns"]:
+                        row_controls["match_column_select"].set_value(sorted(rules["key_columns"])[0])
+
+                    row_controls["changed_column_select"].options = sorted(rules["editable_columns"])
+                    row_controls["changed_column_select"].update()
+                    if row_controls["changed_column_select"].value not in rules["editable_columns"]:
+                        row_controls["changed_column_select"].set_value(sorted(rules["editable_columns"])[0])
+
+                    row_controls["extra_match_input"].props(
+                        f'placeholder="{build_match_hint(dataset_name)}"'
+                    )
+
+                def apply_simulation_record_choice(row_controls: dict) -> None:
+                    selected_label = row_controls["record_select"].value
+                    if not selected_label:
+                        return
+
+                    selected_choice = row_controls["record_choices"].get(selected_label)
+                    if not selected_choice:
+                        return
+
+                    row_controls["match_column_select"].set_value(selected_choice["match_column"])
+                    row_controls["match_value_input"].set_value(selected_choice["match_value"])
+                    row_controls["extra_match_input"].set_value(selected_choice["extra_matches"])
+
+                def clear_simulation() -> None:
+                    simulation_state["rows"] = None
+                    simulation_state["message"] = ""
+                    simulation_state["label"] = ""
+                    for row_controls in simulation_rows:
+                        row_controls["record_select"].set_value(None)
+                        row_controls["match_value_input"].set_value("")
+                        row_controls["extra_match_input"].set_value("")
+                        row_controls["new_value_input"].set_value("")
+                    simulation_info.set_text(
+                        "Ayni anda 3 degisiklik girerek birlesik etkiyi ozet, liste ve grafiklerde gorebilirsiniz."
+                    )
+                    refresh_impact_table()
+
+                def run_multi_change_simulation() -> None:
+                    change_items = []
+                    for row_controls in simulation_rows:
+                        change_items.append(
+                            {
+                                "dataset": row_controls["dataset_select"].value,
+                                "match_column": row_controls["match_column_select"].value,
+                                "match_value": row_controls["match_value_input"].value,
+                                "extra_matches": row_controls["extra_match_input"].value,
+                                "changed_column": row_controls["changed_column_select"].value,
+                                "new_value": row_controls["new_value_input"].value,
+                            }
+                        )
+
+                    try:
+                        impact_rows, message = build_impact_rows_for_change_items(
+                            Path("csv_output"),
+                            change_items,
+                        )
+                        simulation_state["rows"] = impact_rows
+                        simulation_state["message"] = message
+                        simulation_state["label"] = "Coklu degisim simulasyonu"
+                        simulation_info.set_text(message)
+                        refresh_impact_table()
+                        ui.notify("Coklu degisim simulasyonu hazirlandi.", color="positive")
+                    except (DependencyAnalysisError, CsvUpdateError) as error:
+                        simulation_info.set_text("Simulasyon hesaplanamadi.")
+                        ui.notify(f"Hata: {error}", color="negative")
+
                 def refresh_scenario_detail() -> None:
                     selected_value = scenario_select.value
                     if not selected_value:
                         scenario_summary.set_text("Lutfen bir senaryo secin.")
                         scenario_detail.set_content("")
+                        clear_simulation()
                         refresh_impact_table()
                         return
 
@@ -1185,6 +1606,7 @@ def main_page() -> None:
                     if not scenario_path.exists():
                         scenario_summary.set_text(f"Senaryo bulunamadi: {selected_value}")
                         scenario_detail.set_content("")
+                        clear_simulation()
                         refresh_impact_table()
                         return
 
@@ -1236,36 +1658,44 @@ def main_page() -> None:
                         relation_graph.options["series"][0]["categories"] = []
                         relation_graph.update()
 
-                    selected_value = scenario_select.value
-                    if not selected_value:
-                        reset_impact_summary()
-                        reset_impact_charts(
-                            "Grafik altyapisi secili senaryonun etki verisiyle beslenecek."
-                        )
-                        impact_summary.set_text("Lutfen once bir senaryo secin.")
-                        return
+                    if simulation_state["rows"] is not None:
+                        impact_rows = simulation_state["rows"]
+                        message = simulation_state["message"]
+                        summary_hint.set_text(simulation_state["label"] or "Coklu degisim simulasyonu")
+                    else:
+                        selected_value = scenario_select.value
+                        if not selected_value:
+                            reset_impact_summary()
+                            reset_impact_charts(
+                                "Grafik altyapisi secili senaryonun etki verisiyle beslenecek."
+                            )
+                            impact_summary.set_text("Lutfen once bir senaryo secin.")
+                            return
 
-                    scenario_path = Path(selected_value)
-                    if not scenario_path.exists():
-                        reset_impact_summary("Degisim ozeti hazirlanamadi.")
-                        reset_impact_charts("Grafik verisi hazirlanamadi.")
-                        impact_summary.set_text("Senaryo dosyasi bulunamadi.")
-                        return
+                        scenario_path = Path(selected_value)
+                        if not scenario_path.exists():
+                            reset_impact_summary("Degisim ozeti hazirlanamadi.")
+                            reset_impact_charts("Grafik verisi hazirlanamadi.")
+                            impact_summary.set_text("Senaryo dosyasi bulunamadi.")
+                            return
 
-                    try:
-                        scenario = load_scenario_definition(scenario_path)
-                        _, log_path, _ = scenario_output_targets(scenario_path)
-                        impact_rows, message = build_impact_rows_for_scenario(
-                            scenario_path,
-                            scenario,
-                            log_path,
-                        )
-                    except (CsvUpdateError, DependencyAnalysisError) as error:
-                        reset_impact_summary("Degisim ozeti hesaplanamadi.")
-                        reset_impact_charts("Grafik verisi hesaplanamadi.")
-                        impact_summary.set_text("Etkilenen alanlar hesaplanamadi.")
-                        impact_error.set_text(str(error))
-                        return
+                        try:
+                            scenario = load_scenario_definition(scenario_path)
+                            _, log_path, _ = scenario_output_targets(scenario_path)
+                            impact_rows, message = build_impact_rows_for_scenario(
+                                scenario_path,
+                                scenario,
+                                log_path,
+                            )
+                            summary_hint.set_text(
+                                f"Senaryo: {scenario.get('scenario_name', scenario_path.stem)}"
+                            )
+                        except (CsvUpdateError, DependencyAnalysisError) as error:
+                            reset_impact_summary("Degisim ozeti hesaplanamadi.")
+                            reset_impact_charts("Grafik verisi hesaplanamadi.")
+                            impact_summary.set_text("Etkilenen alanlar hesaplanamadi.")
+                            impact_error.set_text(str(error))
+                            return
 
                     filtered_impact_rows = filter_impact_rows(
                         impact_rows,
@@ -1275,9 +1705,6 @@ def main_page() -> None:
                     )
 
                     impact_totals = build_impact_summary(filtered_impact_rows)
-                    summary_hint.set_text(
-                        f"Senaryo: {scenario.get('scenario_name', scenario_path.stem)}"
-                    )
                     changed_field_value.set_text(impact_totals["changed_fields"])
                     total_impact_value.set_text(str(impact_totals["total_rows"]))
                     direct_impact_value.set_text(str(impact_totals["direct_rows"]))
@@ -1391,10 +1818,29 @@ def main_page() -> None:
                     impact_sort_select.set_value("Varsayilan")
                     refresh_impact_table()
 
+                def handle_scenario_change() -> None:
+                    simulation_state["rows"] = None
+                    simulation_state["message"] = ""
+                    simulation_state["label"] = ""
+                    simulation_info.set_text(
+                        "Ayni anda 3 degisiklik girerek birlesik etkiyi ozet, liste ve grafiklerde gorebilirsiniz."
+                    )
+                    refresh_scenario_detail()
+
                 open_output_button.on("click", lambda _: focus_output_file())
                 open_log_button.on("click", lambda _: focus_log_file())
                 run_button.on("click", lambda _: run_scenario_preparation())
-                scenario_select.on_value_change(lambda _: refresh_scenario_detail())
+                for row_controls in simulation_rows:
+                    row_controls["dataset_select"].on_value_change(
+                        lambda _, controls=row_controls: refresh_simulation_row_options(controls)
+                    )
+                    row_controls["record_select"].on_value_change(
+                        lambda _, controls=row_controls: apply_simulation_record_choice(controls)
+                    )
+                    refresh_simulation_row_options(row_controls)
+                run_simulation_button.on("click", lambda _: run_multi_change_simulation())
+                clear_simulation_button.on("click", lambda _: clear_simulation())
+                scenario_select.on_value_change(lambda _: handle_scenario_change())
                 impact_search_input.on_value_change(lambda _: refresh_impact_table())
                 impact_type_filter.on_value_change(lambda _: refresh_impact_table())
                 impact_sort_select.on_value_change(lambda _: refresh_impact_table())

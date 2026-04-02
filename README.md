@@ -1010,3 +1010,277 @@ Manifest dosyasi su bilgileri ozetler:
 - uretilecek cikti veri seti
 - log dosyasi
 - degisen alan sayisi
+
+### 13. CSV bagimlilik ve etki analizi
+
+CSV alanlari arasindaki teknik bagimliliklari cikarmak ve bir alan degistiginde hangi veri setlerinin etkilendigini gostermek icin [analyze_csv_dependencies.py](c:\StarProje\analyze_csv_dependencies.py) eklendi.
+
+Bu script iki temel modda calisir:
+
+- genel bagimlilik haritasi uretme
+- tekil degisiklik veya eski/yeni state farki uzerinden etki analizi yapma
+
+Bu analiz su iliski zincirlerini dikkate alir:
+
+- `materials.csv` -> `construction_layers.csv`
+- `construction_layers.csv` -> `constructions.csv`
+- `constructions.csv` -> `walls.csv`, `floors.csv`, `roofs.csv`, `windows.csv`, `openings.csv`
+- `spaces.csv` -> `walls.csv`, `floors.csv`, `roofs.csv`
+- `zones.csv` -> `spaces.csv`
+- `walls.csv` -> `windows.csv`, `openings.csv`
+
+Genel bagimlilik haritasi almak icin:
+
+```powershell
+python analyze_csv_dependencies.py --format md
+```
+
+Belirli bir kayit icin manuel etki analizi almak icin:
+
+```powershell
+python analyze_csv_dependencies.py `
+  --dataset materials.csv `
+  --match-column name `
+  --match-value beton `
+  --changed-column conductivity_w_per_mk `
+  --format md
+```
+
+Bu cikti su bilgileri verir:
+
+- degisen kaynak kayit
+- dogrudan etkilenen veri setleri
+- dolayli etkilenen veri setleri
+- etkilenen satir sayilari
+- etki nedeni
+
+Teknik not:
+
+- bu analiz hesaplamasi, sadece satir eslesmesini degil veri setleri arasindaki anlamsal baglantiyi da kullanir
+- `materials.csv` tarafinda degisen bir malzeme, ilgili katmanlari ve o katmanlari kullanan kabuk elemanlarini zincirleme etkiler
+
+Bu bolumun detayli teknik dokumani:
+
+- [dependency_analysis.md](c:\StarProje\docs\dependency_analysis.md)
+
+### 14. Eski ve yeni state uzerinden otomatik etki analizi
+
+Tek bir satiri elle secmek yerine iki farkli CSV klasoru arasindaki degisiklikleri otomatik bulup bunlar icin etki analizi yapmak uzere ayni script icine state diff akisi da eklendi.
+
+Bu akis:
+
+- `old_state` ve `new_state` klasorlerini karsilastirir
+- degisen hucreleri tespit eder
+- her degisiklik icin bagimlilik analizini otomatik baslatir
+- dogrudan ve dolayli etkiyi raporlar
+
+Ornek kullanim:
+
+```powershell
+python analyze_csv_dependencies.py `
+  --old-root old_state `
+  --new-root new_state `
+  --format md
+```
+
+Raporu dosyaya yazmak icin:
+
+```powershell
+python analyze_csv_dependencies.py `
+  --old-root old_state `
+  --new-root new_state `
+  --format md `
+  --output docs\auto_impact_report.md
+```
+
+Bu mod su soruya cevap verir:
+
+- "Bir degeri degistirdim, bu degisiklik sistemin hangi bolumlerine yayiliyor?"
+
+Olusan ornek rapor:
+
+- [auto_impact_report.md](c:\StarProje\docs\auto_impact_report.md)
+
+### 15. NiceGUI uzerinde etki analizi arayuzu
+
+[nicegui_csv_viewer.py](c:\StarProje\nicegui_csv_viewer.py) sadece CSV gosteren basit bir arayuz olmaktan cikarilip senaryo ve etki analizi icin karar destek paneline donusturuldu.
+
+Guncel arayuz su bolumleri icerir:
+
+- `Kayitli Senaryolar`
+- `Coklu Degisim Simulasyonu`
+- `Degisim Ozeti`
+- `Etkilenen Alanlar`
+- `Grafik Onizleme`
+- `Senaryo Analizi`
+
+Etki analizi tarafinda eklenen baslica ozellikler:
+
+- secili senaryoya ait degisiklik logunu okuyup etki kayitlari olusturma
+- degisen alan, eski deger, yeni deger ve degisim miktarini tabloda gosterme
+- `Dogrudan` ve `Dolayli` etkiyi ayirma
+- etkilenen satir sayisini listeleme
+- filtreleme ve siralama
+- secilen satira tiklayinca detay dialogu acma
+- bos durum ve hata mesajlarini gosterme
+
+`Degisim Ozeti` karti su bilgileri verir:
+
+- degisen ana alanlar
+- toplam etkilenen satir sayisi
+- dogrudan etki toplami
+- dolayli etki toplami
+- kritik etki mesaji
+
+Bu yapi sayesinde kullanici once ozet etkileri gorur, sonra isterse detayli tabloya iner.
+
+### 16. Grafiksel gorunum ve iliski grafigi
+
+Etki analizini daha hizli okunabilir hale getirmek icin NiceGUI icinde ECharts tabanli grafik katmani eklendi.
+
+Su grafikler uretilir:
+
+1. Once/sonra karsilastirma grafigi
+
+- eski ve yeni degeri ayni eksende gosterir
+- ana degisimi kirmizi vurgu ile isaretler
+- tooltip icinde eski deger, yeni deger, delta, dogrudan etki ve dolayli etki bilgisini tasir
+
+2. Veri seti bazli etki dagilimi
+
+- hangi veri setinin ne kadar etkilendigini topluca gosterir
+- `Dogrudan` ve `Dolayli` etkileri ayri seriler halinde sunar
+
+3. Iliski grafigi
+
+- ana degisimi merkez node olarak gosterir
+- dogrudan etkilenen veri setlerini ilk halka gibi konumlandirir
+- dolayli etkilenen veri setlerini ikinci katmanda gosterir
+- dugum ve baglantilari kategori, renk ve cizgi tipi ile ayirir
+
+Grafik tarafinda sonraki iyilestirmeler de yapildi:
+
+- uzun kaynak etiketleri kisaltildi
+- eksen yazilari daha okunabilir hale getirildi
+- legend ve grid bosluklari yeniden ayarlandi
+- iliski grafigindeki dugumler birbirinden daha acik gosterilecek sekilde kuvvet ayarlari iyilestirildi
+
+### 17. Ayni anda 3 degisiklik simulasyonu
+
+Arayuze tek degisiklik yerine ayni anda 3 farkli degisikligi birlikte analiz edebilen yeni bir simulasyon karti eklendi.
+
+Bu akisin amaci:
+
+- tek tek degisikliklerin etkisini degil birlesik sonucu gormek
+- birden fazla karar alternatifi ayni anda test etmek
+- tablo, ozet ve grafiklerin tek simule edilmis state uzerinden guncellenmesini saglamak
+
+Simulasyon kartinda her satir icin su alanlar bulunur:
+
+- veri seti
+- hazir kayit
+- eslesme kolonu
+- eslesme degeri
+- ek eslesme
+- degisen alan
+- yeni deger
+
+Kullanici deneyimini kolaylastirmak icin `Hazir Kayit` secimi eklendi:
+
+- `materials.csv` icin malzeme adlari listelenir
+- `construction_layers.csv` icin `construction_name | layer_index | name` formunda hazir kayitlar sunulur
+- secim yapildiginda `eslesme kolonu`, `eslesme degeri` ve `ek eslesme` alanlari otomatik doldurulur
+
+Bu sayede kullanici:
+
+- `construction_name=...` gibi teknik alanlari her seferinde elle yazmak zorunda kalmaz
+- yanlis eslesme kombinasyonlari daha az olusur
+- ayni anda 3 degisikligi daha hizli kurabilir
+
+Ornek coklu simulasyon senaryosu:
+
+1. `materials.csv` icinde `beton` kaydinin `conductivity_w_per_mk` degerini degistirmek
+2. `construction_layers.csv` icinde `disduvar | 5 | beton` kaydinin `thickness_m` degerini degistirmek
+3. `construction_layers.csv` icinde `icduvar | 2 | tugla` kaydinin `conductivity_w_per_mk` degerini degistirmek
+
+Bu simulasyon calistirildiginda:
+
+- ozet karti guncellenir
+- etkilenen alanlar listesi simulasyon verisiyle dolar
+- grafikler yeni birlesik etki uzerinden yeniden cizilir
+
+### 18. Filtreleme, testler ve dokumantasyon
+
+#### 18.1 Filtreleme ve inceleme
+
+Etki listesi ve grafikler icin filtreleme eklendi:
+
+- metinle arama
+- sadece `Dogrudan`
+- sadece `Dolayli`
+- `En Buyuk Degisim`
+- `En Fazla Etki`
+
+Bu filtreler sadece tabloyu degil:
+
+- ozet kartini
+- once/sonra grafigini
+- dagilim grafigini
+- iliski grafigini
+
+birlikte gunceller.
+
+#### 18.2 Testler
+
+Yeni yapinin regresyona karsi korunmasi icin test dosyalari eklendi:
+
+- [test_dependency_analysis.py](c:\StarProje\tests\test_dependency_analysis.py)
+- [test_impact_view_models.py](c:\StarProje\tests\test_impact_view_models.py)
+
+Test kapsaminda su alanlar bulunur:
+
+- etki analizi mantigi
+- eski/yeni diff tespiti
+- tablo icin view-model donusumu
+- delta hesaplamasi
+- filtreleme ve siralama
+- grafik veri modeli
+- bos veri ve hata senaryolari
+
+Calistirma komutu:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+#### 18.3 Teknik dokumantasyon
+
+Etki analizi ve grafik akisini kalici hale getirmek icin ek dokumanlar hazirlandi:
+
+- [dependency_analysis.md](c:\StarProje\docs\dependency_analysis.md)
+- [impact_analysis_guide.md](c:\StarProje\docs\impact_analysis_guide.md)
+- [auto_impact_report.md](c:\StarProje\docs\auto_impact_report.md)
+
+Bu dokumanlar su konulari kapsar:
+
+- bagimlilik mantigi
+- veri akis semasi
+- ornek etki zinciri
+- grafik veri modeli
+- bilinen limitasyonlar
+- kullanim ve test komutlari
+
+## Son Durum Ozeti
+
+Proje su anda yalnizca OSM verisi ceken bir arac degil; ayni zamanda:
+
+- CSV ureten
+- kontrollu veri guncelleyen
+- senaryo tabanli cikti olusturan
+- eski/yeni fark analizi yapan
+- bagimlilik zinciri uzerinden etki hesaplayan
+- bu etkiyi tabloda, ozet kartinda ve grafiklerde gosteren
+- ayni anda 3 degisikligi simule edebilen
+- test ve dokumantasyonla desteklenmis
+
+bir karar destek ve veri inceleme altyapisina donusmustur.
