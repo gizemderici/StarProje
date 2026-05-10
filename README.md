@@ -2,6 +2,16 @@
 
 Bu proje, Python ve OpenStudio API kullanilarak bir `.osm` bina modelinin okunmasi, model verilerinin yapilandirilmis formata donusturulmesi, analiz edilmesi ve CSV tablolari olarak disa aktarilmasi amaciyla gelistirilmistir.
 
+## EPIC 13.1 Ciktisi
+
+Overlay karsilastirma grafikleri icin metrik siniflandirma ve grafik secim gerekceleri su dosyada tutulur:
+
+- [docs/epic13_overlay_metrics.md](docs/epic13_overlay_metrics.md)
+
+Kod tarafindaki katalog ve karar modeli:
+
+- [overlay_metric_catalog.py](overlay_metric_catalog.py)
+
 ## Amac
 
 Bu calismanin temel amaci, OpenStudio modelini yalnizca acmak degil, model icindeki verileri programatik olarak okuyup daha sonra kullanilabilecek bir veri altyapisi haline getirmektir.
@@ -13,6 +23,118 @@ Bu kapsamda proje su ihtiyaclara cevap verir:
 - elemanlar arasi iliskileri koruyarak JSON uretmek
 - elde edilen verileri analiz etmek
 - verileri Excel'de acilabilecek CSV dosyalarina donusturmek
+
+## Guncel Uygulama Akisi
+
+Proje yalnizca veri cikarma scriptlerinden ibaret degildir. Guncel durumda NiceGUI tabanli bir uygulama ile asagidaki akis desteklenir:
+
+- CSV tablolarini goruntulemek
+- Parametre secip yeni deger girmek
+- Senaryo taslagi olusturmak
+- Senaryoyu hazirlamak veya calistirmak
+- Baz model ile senaryo sonucunu karsilastirmak
+- Overlay grafikler, maliyet ve konfor analizi gormek
+
+Ana arayuz dosyasi:
+
+- [nicegui_csv_viewer.py](nicegui_csv_viewer.py)
+
+Destekleyici view-model modulleri:
+
+- [view_models/comparison_reports.py](view_models/comparison_reports.py)
+- [view_models/parameter_effects.py](view_models/parameter_effects.py)
+
+## Nasil Calistirilir
+
+1. Proje kokune gelin.
+2. Python ortamini etkinlestirin.
+3. NiceGUI uygulamasini baslatin:
+
+```powershell
+python nicegui_csv_viewer.py
+```
+
+Alternatif olarak tek komutlu baslaticilari kullanabilirsiniz:
+
+```powershell
+.\run_app.ps1
+```
+
+veya
+
+```cmd
+run_app.cmd
+```
+
+Uygulama `8090` doluysa otomatik olarak baska bos bir port secer.
+
+## Hizli Kullanim Rehberi
+
+1. `Parametre Secimi` ekraninda once `Material`, `Construction` veya `Window` sekmesinden bolumu daraltin.
+2. Parametreyi secip `Kayit Secimi` yapin.
+3. `Yeni Deger` girdikten sonra karttaki `Degisim Ozeti` ile etkisini okuyun.
+4. `Senaryo Hazirlik` alaninda taslagi kaydedin veya calistirin.
+5. `Analiz` sekmesinde `Beklenen Etki` ile `Gercek Simulasyon Sonucu` alanlarini ayri ayri yorumlayin.
+
+Ornek ekran goruntuleri test artifact klasorunde bulunur:
+
+- `tests/artifacts/ui/main_page_and_parameter_navigation.png`
+- `tests/artifacts/ui/analytics_and_cost_panels_visible.png`
+
+## Senaryo Olusturma Adimlari
+
+1. Parametre listesinden bir veya daha fazla alan secin.
+2. Her parametre icin ilgili kaydi secin.
+3. `Yeni Deger` girin.
+4. Olusan `Degisim Ozeti` kartindan degisimin yonunu ve beklenen etkisini kontrol edin.
+5. `Taslagi Kaydet`, `Senaryoyu Calistir` veya `Baseline + Senaryo Calistir` aksiyonlarindan birini kullanin.
+
+## Grafikler Neyi Gosterir
+
+### Beklenen Etki
+
+Bu alan secilen parametrelerin kural tabanli etkisini ozetler. Gercek simulasyon sonucu degildir.
+
+- Parametre etki haritasi
+- Degisim ozeti
+- Goreli etki kartlari
+
+### Gercek Simulasyon Sonucu
+
+Bu alanlar yalnizca comparison raporunda veri varsa dolar.
+
+- Annual heating / cooling / total energy
+- Peak heating / cooling
+- Monthly heating / cooling
+- Zone temperature
+- Cost
+
+## Grafik Neden Bos Olabilir
+
+Bir grafik bos ise genellikle sebep grafik kodu degil, comparison raporundaki metric verisinin eksik olmasidir.
+
+Arayuz artik sunlari ayirt eder:
+
+- eksik metric id
+- raporda mevcut ama `null` olan metric id
+- hangi comparison raporunun kullanildigi
+
+Bu nedenle bos grafik durumunda once ilgili `scenario_runs/<senaryo>/comparison/*__comparison.json` dosyasini kontrol etmek gerekir.
+
+## Calisma Dizini Notlari
+
+Proje gelistirme sirasinda cok sayida gecici klasor uretebilir. Bunlarin repo kokunu kirletmemesi icin `.gitignore` dosyasinda su tip klasorler disarida tutulur:
+
+- `venv/`
+- `.python312/`
+- `.tmp_*`
+- `pytest-cache-files-*`
+- `__pycache__/`
+
+Uretilen run ve simulasyon klasorleri de gelistirme ortaminda buyuyebilecegi icin ayri tutulur:
+
+- `simulation_outputs/`
+- `scenario_runs/`
 
 ## Proje Kapsami
 
@@ -249,6 +371,12 @@ Bu is icin olusturulan dosya:
 
 - [export_model_data_to_csv.py](c:\StarProje\export_model_data_to_csv.py)
 
+### 10. Simülasyon sonuçları ve metrik planı
+
+Simülasyon çıktılarından metrik okuma altyapısını planlamak için yeni bir dokümantasyon dosyası eklendi.
+
+- [docs/simulation_results_parser_plan.md](docs/simulation_results_parser_plan.md)
+
 Bu script:
 
 - `model_data.json` dosyasini okur
@@ -270,6 +398,36 @@ Uretilen baslica CSV dosyalari:
 - `construction_layers.csv`
 
 CSV dosyalari `utf-8-sig` ile yazildigi icin Excel'de daha saglikli acilmasi hedeflenmistir.
+
+## UI Smoke Test (Opsiyonel Playwright)
+
+Arayuzun temel akisini (ana sayfa, Parametre Secimi sayfasina gecis, temel secim akisi)
+Playwright ile dogrulamak icin opsiyonel bir test eklendi:
+
+- [tests/test_ui_playwright_smoke.py](tests/test_ui_playwright_smoke.py)
+
+Varsayilan durumda bu test skip edilir. Calistirmak icin:
+
+```powershell
+pip install playwright
+playwright install chromium
+$env:RUN_UI_PLAYWRIGHT='1'
+python -m unittest tests\test_ui_playwright_smoke.py
+
+# UI'nin test tarafindan otomatik acilmasi istenirse:
+$env:START_UI_FOR_TESTS='1'
+python -m unittest tests\test_ui_playwright_smoke.py
+```
+
+Notlar:
+
+- Test ekran goruntuleri varsayilan olarak `tests/artifacts/ui` altina kaydedilir.
+- Farkli bir klasor icin `UI_TEST_ARTIFACT_DIR` ortam degiskeni kullanilabilir.
+- Hata durumunda ekran goruntusune ek olarak HTML sayfa dump dosyasi da ayni klasore yazilir.
+- `RUN_UI_PLAYWRIGHT` ve `START_UI_FOR_TESTS` icin true degerleri: `1`, `true`, `yes`, `on`.
+- Varsayilan olarak eski hata artefact dosyalari (`*_error.*`) yeni kosu basinda temizlenir.
+- Bu temizligi kapatmak icin `CLEAN_UI_ERROR_ARTIFACTS=0`, `false`, `no` veya `off` kullanilabilir.
+- Temizligi acik tutmak icin `1`, `true`, `yes` veya `on` kullanilabilir.
 
 ## Veri Sozlugu
 

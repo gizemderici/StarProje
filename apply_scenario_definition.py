@@ -77,6 +77,10 @@ def validate_operation_structure(index: int, operation: dict) -> None:
     if not isinstance(updates, dict) or not updates:
         raise CsvUpdateError(f"{index}. islemde 'updates' alani bos olmayan bir nesne olmali.")
 
+    extra_match = operation.get("extra_match")
+    if extra_match is not None and not isinstance(extra_match, dict):
+        raise CsvUpdateError(f"{index}. islemde 'extra_match' alani nesne olmali.")
+
 
 def apply_operation(
     operation_index: int,
@@ -91,6 +95,7 @@ def apply_operation(
     match_column = operation["match"]["column"]
     match_value = str(operation["match"]["value"])
     updates = operation["updates"]
+    extra_match = operation.get("extra_match", {})
 
     if match_column not in rules["key_columns"]:
         allowed = ", ".join(sorted(rules["key_columns"]))
@@ -99,7 +104,11 @@ def apply_operation(
             f"Izin verilen kolonlar: {allowed}"
         )
 
-    ensure_columns_exist(fieldnames, {match_column} | set(updates.keys()), input_path)
+    ensure_columns_exist(
+        fieldnames,
+        {match_column} | set(updates.keys()) | set(extra_match.keys()),
+        input_path,
+    )
 
     for column, value in updates.items():
         if column not in rules["editable_columns"]:
@@ -116,6 +125,8 @@ def apply_operation(
 
     for row in rows:
         if row.get(match_column) != match_value:
+            continue
+        if any(str(row.get(column, "")) != str(value) for column, value in extra_match.items()):
             continue
 
         matched_any = True

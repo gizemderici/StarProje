@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local runtimes and virtual environments
+venv/
+.python312/
+
+# Local temporary work directories
+.tmp_*/
+.tmp_test/
+.tmp_pytest_runtime/
+pytest-cache-files-*/
+
+# Generated outputs
+simulation_outputs/
+scenario_runs/
+
+# OS / editor
+.DS_Store
+Thumbs.db

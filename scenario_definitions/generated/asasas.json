@@ -1,0 +1,83 @@
+{
+  "scenario_name": "asasas",
+  "description": "asa",
+  "input": "csv_output/materials.csv",
+  "output": "simulation_outputs/asasas/asasas__materials.csv",
+  "log_output": "simulation_outputs/asasas/asasas__changes.json",
+  "changes": [
+    {
+      "parameter_id": "material_thickness",
+      "label": "Material Thickness",
+      "dataset": "materials.csv",
+      "field_name": "thickness_m",
+      "old_value": "0.2",
+      "new_value": "0.04",
+      "unit": "m",
+      "category": "Materials",
+      "record_label": "beton",
+      "match": {
+        "column": "name",
+        "value": "beton"
+      },
+      "extra_match": {}
+    },
+    {
+      "parameter_id": "material_conductivity",
+      "label": "Material Conductivity",
+      "dataset": "materials.csv",
+      "field_name": "conductivity_w_per_mk",
+      "old_value": "55.0",
+      "new_value": "0.6",
+      "unit": "W/mK",
+      "category": "Materials",
+      "record_label": "Matal celik",
+      "match": {
+        "column": "name",
+        "value": "Matal celik"
+      },
+      "extra_match": {}
+    }
+  ],
+  "operations": [
+    {
+      "name": "set_material_thickness",
+      "match": {
+        "column": "name",
+        "value": "beton"
+      },
+      "updates": {
+        "thickness_m": "0.04"
+      },
+      "meta": {
+        "parameter_id": "material_thickness",
+        "label": "Material Thickness",
+        "dataset": "materials.csv",
+        "category": "Materials",
+        "unit": "m",
+        "current_value": "0.2",
+        "record_label": "beton",
+        "record_selection_required": false
+      }
+    },
+    {
+      "name": "set_material_conductivity",
+      "match": {
+        "column": "name",
+        "value": "Matal celik"
+      },
+      "updates": {
+        "conductivity_w_per_mk": "0.6"
+      },
+      "meta": {
+        "parameter_id": "material_conductivity",
+        "label": "Material Conductivity",
+        "dataset": "materials.csv",
+        "category": "Materials",
+        "unit": "W/mK",
+        "current_value": "55.0",
+        "record_label": "Matal celik",
+        "record_selection_required": false
+      }
+    }
+  ]
+}

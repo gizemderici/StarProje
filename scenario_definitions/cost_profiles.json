@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "tr_electricity_residential": {
+      "label": "TR Elektrik Mesken (TRY/kWh)",
+      "unit_cost": 2.35,
+      "currency": "TRY"
+    },
+    "eu_electricity_average": {
+      "label": "EU Elektrik Ortalama (EUR/kWh)",
+      "unit_cost": 0.28,
+      "currency": "EUR"
+    },
+    "us_electricity_average": {
+      "label": "US Elektrik Ortalama (USD/kWh)",
+      "unit_cost": 0.12,
+      "currency": "USD"
+    },
+    "custom": {
+      "label": "Ozel Deger",
+      "unit_cost": 0.12,
+      "currency": "TRY"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import csv
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -67,15 +68,16 @@ def write_dataset(root: Path) -> None:
 
 class DependencyAnalysisTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temp_dir = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp_dir.name)
+        self.temp_root = Path(__file__).resolve().parents[1] / ".tmp_test"
+        self.temp_root.mkdir(parents=True, exist_ok=True)
+        self.root = Path(tempfile.mkdtemp(dir=self.temp_root))
         self.old_root = self.root / "old"
         self.new_root = self.root / "new"
         write_dataset(self.old_root)
         write_dataset(self.new_root)
 
     def tearDown(self) -> None:
-        self.temp_dir.cleanup()
+        shutil.rmtree(self.root, ignore_errors=True)
 
     def test_analyze_row_dependency_separates_direct_and_indirect_impacts(self) -> None:
         repo = CsvRepository(self.old_root)

@@ -5,36 +5,13 @@ import json
 import sys
 from pathlib import Path
 
+from parameter_catalog import build_supported_files
+
 
 ROW_NUMBER_FIELD = "__row_number"
 
 
-SUPPORTED_FILES = {
-    "materials.csv": {
-        "key_columns": {"name"},
-        "editable_columns": {
-            "name": "string",
-            "thickness_m": "float",
-            "conductivity_w_per_mk": "float",
-            "thermal_resistance_m2k_per_w": "float",
-            "u_factor_w_per_m2k": "float",
-            "shgc": "float",
-        },
-    },
-    "construction_layers.csv": {
-        "key_columns": {"construction_name", "layer_index", "name"},
-        "editable_columns": {
-            "construction_name": "string",
-            "layer_index": "integer",
-            "name": "string",
-            "thickness_m": "float",
-            "conductivity_w_per_mk": "float",
-            "thermal_resistance_m2k_per_w": "float",
-            "u_factor_w_per_m2k": "float",
-            "shgc": "float",
-        },
-    },
-}
+SUPPORTED_FILES = build_supported_files()
 
 
 class CsvUpdateError(Exception):

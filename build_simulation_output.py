@@ -4,6 +4,7 @@ import sys
 from copy import deepcopy
 from pathlib import Path
 
+from audit_trail import build_audit_event, build_audit_paths, write_audit_event
 from apply_scenario_definition import load_scenario_definition, run_scenario_definition
 from update_csv_fields import CsvUpdateError
 
@@ -70,12 +71,33 @@ def main() -> int:
     try:
         scenario = load_scenario_definition(scenario_file)
         scenario_copy = deepcopy(scenario)
+        scenario_name = str(scenario_copy["scenario_name"])
         input_path = Path(scenario_copy["input"])
 
         data_output, log_output, manifest_output = build_output_paths(
-            scenario_copy["scenario_name"],
+            scenario_name,
             input_path,
             output_root,
+        )
+        scenario_dir = data_output.parent
+        audit_paths = build_audit_paths(
+            root_dir=output_root,
+            scenario_name=scenario_name,
+            scenario_dir=scenario_dir,
+        )
+        write_audit_event(
+            audit_paths,
+            build_audit_event(
+                event_type="user_action",
+                scenario_name=scenario_name,
+                status="started",
+                source="cli",
+                message="Simulation output package creation requested.",
+                details={
+                    "scenario_file": str(scenario_file),
+                    "output_root": str(output_root),
+                },
+            ),
         )
 
         scenario_copy["output"] = str(data_output)
@@ -91,6 +113,22 @@ def main() -> int:
             change_count,
         )
         write_manifest(manifest_output, manifest)
+        write_audit_event(
+            audit_paths,
+            build_audit_event(
+                event_type="run_finished",
+                scenario_name=scenario_name,
+                status="succeeded",
+                source="runner",
+                message="Simulation output package created.",
+                details={
+                    "output_dataset": str(output_path),
+                    "log_output": str(written_log_output),
+                    "manifest": str(manifest_output),
+                    "changed_field_count": change_count,
+                },
+            ),
+        )
 
         print(
             f"Simulasyon cikti paketi olusturuldu: {scenario_copy['scenario_name']}. "
@@ -99,6 +137,23 @@ def main() -> int:
         return 0
 
     except CsvUpdateError as error:
+        scenario_name = "unknown_scenario"
+        if "scenario_copy" in locals() and "scenario_name" in scenario_copy:
+            scenario_name = str(scenario_copy.get("scenario_name"))
+        write_audit_event(
+            build_audit_paths(root_dir=output_root, scenario_name=scenario_name),
+            build_audit_event(
+                event_type="run_finished",
+                scenario_name=scenario_name,
+                status="failed",
+                source="runner",
+                message="Simulation output package creation failed.",
+                details={
+                    "error_type": type(error).__name__,
+                    "error": str(error),
+                },
+            ),
+        )
         print(f"Hata: {error}", file=sys.stderr)
         return 1
 
