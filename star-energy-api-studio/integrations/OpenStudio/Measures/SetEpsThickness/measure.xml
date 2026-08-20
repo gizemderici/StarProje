@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>set_eps_thickness</name>
+  <uid>29714c52-e218-4fce-8a3c-8875cc6f8fa1</uid>
+  <version_id>9423d0f1-23bc-45de-b1ca-5241b2d06177</version_id>
+  <version_modified>2026-08-20T12:00:00Z</version_modified>
+  <xml_checksum>00000000</xml_checksum>
+  <class_name>SetEpsThickness</class_name>
+  <display_name>Set EPS Thickness</display_name>
+  <description>Changes the EPS layer of a named opaque construction before simulation.</description>
+  <modeler_description>Edits the target construction in place so all existing references use the new EPS layer.</modeler_description>
+  <measure_type>ModelMeasure</measure_type>
+  <arguments>
+    <argument><name>target_construction</name><display_name>Target construction</display_name><type>String</type><required>true</required><model_dependent>false</model_dependent><default_value>duvr_std_eps</default_value></argument>
+    <argument><name>eps_thickness_cm</name><display_name>EPS thickness (cm)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>10.0</default_value></argument>
+    <argument><name>conductivity_w_mk</name><display_name>EPS conductivity (W/m-K)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>0.039</default_value></argument>
+    <argument><name>density_kg_m3</name><display_name>EPS density (kg/m3)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>16.0</default_value></argument>
+    <argument><name>specific_heat_j_kgk</name><display_name>EPS specific heat (J/kg-K)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>1250.0</default_value></argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags><tag>Envelope.Form</tag></tags>
+  <attributes>
+    <attribute><name>Measure Type</name><value>ModelMeasure</value><datatype>string</datatype></attribute>
+    <attribute><name>Measure Language</name><value>Ruby</value><datatype>string</datatype></attribute>
+  </attributes>
+  <files>
+    <file><filename>README.md</filename><filetype>md</filetype><usage_type>readme</usage_type><checksum>00000000</checksum></file>
+    <file>
+      <version><software_program>OpenStudio</software_program><identifier>3.10.0</identifier><min_compatible>3.10.0</min_compatible></version>
+      <filename>measure.rb</filename><filetype>rb</filetype><usage_type>script</usage_type><checksum>00000000</checksum>
+    </file>
+  </files>
+</measure>

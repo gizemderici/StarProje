@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+data/generated/
+data/model_store/imported/
+data/generated/openstudio_runs/*/run/
+data/generated/openstudio_runs/*/openstudio_*.log
+data/generated/openstudio_runs/**/run/
+data/generated/openstudio_runs/**/*.log
+data/generated/openstudio_runs/run_manifest.json
+data/generated/model_api_cache/
+data/generated/direct_energyplus_*
+data/generated/simulation_worker_test/

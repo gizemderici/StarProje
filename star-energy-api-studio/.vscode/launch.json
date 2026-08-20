@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Enerji HTTP API'yi başlat",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\api_server.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONUTF8": "1",
+        "ENERJI_API_PORT": "8091"
+      }
+    },
+    {
+      "name": "NiceGUI uygulamasını başlat",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\app.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONUTF8": "1",
+        "ENERJI_PORT": "8090",
+        "ENERJI_API_URL": "http://127.0.0.1:8091"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "API + NiceGUI sistemini başlat",
+      "configurations": [
+        "Enerji HTTP API'yi başlat",
+        "NiceGUI uygulamasını başlat"
+      ],
+      "stopAll": true
+    }
+  ]
+}
