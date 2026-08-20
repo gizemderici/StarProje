@@ -519,6 +519,86 @@ def main_page() -> None:
         ui.notify(f"{osm_model.name} seçildi.", type="positive")
         ui.navigate.reload()
 
+    async def finish_intro() -> None:
+        await ui.run_javascript("localStorage.setItem('star_energy_intro_seen', '1')")
+        intro_dialog.close()
+
+    async def show_intro_on_first_visit() -> None:
+        try:
+            intro_seen = await ui.run_javascript(
+                "localStorage.getItem('star_energy_intro_seen')",
+                timeout=2.0,
+            )
+        except Exception:
+            intro_seen = "1"
+        if not intro_seen:
+            intro_dialog.open()
+
+    with ui.dialog().props("transition-show=scale transition-hide=fade") as intro_dialog, ui.card().classes(
+        "intro-dialog"
+    ):
+        with ui.row().classes("intro-hero w-full items-start justify-between no-wrap"):
+            with ui.row().classes("items-start gap-4 no-wrap"):
+                with ui.element("div").classes("intro-mark"):
+                    ui.icon("bolt", size="28px")
+                with ui.column().classes("gap-1"):
+                    ui.label("STAR Energy API Studio").classes("intro-eyebrow")
+                    ui.label("Bina enerji modelinizi keşfetmeye başlayın").classes("intro-title")
+                    ui.label(
+                        "OpenStudio modellerini HTTP API üzerinden inceleyin, yalıtım senaryolarını karşılaştırın ve gerçek EnergyPlus koşularını tek ekrandan yönetin."
+                    ).classes("intro-purpose")
+            ui.button(icon="close", on_click=finish_intro).props("flat round dense").classes("intro-close")
+
+        with ui.element("div").classes("intro-flow w-full"):
+            ui.icon("account_tree", size="22px")
+            ui.label("NiceGUI → HTTP API → OpenStudio servis katmanı → güvenli OSM/model deposu")
+
+        ui.label("NEREDEN BAŞLAMALI?").classes("intro-section-label")
+        with ui.element("div").classes("intro-grid w-full"):
+            intro_steps = [
+                (
+                    "1",
+                    "Model ve Varlıklar",
+                    "OSM dosyanızı API'ye yükleyin veya depodaki modeli seçin; mekân, yüzey, yapı ve hava dosyası bilgilerini kontrol edin.",
+                    "widgets",
+                ),
+                (
+                    "2",
+                    "Senaryo Kurucu",
+                    "Yalıtım seçeneklerini karşılaştırın. Hızlı tahmini görün veya gerçek OpenStudio senaryolarını hazırlayın.",
+                    "tune",
+                ),
+                (
+                    "3",
+                    "Canlı Akış",
+                    "OSW iş akışını hazırlayın; OpenStudio ve EnergyPlus koşusunun durumunu, çıktısını ve uyarılarını izleyin.",
+                    "graphic_eq",
+                ),
+                (
+                    "4",
+                    "Enerji Merkezi",
+                    "Referans ve senaryo sonuçlarını; enerji tüketimi, tasarruf, maliyet ve emisyon göstergeleriyle karşılaştırın.",
+                    "blur_circular",
+                ),
+            ]
+            for number_text, title, description, icon in intro_steps:
+                with ui.element("div").classes("intro-step"):
+                    with ui.row().classes("items-center gap-3 no-wrap"):
+                        with ui.element("div").classes("intro-step-icon"):
+                            ui.icon(icon, size="20px")
+                        with ui.column().classes("gap-0"):
+                            ui.label(f"ADIM {number_text}").classes("intro-step-number")
+                            ui.label(title).classes("intro-step-title")
+                    ui.label(description).classes("intro-step-copy")
+
+        with ui.row().classes("intro-footer w-full items-center justify-between gap-3"):
+            ui.label("Bu rehberi üst menüdeki Rehber düğmesinden yeniden açabilirsiniz.").classes(
+                "intro-hint"
+            )
+            ui.button("Panele başla", icon="arrow_forward", on_click=finish_intro).props(
+                "unelevated no-caps"
+            ).classes("intro-start-button")
+
     with ui.dialog() as model_dialog, ui.card().classes("model-upload-dialog"):
         with ui.row().classes("w-full items-start justify-between no-wrap"):
             with ui.column().classes("gap-1"):
@@ -584,11 +664,19 @@ def main_page() -> None:
             with right_nav:
                 ui.tooltip("Menüyü sağa kaydır")
         ui.space()
+        guide_button = ui.button(
+            "Rehber",
+            icon="help_outline",
+            on_click=intro_dialog.open,
+        ).props("flat dense no-caps").classes("guide-button")
+        with guide_button:
+            ui.tooltip("Kısa kullanım rehberini aç")
         with ui.row().classes("desktop-actions items-center gap-2 no-wrap"):
             with ui.row().classes("system-active items-center gap-2"):
                 ui.element("span").classes("status-dot")
                 ui.label("HTTP API aktif").classes("text-xs font-bold")
             ui.badge(f"OS {osm_model.openstudio_version}").classes("version-chip")
+    ui.timer(0.65, show_intro_on_first_visit, once=True)
     with ui.column().classes("star-shell w-full pb-12 gap-6"):
         with ui.element("section").classes("hero w-full") as hero_section:
             with ui.column().classes("gap-4 max-w-4xl"):
@@ -1017,6 +1105,8 @@ ui.add_head_html(
   .nav-scroll-button:hover { background:var(--aurora-lime)!important;transform:translateY(-1px); }
   .tab-scroll-shell:not(:has(.q-tabs--scrollable)) .nav-scroll-button { opacity:.24;pointer-events:none;box-shadow:none; }
   .aurora-tabs.q-tabs--scrollable .q-tabs__content { border-radius:13px;mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%); }
+  .guide-button { flex:0 0 auto;min-height:36px!important;padding:0 11px!important;border-radius:12px!important;color:var(--aurora-ink)!important;background:rgba(102,87,255,.08)!important;border:1px solid rgba(102,87,255,.13);font-size:11px;font-weight:800;letter-spacing:.01em; }
+  .guide-button:hover { color:white!important;background:var(--aurora-violet)!important;transform:translateY(-1px); }
   .system-active { padding:7px 10px;border-radius:999px;background:#eef0e9;color:var(--aurora-ink); }
   .status-dot { width:8px;height:8px;border-radius:50%;background:#70b933;animation:aurora-ping 1.8s infinite; }
   .version-chip { padding:6px 9px;border-radius:999px;background:rgba(102,87,255,.09)!important;color:var(--aurora-violet)!important;border:1px solid rgba(102,87,255,.12); }
@@ -1073,6 +1163,25 @@ ui.add_head_html(
   .upload-status { color:var(--aurora-muted);font-size:11px; }
   .api-flow-note { display:flex;align-items:center;gap:10px;padding:13px 15px;border-radius:15px;color:#463cb0;background:rgba(102,87,255,.08);border:1px solid rgba(102,87,255,.14);font-size:12px;font-weight:650; }
   .api-source-chip { padding:9px 12px;border-radius:999px;color:#3c611f;background:#e9ffd0;border:1px solid #c9eba3; }
+  .intro-dialog { width:min(900px,calc(100vw - 28px));max-width:900px;max-height:92vh;overflow-y:auto;padding:0!important;gap:0!important;border-radius:30px!important;color:var(--aurora-ink)!important;background:#fffffc!important;border:1px solid rgba(16,21,34,.10);box-shadow:0 34px 110px rgba(16,21,34,.28)!important; }
+  .intro-hero { padding:27px 29px 24px;background:radial-gradient(circle at 95% 0,rgba(102,87,255,.20),transparent 36%),linear-gradient(135deg,rgba(184,255,82,.58),rgba(255,255,252,.96) 64%);border-bottom:1px solid rgba(16,21,34,.08); }
+  .intro-mark { flex:0 0 52px;width:52px;height:52px;display:grid;place-items:center;border-radius:17px;color:var(--aurora-ink);background:var(--aurora-lime);box-shadow:inset 0 -6px 14px rgba(16,21,34,.13),0 12px 26px rgba(16,21,34,.10);transform:rotate(-5deg); }
+  .intro-eyebrow { color:#4d554a;font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase; }
+  .intro-title { max-width:670px;font-size:clamp(24px,3vw,36px);line-height:1.08;font-weight:900;letter-spacing:-.035em; }
+  .intro-purpose { max-width:700px;margin-top:5px;color:rgba(16,21,34,.68);font-size:13px;line-height:1.6; }
+  .intro-close { flex:0 0 auto;color:var(--aurora-ink)!important;background:rgba(255,255,255,.48)!important; }
+  .intro-flow { display:flex;align-items:center;gap:10px;margin:20px 29px 8px;width:calc(100% - 58px)!important;padding:13px 16px;border-radius:16px;color:#4337b5;background:rgba(102,87,255,.08);border:1px solid rgba(102,87,255,.14);font-size:12px;font-weight:750; }
+  .intro-section-label { padding:13px 29px 9px;color:#747b87;font-size:10px;font-weight:900;letter-spacing:.14em; }
+  .intro-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 29px 25px; }
+  .intro-step { min-width:0;padding:17px;border-radius:19px;background:#f5f6f0;border:1px solid rgba(16,21,34,.08);transition:transform .2s ease,border-color .2s ease; }
+  .intro-step:hover { transform:translateY(-2px);border-color:rgba(102,87,255,.25); }
+  .intro-step-icon { flex:0 0 37px;width:37px;height:37px;display:grid;place-items:center;border-radius:12px;color:var(--aurora-violet);background:white;border:1px solid rgba(16,21,34,.07);box-shadow:0 7px 18px rgba(16,21,34,.06); }
+  .intro-step-number { color:#777e88;font-size:9px;font-weight:900;letter-spacing:.13em; }
+  .intro-step-title { font-size:14px;font-weight:850; }
+  .intro-step-copy { margin-top:10px;color:var(--aurora-muted);font-size:11px;line-height:1.55; }
+  .intro-footer { padding:17px 29px 20px;background:#f8f9f4;border-top:1px solid rgba(16,21,34,.07); }
+  .intro-hint { max-width:520px;color:var(--aurora-muted);font-size:11px;line-height:1.45; }
+  .intro-start-button { min-height:42px!important;padding:0 18px!important;border-radius:14px!important;color:white!important;background:var(--aurora-ink)!important;box-shadow:0 10px 24px rgba(16,21,34,.16);font-weight:800; }
   .text-cyan { color:var(--aurora-violet)!important; }
   .text-slate-500 { color:var(--aurora-muted)!important; }
   @media(max-width:1100px) {
@@ -1092,6 +1201,19 @@ ui.add_head_html(
     .architecture-arrow { transform:rotate(90deg); }
     .model-upload-dialog { padding:21px!important;max-height:92vh;overflow-y:auto; }
     .upload-column { width:100%;min-width:0;flex-basis:100%; }
+    .guide-button { min-width:36px!important;width:36px!important;padding:0!important;font-size:0; }
+    .guide-button .q-icon { margin:0!important;font-size:20px!important; }
+    .intro-dialog { border-radius:24px!important;max-height:94vh; }
+    .intro-hero { padding:22px 20px 19px; }
+    .intro-mark { flex-basis:43px;width:43px;height:43px;border-radius:14px; }
+    .intro-title { font-size:25px; }
+    .intro-purpose { font-size:12px; }
+    .intro-flow { align-items:flex-start;margin:16px 20px 7px;width:calc(100% - 40px)!important;font-size:11px;line-height:1.45; }
+    .intro-section-label { padding:12px 20px 8px; }
+    .intro-grid { grid-template-columns:1fr;padding:0 20px 20px; }
+    .intro-step { padding:15px; }
+    .intro-footer { align-items:stretch!important;flex-direction:column;padding:16px 20px 20px; }
+    .intro-start-button { width:100%; }
   }
   @media(prefers-reduced-motion:reduce) {
     *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important; }
