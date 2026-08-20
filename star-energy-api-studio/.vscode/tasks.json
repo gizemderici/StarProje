@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Uygulamayı çalıştır",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\start.ps1"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Hızlı parametrik simülasyon",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["${workspaceFolder}\\run_simulations.py", "--mode", "quick"],
+      "problemMatcher": []
+    },
+    {
+      "label": "HTTP API'yi çalıştır",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["${workspaceFolder}\\api_server.py"],
+      "options": {
+        "env": {
+          "PYTHONUTF8": "1",
+          "ENERJI_API_PORT": "8091"
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Testleri çalıştır",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "unittest", "discover", "-s", "tests", "-v"],
+      "problemMatcher": []
+    }
+  ]
+}

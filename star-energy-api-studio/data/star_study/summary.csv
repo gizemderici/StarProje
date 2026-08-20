@@ -1,0 +1,21 @@
+scenario,insulation_name,thickness_m,conductivity_w_mk,total_electricity_gj,heating_gj,cooling_gj,exit_code
+S00_baseline,,,,13.33,25.1,6.72,0
+S01_th0.03_k0.03,izolasyon kopugu,0.03,0.03,13.33,30.52,6.36,0
+S02_th0.03_k0.04,izolasyon kopugu,0.03,0.04,13.33,32.05,6.36,0
+S03_th0.03_k0.05,izolasyon kopugu,0.03,0.05,13.33,33.3,6.41,0
+S04_th0.05_k0.03,izolasyon kopugu,0.05,0.03,13.33,28.18,6.43,0
+S05_th0.05_k0.04,izolasyon kopugu,0.05,0.04,13.33,29.43,6.38,0
+S06_th0.05_k0.05,izolasyon kopugu,0.05,0.05,13.33,30.52,6.36,0
+S07_th0.07_k0.03,izolasyon kopugu,0.07,0.03,13.33,26.95,6.52,0
+S08_th0.07_k0.04,izolasyon kopugu,0.07,0.04,13.33,27.99,6.44,0
+S09_th0.07_k0.05,izolasyon kopugu,0.07,0.05,13.33,28.92,6.4,0
+S10_th0.04_k0.04_extra,izolasyon kopugu,0.04,0.04,13.33,30.52,6.36,0
+S11_th0.06_k0.035_extra,izolasyon kopugu,0.06,0.035,13.33,28.07,6.44,0
+S12_th0.08_k0.03_extra,izolasyon kopugu,0.08,0.03,13.33,26.52,6.56,0
+S13_th0.02_k0.05_extra,izolasyon kopugu,0.02,0.05,13.33,35.61,6.6,0
+S14_th0.04_k0.04_extra,izolasyon kopugu,0.04,0.04,13.33,30.52,6.36,0
+S15_th0.06_k0.035_extra,izolasyon kopugu,0.06,0.035,13.33,28.07,6.44,0
+S16_th0.08_k0.03_extra,izolasyon kopugu,0.08,0.03,13.33,26.52,6.56,0
+S17_th0.02_k0.05_extra,izolasyon kopugu,0.02,0.05,13.33,35.61,6.6,0
+S18_th0.04_k0.04_extra,izolasyon kopugu,0.04,0.04,13.33,30.52,6.36,0
+S19_th0.06_k0.035_extra,izolasyon kopugu,0.06,0.035,13.33,28.07,6.44,0

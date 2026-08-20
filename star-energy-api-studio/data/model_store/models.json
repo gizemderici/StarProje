@@ -1,0 +1,16 @@
+{
+  "models": {
+    "main-building": {
+      "name": "Ana bina modeli",
+      "osm": "data/input/bina_orijinal.osm",
+      "weather": "data/input/weather.epw",
+      "archived_results": "data/archived_runs"
+    },
+    "star-baseline": {
+      "name": "Star parametrik referans modeli",
+      "osm": "data/star_study/baseline_seed.osm",
+      "weather": "data/input/weather.epw",
+      "study": "data/star_study"
+    }
+  }
+}
