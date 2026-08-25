@@ -32,6 +32,10 @@ from surrogate.sensitivity import sobol_indices, summarise
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_CSV = ROOT / "data/parametric/results.csv"
+# Faz 7 dogrulama kosulari da gercek EnergyPlus sonuclaridir; varsa egitim
+# kumesine eklenir. Adaptif ornekleme: dogrulamada sapan noktalar bir sonraki
+# turda modeli iyilestirir.
+VALIDATION_CSV = ROOT / "data/validation/training_rows.csv"
 OUTPUT = ROOT / "data/surrogate"
 SPEEDUP_REFERENCE_SECONDS = 132.0  # Olculen ortalama EnergyPlus kosu suresi.
 
@@ -50,7 +54,11 @@ def main() -> None:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     args = parse_args()
 
-    dataset = load_dataset(RESULTS_CSV)
+    tables = [RESULTS_CSV]
+    if VALIDATION_CSV.is_file():
+        tables.append(VALIDATION_CSV)
+        print(f"Dogrulama kosulari egitim kumesine ekleniyor: {VALIDATION_CSV.name}")
+    dataset = load_dataset(tables)
     required = minimum_rows_for(dataset.n_features)
     print(f"Egitim kumesi: {len(dataset)} satir x {dataset.n_features} ozellik")
     if len(dataset) < required:

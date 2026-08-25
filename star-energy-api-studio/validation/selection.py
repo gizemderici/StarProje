@@ -76,26 +76,48 @@ def select_points(
     extreme_indices: Mapping[str, int],
     total: int = 8,
     training_parameters: Sequence[Mapping[str, float | str]] = (),
+    exclude_training: bool = True,
 ) -> list[ValidationPoint]:
-    """Dogrulanacak noktalari secer."""
+    """Dogrulanacak noktalari secer.
+
+    `exclude_training` acikken egitim kumesindeki cozumler aday havuzundan
+    tamamen cikarilir. Adaptif ornekleme turlerinde bu sarttir: onceki turun
+    dogrulama noktalari egitim kumesine eklendigi icin, yeniden secilirlerse
+    dogrulama dairesel hale gelir ve modelin ezberini olcer.
+    """
     if not solutions:
         return []
+
+    trained = {_signature(item) for item in training_parameters}
+    if exclude_training and trained:
+        usable = [
+            index
+            for index, item in enumerate(solutions)
+            if _signature(item["parameters"]) not in trained  # type: ignore[arg-type]
+        ]
+        if not usable:
+            return []
+    else:
+        usable = list(range(len(solutions)))
 
     front = np.array(
         [[float(item["objectives"][label]) for label in objective_labels] for item in solutions],
         dtype=float,
     )
+    allowed = set(usable)
 
     reasons: dict[int, str] = {}
     for label, index in extreme_indices.items():
-        reasons.setdefault(index, f"uc nokta: {label}")
-    reasons.setdefault(compromise_index, "TOPSIS uzlasi cozumu")
+        if index in allowed:
+            reasons.setdefault(index, f"uc nokta: {label}")
+    if compromise_index in allowed:
+        reasons.setdefault(compromise_index, "TOPSIS uzlasi cozumu")
 
     remaining = max(total - len(reasons), 0)
-    for index in _spread_indices(front, set(reasons), remaining):
+    excluded = set(range(len(solutions))) - allowed
+    for index in _spread_indices(front, set(reasons) | excluded, remaining):
         reasons[index] = "cephe dagilimi"
 
-    trained = {_signature(item) for item in training_parameters}
     points: list[ValidationPoint] = []
     for index in sorted(reasons):
         parameters = dict(solutions[index]["parameters"])  # type: ignore[arg-type]

@@ -112,15 +112,31 @@ def encode_row(parameters: dict[str, float | str]) -> list[float]:
     return vector
 
 
-def load_dataset(results_csv: Path, targets: Sequence[str] = TARGETS) -> Dataset:
-    """Faz 3 sonuc tablosunu egitim kumesine cevirir."""
-    if not results_csv.is_file():
-        raise FileNotFoundError(f"Sonuc tablosu bulunamadi: {results_csv}")
+def load_dataset(
+    results_csv: Path | Sequence[Path], targets: Sequence[str] = TARGETS
+) -> Dataset:
+    """Sonuc tablolarini egitim kumesine cevirir.
 
-    with results_csv.open("r", encoding="utf-8-sig", newline="") as handle:
-        rows = list(csv.DictReader(handle))
+    Birden fazla tablo verilebilir; Faz 7 dogrulama kosulari egitim kumesine
+    eklenirken (adaptif ornekleme) bu kullanilir. Ayni case_id birden fazla
+    tabloda gecerse bir kez alinir.
+    """
+    paths = [results_csv] if isinstance(results_csv, Path) else list(results_csv)
+    rows: list[dict[str, str]] = []
+    seen_ids: set[str] = set()
+    for path in paths:
+        if not path.is_file():
+            raise FileNotFoundError(f"Sonuc tablosu bulunamadi: {path}")
+        with path.open("r", encoding="utf-8-sig", newline="") as handle:
+            for row in csv.DictReader(handle):
+                case_id = row.get("case_id", "")
+                if case_id and case_id in seen_ids:
+                    continue
+                if case_id:
+                    seen_ids.add(case_id)
+                rows.append(row)
     if not rows:
-        raise ValueError(f"Sonuc tablosu bos: {results_csv}")
+        raise ValueError(f"Sonuc tablosu bos: {paths}")
 
     vectors: list[list[float]] = []
     collected: dict[str, list[float]] = {name: [] for name in targets}

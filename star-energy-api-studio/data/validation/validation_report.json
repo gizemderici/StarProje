@@ -1,0 +1,112 @@
+{
+  "evaluator": "surrogate",
+  "usable_in_thesis": true,
+  "summary": {
+    "point_count": 8,
+    "tolerance_percent": 5.0,
+    "max_absolute_deviation_percent": 5.222,
+    "mean_absolute_deviation_percent": 2.718,
+    "within_tolerance": false,
+    "failing_points": [
+      "case_e0e59209b5f9"
+    ]
+  },
+  "points": [
+    {
+      "case_id": "case_0fc478641e02",
+      "reason": "uc nokta: EnPI (kWh/m2-yil)",
+      "predicted_enpi_kwh_m2": 48.5,
+      "actual_enpi_kwh_m2": 50.4427,
+      "deviation_percent": -3.8513,
+      "predicted_comfort_hours": 0.0,
+      "actual_comfort_hours": 8366.0,
+      "comfort_deviation_percent": -100.0,
+      "actual_site_energy_gj": 771.08,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_4ed78770a027",
+      "reason": "uc nokta: Yatirim maliyeti (TRY)",
+      "predicted_enpi_kwh_m2": 108.8921,
+      "actual_enpi_kwh_m2": 107.2624,
+      "deviation_percent": 1.5193,
+      "predicted_comfort_hours": 0.0,
+      "actual_comfort_hours": 254.0,
+      "comfort_deviation_percent": -100.0,
+      "actual_site_energy_gj": 1639.64,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_6bdeff459f84",
+      "reason": "cephe dagilimi",
+      "predicted_enpi_kwh_m2": 56.6238,
+      "actual_enpi_kwh_m2": 58.5225,
+      "deviation_percent": -3.2445,
+      "predicted_comfort_hours": 252.66,
+      "actual_comfort_hours": 7872.0,
+      "comfort_deviation_percent": -96.7904,
+      "actual_site_energy_gj": 894.59,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_809a06aad5c5",
+      "reason": "cephe dagilimi",
+      "predicted_enpi_kwh_m2": 69.1331,
+      "actual_enpi_kwh_m2": 71.5735,
+      "deviation_percent": -3.4096,
+      "predicted_comfort_hours": 229.02,
+      "actual_comfort_hours": 5946.0,
+      "comfort_deviation_percent": -96.1483,
+      "actual_site_energy_gj": 1094.09,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_a502034ed596",
+      "reason": "cephe dagilimi",
+      "predicted_enpi_kwh_m2": 57.1815,
+      "actual_enpi_kwh_m2": 58.9955,
+      "deviation_percent": -3.0748,
+      "predicted_comfort_hours": 0.0,
+      "actual_comfort_hours": 8409.0,
+      "comfort_deviation_percent": -100.0,
+      "actual_site_energy_gj": 901.82,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_b78e57bf9f6c",
+      "reason": "cephe dagilimi",
+      "predicted_enpi_kwh_m2": 105.2173,
+      "actual_enpi_kwh_m2": 105.0513,
+      "deviation_percent": 0.158,
+      "predicted_comfort_hours": 314.78,
+      "actual_comfort_hours": 1014.0,
+      "comfort_deviation_percent": -68.9568,
+      "actual_site_energy_gj": 1605.84,
+      "severe_errors": 4
+    },
+    {
+      "case_id": "case_e0e59209b5f9",
+      "reason": "cephe dagilimi",
+      "predicted_enpi_kwh_m2": 70.2506,
+      "actual_enpi_kwh_m2": 74.1215,
+      "deviation_percent": -5.2224,
+      "predicted_comfort_hours": 479.16,
+      "actual_comfort_hours": 5738.0,
+      "comfort_deviation_percent": -91.6494,
+      "actual_site_energy_gj": 1133.04,
+      "severe_errors": 0
+    },
+    {
+      "case_id": "case_ea7689046331",
+      "reason": "TOPSIS uzlasi cozumu",
+      "predicted_enpi_kwh_m2": 73.9791,
+      "actual_enpi_kwh_m2": 74.9236,
+      "deviation_percent": -1.2606,
+      "predicted_comfort_hours": 0.0,
+      "actual_comfort_hours": 5102.0,
+      "comfort_deviation_percent": -100.0,
+      "actual_site_energy_gj": 1145.3,
+      "severe_errors": 3
+    }
+  ]
+}

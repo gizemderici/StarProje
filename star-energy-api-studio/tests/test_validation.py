@@ -71,8 +71,9 @@ class SelectionTests(unittest.TestCase):
         indices = [point.index for point in points]
         self.assertEqual(len(indices), len(set(indices)))
 
-    def test_training_points_are_flagged_not_silently_used(self) -> None:
-        # Egitim kumesindeki bir noktayi dogrulamak modelin ezberini olcer.
+    def test_training_points_are_excluded_by_default(self) -> None:
+        # Varsayilan davranis dislamadir; isaretleme yalnizca
+        # exclude_training=False verildiginde kullanilir.
         training = [self.solutions[0]["parameters"]]
         points = select_points(
             self.solutions,
@@ -82,9 +83,8 @@ class SelectionTests(unittest.TestCase):
             total=6,
             training_parameters=training,
         )
-        flagged = [point for point in points if "egitim kumesinde" in point.reason]
-        self.assertEqual(len(flagged), 1)
-        self.assertEqual(flagged[0].index, 0)
+        self.assertNotIn(0, [point.index for point in points])
+        self.assertFalse(any("egitim kumesinde" in point.reason for point in points))
 
     def test_empty_front_returns_no_points(self) -> None:
         self.assertEqual(select_points([], LABELS, 0, {}, total=5), [])
@@ -126,6 +126,45 @@ class SummaryTests(unittest.TestCase):
         self.assertEqual(summary["point_count"], 0)
         self.assertTrue(summary["within_tolerance"])
 
+
+
+class AdaptiveSamplingTests(unittest.TestCase):
+    """Adaptif ornekleme turlerinde dairesel dogrulamaya karsi koruma."""
+
+    def setUp(self) -> None:
+        self.front = np.array(
+            [[10.0, 900.0, 90.0], [90.0, 100.0, 80.0], [80.0, 800.0, 10.0],
+             [50.0, 500.0, 50.0], [30.0, 700.0, 60.0], [70.0, 300.0, 40.0]]
+        )
+        self.solutions = _solutions(self.front.tolist())
+
+    def test_training_points_are_excluded_by_default(self) -> None:
+        # Onceki turun dogrulama noktalari egitim kumesine eklenir; yeniden
+        # secilirlerse dogrulama modelin ezberini olcer.
+        training = [self.solutions[0]["parameters"], self.solutions[1]["parameters"]]
+        points = select_points(
+            self.solutions, LABELS, topsis(self.front), extreme_indices(self.front),
+            total=6, training_parameters=training,
+        )
+        self.assertNotIn(0, [p.index for p in points])
+        self.assertNotIn(1, [p.index for p in points])
+
+    def test_flagging_mode_still_available(self) -> None:
+        training = [self.solutions[0]["parameters"]]
+        points = select_points(
+            self.solutions, LABELS, topsis(self.front), extreme_indices(self.front),
+            total=6, training_parameters=training, exclude_training=False,
+        )
+        flagged = [p for p in points if "egitim kumesinde" in p.reason]
+        self.assertEqual(len(flagged), 1)
+
+    def test_all_points_trained_returns_empty(self) -> None:
+        training = [s["parameters"] for s in self.solutions]
+        points = select_points(
+            self.solutions, LABELS, topsis(self.front), extreme_indices(self.front),
+            total=6, training_parameters=training,
+        )
+        self.assertEqual(points, [])
 
 if __name__ == "__main__":
     unittest.main()
