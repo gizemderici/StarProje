@@ -63,10 +63,19 @@ def _unit_matrix(
 
     chosen = available_sampler() if sampler == "auto" else sampler
     if chosen == "sobol":
+        import warnings
+
         from scipy.stats import qmc  # type: ignore
 
         engine = qmc.Sobol(d=dimensions, scramble=True, seed=seed)
-        return [list(row) for row in engine.random(count)], "sobol"
+        # scipy, nokta sayisi ikinin kuvveti degilse denge ozellikleri icin
+        # uyarir. Nokta sayisini kullanici belirler ve kismi bir Sobol blogu
+        # yine de tam faktoriyelden cok daha iyi kapsar; uyari bastirilir ama
+        # tercih docstring'de belgelenmistir.
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message=".*power of 2.*")
+            matrix = engine.random(count)
+        return [list(row) for row in matrix], "sobol"
 
     # Kaydirilmis Halton: saf Python, scipy gerektirmez.
     rng = random.Random(seed)

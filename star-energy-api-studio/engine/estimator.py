@@ -15,6 +15,11 @@ class EstimatorAssumptions:
 
     baseline_thickness_cm: float = 5.0
     eps_conductivity_w_mk: float = 0.039
+    # Arsivlenmis referans kosunun EPS iletkenligi. Kullanici eps_conductivity
+    # degerini degistirdiginde BAZ DEGISMEZ; baz, o kosunun kendi degeriyle
+    # hesaplanmalidir. Aksi halde ayni kalinlikta farkli bir iletkenlik secmek
+    # "tasarruf yok" sonucu verir.
+    baseline_conductivity_w_mk: float = 0.039
     fixed_layer_r_m2k_w: float = 1.9956
     interior_surface_r_m2k_w: float = 0.13
     exterior_surface_r_m2k_w: float = 0.04
@@ -38,7 +43,7 @@ class EstimatePoint:
     pump_gj: float
     savings_gj: float
     savings_percent: float
-    method: str = "Kalibre edilmiş hızlı tahmin"
+    method: str = "Kalibre edilmemiş hızlı tahmin"
 
     def to_dict(self) -> dict[str, float | str]:
         return asdict(self)
@@ -70,9 +75,11 @@ def estimate_point(
     assumptions: EstimatorAssumptions | None = None,
 ) -> EstimatePoint:
     assumptions = assumptions or EstimatorAssumptions()
+    # HATA DUZELTMESI: baz duvar, kullanicinin sectigi iletkenlikle degil
+    # arsiv kosusunun kendi iletkenligiyle hesaplanir.
     baseline_r, baseline_u = wall_performance(
         assumptions.baseline_thickness_cm,
-        assumptions.eps_conductivity_w_mk,
+        assumptions.baseline_conductivity_w_mk,
         assumptions,
     )
     wall_r, wall_u = wall_performance(
@@ -180,10 +187,14 @@ def export_results(
     json_path.write_text(
         json.dumps(
             {
-                "mode": "calibrated_quick_estimate",
+                "mode": "uncalibrated_quick_estimate",
                 "notice": (
-                    "Bu sonuçlar arşivdeki 5 cm EnergyPlus koşusuna kalibre edilmiş "
-                    "hızlı tahmindir; doğrulama için gerçek OpenStudio koşusu yapılmalıdır."
+                    "Bu sonuçlar arşivdeki 5 cm EnergyPlus koşusuna DAYANAN, ancak "
+                    "kalibre EDİLMEMİŞ bir hızlı tahmindir. Arşivdeki 5/10/15 cm "
+                    "koşuları birebir aynı sonucu verdiği için elde tek veri noktası "
+                    "vardır; zarf payları (heating_envelope_share, "
+                    "cooling_envelope_share) varsayımdır. Kalibre edilmiş tahmin için "
+                    "Faz 4 vekil modelini kullanın."
                 ),
                 "assumptions": asdict(assumptions),
                 "results": rows,
