@@ -36,6 +36,12 @@ VOLUME_FIX_ZONES = ("TZ_atolye", "TZ_koridor", "TZ_WC")
 SHAFT_ZONE = "TZ_asnsr"
 SHAFT_VENTILATION_M3_S = 0.414
 
+# Serbest yuzen, dogal havalandirmali asansor kuyusu EnergyPlus'in varsayilan 25
+# isinma gununde yakinsamiyor ve "CheckWarmupConvergence ... did not converge"
+# Severe hatasi uretiyor. Standart care isinma gun sayisini artirmaktir.
+WARMUP_DAYS_MIN = 6
+WARMUP_DAYS_MAX = 60
+
 
 def fix_elevator_equipment(model, report):
     """5.000 W asansor motorunu SpaceType yerine tek bir mekana bagla.
@@ -137,6 +143,29 @@ def add_shaft_ventilation(model, report):
     return len(added)
 
 
+def extend_warmup_days(model, report):
+    """Isinma gun sayisini artirarak yakinsama Severe hatasini onler.
+
+    Kuyu bolgesi iklimlendirilmediginden sicakligi serbest yuzer; varsayilan 25
+    gun bazi parametre birlesimlerinde yetmiyor.
+    """
+    control = model.getSimulationControl()
+    before = {
+        "minimum": control.minimumNumberofWarmupDays(),
+        "maximum": control.maximumNumberofWarmupDays(),
+    }
+    control.setMinimumNumberofWarmupDays(WARMUP_DAYS_MIN)
+    control.setMaximumNumberofWarmupDays(WARMUP_DAYS_MAX)
+    report["1.6_isinma_gunleri"] = [
+        {
+            "onceki": before,
+            "yeni": {"minimum": WARMUP_DAYS_MIN, "maximum": WARMUP_DAYS_MAX},
+            "gerekce": "TZ_asnsr yakinsama Severe hatasi",
+        }
+    ]
+    return 1
+
+
 def remove_unused_glazing(model, report):
     """Hicbir konstruksiyonda kullanilmayan gercek disi cam tanimini sil.
 
@@ -189,6 +218,7 @@ def main() -> None:
     counts = {
         "asansor": fix_elevator_equipment(model, report),
         "kuyu_havalandirmasi": add_shaft_ventilation(model, report),
+        "isinma_gunleri": extend_warmup_days(model, report),
         "zon_hacmi": fix_zone_volumes(model, report),
         "kullanilmayan_cam": remove_unused_glazing(model, report),
     }

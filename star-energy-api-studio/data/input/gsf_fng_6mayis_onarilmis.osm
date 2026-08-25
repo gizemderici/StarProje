@@ -43,7 +43,17 @@ OS:Facility,
   {3739f0b9-6961-445e-9ce0-df36078e6792}; !- Handle
 
 OS:SimulationControl,
-  {915230b5-6072-4b8a-a39a-77dfbea6e8d8}; !- Handle
+  {915230b5-6072-4b8a-a39a-77dfbea6e8d8}, !- Handle
+  ,                                       !- Do Zone Sizing Calculation
+  ,                                       !- Do System Sizing Calculation
+  ,                                       !- Do Plant Sizing Calculation
+  ,                                       !- Run Simulation for Sizing Periods
+  ,                                       !- Run Simulation for Weather File Run Periods
+  ,                                       !- Loads Convergence Tolerance Value {W}
+  ,                                       !- Temperature Convergence Tolerance Value {deltaC}
+  ,                                       !- Solar Distribution
+  60,                                     !- Maximum Number of Warmup Days
+  6;                                      !- Minimum Number of Warmup Days
 
 OS:Sizing:Parameters,
   {5c865c9a-d525-4a9f-ab40-49ef1d95d4c6}, !- Handle
@@ -4317,7 +4327,7 @@ OS:ZoneHVAC:EquipmentList,
   Zone HVAC Equipment List 7,             !- Name
   {bd4486c1-7c96-440d-9df2-bde1042ed90b}, !- Thermal Zone
   ,                                       !- Load Distribution Scheme
-  {05e18cff-2148-4d3d-9a90-1fde9b7940d8}, !- Zone Equipment 1
+  {0daffb45-73e6-4626-8c6a-f11c5baf1a74}, !- Zone Equipment 1
   1,                                      !- Zone Equipment Cooling Sequence 1
   1,                                      !- Zone Equipment Heating or No-Load Sequence 1
   ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 1
@@ -31905,7 +31915,7 @@ OS:ElectricEquipment,
   General;                                !- End-Use Subcategory
 
 OS:ZoneVentilation:DesignFlowRate,
-  {05e18cff-2148-4d3d-9a90-1fde9b7940d8}, !- Handle
+  {0daffb45-73e6-4626-8c6a-f11c5baf1a74}, !- Handle
   asansor boslugu havalandirmasi,         !- Name
   {f070a706-042e-4f1f-9297-b724f0c0596a}, !- Schedule Name
   Flow/Zone,                              !- Design Flow Rate Calculation Method

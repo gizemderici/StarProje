@@ -22,6 +22,19 @@
       "gerekce": "Bolgede ZoneHVAC cihazi yok; motor isisi hapsoluyordu."
     }
   ],
+  "1.6_isinma_gunleri": [
+    {
+      "onceki": {
+        "minimum": 1,
+        "maximum": 25
+      },
+      "yeni": {
+        "minimum": 6,
+        "maximum": 60
+      },
+      "gerekce": "TZ_asnsr yakinsama Severe hatasi"
+    }
+  ],
   "1.3_zon_hacmi": [
     {
       "zone": "TZ_atolye",
@@ -52,6 +65,7 @@
   "degisiklik_sayilari": {
     "asansor": 1,
     "kuyu_havalandirmasi": 1,
+    "isinma_gunleri": 1,
     "zon_hacmi": 3,
     "kullanilmayan_cam": 1
   }

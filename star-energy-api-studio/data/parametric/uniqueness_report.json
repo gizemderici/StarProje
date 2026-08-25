@@ -1,0 +1,19 @@
+{
+  "run_count": 6,
+  "unique_result_count": 1,
+  "duplicate_groups": {
+    "(0.0, 0.0, 0.0, 0.0, 0.0)": [
+      "case_3136472f1886",
+      "case_339536ecbc15",
+      "case_5d6ddf4b4ffc",
+      "case_80d75c4f3618",
+      "case_96a28c6b7502",
+      "case_f09194b34113"
+    ]
+  },
+  "all_unique": false,
+  "site_energy_min_gj": 0.0,
+  "site_energy_max_gj": 0.0,
+  "site_energy_mean_gj": 0.0,
+  "runs_with_severe_errors": []
+}

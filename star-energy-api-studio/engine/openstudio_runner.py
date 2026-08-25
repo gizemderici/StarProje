@@ -129,6 +129,20 @@ def find_openstudio(explicit_path: str | Path | None = None) -> Path | None:
     return None
 
 
+def seed_fingerprint(seed_file: Path) -> str:
+    """Tohum modelin icerik ozeti.
+
+    case_id yalnizca parametrelerden turer. Tohum model degistiginde eski kosu
+    klasorleri sessizce gecerli gorunur ve skip_completed onlari atlar. Parmak
+    izi case.json icine yazilir ve devam kontrolunde karsilastirilir.
+    """
+    digest = hashlib.sha256()
+    with seed_file.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()[:12]
+
+
 def build_steps(case: OpenStudioCase) -> list[dict[str, object]]:
     """Senaryoyu OSW adimlarina cevirir.
 
@@ -178,8 +192,11 @@ def build_workflow(
     workflow_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+    payload_case = case.as_dict()
+    payload_case["seed_fingerprint"] = seed_fingerprint(seed_file)
+    payload_case["seed_file"] = seed_file.name
     (workflow_dir / "case.json").write_text(
-        json.dumps(case.as_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(payload_case, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     return workflow_path
 
@@ -250,6 +267,25 @@ def run_case(
     )
 
 
+def _recorded_seeds(output_root: Path) -> dict[str, str]:
+    """Mevcut kosularin hangi tohumla uretildigini case.json'dan okur.
+
+    Parmak izi kosu aninda kaydedilir; sonradan yoldan yeniden hesaplanamaz,
+    cunku tohum dosya o yolda degismis olabilir. Bu okuma prepare_workflows
+    case.json'i yeniden yazmadan ONCE yapilmalidir.
+    """
+    recorded: dict[str, str] = {}
+    for case_path in output_root.glob("case_*/case.json"):
+        try:
+            payload = json.loads(case_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        fingerprint = payload.get("seed_fingerprint")
+        if fingerprint:
+            recorded[case_path.parent.name] = str(fingerprint)
+    return recorded
+
+
 def _run_one(payload: tuple[str, str, dict]) -> dict:
     """ProcessPoolExecutor icin ust duzey sarmalayici; pickle edilebilir olmali."""
     exe, workflow, case_payload = payload
@@ -288,15 +324,28 @@ def run_cases(
         raise FileNotFoundError(
             "OpenStudio CLI bulunamadi. OPENSTUDIO_EXE ortam degiskenini ayarlayin."
         )
+    active_seed = seed_fingerprint(seed_file or project_root / DEFAULT_SEED)
+    # prepare_workflows case.json'i yeniden yazar; onceki parmak izlerini
+    # kaybetmemek icin once okuyoruz.
+    previous_seeds = _recorded_seeds(output_root) if output_root.is_dir() else {}
+
     workflows = prepare_workflows(
         cases, project_root, output_root, seed_file, weather_file
     )
 
     pending: list[tuple[str, str, dict]] = []
     results: list[dict] = []
+    stale = 0
     for case, workflow in zip(cases, workflows):
         existing = workflow.parent / "run/eplusout.sql"
         if skip_completed and existing.exists():
+            # Parmak izi eslesmiyorsa ya da hic kaydedilmemisse kosu eskimistir.
+            produced_with = previous_seeds.get(workflow.parent.name)
+            if produced_with is None or produced_with != active_seed:
+                stale += 1
+                shutil.rmtree(workflow.parent / "run", ignore_errors=True)
+                pending.append((str(executable), str(workflow), case.as_dict()))
+                continue
             results.append(
                 {
                     "case": case.as_dict(),
@@ -310,6 +359,9 @@ def run_cases(
             )
             continue
         pending.append((str(executable), str(workflow), case.as_dict()))
+
+    if stale:
+        print(f"{stale} kosu farkli bir tohum modelle uretilmis; yeniden calisacak.")
 
     if pending:
         workers = max_workers or max(1, (os.cpu_count() or 2) - 1)
