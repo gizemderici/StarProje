@@ -62,9 +62,14 @@ Bu tekrarın yeniden oluşmaması için depoya `.gitattributes` eklendi.
 modeline aittir. Alan şimdilik korundu, aksi halde `/quick-study` uç noktası
 404 döndürürdü.
 
-**Faz 1.6** onarılmış taban koşusunu ürettiğinde alan yeni koşuyu gösterecek
-biçimde güncellenmelidir. `engine/estimator.py` içindeki baz senaryo da aynı
-anda gözden geçirilmelidir (Faz 4.7).
+Alan Faz 1'de **güncellenemez**, çünkü `engine/sql_results.py` içindeki
+`ResultsRepository`, klasör adlarını `eps_{kalinlik}cm` deseniyle ve kalınlıkları
+`(5, 10, 15)` listesiyle sabitlemiş durumda. Yeni taban koşusu bu desene uymuyor.
+
+Repoint, **Faz 2.1–2.2**'deki genelleştirme işine bağlıdır: `OpenStudioCase`
+parametre sözlüğüne dönüştürülüp `eps_*cm` slug bağımlılığı kırıldığında sonuç
+okuyucu da senaryo-adı bağımsız hale gelecek. `engine/estimator.py` içindeki baz
+senaryo aynı anda gözden geçirilmelidir (Faz 4.7).
 
 ## Kanonik modelin bilinen kusurları
 

@@ -1,0 +1,58 @@
+{
+  "openstudio_version": "3.11.0",
+  "kaynak_model": "gsf_fng_6mayis.osm",
+  "1.1_asansor": [
+    {
+      "equipment": "Electric Equipment 1",
+      "definition": "asansor motoru",
+      "design_level_w": 5000.0,
+      "eski_baglanti": "SpaceType asnsr",
+      "eski_ornek_sayisi": 4,
+      "eski_toplam_w": 20000.0,
+      "yeni_baglanti": "Space K2_ASNS_1",
+      "yeni_toplam_w": 5000.0
+    }
+  ],
+  "1.2_kuyu_havalandirmasi": [
+    {
+      "zone": "TZ_asnsr",
+      "design_flow_m3_s": 0.414,
+      "ventilation_type": "Natural",
+      "fan_enerjisi": "yok",
+      "gerekce": "Bolgede ZoneHVAC cihazi yok; motor isisi hapsoluyordu."
+    }
+  ],
+  "1.3_zon_hacmi": [
+    {
+      "zone": "TZ_atolye",
+      "mekan_sayisi": 40,
+      "yazilan_hacim_m3": 3682.92,
+      "onceki_davranis": "EnergyPlus 10 m3 varsayilanina dusuyordu"
+    },
+    {
+      "zone": "TZ_WC",
+      "mekan_sayisi": 6,
+      "yazilan_hacim_m3": 516.66,
+      "onceki_davranis": "EnergyPlus 10 m3 varsayilanina dusuyordu"
+    },
+    {
+      "zone": "TZ_koridor",
+      "mekan_sayisi": 6,
+      "yazilan_hacim_m3": 3860.67,
+      "onceki_davranis": "EnergyPlus 10 m3 varsayilanina dusuyordu"
+    }
+  ],
+  "1.5_kullanilmayan_cam": [
+    {
+      "material": "Window Material Simple Glazing System 1",
+      "u_factor_w_m2k": 0.1,
+      "shgc": 0.1
+    }
+  ],
+  "degisiklik_sayilari": {
+    "asansor": 1,
+    "kuyu_havalandirmasi": 1,
+    "zon_hacmi": 3,
+    "kullanilmayan_cam": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "seed_file": "C:\\Users\\gizem\\Projects\\StarProje\\star-energy-api-studio\\data\\input\\gsf_fng_6mayis_onarilmis.osm",
+  "weather_file": "C:\\Users\\gizem\\Projects\\StarProje\\star-energy-api-studio\\data\\input\\weather_tmyx.epw",
+  "measure_paths": [
+    "C:\\Users\\gizem\\Projects\\StarProje\\star-energy-api-studio\\integrations\\OpenStudio\\Measures"
+  ],
+  "run_directory": "C:\\Users\\gizem\\Projects\\StarProje\\star-energy-api-studio\\data\\baseline_v1\\run",
+  "steps": [
+    {
+      "measure_dir_name": "CreateCSVOutput",
+      "arguments": {}
+    },
+    {
+      "measure_dir_name": "OpenStudioResults",
+      "arguments": {}
+    }
+  ]
+}

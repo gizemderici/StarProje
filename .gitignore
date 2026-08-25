@@ -25,3 +25,10 @@ star-energy-api-studio/data/generated/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Baseline kosusunun yeniden uretilebilir ara ciktilari.
+# Ozet dosyalari (sql, err, eio, hourly_zone.csv) bir ust klasorde tutulur.
+star-energy-api-studio/data/baseline_v1/run/
+star-energy-api-studio/data/baseline_v1/reports/
+star-energy-api-studio/data/baseline_v1/generated_files/
+star-energy-api-studio/data/baseline_v1/*.log

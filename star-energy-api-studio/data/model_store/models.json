@@ -2,7 +2,7 @@
   "models": {
     "main-building": {
       "name": "Ana bina modeli (kanonik)",
-      "note": "Faz 0.2 karari: kanonik model gsf_fng_6mayis.osm. Gerekce icin docs/model_secimi.md. archived_results alani halen legacy-eps-5cm modeline ait kosulari gosteriyor; Faz 1.6 taban kosusu uretildiginde degistirilecek.",
+      "note": "Faz 0.2 karari: kanonik model gsf_fng_6mayis.osm. Gerekce icin docs/model_secimi.md. Faz 1 onarimi sonrasi calisma modeli gsf_fng_6mayis_onarilmis.osm'dir; taban kosusu data/baseline_v1 altindadir. archived_results alani halen legacy-eps-5cm kosularini gosteriyor cunku ResultsRepository eps_{kalinlik}cm desenine sabitlenmis; repoint Faz 2.1-2.2 refaktorune baglidir.",
       "osm": "data/input/gsf_fng_6mayis.osm",
       "weather": "data/input/weather_tmyx.epw",
       "archived_results": "data/archived_runs"
