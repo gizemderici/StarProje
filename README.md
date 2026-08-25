@@ -1,5 +1,23 @@
 # OpenStudio OSM Veri Okuma ve Analiz Projesi
 
+> ## Proje Durumu — Faz 0 karari
+>
+> **Canli proje `star-energy-api-studio/` klasorudur.** Gelistirme, simulasyon ve
+> analiz isleri orada yapilir.
+>
+> Kok dizindeki `nicegui_csv_viewer.py` ve cevresindeki CSV/senaryo betikleri
+> **arsiv durumundadir**. Bu taraf EnergyPlus calistirmaz: kok projede hicbir
+> yerde `openstudio run` cagrisi yoktur ve `scenario_model_preparation.py`
+> modeli yukleyip **degistirmeden** kaydeder, yani "senaryo calistir" akisi
+> CSV farki uretir, simulasyon sonucu uretmez. Ayrica `csv_output/` klasoru
+> 176 m2'lik ikinci modeli tarif eder, 4.246 m2'lik kampus binasini degil.
+>
+> - Kanonik model ve gerekcesi: [star-energy-api-studio/docs/model_secimi.md](star-energy-api-studio/docs/model_secimi.md)
+> - Referans kosu: [star-energy-api-studio/data/reference_run/README.md](star-energy-api-studio/data/reference_run/README.md)
+> - Faz 1 icin olculmus bulgular: [star-energy-api-studio/docs/bulgular_faz1.md](star-energy-api-studio/docs/bulgular_faz1.md)
+> - Bagimliliklar: `pip install -r requirements.txt`
+
+
 Bu proje, Python ve OpenStudio API kullanilarak bir `.osm` bina modelinin okunmasi, model verilerinin yapilandirilmis formata donusturulmesi, analiz edilmesi ve CSV tablolari olarak disa aktarilmasi amaciyla gelistirilmistir.
 
 ## EPIC 13.1 Ciktisi

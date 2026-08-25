@@ -1,13 +1,22 @@
 {
   "models": {
     "main-building": {
-      "name": "Ana bina modeli",
-      "osm": "data/input/bina_orijinal.osm",
+      "name": "Ana bina modeli (kanonik)",
+      "note": "Faz 0.2 karari: kanonik model gsf_fng_6mayis.osm. Gerekce icin docs/model_secimi.md. archived_results alani halen legacy-eps-5cm modeline ait kosulari gosteriyor; Faz 1.6 taban kosusu uretildiginde degistirilecek.",
+      "osm": "data/input/gsf_fng_6mayis.osm",
+      "weather": "data/input/weather_tmyx.epw",
+      "archived_results": "data/archived_runs"
+    },
+    "legacy-eps-5cm": {
+      "name": "Eski EPS 5 cm modeli (arsiv)",
+      "note": "data/archived_runs icindeki 5/10/15 cm kosulari bu model surumune aittir. Uc kosunun enerji sonuclari birebir aynidir (Cooling 1154.37, Heating 36.88, Total End Uses 1904.72). Parametrik veri olarak kullanilamaz, yalnizca tarihsel referanstir.",
+      "osm": "data/legacy_models/bina_eps_5cm.osm",
       "weather": "data/input/weather.epw",
       "archived_results": "data/archived_runs"
     },
     "star-baseline": {
       "name": "Star parametrik referans modeli",
+      "note": "176 m2, 9 mekan, 9 isil bolge. Ana binadan ayri ikinci bir bina; capraz dogrulama vakasi olarak tutulur.",
       "osm": "data/star_study/baseline_seed.osm",
       "weather": "data/input/weather.epw",
       "study": "data/star_study"

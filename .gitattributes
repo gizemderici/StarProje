@@ -1,0 +1,8 @@
+# Simulasyon girdi/ciktilarinda satir sonu donusumu YAPILMASIN.
+# Aksi halde ayni dosya farkli ozet degeri uretir ve model karsilastirmalari yaniltir.
+*.osm  -text
+*.epw  -text
+*.idf  -text
+*.osw  -text
+*.sql  binary
+*.csv  -text

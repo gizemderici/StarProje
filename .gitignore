@@ -2,10 +2,14 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest_cache_local/
 
 # Local runtimes and virtual environments
 venv/
+.venv/
 .python312/
+.python312-embed.zip
+get-pip.py
 
 # Local temporary work directories
 .tmp_*/
@@ -16,6 +20,7 @@ pytest-cache-files-*/
 # Generated outputs
 simulation_outputs/
 scenario_runs/
+star-energy-api-studio/data/generated/
 
 # OS / editor
 .DS_Store

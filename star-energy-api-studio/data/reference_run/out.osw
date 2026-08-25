@@ -1,0 +1,1653 @@
+{
+   "completed_at" : "20260506T093408Z",
+   "completed_status" : "Success",
+   "created_at" : "20260316T184041Z",
+   "current_step" : 2,
+   "eplusout_err" : "Program Version,EnergyPlus, Version 25.2.0-cf7368216c, YMD=2026.05.06 12:31,\n   ** Warning ** ProcessScheduleInput: DecodeHHMMField, Invalid \"until\" field value is not a multiple of the minutes for each timestep: 06:45\n   **   ~~~   ** Other errors may result. Occurred in Day Schedule=SCHEDULE DAY 8\n   ************* Beginning Zone Sizing Calculations\n   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.\n   **   ~~~   ** ..Location object=MUGLA\n   **   ~~~   ** ..Weather File Location=Mugla MG TUR SRC-TMYx WMO#=172920\n   **   ~~~   ** ..due to location differences, Latitude difference=[4.39E-002] degrees, Longitude difference=[8.80] degrees.\n   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[0.00] percent, [0.00] meters.\n   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no \"Ground Temperatures\" were input.\n   **   ~~~   ** Found first in surface=FACE 54\n   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.\n   ** Warning ** GetSurfaceData: There are 210 coincident/collinear vertices; These have been deleted unless the deletion would bring the number of surface sides < 3.\n   **   ~~~   ** For explicit details on each problem surface, use Output:Diagnostics,DisplayExtraWarnings;\n   ** Severe  ** For zone: TZ_ATOLYE it is not possible to calculate the volume from the surrounding surfaces so either provide the volume value or define all the surfaces to fully enclose the zone.\n   ** Warning ** Indicated Zone Volume <= 0.0 for Zone=TZ_ATOLYE\n   **   ~~~   ** The calculated Zone Volume was=0.00\n   **   ~~~   ** The simulation will continue with the Zone Volume set to 10.0 m3. \n   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.\n   ** Severe  ** For zone: TZ_KORIDOR it is not possible to calculate the volume from the surrounding surfaces so either provide the volume value or define all the surfaces to fully enclose the zone.\n   ** Warning ** Indicated Zone Volume <= 0.0 for Zone=TZ_KORIDOR\n   **   ~~~   ** The calculated Zone Volume was=0.00\n   **   ~~~   ** The simulation will continue with the Zone Volume set to 10.0 m3. \n   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.\n   ** Severe  ** For zone: TZ_WC it is not possible to calculate the volume from the surrounding surfaces so either provide the volume value or define all the surfaces to fully enclose the zone.\n   ** Warning ** Indicated Zone Volume <= 0.0 for Zone=TZ_WC\n   **   ~~~   ** The calculated Zone Volume was=0.00\n   **   ~~~   ** The simulation will continue with the Zone Volume set to 10.0 m3. \n   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.\n   ** Warning ** CalculateZoneVolume: 7 zones are not fully enclosed. For more details use:  Output:Diagnostics,DisplayExtrawarnings; \n   ** Warning ** CheckUsedConstructions: There are 16 nominally unused constructions in input.\n   **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;\n   ** Warning ** DetermineShadowingCombinations: There are 3 surfaces which are receiving surfaces and are non-convex.\n   **   ~~~   ** ...Shadowing values may be inaccurate. Check .shd report file for more surface shading details\n   **   ~~~   ** ...Add Output:Diagnostics,DisplayExtraWarnings; to see individual warnings for each surface.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"KB_MERD_5 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 2\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"KZ_MERD_17 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 2\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"KZ_B_I_6 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 2\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"KB_G_I_12 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 3\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"K1_G_I_29 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 3\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate=\"K1_G_I_31 INFILTRASYON_KORDR_KANTN_MRD_ASNSR_WC 3\", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Surface Area = 0.  0 Infiltration will result.\n   ** Warning ** GetElectricEIRChillerInput: Chiller:Electric:EIR=\"CHILLER - AIR COOLED\"\n   **   ~~~   ** Energy input ratio as a function of temperature curve output is not equal to 1.0 (+ or - 10%) at reference conditions.\n   **   ~~~   ** Curve output at reference conditions = 0.850\n   ************* Beginning Plant Sizing Calculations\n   ** Warning ** Output:Meter: invalid Key Name=\"DISTRICTHEATINGWATER:FACILITY\" - not found.\n   ** Warning ** Output:Meter: invalid Key Name=\"DISTRICTCOOLING:FACILITY\" - not found.\n   ** Warning ** Output:Meter:MeterFileOnly requested for \"Electricity:Facility\" (TimeStep), already on \"Output:Meter\". Will report to both eplusout.eso and eplusout.mtr\n   ************* Testing Individual Branch Integrity\n   ************* All Branches passed integrity testing\n   ************* Testing Individual Supply Air Path Integrity\n   ************* All Supply Air Paths passed integrity testing\n   ************* Testing Individual Return Air Path Integrity\n   ************* All Return Air Paths passed integrity testing\n   ************* No node connection errors were found.\n   ************* Beginning Simulation\n   ** Warning ** Processing Monthly Tabular Reports: Variable names not valid for this simulation\n   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual variables.\n   ** Warning ** ElectricEIRChillerModel - CHILLER:ELECTRIC:EIR \"CHILLER - AIR COOLED\" - Air Cooled Condenser Inlet Temperature below 0C.\n   **   ~~~   ** ... Outdoor Dry-bulb Condition =  -0.17 C. Occurrence info = RUN PERIOD 1, 01/08 00:00 - 00:10\n   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= \"U.S. AVG  COMMERCIAL-ELECTRICITY\" has no energy cost. \n   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.\n   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= \"U.S. AVG  COMMERCIAL-DISTILLATE OIL\" has no energy cost. \n   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.\n   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= \"U.S. AVG  COMMERCIAL-RESIDUAL OIL\" has no energy cost. \n   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.\n   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= \"U.S. AVG  COMMERCIAL-NATURAL GAS\" has no energy cost. \n   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.\n   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= \"U.S. AVG  COMMERCIAL-COAL\" has no energy cost. \n   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.\n   ************* Simulation Error Summary *************\n   ************* There are 4 unused schedules in input.\n   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.\n   *************\n   ************* ===== Recurring Error Summary =====\n   ************* The following recurring error messages occurred.\n   *************\n   *************  ** Warning ** ElectricEIRChillerModel - CHILLER:ELECTRIC:EIR \"CHILLER - AIR COOLED\" - Air Cooled Condenser Inlet Temperature below 0C error continues.\n   *************  **   ~~~   **   This error occurred 590 total times;\n   *************  **   ~~~   **   during Warmup 0 times;\n   *************  **   ~~~   **   during Sizing 0 times.\n   *************  **   ~~~   **   Max=-0.033333 [C]  Min=-5.883333 [C]\n   *************\n   *************\n   ************* ===== Final Error Summary =====\n   ************* The following error categories occurred.  Consider correcting or noting.\n   ************* Nominally Unused Constructions\n   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause\n   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm\n   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).\n   *************\n   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.\n   ************* EnergyPlus Sizing Error Summary. During Sizing: 14 Warning; 3 Severe Errors.\n   ************* EnergyPlus Completed Successfully-- 828 Warning; 3 Severe Errors; Elapsed Time=00hr 01min 50.68sec\n",
+   "file_paths" : 
+   [
+      "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/generated_files",
+      "./files",
+      "./weather",
+      "../../files",
+      "../../weather",
+      "./"
+   ],
+   "hash" : "880D842D",
+   "run_options" : null,
+   "seed_file" : "../gsf_fng_2may\u0131s.osm",
+   "started_at" : "20260506T093155Z",
+   "steps" : 
+   [
+      {
+         "arguments" : {},
+         "description" : "Create CSV output for output variables in SQL file",
+         "measure_dir_name" : "CreateCSVOutput",
+         "modeler_description" : "Create CSV output for output variables in SQL file",
+         "name" : "CreateCSVOutput",
+         "result" : 
+         {
+            "completed_at" : "20260506T093349Z",
+            "measure_class_name" : "CreateCSVOutput",
+            "measure_display_name" : "CreateCSVOutput",
+            "measure_name" : "create_csv_output",
+            "measure_taxonomy" : "Reporting.QAQC",
+            "measure_type" : "ReportingMeasure",
+            "measure_uid" : "99d3a7e5-4bd5-407f-b5eb-7c59660ca980",
+            "measure_version_id" : "1a1f251c-931d-48d6-abfa-c51b4606c419",
+            "measure_version_modified" : "20260503T152233Z",
+            "measure_xml_checksum" : "9BF1E6AC",
+            "started_at" : "20260506T093349Z",
+            "stderr" : "",
+            "stdout" : "[openstudio.energyplus.SqlFile] <Debug> Dictionary Built\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ASNSR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1124 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ATOLYE'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1260 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_KONFSALON'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1324 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_KORIDOR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1388 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_MECODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1452 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_MERDVN'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1516 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1580 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_WC'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1644 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ASNSR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1123 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ATOLYE'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1259 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_KONFSALON'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1323 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_KORIDOR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1387 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_MECODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1451 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_MERDVN'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1515 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1579 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_WC'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1643 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.measure.OSRunner] <Info> Output file written to /private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/run/000_CreateCSVOutput\n",
+            "step_errors" : [],
+            "step_files" : 
+            [
+               "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/run/000_CreateCSVOutput/report_variables_Hourly.csv"
+            ],
+            "step_info" : 
+            [
+               "Output file written to /private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/run/000_CreateCSVOutput"
+            ],
+            "step_result" : "Success",
+            "step_values" : 
+            [
+               {
+                  "name" : "reporting_frequency",
+                  "value" : "Hourly"
+               }
+            ],
+            "step_warnings" : []
+         }
+      },
+      {
+         "arguments" : {},
+         "description" : "This measure creates high level tables and charts pulling both from model inputs and EnergyPlus results. It has building level information as well as detail on space types, thermal zones, HVAC systems, envelope characteristics, and economics. Click the heading above a chart to view a table of the chart data.",
+         "measure_dir_name" : "OpenStudioResults",
+         "modeler_description" : "For the most part consumption data comes from the tabular EnergyPlus results, however there are a few requests added for time series results. Space type and loop details come from the OpenStudio model. The code for this is modular, making it easy to use as a template for your own custom reports. The structure of the report uses bootstrap, and the graphs use dimple js. The new measure warning section will show warnings generated by upstream measures. It will not show forward translation warnings, EnergyPlus warnings, or warnings that might be reported by this measure.",
+         "name" : "OpenStudio Results",
+         "result" : 
+         {
+            "completed_at" : "20260506T093407Z",
+            "measure_class_name" : "OpenStudioResults",
+            "measure_display_name" : "OpenStudio Results",
+            "measure_name" : "openstudio_results",
+            "measure_taxonomy" : "Reporting.QAQC",
+            "measure_type" : "ReportingMeasure",
+            "measure_uid" : "a25386cd-60e4-46bc-8b11-c755f379d916",
+            "measure_version_id" : "256a4b6d-c26b-4dd0-bf42-45483dd736c7",
+            "measure_version_modified" : "20260505T122711Z",
+            "measure_xml_checksum" : "557BF06F",
+            "started_at" : "20260506T093350Z",
+            "stderr" : "",
+            "stdout" : "[openstudio.energyplus.SqlFile] <Debug> Dictionary Built\n[openstudio.standards.standard] <Info> Using OpenStudio Standards version 0.8.5 with template 90.1-2013.\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for \n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for 90.1-2013\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.measure.OSRunner] <Info> Gathering data from EnergyPlus SQL file and OSM model. Will report in IP Units\n[openstudio.measure.OSRunner] <Warn> EnergyPlus reported area is 4246 (m^2). OpenStudio reported area is 5541 (m^2).\n[openstudio.measure.OSRunner] <Warn> Annual Overview section failed and was skipped because: Optional not initialized. Detail on error follows.\n[openstudio.measure.OSRunner] <Warn> /private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:540:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:540:in `block in output_data_end_use_table'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:530:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:530:in `output_data_end_use_table'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:258:in `annual_overview_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'\n[openstudio.standards.standard] <Info> Using OpenStudio Standards version 0.8.5 with template 90.1-2013.\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for \n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for 90.1-2013\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.standards.standard] <Info> Using OpenStudio Standards version 0.8.5 with template 90.1-2013.\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for \n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.standards.standard] <Info> Loading OpenStudio Standards data for 90.1-2013\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1\n[openstudio.standards.standard] <Debug> Adding hvac_inference from Any.hvac_inference.json\n[openstudio.standards.standard] <Debug> Adding size_category from Any.size_category.json\n[openstudio.standards.standard] <Debug> Adding climate_zone_sets from ashrae_90_1.climate_zone_sets.json\n[openstudio.standards.standard] <Debug> Adding climate_zones from ashrae_90_1.climate_zones.json\n[openstudio.standards.standard] <Debug> Adding constructions from ashrae_90_1.constructions.json\n[openstudio.standards.standard] <Debug> Adding curves from ashrae_90_1.curves.json\n[openstudio.standards.standard] <Debug> Adding entryways from ashrae_90_1.entryways.json\n[openstudio.standards.standard] <Debug> Adding materials from ashrae_90_1.materials.json\n[openstudio.standards.standard] <Debug> Adding parking from ashrae_90_1.parking.json\n[openstudio.standards.standard] <Debug> Adding schedules from ashrae_90_1.schedules.json\n[openstudio.standards.standard] <Debug> Loading JSON files from OpenStudio CLI embedded directory :/ruby/3.2.0/gems/openstudio-standards-0.8.5/lib/openstudio-standards/standards/ashrae_90_1/ashrae_90_1_2013\n[openstudio.standards.standard] <Debug> Adding boilers from ashrae_90_1_2013.boilers.json\n[openstudio.standards.standard] <Debug> Adding chillers from ashrae_90_1_2013.chillers.json\n[openstudio.standards.standard] <Debug> Adding computer_room_acs from ashrae_90_1_2013.computer_room_acs.json\n[openstudio.standards.standard] <Debug> Adding construction_properties from ashrae_90_1_2013.construction_properties.json\n[openstudio.standards.standard] <Debug> Adding construction_sets from ashrae_90_1_2013.construction_sets.json\n[openstudio.standards.standard] <Debug> Adding economizers from ashrae_90_1_2013.economizers.json\n[openstudio.standards.standard] <Debug> Adding elevators from ashrae_90_1_2013.elevators.json\n[openstudio.standards.standard] <Debug> Adding energy_recovery from ashrae_90_1_2013.energy_recovery.json\n[openstudio.standards.standard] <Debug> Adding exterior_lighting from ashrae_90_1_2013.ext_ltg.json\n[openstudio.standards.standard] <Debug> Adding furnaces from ashrae_90_1_2013.furnaces.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps from ashrae_90_1_2013.heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding heat_pumps_heating from ashrae_90_1_2013.heat_pumps_heating.json\n[openstudio.standards.standard] <Debug> Adding heat_rejection from ashrae_90_1_2013.heat_rejection.json\n[openstudio.standards.standard] <Debug> Adding motors from ashrae_90_1_2013.motors.json\n[openstudio.standards.standard] <Debug> Adding prototype_inputs from ashrae_90_1_2013.prototype_inputs.json\n[openstudio.standards.standard] <Debug> Adding refrigerated_cases from ashrae_90_1_2013.ref_cases.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system_lineup from ashrae_90_1_2013.ref_lnup.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_compressors from ashrae_90_1_2013.refrigeration_compressors.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_condenser from ashrae_90_1_2013.refrigeration_condenser.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_system from ashrae_90_1_2013.refrigeration_system.json\n[openstudio.standards.standard] <Debug> Adding refrigeration_walkins from ashrae_90_1_2013.refrigeration_walkins.json\n[openstudio.standards.standard] <Debug> Adding space_types from ashrae_90_1_2013.spc_typ.json\n[openstudio.standards.standard] <Debug> Adding unitary_acs from ashrae_90_1_2013.unitary_acs.json\n[openstudio.standards.standard] <Debug> Adding vrfs from ashrae_90_1_2013.vrfs.json\n[openstudio.standards.standard] <Debug> Adding water_heaters from ashrae_90_1_2013.water_heaters.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps from ashrae_90_1_2013.water_source_heat_pumps.json\n[openstudio.standards.standard] <Debug> Adding water_source_heat_pumps_heating from ashrae_90_1_2013.water_source_heat_pumps_heating.json\n[openstudio.measure.OSRunner] <Warn> Envelope Summary section failed and was skipped because: Optional not initialized. Detail on error follows.\n[openstudio.measure.OSRunner] <Warn> /private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1614:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1614:in `block in envelope_section_section'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1612:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1612:in `envelope_section_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'\n[openstudio.measure.OSRunner] <Warn> Interior Lighting Summary section failed and was skipped because: Optional not initialized. Detail on error follows.\n[openstudio.measure.OSRunner] <Warn> /private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3293:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3293:in `block in interior_lighting_section'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3292:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3292:in `interior_lighting_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Monthly', timeSeriesName = 'Site Outdoor Air Drybulb Temperature', keyValue = 'Environment'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Site Outdoor Air Drybulb Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=7 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ASNSR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1123 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ATOLYE'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1259 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_KONFSALON'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1323 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_KORIDOR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1387 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_MECODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1451 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_MERDVN'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1515 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_ODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1579 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Temperature', keyValue = 'TZ_WC'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Temperature\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1643 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ASNSR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1124 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ATOLYE'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1260 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_KONFSALON'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1324 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_KORIDOR'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1388 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_MECODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1452 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_MERDVN'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1516 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_ODA'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1580 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Zone Air Relative Humidity', keyValue = 'TZ_WC'\n[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1\n[openstudio.energyplus.SqlFile] <Debug> Zone Air Relative Humidity\n[openstudio.energyplus.SqlFile] <Debug> SQL Query:\nSELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportVariableData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportVariableDataDictionaryIndex=1644 AND Time.EnvironmentPeriodIndex = 8Return Code:\n100\n[openstudio.energyplus.SqlFile] <Debug> Time series found\n[openstudio.model.ModelObject] <Debug> The direct query failed:\nSELECT Value FROM ComponentSizes\n  WHERE CompType = 'Chiller:Electric:EIR'\n    AND CompName = 'CHILLER - AIR COOLED'\n    AND Description = 'Design Size Reference Condenser Fluid Flow Rate'\n    AND Units = 'm3/s';\n[openstudio.WorkflowStepResult] <Debug> WorkflowStepResult::warnings is deprecated, use stepWarnings instead\n[openstudio.measure.OSRunner] <Info> Generated report with 19 sections to ./report.html.\n",
+            "step_errors" : [],
+            "step_files" : 
+            [
+               "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/run/001_OpenStudioResults/report.html"
+            ],
+            "step_final_condition" : "Generated report with 19 sections to ./report.html.",
+            "step_info" : [],
+            "step_initial_condition" : "Gathering data from EnergyPlus SQL file and OSM model. Will report in IP Units",
+            "step_result" : "Success",
+            "step_values" : 
+            [
+               {
+                  "name" : "units",
+                  "value" : "IP"
+               },
+               {
+                  "name" : "building_summary_section",
+                  "value" : true
+               },
+               {
+                  "name" : "annual_overview_section",
+                  "value" : true
+               },
+               {
+                  "name" : "monthly_overview_section",
+                  "value" : true
+               },
+               {
+                  "name" : "utility_bills_rates_section",
+                  "value" : true
+               },
+               {
+                  "name" : "envelope_section_section",
+                  "value" : true
+               },
+               {
+                  "name" : "space_type_breakdown_section",
+                  "value" : true
+               },
+               {
+                  "name" : "space_type_details_section",
+                  "value" : true
+               },
+               {
+                  "name" : "interior_lighting_section",
+                  "value" : true
+               },
+               {
+                  "name" : "plug_loads_section",
+                  "value" : true
+               },
+               {
+                  "name" : "exterior_light_section",
+                  "value" : true
+               },
+               {
+                  "name" : "water_use_section",
+                  "value" : true
+               },
+               {
+                  "name" : "hvac_load_profile",
+                  "value" : true
+               },
+               {
+                  "name" : "zone_condition_section",
+                  "value" : true
+               },
+               {
+                  "name" : "zone_summary_section",
+                  "value" : true
+               },
+               {
+                  "name" : "zone_equipment_detail_section",
+                  "value" : true
+               },
+               {
+                  "name" : "air_loops_detail_section",
+                  "value" : true
+               },
+               {
+                  "name" : "plant_loops_detail_section",
+                  "value" : true
+               },
+               {
+                  "name" : "outdoor_air_section",
+                  "value" : true
+               },
+               {
+                  "name" : "cost_summary_section",
+                  "value" : true
+               },
+               {
+                  "name" : "source_energy_section",
+                  "value" : true
+               },
+               {
+                  "name" : "schedules_overview_section",
+                  "value" : true
+               },
+               {
+                  "name" : "measure_warning_section",
+                  "value" : true
+               },
+               {
+                  "name" : "reg_monthly_details",
+                  "value" : false
+               },
+               {
+                  "name" : "standards_gem_version",
+                  "value" : "0.8.5"
+               },
+               {
+                  "display_name" : "Building 1",
+                  "name" : "building_name",
+                  "value" : "n/a"
+               },
+               {
+                  "name" : "total_site_energy",
+                  "units" : "kBtu",
+                  "value" : 2017760.4765790056
+               },
+               {
+                  "name" : "net_site_energy",
+                  "units" : "kBtu",
+                  "value" : 2017760.4765790056
+               },
+               {
+                  "name" : "total_building_area",
+                  "units" : "ft^2",
+                  "value" : 45705.50113322449
+               },
+               {
+                  "name" : "total_site_eui",
+                  "units" : "kBtu/ft^2",
+                  "value" : 44.146993831170221
+               },
+               {
+                  "name" : "eui",
+                  "units" : "kBtu/ft^2",
+                  "value" : 44.146993831170221
+               },
+               {
+                  "name" : "unmet_hours_during_heating",
+                  "units" : "hr",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "unmet_hours_during_cooling",
+                  "units" : "hr",
+                  "value" : 302.67000000000002
+               },
+               {
+                  "name" : "unmet_hours_during_occupied_heating",
+                  "units" : "hr",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "unmet_hours_during_occupied_cooling",
+                  "units" : "hr",
+                  "value" : 2.5
+               },
+               {
+                  "name" : "unmet_hours_tolerance_heating",
+                  "units" : "R",
+                  "value" : 0.35999999999999999
+               },
+               {
+                  "name" : "unmet_hours_tolerance_cooling",
+                  "units" : "R",
+                  "value" : 0.35999999999999999
+               },
+               {
+                  "name" : "electricity_heating_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_cooling_ip",
+                  "units" : "kWh",
+                  "value" : 326071.15833333333
+               },
+               {
+                  "name" : "electricity_interior_lighting_ip",
+                  "units" : "kWh",
+                  "value" : 63963.055555555555
+               },
+               {
+                  "name" : "electricity_exterior_lighting_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_interior_equipment_ip",
+                  "units" : "kWh",
+                  "value" : 120321.4888888889
+               },
+               {
+                  "name" : "electricity_exterior_equipment_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_fans_ip",
+                  "units" : "kWh",
+                  "value" : 66532.566666666666
+               },
+               {
+                  "name" : "electricity_pumps_ip",
+                  "units" : "kWh",
+                  "value" : 5862.5922222222225
+               },
+               {
+                  "name" : "electricity_heat_rejection_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_humidification_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_heat_recovery_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_water_systems_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_refrigeration_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_generators_ip",
+                  "units" : "kWh",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "electricity_ip",
+                  "units" : "kWh",
+                  "value" : 582750.86166666669
+               },
+               {
+                  "name" : "natural_gas_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 29.336045698262854
+               },
+               {
+                  "name" : "natural_gas_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "natural_gas_ip",
+                  "units" : "MBtu",
+                  "value" : 29.336045698262854
+               },
+               {
+                  "name" : "fuel_oil_no_1_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_1_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_no_2_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_water_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "district_heating_steam_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "water_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_1_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "fuel_oil_2_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "propane_gas_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "coal_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "diesel_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "gasoline_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_1_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_heating_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_cooling_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_interior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_exterior_lighting_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_interior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_exterior_equipment_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_fans_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_pumps_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_heat_rejection_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_humidification_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_heat_recovery_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_water_systems_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_refrigeration_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_generators_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "other_fuel_2_ip",
+                  "units" : "MBtu",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "space_type_asnsr",
+                  "units" : "ft^2",
+                  "value" : 412.04249075164785
+               },
+               {
+                  "name" : "space_type_atolye",
+                  "units" : "ft^2",
+                  "value" : 13214.206983969523
+               },
+               {
+                  "name" : "space_type_kantin",
+                  "units" : "ft^2",
+                  "value" : 2116.4000661334653
+               },
+               {
+                  "name" : "space_type_konf_salon",
+                  "units" : "ft^2",
+                  "value" : 7155.8476450286225
+               },
+               {
+                  "name" : "space_type_kordr",
+                  "units" : "ft^2",
+                  "value" : 11735.568610026108
+               },
+               {
+                  "name" : "space_type_mecoda",
+                  "units" : "ft^2",
+                  "value" : 1454.4195755058179
+               },
+               {
+                  "name" : "space_type_merdvn",
+                  "units" : "ft^2",
+                  "value" : 2160.2091815294739
+               },
+               {
+                  "name" : "space_type_ofis",
+                  "units" : "ft^2",
+                  "value" : 6117.9914026494689
+               },
+               {
+                  "name" : "space_type_wc",
+                  "units" : "ft^2",
+                  "value" : 896.63373771191971
+               },
+               {
+                  "name" : "space_type_no_space_type",
+                  "units" : "ft^2",
+                  "value" : 14378.000978224178
+               },
+               {
+                  "name" : "zone_max_hours_over_70_rh",
+                  "units" : "hr",
+                  "value" : 4041.0
+               },
+               {
+                  "name" : "zone_max_hours_over_55_rh",
+                  "units" : "hr",
+                  "value" : 7884.0
+               },
+               {
+                  "name" : "num_zones_x_hours_over_70",
+                  "units" : "zones",
+                  "value" : 2
+               },
+               {
+                  "name" : "num_zones_x_hours_over_55",
+                  "units" : "zones",
+                  "value" : 7
+               },
+               {
+                  "name" : "inflation_approach",
+                  "value" : "Constant Dollar"
+               },
+               {
+                  "name" : "analysis_length",
+                  "units" : "yrs",
+                  "value" : 25
+               },
+               {
+                  "name" : "number_of_measures_with_warnings",
+                  "value" : 0
+               },
+               {
+                  "name" : "number_warnings",
+                  "value" : 0
+               },
+               {
+                  "name" : "annual_peak_electric_demand",
+                  "units" : "kW",
+                  "value" : 116.09564999999999
+               },
+               {
+                  "name" : "first_year_capital_cost",
+                  "units" : "$",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "annual_utility_cost",
+                  "units" : "$",
+                  "value" : 0.0
+               },
+               {
+                  "name" : "total_lifecycle_cost",
+                  "units" : "$",
+                  "value" : 0.0
+               }
+            ],
+            "step_warnings" : 
+            [
+               "EnergyPlus reported area is 4246 (m^2). OpenStudio reported area is 5541 (m^2).",
+               "Annual Overview section failed and was skipped because: Optional not initialized. Detail on error follows.",
+               "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:540:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:540:in `block in output_data_end_use_table'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:530:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:530:in `output_data_end_use_table'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:258:in `annual_overview_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'",
+               "Envelope Summary section failed and was skipped because: Optional not initialized. Detail on error follows.",
+               "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1614:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1614:in `block in envelope_section_section'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1612:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:1612:in `envelope_section_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'",
+               "Interior Lighting Summary section failed and was skipped because: Optional not initialized. Detail on error follows.",
+               "/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3293:in `get'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3293:in `block in interior_lighting_section'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3292:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/resources/os_lib_reporting.rb:3292:in `interior_lighting_section'\n(eval):1:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `eval'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:286:in `block in run'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `each'\n/private/var/folders/m1/kb3twjtd4fs2rh4kq0dxwk5h0000gn/T/osmodel-35f1-9ac2-9277-eb4f-1777983512-0/resources/measures/OpenStudioResults/measure.rb:282:in `run'"
+            ]
+         }
+      }
+   ],
+   "updated_at" : "20260506T093408Z",
+   "weather_file" : "TUR_MG_Mugla.172920_TMYx.2009-2023.epw"
+}

@@ -1,0 +1,29 @@
+# STAR - kok proje bagimliliklari
+# Kurulum:  pip install -r requirements.txt
+
+# --- Arayuz ve HTTP servisi -------------------------------------------------
+nicegui==3.16.0
+fastapi==0.141.1
+uvicorn==0.52.4
+python-multipart==0.0.32
+
+# --- Sayisal analiz (Faz 3-4) ----------------------------------------------
+numpy>=1.26,<3
+pandas>=2.2,<3
+scipy>=1.13,<2
+scikit-learn>=1.5,<2
+
+# --- Cok amacli optimizasyon (Faz 6) ---------------------------------------
+pymoo>=0.6.1,<0.7
+
+# --- Grafik ----------------------------------------------------------------
+matplotlib>=3.8,<4
+
+# --- Test ------------------------------------------------------------------
+pytest>=8.0,<9
+playwright>=1.45,<2
+
+# NOT: `openstudio` PyPI paketi burada YOKTUR. OpenStudio SDK, kurulu
+# OpenStudio CLI ile birlikte gelen gomulu Python yorumlayicisindan kullanilir.
+# Yol icin OPENSTUDIO_EXE ortam degiskenini ayarlayin.
+# Bu makinede dogrulanan surum: OpenStudio 3.11.0

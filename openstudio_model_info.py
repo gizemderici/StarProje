@@ -1,7 +1,13 @@
+import os
+from pathlib import Path
+
 import openstudio as openstudio
 
 
-OSM_PATH = r"C:\star\deneme.osm"
+OSM_PATH = os.environ.get(
+    "STAR_OSM_PATH",
+    str(Path(__file__).resolve().parent / "star-energy-api-studio/data/input/gsf_fng_6mayis.osm"),
+)
 
 
 def main() -> None:
