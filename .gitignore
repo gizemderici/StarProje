@@ -37,3 +37,8 @@ star-energy-api-studio/data/baseline_v1/*.log
 # design.json + kanonik model + measure'lar yeterlidir.
 # Ozet dosyalari (design.json, results.csv, uniqueness_report.json) tutulur.
 star-energy-api-studio/data/parametric/runs/
+
+# Faz 7 dogrulama kosularinin ham ciktilari. Yeniden uretilebilir:
+# pareto_front.json + kanonik model + measure'lar yeterlidir.
+# Ozet dosyalari (validation_report.json, validation_table.csv) tutulur.
+star-energy-api-studio/data/validation/runs/

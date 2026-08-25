@@ -23,7 +23,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Sequence
 
-from engine.parameters import PARAMETERS, ParameterSpec, baseline_parameters
+from engine.parameters import BY_KEY, PARAMETERS, ParameterSpec, baseline_parameters
+
+# Isitma (15-24) ve sogutma (22-30) araliklari ust uste biner. Bagimsiz
+# ornekleme, sogutmanin isitmadan dusuk kaldigi gecersiz noktalar uretir;
+# SetThermostatSetpoints measure'i bunlari reddeder ve kosu bosa gider.
+# 151 noktalik ilk calismada 7 nokta (%4,6) bu yuzden basarisiz oldu.
+MIN_DEAD_BAND_K = 0.5
 
 
 @dataclass(frozen=True, slots=True)
@@ -112,6 +118,28 @@ def _map_unit_value(spec: ParameterSpec, unit_value: float) -> float | str:
     return round(low + unit_value * (high - low), 6)
 
 
+def _repair_dead_band(values: dict[str, float | str]) -> dict[str, float | str]:
+    """Gecersiz ayar noktasi ciftlerini onarir.
+
+    Sogutma ayar noktasi, isitmanin en az MIN_DEAD_BAND_K uzerine cekilir. Ust
+    sinira dayanirsa isitma asagi indirilir. Reddetme yerine onarim secildi:
+    reddetme tasarimin dusuk tutarsizlik ozelligini bozar.
+    """
+    heating = float(values["heating_setpoint_c"])
+    cooling = float(values["cooling_setpoint_c"])
+    if cooling - heating >= MIN_DEAD_BAND_K:
+        return values
+
+    cooling_spec = BY_KEY["cooling_setpoint_c"]
+    heating_spec = BY_KEY["heating_setpoint_c"]
+    cooling = min(heating + MIN_DEAD_BAND_K, cooling_spec.maximum)
+    if cooling - heating < MIN_DEAD_BAND_K:
+        heating = max(cooling - MIN_DEAD_BAND_K, heating_spec.minimum)
+    values["heating_setpoint_c"] = round(heating, 6)
+    values["cooling_setpoint_c"] = round(cooling, 6)
+    return values
+
+
 def build_design(
     count: int = 150,
     seed: int = 20260825,
@@ -130,6 +158,7 @@ def build_design(
             spec.key: _map_unit_value(spec, unit)
             for spec, unit in zip(specs, row)
         }
+        values = _repair_dead_band(values)
         points.append(DesignPoint(index=offset, parameters=values, role="sample"))
     return points
 

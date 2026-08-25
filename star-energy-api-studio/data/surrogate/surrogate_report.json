@@ -1,0 +1,325 @@
+{
+  "dataset": {
+    "rows": 151,
+    "features": 21,
+    "recommended_minimum_rows": 63,
+    "sufficient": true,
+    "train_rows": 120,
+    "test_rows": 31
+  },
+  "cross_validation": [
+    {
+      "model": "polinom",
+      "target": "site_energy_gj",
+      "r2": 0.8,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 14.317,
+      "nrmse_range_percent": 8.17,
+      "nmbe_percent": -0.312,
+      "mae": 197.461,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "polinom",
+      "target": "cooling_gj",
+      "r2": 0.8225,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 20.366,
+      "nrmse_range_percent": 7.8,
+      "nmbe_percent": -1.064,
+      "mae": 160.9748,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "polinom",
+      "target": "heating_gj",
+      "r2": 0.5325,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 166.777,
+      "nrmse_range_percent": 8.948,
+      "nmbe_percent": 7.061,
+      "mae": 18.6147,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "polinom",
+      "target": "comfort_violation_hours",
+      "r2": 0.2612,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 76.819,
+      "nrmse_range_percent": 33.783,
+      "nmbe_percent": 6.59,
+      "mae": 14292.1115,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "kriging",
+      "target": "site_energy_gj",
+      "r2": 0.9733,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 5.23,
+      "nrmse_range_percent": 2.984,
+      "nmbe_percent": -0.014,
+      "mae": 65.5795,
+      "n_samples": 120,
+      "meets_target": true
+    },
+    {
+      "model": "kriging",
+      "target": "cooling_gj",
+      "r2": 0.9709,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 8.245,
+      "nrmse_range_percent": 3.158,
+      "nmbe_percent": -0.106,
+      "mae": 58.2178,
+      "n_samples": 120,
+      "meets_target": true
+    },
+    {
+      "model": "kriging",
+      "target": "heating_gj",
+      "r2": 0.4544,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 180.17,
+      "nrmse_range_percent": 9.666,
+      "nmbe_percent": 9.097,
+      "mae": 16.9548,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "kriging",
+      "target": "comfort_violation_hours",
+      "r2": 0.7092,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 48.198,
+      "nrmse_range_percent": 21.197,
+      "nmbe_percent": 2.481,
+      "mae": 8681.1287,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "boosting",
+      "target": "site_energy_gj",
+      "r2": 0.5938,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 20.402,
+      "nrmse_range_percent": 11.643,
+      "nmbe_percent": 0.223,
+      "mae": 266.3657,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "boosting",
+      "target": "cooling_gj",
+      "r2": 0.5844,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 31.165,
+      "nrmse_range_percent": 11.936,
+      "nmbe_percent": 0.877,
+      "mae": 239.3612,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "boosting",
+      "target": "heating_gj",
+      "r2": 0.2856,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 206.173,
+      "nrmse_range_percent": 11.061,
+      "nmbe_percent": -6.798,
+      "mae": 20.8662,
+      "n_samples": 120,
+      "meets_target": false
+    },
+    {
+      "model": "boosting",
+      "target": "comfort_violation_hours",
+      "r2": 0.9782,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 13.199,
+      "nrmse_range_percent": 5.805,
+      "nmbe_percent": 0.843,
+      "mae": 2089.1641,
+      "n_samples": 120,
+      "meets_target": true
+    }
+  ],
+  "selected": {
+    "site_energy_gj": "kriging",
+    "cooling_gj": "kriging",
+    "heating_gj": "polinom",
+    "comfort_violation_hours": "boosting"
+  },
+  "test_scores": [
+    {
+      "model": "kriging",
+      "target": "site_energy_gj",
+      "r2": 0.9721,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 6.19,
+      "nrmse_range_percent": 4.36,
+      "nmbe_percent": 2.736,
+      "mae": 80.7992,
+      "n_samples": 31,
+      "meets_target": true
+    },
+    {
+      "model": "kriging",
+      "target": "cooling_gj",
+      "r2": 0.9804,
+      "metric": "CVRMSE",
+      "cvrmse_percent": 7.855,
+      "nrmse_range_percent": 3.704,
+      "nmbe_percent": 3.057,
+      "mae": 61.9097,
+      "n_samples": 31,
+      "meets_target": true
+    },
+    {
+      "model": "polinom",
+      "target": "heating_gj",
+      "r2": 0.4453,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 109.317,
+      "nrmse_range_percent": 19.886,
+      "nmbe_percent": 42.5,
+      "mae": 24.8578,
+      "n_samples": 31,
+      "meets_target": false
+    },
+    {
+      "model": "boosting",
+      "target": "comfort_violation_hours",
+      "r2": 0.9896,
+      "metric": "NRMSE(aralik)+R2",
+      "cvrmse_percent": 14.355,
+      "nrmse_range_percent": 4.285,
+      "nmbe_percent": 0.374,
+      "mae": 1566.5532,
+      "n_samples": 31,
+      "meets_target": true
+    }
+  ],
+  "speedup": {
+    "surrogate_seconds_per_call": 4.365899949334562e-06,
+    "energyplus_seconds_per_run": 132.0,
+    "ratio": 30234316.3
+  },
+  "sensitivity": {
+    "ranking": [
+      "chiller_cop",
+      "cooling_setpoint_c",
+      "window_construction",
+      "lighting_primary_w_m2",
+      "lighting_secondary_w_m2",
+      "heating_setpoint_c",
+      "eps_conductivity_w_mk",
+      "elevator_power_w",
+      "infiltration_multiplier",
+      "eps_thickness_cm",
+      "boiler_efficiency"
+    ],
+    "indices": [
+      {
+        "key": "chiller_cop",
+        "label": "Chiller COP",
+        "first_order": 0.5798,
+        "total": 0.5816,
+        "interaction_dominated": false
+      },
+      {
+        "key": "cooling_setpoint_c",
+        "label": "Sogutma ayar noktasi",
+        "first_order": 0.2115,
+        "total": 0.2299,
+        "interaction_dominated": false
+      },
+      {
+        "key": "window_construction",
+        "label": "Cam tipi",
+        "first_order": 0.1269,
+        "total": 0.1273,
+        "interaction_dominated": false
+      },
+      {
+        "key": "lighting_primary_w_m2",
+        "label": "Aydinlatma - ofis, salon, atolye",
+        "first_order": 0.0653,
+        "total": 0.0846,
+        "interaction_dominated": false
+      },
+      {
+        "key": "lighting_secondary_w_m2",
+        "label": "Aydinlatma - koridor, merdiven, WC",
+        "first_order": 0.0038,
+        "total": 0.0037,
+        "interaction_dominated": false
+      },
+      {
+        "key": "heating_setpoint_c",
+        "label": "Isitma ayar noktasi",
+        "first_order": 0.0,
+        "total": 0.0037,
+        "interaction_dominated": true
+      },
+      {
+        "key": "eps_conductivity_w_mk",
+        "label": "EPS isil iletkenligi",
+        "first_order": 0.0096,
+        "total": 0.0023,
+        "interaction_dominated": false
+      },
+      {
+        "key": "elevator_power_w",
+        "label": "Asansor motoru gucu",
+        "first_order": 0.0,
+        "total": 0.0014,
+        "interaction_dominated": true
+      },
+      {
+        "key": "infiltration_multiplier",
+        "label": "Sizdirmazlik carpani",
+        "first_order": 0.0026,
+        "total": 0.0012,
+        "interaction_dominated": false
+      },
+      {
+        "key": "eps_thickness_cm",
+        "label": "EPS kalinligi",
+        "first_order": 0.0,
+        "total": 0.001,
+        "interaction_dominated": true
+      },
+      {
+        "key": "boiler_efficiency",
+        "label": "Kazan verimi",
+        "first_order": 0.0007,
+        "total": 0.0007,
+        "interaction_dominated": false
+      }
+    ],
+    "interaction_dominated": [
+      "heating_setpoint_c",
+      "elevator_power_w",
+      "eps_thickness_cm"
+    ],
+    "notice": "S1 degiskenin tek basina, ST etkilesimler dahil toplam katkisidir. Indisler vekil model uzerinden hesaplanir; vekil modelin dogrulugu kadar guvenilirdir."
+  },
+  "gate_targets": [
+    "comfort_violation_hours",
+    "site_energy_gj"
+  ],
+  "gate_passed": true,
+  "non_gating_failures": [
+    "heating_gj"
+  ]
+}

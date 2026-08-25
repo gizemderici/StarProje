@@ -12,7 +12,9 @@ from engine.sampling import build_design
 from surrogate.dataset import (
     CATEGORICAL_KEYS,
     CONTINUOUS_KEYS,
+    DERIVED_NAMES,
     TARGETS,
+    derived_features,
     encode_row,
     feature_names,
     load_dataset,
@@ -77,7 +79,8 @@ class EncodingTests(unittest.TestCase):
         # sikistirmak modele var olmayan bir sira ogretirdi.
         vector = encode_row(baseline_parameters())
         choices = BY_KEY["window_construction"].choices
-        tail = vector[len(CONTINUOUS_KEYS) :]
+        # One-hot blogu, surekli degiskenler VE turetilmis ozelliklerden sonra gelir.
+        tail = vector[len(CONTINUOUS_KEYS) + len(DERIVED_NAMES) :]
         self.assertEqual(len(tail), len(choices))
         self.assertEqual(sum(tail), 1.0)
         self.assertEqual(tail[choices.index("penc_std_4mm")], 1.0)
@@ -89,6 +92,38 @@ class EncodingTests(unittest.TestCase):
         self.assertEqual(
             len(CONTINUOUS_KEYS) + len(CATEGORICAL_KEYS), len(PARAMETERS)
         )
+
+
+class DerivedFeatureTests(unittest.TestCase):
+    """Fizige dayali turetilmis ozellikler.
+
+    Ham parametrelerle egitilen model site_energy_gj icin CVRMSE %14,65
+    veriyordu; bu ozellikler eklendikten sonra %6,19'a dustu.
+    """
+
+    def test_wall_u_value_matches_energyplus(self) -> None:
+        # EnergyPlus taban kosusunda duvr_std_eps icin 0,2901 W/m2K raporluyor.
+        values = derived_features(baseline_parameters())
+        wall_u = values[DERIVED_NAMES.index("wall_u_value")]
+        self.assertAlmostEqual(wall_u, 0.2901, places=4)
+
+    def test_inverse_cop_captures_the_physical_relationship(self) -> None:
+        # Sogutma elektrigi COP ile TERS orantilidir; model bunu ogrenmek
+        # zorunda kalmasin diye dogrudan verilir.
+        values = derived_features({**baseline_parameters(), "chiller_cop": 4.0})
+        self.assertAlmostEqual(values[DERIVED_NAMES.index("inverse_chiller_cop")], 0.25)
+
+    def test_dead_band_is_derived_not_assumed(self) -> None:
+        values = derived_features(
+            {**baseline_parameters(), "heating_setpoint_c": 20.0, "cooling_setpoint_c": 26.0}
+        )
+        self.assertAlmostEqual(values[DERIVED_NAMES.index("dead_band_k")], 6.0)
+
+    def test_thicker_insulation_lowers_the_derived_u_value(self) -> None:
+        thin = derived_features({**baseline_parameters(), "eps_thickness_cm": 5.0})
+        thick = derived_features({**baseline_parameters(), "eps_thickness_cm": 20.0})
+        index = DERIVED_NAMES.index("wall_u_value")
+        self.assertLess(thick[index], thin[index])
 
 
 class DatasetTests(unittest.TestCase):

@@ -32,6 +32,40 @@ CATEGORICAL_KEYS: tuple[str, ...] = tuple(
     spec.key for spec in PARAMETERS if spec.is_categorical
 )
 
+# Fizige dayali turetilmis ozellikler.
+#
+# Ham parametreler modele dogrusal olmayan bir is birakiyordu: sogutma
+# elektrigi COP ile TERS orantilidir, EPS kalinligi ve iletkenligi ise yalnizca
+# U degeri uzerinden etki eder. Bu iliskileri modele ogretmek yerine dogrudan
+# vermek, ayni veriyle belirgin daha dusuk hata verir.
+#
+# Duvar U formulu optimization/objectives.py ile aynidir ve EnergyPlus'in
+# raporladigi 0,2901 W/m2K degeriyle dogrulanmistir.
+WALL_FIXED_R = 1.9956
+SURFACE_FILM_R = 0.13 + 0.04
+
+DERIVED_NAMES: tuple[str, ...] = (
+    "inverse_chiller_cop",
+    "inverse_boiler_efficiency",
+    "wall_u_value",
+    "dead_band_k",
+)
+
+
+def derived_features(parameters: dict[str, float | str]) -> list[float]:
+    """Fiziksel olarak anlamli turetilmis buyuklukler."""
+    cop = float(parameters["chiller_cop"])
+    efficiency = float(parameters["boiler_efficiency"])
+    thickness_cm = float(parameters["eps_thickness_cm"])
+    conductivity = float(parameters["eps_conductivity_w_mk"])
+    eps_r = (thickness_cm / 100.0) / conductivity
+    return [
+        1.0 / cop,
+        1.0 / efficiency,
+        1.0 / (WALL_FIXED_R + SURFACE_FILM_R + eps_r),
+        float(parameters["cooling_setpoint_c"]) - float(parameters["heating_setpoint_c"]),
+    ]
+
 
 @dataclass(slots=True)
 class Dataset:
@@ -54,8 +88,9 @@ class Dataset:
 
 
 def feature_names() -> list[str]:
-    """One-hot kodlama sonrasi sutun adlari."""
+    """One-hot kodlama ve turetilmis ozellikler sonrasi sutun adlari."""
     names = list(CONTINUOUS_KEYS)
+    names.extend(DERIVED_NAMES)
     for key in CATEGORICAL_KEYS:
         for choice in BY_KEY[key].choices:
             names.append(f"{key}={choice}")
@@ -70,6 +105,7 @@ def encode_row(parameters: dict[str, float | str]) -> list[float]:
     sira yoktur).
     """
     vector = [float(parameters[key]) for key in CONTINUOUS_KEYS]
+    vector.extend(derived_features(parameters))
     for key in CATEGORICAL_KEYS:
         value = str(parameters[key])
         vector.extend(1.0 if value == choice else 0.0 for choice in BY_KEY[key].choices)
@@ -130,6 +166,7 @@ def minimum_rows_for(n_features: int, ratio: float = 3.0) -> int:
     """Anlamli bir egitim icin gereken asgari satir sayisi.
 
     Ozellik sayisinin birkac kati satir olmadan capraz dogrulama sonuclari
-    guvenilir degildir; 11 degisken one-hot sonrasi 17 sutuna cikar.
+    guvenilir degildir; 11 degisken, turetilmis ozellikler ve one-hot kodlama
+    sonrasi 21 sutuna cikar.
     """
     return int(n_features * ratio)

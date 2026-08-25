@@ -1,5 +1,6 @@
 {
   "seed": 20260825,
+  "sampler": "halton",
   "count": 151,
   "parameters": [
     "window_construction",
@@ -429,7 +430,7 @@
       "parameters": {
         "window_construction": "penc_lowe_4mm",
         "heating_setpoint_c": 23.405321,
-        "cooling_setpoint_c": 23.145146,
+        "cooling_setpoint_c": 23.905321,
         "chiller_cop": 6.962249,
         "boiler_efficiency": 0.844226,
         "lighting_primary_w_m2": 13.993064,
@@ -684,7 +685,7 @@
       "parameters": {
         "window_construction": "penc_renk_6mm",
         "heating_setpoint_c": 22.183099,
-        "cooling_setpoint_c": 22.569146,
+        "cooling_setpoint_c": 22.683099,
         "chiller_cop": 2.06429,
         "boiler_efficiency": 0.989267,
         "lighting_primary_w_m2": 2.312591,
@@ -956,7 +957,7 @@
       "parameters": {
         "window_construction": "penc_renk_6mm",
         "heating_setpoint_c": 23.960876,
-        "cooling_setpoint_c": 23.913146,
+        "cooling_setpoint_c": 24.460876,
         "chiller_cop": 3.183823,
         "boiler_efficiency": 0.782986,
         "lighting_primary_w_m2": 5.6262,
@@ -1194,7 +1195,7 @@
       "parameters": {
         "window_construction": "penc_triple_lowe_4mm",
         "heating_setpoint_c": 23.29421,
-        "cooling_setpoint_c": 22.953146,
+        "cooling_setpoint_c": 23.79421,
         "chiller_cop": 3.428721,
         "boiler_efficiency": 0.892573,
         "lighting_primary_w_m2": 6.785963,
@@ -1874,7 +1875,7 @@
       "parameters": {
         "window_construction": "penc_snerji_4mm",
         "heating_setpoint_c": 23.886802,
-        "cooling_setpoint_c": 22.441146,
+        "cooling_setpoint_c": 24.386802,
         "chiller_cop": 7.609479,
         "boiler_efficiency": 0.760424,
         "lighting_primary_w_m2": 8.111407,
@@ -1959,7 +1960,7 @@
       "parameters": {
         "window_construction": "penc_lowe_argon_4mm",
         "heating_setpoint_c": 22.886802,
-        "cooling_setpoint_c": 22.761146,
+        "cooling_setpoint_c": 23.386802,
         "chiller_cop": 6.017643,
         "boiler_efficiency": 0.94092,
         "lighting_primary_w_m2": 13.496023,
@@ -2571,7 +2572,7 @@
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
         "heating_setpoint_c": 23.331247,
-        "cooling_setpoint_c": 23.541946,
+        "cooling_setpoint_c": 23.831247,
         "chiller_cop": 6.64738,
         "boiler_efficiency": 0.631792,
         "lighting_primary_w_m2": 10.513774,

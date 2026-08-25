@@ -86,6 +86,38 @@ def analytic_evaluator():
     return evaluate
 
 
+def surrogate_evaluator():
+    """Faz 4 vekil modelini Evaluator arayuzune baglar.
+
+    Iki hedef kullanilir: saha enerjisi (f1 EnPI) ve konfor ihlali (f3).
+    Yatirim maliyeti (f2) analitik hesaplanir, vekil model gerektirmez.
+    """
+    import pickle
+
+    model_path = ROOT / "data/surrogate/models.pkl"
+    if not model_path.is_file():
+        raise SystemExit(
+            f"Vekil model bulunamadi: {model_path}. "
+            "Once run_surrogate.py calistirilmalidir."
+        )
+    with model_path.open("rb") as handle:
+        bundle = pickle.load(handle)
+
+    from surrogate.dataset import encode_row
+
+    energy_model = bundle["models"]["site_energy_gj"]
+    comfort_model = bundle["models"]["comfort_violation_hours"]
+
+    def evaluate(parameters):
+        vector = np.asarray([encode_row(dict(parameters))], dtype=float)
+        energy = float(energy_model.predict(vector)[0])
+        comfort = float(comfort_model.predict(vector)[0])
+        # Vekil model sifirin altina tasabilir; fiziksel alt sinir uygulanir.
+        return max(energy, 1.0), max(comfort, 0.0)
+
+    return evaluate
+
+
 def load_window_lookup() -> dict[str, float]:
     if not RESULTS_CSV.is_file():
         return {}
@@ -112,13 +144,9 @@ def main() -> None:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     args = parse_args()
 
-    if args.evaluator == "surrogate":
-        raise SystemExit(
-            "Vekil model henuz bagli degil (Faz 4). Simdilik --evaluator analytic "
-            "kullanin; o mod yalnizca altyapiyi sinar."
-        )
-
-    evaluator = analytic_evaluator()
+    evaluator = (
+        surrogate_evaluator() if args.evaluator == "surrogate" else analytic_evaluator()
+    )
     lookup = load_window_lookup()
     print(f"Cam U tablosu: {len(lookup)} konstruksiyon" + ("" if lookup else " (Faz 3 sonuclari bekleniyor)"))
 
@@ -187,10 +215,18 @@ def main() -> None:
         print(f"    {key:<26}{value}{mark}")
 
     print(f"\nCephe: {path}")
-    print(
-        "\nUYARI: analytic degerlendirici yalnizca altyapiyi sinar; bu sonuclar "
-        "tezde kullanilamaz. Faz 4 vekil modeli baglanmalidir."
-    )
+    print()
+    if args.evaluator == "analytic":
+        print(
+            "UYARI: analytic degerlendirici yalnizca altyapiyi sinar; bu "
+            "sonuclar tezde kullanilamaz. Faz 4 vekil modeli baglanmalidir."
+        )
+    else:
+        print(
+            "Degerlendirme Faz 4 vekil modeliyle yapildi (site_energy_gj "
+            "CVRMSE %6,19; comfort_violation_hours NRMSE %4,28). Cephe Faz 7'de "
+            "gercek EnergyPlus kosulariyla dogrulanmalidir."
+        )
 
 
 if __name__ == "__main__":

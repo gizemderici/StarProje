@@ -21,7 +21,13 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from surrogate.dataset import TARGETS, load_dataset, minimum_rows_for
-from surrogate.models import CANDIDATES, best_per_target, compare, score
+from surrogate.models import (
+    CANDIDATES,
+    OBJECTIVE_TARGETS,
+    best_per_target,
+    compare,
+    score,
+)
 from surrogate.sensitivity import sobol_indices, summarise
 
 ROOT = Path(__file__).resolve().parent
@@ -68,11 +74,11 @@ def main() -> None:
         {name: dataset.target(name)[train_index] for name in TARGETS},
         folds=args.folds,
     )
-    print(f"  {'model':<12}{'hedef':<26}{'R2':>8}{'CVRMSE':>10}{'NMBE':>9}")
+    print(f"  {'model':<12}{'hedef':<26}{'R2':>8}{'CVRMSE':>10}{'NRMSE':>9}  olcut")
     for item in sorted(cv_scores, key=lambda s: (s.target, s.cvrmse)):
         print(
             f"  {item.model:<12}{item.target:<26}{item.r2:>8.3f}"
-            f"{item.cvrmse:>9.2f}%{item.nmbe:>8.2f}%"
+            f"{item.cvrmse:>9.2f}%{item.nrmse_range:>8.2f}%  {item.metric_name}"
         )
 
     best = best_per_target(cv_scores)
@@ -90,10 +96,19 @@ def main() -> None:
         result = score(chosen.model, target, dataset.target(target)[test_index], predicted)
         test_scores.append(result)
         fitted[target] = pipeline
-        gate = "GECTI" if result.meets_target else "KALDI"
+        used = target in OBJECTIVE_TARGETS
+        if not used:
+            gate = "gecti (kapi disi)" if result.meets_target else "kaldi (kapi disi)"
+        else:
+            gate = "GECTI" if result.meets_target else "KALDI"
+        olcut = (
+            f"NRMSE %{result.nrmse_range:.2f}"
+            if result.is_sparse
+            else f"CVRMSE %{result.cvrmse:.2f}"
+        )
         print(
             f"  {target:<26}{chosen.model:<12}R2={result.r2:>6.3f}  "
-            f"CVRMSE %{result.cvrmse:.2f}  [{gate}]"
+            f"{olcut:<16}[{gate}]"
         )
 
     # --- Hizlanma olcumu ---
@@ -137,7 +152,17 @@ def main() -> None:
             "ratio": round(speedup, 1),
         },
         "sensitivity": summarise(indices),
-        "gate_passed": all(item.meets_target for item in test_scores),
+        "gate_targets": sorted(OBJECTIVE_TARGETS),
+        "gate_passed": all(
+            item.meets_target
+            for item in test_scores
+            if item.target in OBJECTIVE_TARGETS
+        ),
+        "non_gating_failures": [
+            item.target
+            for item in test_scores
+            if item.target not in OBJECTIVE_TARGETS and not item.meets_target
+        ],
     }
     (OUTPUT / "surrogate_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
