@@ -86,11 +86,15 @@ def analytic_evaluator():
     return evaluate
 
 
-def surrogate_evaluator():
+def surrogate_evaluator(uncertainty_penalty: float = 1.0):
     """Faz 4 vekil modelini Evaluator arayuzune baglar.
 
     Iki hedef kullanilir: saha enerjisi (f1 EnPI) ve konfor ihlali (f3).
     Yatirim maliyeti (f2) analitik hesaplanir, vekil model gerektirmez.
+
+    `uncertainty_penalty` kriging belirsizliginin kac katinin tahmine
+    eklenecegini belirler. 0 = duz ortalama (optimizasyon hatayi somurur),
+    1 = bir standart sapma karamsar.
     """
     import pickle
 
@@ -110,7 +114,26 @@ def surrogate_evaluator():
 
     def evaluate(parameters):
         vector = np.asarray([encode_row(dict(parameters))], dtype=float)
-        energy = float(energy_model.predict(vector)[0])
+
+        # KARAMSAR TAHMIN.
+        #
+        # Ilk iki dogrulama turunda 16 sapmanin 14'u negatifti: vekil model
+        # Pareto cephesinde SISTEMATIK olarak dusuk tahmin ediyordu. Sebep
+        # optimizasyonun vekil model hatasini somurmesidir; NSGA-II modelin
+        # iyimser oldugu, yani az orneklenmis bolgeleri arar ve tam oraya
+        # yerlesir. Her adaptif tur cepheyi daha da disari ittigi icin sapma
+        # buyudu (%5,22 -> %8,11).
+        #
+        # Kriging tahmin belirsizligi de verdigi icin optimizasyona ortalama
+        # yerine ortalama + k*sigma verilir. Model emin olmadigi yerde kendini
+        # cezalandirir ve cephe iyi orneklenmis bolgede kalir.
+        try:
+            mean, std = energy_model.predict(vector, return_std=True)
+            energy = float(mean[0]) + uncertainty_penalty * float(std[0])
+        except TypeError:
+            # Belirsizlik vermeyen model (boosting, polinom) icin duz tahmin.
+            energy = float(energy_model.predict(vector)[0])
+
         comfort = float(comfort_model.predict(vector)[0])
         # Vekil model sifirin altina tasabilir; fiziksel alt sinir uygulanir.
         return max(energy, 1.0), max(comfort, 0.0)
@@ -136,6 +159,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--generations", type=int, default=40)
     parser.add_argument("--population", type=int, default=60)
     parser.add_argument("--seed", type=int, default=20260825)
+    parser.add_argument(
+        "--uncertainty-penalty",
+        type=float,
+        default=1.0,
+        help="Kriging belirsizliginin kac kati tahmine eklenecek (karamsar tahmin).",
+    )
     return parser.parse_args()
 
 
@@ -145,7 +174,9 @@ def main() -> None:
     args = parse_args()
 
     evaluator = (
-        surrogate_evaluator() if args.evaluator == "surrogate" else analytic_evaluator()
+        surrogate_evaluator(args.uncertainty_penalty)
+        if args.evaluator == "surrogate"
+        else analytic_evaluator()
     )
     lookup = load_window_lookup()
     print(f"Cam U tablosu: {len(lookup)} konstruksiyon" + ("" if lookup else " (Faz 3 sonuclari bekleniyor)"))

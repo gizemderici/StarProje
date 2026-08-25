@@ -1,9 +1,9 @@
 ﻿case_id,reason,predicted_enpi_kwh_m2,actual_enpi_kwh_m2,deviation_percent,predicted_comfort_hours,actual_comfort_hours,comfort_deviation_percent,actual_site_energy_gj,severe_errors
-case_0fc478641e02,uc nokta: EnPI (kWh/m2-yil),48.5,50.4427,-3.8513,0.0,8366.0,-100.0,771.08,0
-case_4ed78770a027,uc nokta: Yatirim maliyeti (TRY),108.8921,107.2624,1.5193,0.0,254.0,-100.0,1639.64,0
-case_6bdeff459f84,cephe dagilimi,56.6238,58.5225,-3.2445,252.66,7872.0,-96.7904,894.59,0
-case_809a06aad5c5,cephe dagilimi,69.1331,71.5735,-3.4096,229.02,5946.0,-96.1483,1094.09,0
-case_a502034ed596,cephe dagilimi,57.1815,58.9955,-3.0748,0.0,8409.0,-100.0,901.82,0
-case_b78e57bf9f6c,cephe dagilimi,105.2173,105.0513,0.158,314.78,1014.0,-68.9568,1605.84,4
-case_e0e59209b5f9,cephe dagilimi,70.2506,74.1215,-5.2224,479.16,5738.0,-91.6494,1133.04,0
-case_ea7689046331,TOPSIS uzlasi cozumu,73.9791,74.9236,-1.2606,0.0,5102.0,-100.0,1145.3,3
+case_502a05f8fd3e,cephe dagilimi,67.2618,66.8208,0.6599,232.22,74.0,213.8053,1021.44,0
+case_6a20b8abe4e4,TOPSIS uzlasi cozumu,72.749,73.8343,-1.47,0.0,63.0,-100.0,1128.65,0
+case_9f6f92a7b48d,cephe dagilimi,64.5747,64.0399,0.8351,0.0,92.0,-100.0,978.93,0
+case_af4bc22bbcd9,cephe dagilimi,77.8285,77.4304,0.5142,451.21,17.0,2554.1806,1183.62,0
+case_be84bc06fe25,uc nokta: Yatirim maliyeti (TRY),110.7669,110.3731,0.3568,95.81,548.0,-82.5157,1687.19,0
+case_c7a34665633a,cephe dagilimi,61.2065,59.1486,3.4792,498.08,89.0,459.6451,904.16,0
+case_e91ded845130,uc nokta: EnPI (kWh/m2-yil),52.7284,51.0649,3.2577,198.88,100.0,98.8845,780.59,0
+case_eb5379b1550b,uc nokta: Konfor ihlali (bolge-saat),53.8516,51.5005,4.5651,0.0,100.0,-100.0,787.25,0
