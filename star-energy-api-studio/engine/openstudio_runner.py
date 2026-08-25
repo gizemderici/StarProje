@@ -267,6 +267,16 @@ def run_case(
     )
 
 
+def _run_completed(run_dir: Path) -> bool:
+    """EnergyPlus kosusunun basariyla bittigini dogrular."""
+    end_file = run_dir / "eplusout.end"
+    if not end_file.is_file():
+        return False
+    return "Completed Successfully" in end_file.read_text(
+        encoding="utf-8", errors="ignore"
+    )
+
+
 def _recorded_seeds(output_root: Path) -> dict[str, str]:
     """Mevcut kosularin hangi tohumla uretildigini case.json'dan okur.
 
@@ -338,7 +348,9 @@ def run_cases(
     stale = 0
     for case, workflow in zip(cases, workflows):
         existing = workflow.parent / "run/eplusout.sql"
-        if skip_completed and existing.exists():
+        # SQL'in VARLIGI yetmez: yarida kesilen bir kosu da eplusout.sql birakir.
+        # Tamamlanma olcutu EnergyPlus'in kendi bitis kaydidir.
+        if skip_completed and existing.exists() and _run_completed(workflow.parent / "run"):
             # Parmak izi eslesmiyorsa ya da hic kaydedilmemisse kosu eskimistir.
             produced_with = previous_seeds.get(workflow.parent.name)
             if produced_with is None or produced_with != active_seed:

@@ -1,6 +1,6 @@
 {
   "seed": 20260825,
-  "count": 2,
+  "count": 151,
   "parameters": [
     "window_construction",
     "heating_setpoint_c",
@@ -47,6 +47,2539 @@
         "elevator_power_w": 616.693399,
         "eps_thickness_cm": 4.322798,
         "eps_conductivity_w_mk": 0.032057
+      }
+    },
+    {
+      "index": 2,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 17.738654,
+        "cooling_setpoint_c": 26.665146,
+        "chiller_cop": 5.737759,
+        "boiler_efficiency": 0.83778,
+        "lighting_primary_w_m2": 4.217916,
+        "lighting_secondary_w_m2": 1.418249,
+        "infiltration_multiplier": 0.760665,
+        "elevator_power_w": 942.780355,
+        "eps_thickness_cm": 5.340039,
+        "eps_conductivity_w_mk": 0.033509
+      }
+    },
+    {
+      "index": 3,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 21.738654,
+        "cooling_setpoint_c": 28.265146,
+        "chiller_cop": 6.594902,
+        "boiler_efficiency": 0.873234,
+        "lighting_primary_w_m2": 5.294839,
+        "lighting_secondary_w_m2": 1.859426,
+        "infiltration_multiplier": 0.823823,
+        "elevator_power_w": 1268.867312,
+        "eps_thickness_cm": 6.357281,
+        "eps_conductivity_w_mk": 0.034961
+      }
+    },
+    {
+      "index": 4,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 15.738654,
+        "cooling_setpoint_c": 29.865146,
+        "chiller_cop": 7.452045,
+        "boiler_efficiency": 0.908689,
+        "lighting_primary_w_m2": 6.371762,
+        "lighting_secondary_w_m2": 2.300602,
+        "infiltration_multiplier": 0.886981,
+        "elevator_power_w": 1594.954268,
+        "eps_thickness_cm": 7.374522,
+        "eps_conductivity_w_mk": 0.036412
+      }
+    },
+    {
+      "index": 5,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 18.738654,
+        "cooling_setpoint_c": 23.785146,
+        "chiller_cop": 2.309188,
+        "boiler_efficiency": 0.944143,
+        "lighting_primary_w_m2": 7.448685,
+        "lighting_secondary_w_m2": 2.741778,
+        "infiltration_multiplier": 0.950138,
+        "elevator_power_w": 1921.041225,
+        "eps_thickness_cm": 8.391764,
+        "eps_conductivity_w_mk": 0.037864
+      }
+    },
+    {
+      "index": 6,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 22.738654,
+        "cooling_setpoint_c": 25.385146,
+        "chiller_cop": 3.166331,
+        "boiler_efficiency": 0.979598,
+        "lighting_primary_w_m2": 8.525608,
+        "lighting_secondary_w_m2": 3.182955,
+        "infiltration_multiplier": 1.013296,
+        "elevator_power_w": 2247.128181,
+        "eps_thickness_cm": 9.409005,
+        "eps_conductivity_w_mk": 0.039315
+      }
+    },
+    {
+      "index": 7,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 16.738654,
+        "cooling_setpoint_c": 26.985146,
+        "chiller_cop": 4.145923,
+        "boiler_efficiency": 0.625052,
+        "lighting_primary_w_m2": 9.602531,
+        "lighting_secondary_w_m2": 3.624131,
+        "infiltration_multiplier": 1.076454,
+        "elevator_power_w": 2573.215138,
+        "eps_thickness_cm": 10.426246,
+        "eps_conductivity_w_mk": 0.040767
+      }
+    },
+    {
+      "index": 8,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.738654,
+        "cooling_setpoint_c": 28.585146,
+        "chiller_cop": 5.003065,
+        "boiler_efficiency": 0.660507,
+        "lighting_primary_w_m2": 10.679455,
+        "lighting_secondary_w_m2": 4.065308,
+        "infiltration_multiplier": 1.139612,
+        "elevator_power_w": 2899.302094,
+        "eps_thickness_cm": 11.443488,
+        "eps_conductivity_w_mk": 0.042219
+      }
+    },
+    {
+      "index": 9,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 21.071988,
+        "cooling_setpoint_c": 22.185146,
+        "chiller_cop": 5.860208,
+        "boiler_efficiency": 0.695962,
+        "lighting_primary_w_m2": 11.756378,
+        "lighting_secondary_w_m2": 4.506484,
+        "infiltration_multiplier": 1.20277,
+        "elevator_power_w": 3225.389051,
+        "eps_thickness_cm": 12.460729,
+        "eps_conductivity_w_mk": 0.04367
+      }
+    },
+    {
+      "index": 10,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 15.071988,
+        "cooling_setpoint_c": 24.105146,
+        "chiller_cop": 6.717351,
+        "boiler_efficiency": 0.731416,
+        "lighting_primary_w_m2": 12.833301,
+        "lighting_secondary_w_m2": 4.947661,
+        "infiltration_multiplier": 1.265928,
+        "elevator_power_w": 3551.476007,
+        "eps_thickness_cm": 13.47797,
+        "eps_conductivity_w_mk": 0.045122
+      }
+    },
+    {
+      "index": 11,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 18.071988,
+        "cooling_setpoint_c": 25.705146,
+        "chiller_cop": 7.574494,
+        "boiler_efficiency": 0.770094,
+        "lighting_primary_w_m2": 13.910224,
+        "lighting_secondary_w_m2": 5.388837,
+        "infiltration_multiplier": 1.329086,
+        "elevator_power_w": 3877.562964,
+        "eps_thickness_cm": 14.495212,
+        "eps_conductivity_w_mk": 0.046574
+      }
+    },
+    {
+      "index": 12,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 22.071988,
+        "cooling_setpoint_c": 27.305146,
+        "chiller_cop": 2.431637,
+        "boiler_efficiency": 0.805548,
+        "lighting_primary_w_m2": 14.987147,
+        "lighting_secondary_w_m2": 5.830014,
+        "infiltration_multiplier": 1.392244,
+        "elevator_power_w": 4203.64992,
+        "eps_thickness_cm": 15.512453,
+        "eps_conductivity_w_mk": 0.048025
+      }
+    },
+    {
+      "index": 13,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 16.071988,
+        "cooling_setpoint_c": 28.905146,
+        "chiller_cop": 3.28878,
+        "boiler_efficiency": 0.841003,
+        "lighting_primary_w_m2": 2.14691,
+        "lighting_secondary_w_m2": 6.27119,
+        "infiltration_multiplier": 1.455402,
+        "elevator_power_w": 4529.736877,
+        "eps_thickness_cm": 16.529695,
+        "eps_conductivity_w_mk": 0.049477
+      }
+    },
+    {
+      "index": 14,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 19.071988,
+        "cooling_setpoint_c": 22.505146,
+        "chiller_cop": 4.268372,
+        "boiler_efficiency": 0.876457,
+        "lighting_primary_w_m2": 3.223833,
+        "lighting_secondary_w_m2": 6.712367,
+        "infiltration_multiplier": 0.31856,
+        "elevator_power_w": 4855.823833,
+        "eps_thickness_cm": 17.546936,
+        "eps_conductivity_w_mk": 0.050928
+      }
+    },
+    {
+      "index": 15,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 23.071988,
+        "cooling_setpoint_c": 24.425146,
+        "chiller_cop": 5.125514,
+        "boiler_efficiency": 0.911912,
+        "lighting_primary_w_m2": 4.300756,
+        "lighting_secondary_w_m2": 7.153543,
+        "infiltration_multiplier": 0.381717,
+        "elevator_power_w": 5181.91079,
+        "eps_thickness_cm": 18.564177,
+        "eps_conductivity_w_mk": 0.05238
+      }
+    },
+    {
+      "index": 16,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 17.071988,
+        "cooling_setpoint_c": 26.025146,
+        "chiller_cop": 5.982657,
+        "boiler_efficiency": 0.947367,
+        "lighting_primary_w_m2": 5.377679,
+        "lighting_secondary_w_m2": 7.59472,
+        "infiltration_multiplier": 0.444875,
+        "elevator_power_w": 5507.997746,
+        "eps_thickness_cm": 19.581419,
+        "eps_conductivity_w_mk": 0.053832
+      }
+    },
+    {
+      "index": 17,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 20.071988,
+        "cooling_setpoint_c": 27.625146,
+        "chiller_cop": 6.8398,
+        "boiler_efficiency": 0.982821,
+        "lighting_primary_w_m2": 6.454602,
+        "lighting_secondary_w_m2": 0.561848,
+        "infiltration_multiplier": 0.508033,
+        "elevator_power_w": 5834.084703,
+        "eps_thickness_cm": 20.59866,
+        "eps_conductivity_w_mk": 0.055283
+      }
+    },
+    {
+      "index": 18,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 21.405321,
+        "cooling_setpoint_c": 29.225146,
+        "chiller_cop": 7.696943,
+        "boiler_efficiency": 0.628276,
+        "lighting_primary_w_m2": 7.531526,
+        "lighting_secondary_w_m2": 1.003024,
+        "infiltration_multiplier": 0.571191,
+        "elevator_power_w": 6160.171659,
+        "eps_thickness_cm": 21.615901,
+        "eps_conductivity_w_mk": 0.056735
+      }
+    },
+    {
+      "index": 19,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 15.405321,
+        "cooling_setpoint_c": 22.825146,
+        "chiller_cop": 2.554086,
+        "boiler_efficiency": 0.66373,
+        "lighting_primary_w_m2": 8.608449,
+        "lighting_secondary_w_m2": 1.444201,
+        "infiltration_multiplier": 0.637673,
+        "elevator_power_w": 6486.258616,
+        "eps_thickness_cm": 22.633143,
+        "eps_conductivity_w_mk": 0.058186
+      }
+    },
+    {
+      "index": 20,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 18.405321,
+        "cooling_setpoint_c": 24.745146,
+        "chiller_cop": 3.411229,
+        "boiler_efficiency": 0.699185,
+        "lighting_primary_w_m2": 9.685372,
+        "lighting_secondary_w_m2": 1.885377,
+        "infiltration_multiplier": 0.700831,
+        "elevator_power_w": 6812.345572,
+        "eps_thickness_cm": 23.650384,
+        "eps_conductivity_w_mk": 0.059638
+      }
+    },
+    {
+      "index": 21,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 22.405321,
+        "cooling_setpoint_c": 26.345146,
+        "chiller_cop": 4.390821,
+        "boiler_efficiency": 0.734639,
+        "lighting_primary_w_m2": 10.762295,
+        "lighting_secondary_w_m2": 2.326554,
+        "infiltration_multiplier": 0.763989,
+        "elevator_power_w": 7138.432529,
+        "eps_thickness_cm": 24.667626,
+        "eps_conductivity_w_mk": 0.01609
+      }
+    },
+    {
+      "index": 22,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 16.405321,
+        "cooling_setpoint_c": 27.945146,
+        "chiller_cop": 5.247963,
+        "boiler_efficiency": 0.773317,
+        "lighting_primary_w_m2": 11.839218,
+        "lighting_secondary_w_m2": 2.76773,
+        "infiltration_multiplier": 0.827147,
+        "elevator_power_w": 7464.519486,
+        "eps_thickness_cm": 25.684867,
+        "eps_conductivity_w_mk": 0.017541
+      }
+    },
+    {
+      "index": 23,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 19.405321,
+        "cooling_setpoint_c": 29.545146,
+        "chiller_cop": 6.105106,
+        "boiler_efficiency": 0.808772,
+        "lighting_primary_w_m2": 12.916141,
+        "lighting_secondary_w_m2": 3.208907,
+        "infiltration_multiplier": 0.890305,
+        "elevator_power_w": 7804.784136,
+        "eps_thickness_cm": 26.702108,
+        "eps_conductivity_w_mk": 0.018993
+      }
+    },
+    {
+      "index": 24,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 23.405321,
+        "cooling_setpoint_c": 23.145146,
+        "chiller_cop": 6.962249,
+        "boiler_efficiency": 0.844226,
+        "lighting_primary_w_m2": 13.993064,
+        "lighting_secondary_w_m2": 3.650083,
+        "infiltration_multiplier": 0.953463,
+        "elevator_power_w": 630.871092,
+        "eps_thickness_cm": 27.71935,
+        "eps_conductivity_w_mk": 0.020445
+      }
+    },
+    {
+      "index": 25,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 17.405321,
+        "cooling_setpoint_c": 23.529146,
+        "chiller_cop": 7.819392,
+        "boiler_efficiency": 0.879681,
+        "lighting_primary_w_m2": 1.069987,
+        "lighting_secondary_w_m2": 4.091259,
+        "infiltration_multiplier": 1.01662,
+        "elevator_power_w": 956.958049,
+        "eps_thickness_cm": 28.736591,
+        "eps_conductivity_w_mk": 0.021896
+      }
+    },
+    {
+      "index": 26,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 20.405321,
+        "cooling_setpoint_c": 25.129146,
+        "chiller_cop": 2.676535,
+        "boiler_efficiency": 0.915135,
+        "lighting_primary_w_m2": 2.22975,
+        "lighting_secondary_w_m2": 4.532436,
+        "infiltration_multiplier": 1.079778,
+        "elevator_power_w": 1283.045005,
+        "eps_thickness_cm": 29.753832,
+        "eps_conductivity_w_mk": 0.023348
+      }
+    },
+    {
+      "index": 27,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 20.849765,
+        "cooling_setpoint_c": 26.729146,
+        "chiller_cop": 3.533678,
+        "boiler_efficiency": 0.95059,
+        "lighting_primary_w_m2": 3.306673,
+        "lighting_secondary_w_m2": 4.973612,
+        "infiltration_multiplier": 1.142936,
+        "elevator_power_w": 1609.131962,
+        "eps_thickness_cm": 1.271074,
+        "eps_conductivity_w_mk": 0.024799
+      }
+    },
+    {
+      "index": 28,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 23.849765,
+        "cooling_setpoint_c": 28.329146,
+        "chiller_cop": 4.51327,
+        "boiler_efficiency": 0.986044,
+        "lighting_primary_w_m2": 4.383597,
+        "lighting_secondary_w_m2": 5.414789,
+        "infiltration_multiplier": 1.206094,
+        "elevator_power_w": 1935.218918,
+        "eps_thickness_cm": 2.288315,
+        "eps_conductivity_w_mk": 0.026251
+      }
+    },
+    {
+      "index": 29,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 17.849765,
+        "cooling_setpoint_c": 29.929146,
+        "chiller_cop": 5.370412,
+        "boiler_efficiency": 0.631499,
+        "lighting_primary_w_m2": 5.46052,
+        "lighting_secondary_w_m2": 5.855965,
+        "infiltration_multiplier": 1.269252,
+        "elevator_power_w": 2261.305875,
+        "eps_thickness_cm": 3.340634,
+        "eps_conductivity_w_mk": 0.027703
+      }
+    },
+    {
+      "index": 30,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 21.849765,
+        "cooling_setpoint_c": 23.849146,
+        "chiller_cop": 6.227555,
+        "boiler_efficiency": 0.666953,
+        "lighting_primary_w_m2": 6.537443,
+        "lighting_secondary_w_m2": 6.297142,
+        "infiltration_multiplier": 1.33241,
+        "elevator_power_w": 2587.392831,
+        "eps_thickness_cm": 4.357875,
+        "eps_conductivity_w_mk": 0.029154
+      }
+    },
+    {
+      "index": 31,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 15.849765,
+        "cooling_setpoint_c": 25.449146,
+        "chiller_cop": 7.084698,
+        "boiler_efficiency": 0.702408,
+        "lighting_primary_w_m2": 7.614366,
+        "lighting_secondary_w_m2": 6.738318,
+        "infiltration_multiplier": 1.395568,
+        "elevator_power_w": 2913.479788,
+        "eps_thickness_cm": 5.375117,
+        "eps_conductivity_w_mk": 0.030653
+      }
+    },
+    {
+      "index": 32,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 18.849765,
+        "cooling_setpoint_c": 27.049146,
+        "chiller_cop": 7.941841,
+        "boiler_efficiency": 0.737862,
+        "lighting_primary_w_m2": 8.691289,
+        "lighting_secondary_w_m2": 7.179495,
+        "infiltration_multiplier": 1.458726,
+        "elevator_power_w": 3239.566744,
+        "eps_thickness_cm": 6.392358,
+        "eps_conductivity_w_mk": 0.032104
+      }
+    },
+    {
+      "index": 33,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 22.849765,
+        "cooling_setpoint_c": 28.649146,
+        "chiller_cop": 2.798984,
+        "boiler_efficiency": 0.77654,
+        "lighting_primary_w_m2": 9.768212,
+        "lighting_secondary_w_m2": 7.620671,
+        "infiltration_multiplier": 0.321884,
+        "elevator_power_w": 3565.653701,
+        "eps_thickness_cm": 7.409599,
+        "eps_conductivity_w_mk": 0.033556
+      }
+    },
+    {
+      "index": 34,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 16.849765,
+        "cooling_setpoint_c": 22.249146,
+        "chiller_cop": 3.656127,
+        "boiler_efficiency": 0.811995,
+        "lighting_primary_w_m2": 10.845135,
+        "lighting_secondary_w_m2": 0.587799,
+        "infiltration_multiplier": 0.385042,
+        "elevator_power_w": 3891.740658,
+        "eps_thickness_cm": 8.426841,
+        "eps_conductivity_w_mk": 0.035007
+      }
+    },
+    {
+      "index": 35,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 19.849765,
+        "cooling_setpoint_c": 24.169146,
+        "chiller_cop": 4.635718,
+        "boiler_efficiency": 0.847449,
+        "lighting_primary_w_m2": 11.922058,
+        "lighting_secondary_w_m2": 1.028976,
+        "infiltration_multiplier": 0.448199,
+        "elevator_power_w": 4217.827614,
+        "eps_thickness_cm": 9.444082,
+        "eps_conductivity_w_mk": 0.036459
+      }
+    },
+    {
+      "index": 36,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 21.183099,
+        "cooling_setpoint_c": 25.769146,
+        "chiller_cop": 5.492861,
+        "boiler_efficiency": 0.882904,
+        "lighting_primary_w_m2": 12.998981,
+        "lighting_secondary_w_m2": 1.470152,
+        "infiltration_multiplier": 0.511357,
+        "elevator_power_w": 4543.914571,
+        "eps_thickness_cm": 10.461324,
+        "eps_conductivity_w_mk": 0.037911
+      }
+    },
+    {
+      "index": 37,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 15.183099,
+        "cooling_setpoint_c": 27.369146,
+        "chiller_cop": 6.350004,
+        "boiler_efficiency": 0.918358,
+        "lighting_primary_w_m2": 14.075904,
+        "lighting_secondary_w_m2": 1.911329,
+        "infiltration_multiplier": 0.574515,
+        "elevator_power_w": 4870.001527,
+        "eps_thickness_cm": 11.478565,
+        "eps_conductivity_w_mk": 0.039362
+      }
+    },
+    {
+      "index": 38,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 18.183099,
+        "cooling_setpoint_c": 28.969146,
+        "chiller_cop": 7.207147,
+        "boiler_efficiency": 0.953813,
+        "lighting_primary_w_m2": 1.152827,
+        "lighting_secondary_w_m2": 2.352505,
+        "infiltration_multiplier": 0.640997,
+        "elevator_power_w": 5196.088484,
+        "eps_thickness_cm": 12.495806,
+        "eps_conductivity_w_mk": 0.040814
+      }
+    },
+    {
+      "index": 39,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 22.183099,
+        "cooling_setpoint_c": 22.569146,
+        "chiller_cop": 2.06429,
+        "boiler_efficiency": 0.989267,
+        "lighting_primary_w_m2": 2.312591,
+        "lighting_secondary_w_m2": 2.793682,
+        "infiltration_multiplier": 0.704155,
+        "elevator_power_w": 5522.17544,
+        "eps_thickness_cm": 13.513048,
+        "eps_conductivity_w_mk": 0.042266
+      }
+    },
+    {
+      "index": 40,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 16.183099,
+        "cooling_setpoint_c": 24.489146,
+        "chiller_cop": 2.921433,
+        "boiler_efficiency": 0.634722,
+        "lighting_primary_w_m2": 3.389514,
+        "lighting_secondary_w_m2": 3.234858,
+        "infiltration_multiplier": 0.767313,
+        "elevator_power_w": 5848.262397,
+        "eps_thickness_cm": 14.530289,
+        "eps_conductivity_w_mk": 0.043717
+      }
+    },
+    {
+      "index": 41,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 19.183099,
+        "cooling_setpoint_c": 26.089146,
+        "chiller_cop": 3.778576,
+        "boiler_efficiency": 0.670176,
+        "lighting_primary_w_m2": 4.466437,
+        "lighting_secondary_w_m2": 3.676035,
+        "infiltration_multiplier": 0.830471,
+        "elevator_power_w": 6174.349353,
+        "eps_thickness_cm": 15.54753,
+        "eps_conductivity_w_mk": 0.045169
+      }
+    },
+    {
+      "index": 42,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 23.183099,
+        "cooling_setpoint_c": 27.689146,
+        "chiller_cop": 4.758167,
+        "boiler_efficiency": 0.705631,
+        "lighting_primary_w_m2": 5.54336,
+        "lighting_secondary_w_m2": 4.117211,
+        "infiltration_multiplier": 0.893629,
+        "elevator_power_w": 6500.43631,
+        "eps_thickness_cm": 16.564772,
+        "eps_conductivity_w_mk": 0.04662
+      }
+    },
+    {
+      "index": 43,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 17.183099,
+        "cooling_setpoint_c": 29.289146,
+        "chiller_cop": 5.61531,
+        "boiler_efficiency": 0.741086,
+        "lighting_primary_w_m2": 6.620283,
+        "lighting_secondary_w_m2": 4.558387,
+        "infiltration_multiplier": 0.956787,
+        "elevator_power_w": 6826.523266,
+        "eps_thickness_cm": 17.582013,
+        "eps_conductivity_w_mk": 0.048072
+      }
+    },
+    {
+      "index": 44,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 20.183099,
+        "cooling_setpoint_c": 22.889146,
+        "chiller_cop": 6.472453,
+        "boiler_efficiency": 0.779763,
+        "lighting_primary_w_m2": 7.697206,
+        "lighting_secondary_w_m2": 4.999564,
+        "infiltration_multiplier": 1.019945,
+        "elevator_power_w": 7152.610223,
+        "eps_thickness_cm": 18.599255,
+        "eps_conductivity_w_mk": 0.049524
+      }
+    },
+    {
+      "index": 45,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 21.516432,
+        "cooling_setpoint_c": 24.809146,
+        "chiller_cop": 7.329596,
+        "boiler_efficiency": 0.815218,
+        "lighting_primary_w_m2": 8.774129,
+        "lighting_secondary_w_m2": 5.44074,
+        "infiltration_multiplier": 1.083102,
+        "elevator_power_w": 7478.697179,
+        "eps_thickness_cm": 19.616496,
+        "eps_conductivity_w_mk": 0.050975
+      }
+    },
+    {
+      "index": 46,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 15.516432,
+        "cooling_setpoint_c": 26.409146,
+        "chiller_cop": 2.186739,
+        "boiler_efficiency": 0.850672,
+        "lighting_primary_w_m2": 9.851052,
+        "lighting_secondary_w_m2": 5.881917,
+        "infiltration_multiplier": 1.14626,
+        "elevator_power_w": 7818.96183,
+        "eps_thickness_cm": 20.633737,
+        "eps_conductivity_w_mk": 0.052427
+      }
+    },
+    {
+      "index": 47,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 18.516432,
+        "cooling_setpoint_c": 28.009146,
+        "chiller_cop": 3.043882,
+        "boiler_efficiency": 0.886127,
+        "lighting_primary_w_m2": 10.927975,
+        "lighting_secondary_w_m2": 6.323093,
+        "infiltration_multiplier": 1.209418,
+        "elevator_power_w": 645.048786,
+        "eps_thickness_cm": 21.650979,
+        "eps_conductivity_w_mk": 0.053878
+      }
+    },
+    {
+      "index": 48,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 22.516432,
+        "cooling_setpoint_c": 29.609146,
+        "chiller_cop": 3.901025,
+        "boiler_efficiency": 0.921581,
+        "lighting_primary_w_m2": 12.004898,
+        "lighting_secondary_w_m2": 6.76427,
+        "infiltration_multiplier": 1.272576,
+        "elevator_power_w": 971.135743,
+        "eps_thickness_cm": 22.66822,
+        "eps_conductivity_w_mk": 0.05533
+      }
+    },
+    {
+      "index": 49,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 16.516432,
+        "cooling_setpoint_c": 23.209146,
+        "chiller_cop": 4.040966,
+        "boiler_efficiency": 0.957036,
+        "lighting_primary_w_m2": 13.081821,
+        "lighting_secondary_w_m2": 7.205446,
+        "infiltration_multiplier": 1.335734,
+        "elevator_power_w": 1297.222699,
+        "eps_thickness_cm": 23.685462,
+        "eps_conductivity_w_mk": 0.056782
+      }
+    },
+    {
+      "index": 50,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 19.516432,
+        "cooling_setpoint_c": 23.593146,
+        "chiller_cop": 4.898109,
+        "boiler_efficiency": 0.602491,
+        "lighting_primary_w_m2": 14.158744,
+        "lighting_secondary_w_m2": 7.646623,
+        "infiltration_multiplier": 1.398892,
+        "elevator_power_w": 1623.309656,
+        "eps_thickness_cm": 24.702703,
+        "eps_conductivity_w_mk": 0.058233
+      }
+    },
+    {
+      "index": 51,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 23.516432,
+        "cooling_setpoint_c": 25.193146,
+        "chiller_cop": 5.755252,
+        "boiler_efficiency": 0.637945,
+        "lighting_primary_w_m2": 1.235668,
+        "lighting_secondary_w_m2": 0.613751,
+        "infiltration_multiplier": 1.46205,
+        "elevator_power_w": 1949.396612,
+        "eps_thickness_cm": 25.719944,
+        "eps_conductivity_w_mk": 0.059685
+      }
+    },
+    {
+      "index": 52,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 17.516432,
+        "cooling_setpoint_c": 26.793146,
+        "chiller_cop": 6.612395,
+        "boiler_efficiency": 0.6734,
+        "lighting_primary_w_m2": 2.395431,
+        "lighting_secondary_w_m2": 1.054927,
+        "infiltration_multiplier": 0.325208,
+        "elevator_power_w": 2275.483569,
+        "eps_thickness_cm": 26.737186,
+        "eps_conductivity_w_mk": 0.016137
+      }
+    },
+    {
+      "index": 53,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 20.516432,
+        "cooling_setpoint_c": 28.393146,
+        "chiller_cop": 7.469538,
+        "boiler_efficiency": 0.708854,
+        "lighting_primary_w_m2": 3.472354,
+        "lighting_secondary_w_m2": 1.496104,
+        "infiltration_multiplier": 0.388366,
+        "elevator_power_w": 2601.570525,
+        "eps_thickness_cm": 27.754427,
+        "eps_conductivity_w_mk": 0.017588
+      }
+    },
+    {
+      "index": 54,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.960876,
+        "cooling_setpoint_c": 29.993146,
+        "chiller_cop": 2.326681,
+        "boiler_efficiency": 0.744309,
+        "lighting_primary_w_m2": 4.549277,
+        "lighting_secondary_w_m2": 1.93728,
+        "infiltration_multiplier": 0.451523,
+        "elevator_power_w": 2927.657482,
+        "eps_thickness_cm": 28.771668,
+        "eps_conductivity_w_mk": 0.01904
+      }
+    },
+    {
+      "index": 55,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 23.960876,
+        "cooling_setpoint_c": 23.913146,
+        "chiller_cop": 3.183823,
+        "boiler_efficiency": 0.782986,
+        "lighting_primary_w_m2": 5.6262,
+        "lighting_secondary_w_m2": 2.378457,
+        "infiltration_multiplier": 0.514681,
+        "elevator_power_w": 3253.744438,
+        "eps_thickness_cm": 29.78891,
+        "eps_conductivity_w_mk": 0.020491
+      }
+    },
+    {
+      "index": 56,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 17.960876,
+        "cooling_setpoint_c": 25.513146,
+        "chiller_cop": 4.163415,
+        "boiler_efficiency": 0.818441,
+        "lighting_primary_w_m2": 6.703123,
+        "lighting_secondary_w_m2": 2.819633,
+        "infiltration_multiplier": 0.577839,
+        "elevator_power_w": 3579.831395,
+        "eps_thickness_cm": 1.306151,
+        "eps_conductivity_w_mk": 0.021943
+      }
+    },
+    {
+      "index": 57,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 21.960876,
+        "cooling_setpoint_c": 27.113146,
+        "chiller_cop": 5.020558,
+        "boiler_efficiency": 0.853895,
+        "lighting_primary_w_m2": 7.780046,
+        "lighting_secondary_w_m2": 3.26081,
+        "infiltration_multiplier": 0.644321,
+        "elevator_power_w": 3905.918351,
+        "eps_thickness_cm": 2.323393,
+        "eps_conductivity_w_mk": 0.023395
+      }
+    },
+    {
+      "index": 58,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 15.960876,
+        "cooling_setpoint_c": 28.713146,
+        "chiller_cop": 5.877701,
+        "boiler_efficiency": 0.88935,
+        "lighting_primary_w_m2": 8.856969,
+        "lighting_secondary_w_m2": 3.701986,
+        "infiltration_multiplier": 0.707479,
+        "elevator_power_w": 4232.005308,
+        "eps_thickness_cm": 3.375711,
+        "eps_conductivity_w_mk": 0.024846
+      }
+    },
+    {
+      "index": 59,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 18.960876,
+        "cooling_setpoint_c": 22.313146,
+        "chiller_cop": 6.734844,
+        "boiler_efficiency": 0.924805,
+        "lighting_primary_w_m2": 9.933892,
+        "lighting_secondary_w_m2": 4.143163,
+        "infiltration_multiplier": 0.770637,
+        "elevator_power_w": 4558.092264,
+        "eps_thickness_cm": 4.392953,
+        "eps_conductivity_w_mk": 0.026298
+      }
+    },
+    {
+      "index": 60,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 22.960876,
+        "cooling_setpoint_c": 24.233146,
+        "chiller_cop": 7.591987,
+        "boiler_efficiency": 0.960259,
+        "lighting_primary_w_m2": 11.010816,
+        "lighting_secondary_w_m2": 4.584339,
+        "infiltration_multiplier": 0.833795,
+        "elevator_power_w": 4884.179221,
+        "eps_thickness_cm": 5.410194,
+        "eps_conductivity_w_mk": 0.027749
+      }
+    },
+    {
+      "index": 61,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 16.960876,
+        "cooling_setpoint_c": 25.833146,
+        "chiller_cop": 2.44913,
+        "boiler_efficiency": 0.605714,
+        "lighting_primary_w_m2": 12.087739,
+        "lighting_secondary_w_m2": 5.025516,
+        "infiltration_multiplier": 0.896953,
+        "elevator_power_w": 5210.266177,
+        "eps_thickness_cm": 6.427435,
+        "eps_conductivity_w_mk": 0.029201
+      }
+    },
+    {
+      "index": 62,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 19.960876,
+        "cooling_setpoint_c": 27.433146,
+        "chiller_cop": 3.306272,
+        "boiler_efficiency": 0.641168,
+        "lighting_primary_w_m2": 13.164662,
+        "lighting_secondary_w_m2": 5.466692,
+        "infiltration_multiplier": 0.960111,
+        "elevator_power_w": 5536.353134,
+        "eps_thickness_cm": 7.444677,
+        "eps_conductivity_w_mk": 0.030699
+      }
+    },
+    {
+      "index": 63,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 21.29421,
+        "cooling_setpoint_c": 29.033146,
+        "chiller_cop": 4.285864,
+        "boiler_efficiency": 0.676623,
+        "lighting_primary_w_m2": 14.241585,
+        "lighting_secondary_w_m2": 5.907868,
+        "infiltration_multiplier": 1.023269,
+        "elevator_power_w": 5862.44009,
+        "eps_thickness_cm": 8.461918,
+        "eps_conductivity_w_mk": 0.032151
+      }
+    },
+    {
+      "index": 64,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 15.29421,
+        "cooling_setpoint_c": 22.633146,
+        "chiller_cop": 5.143007,
+        "boiler_efficiency": 0.712077,
+        "lighting_primary_w_m2": 1.318508,
+        "lighting_secondary_w_m2": 6.349045,
+        "infiltration_multiplier": 1.086427,
+        "elevator_power_w": 6188.527047,
+        "eps_thickness_cm": 9.479159,
+        "eps_conductivity_w_mk": 0.033603
+      }
+    },
+    {
+      "index": 65,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 18.29421,
+        "cooling_setpoint_c": 24.553146,
+        "chiller_cop": 6.00015,
+        "boiler_efficiency": 0.747532,
+        "lighting_primary_w_m2": 2.478271,
+        "lighting_secondary_w_m2": 6.790221,
+        "infiltration_multiplier": 1.149584,
+        "elevator_power_w": 6514.614003,
+        "eps_thickness_cm": 10.496401,
+        "eps_conductivity_w_mk": 0.035054
+      }
+    },
+    {
+      "index": 66,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 22.29421,
+        "cooling_setpoint_c": 26.153146,
+        "chiller_cop": 6.857293,
+        "boiler_efficiency": 0.78621,
+        "lighting_primary_w_m2": 3.555194,
+        "lighting_secondary_w_m2": 7.231398,
+        "infiltration_multiplier": 1.212742,
+        "elevator_power_w": 6840.70096,
+        "eps_thickness_cm": 11.513642,
+        "eps_conductivity_w_mk": 0.036506
+      }
+    },
+    {
+      "index": 67,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 16.29421,
+        "cooling_setpoint_c": 27.753146,
+        "chiller_cop": 7.714436,
+        "boiler_efficiency": 0.821664,
+        "lighting_primary_w_m2": 4.632117,
+        "lighting_secondary_w_m2": 7.672574,
+        "infiltration_multiplier": 1.2759,
+        "elevator_power_w": 7166.787917,
+        "eps_thickness_cm": 12.530884,
+        "eps_conductivity_w_mk": 0.037958
+      }
+    },
+    {
+      "index": 68,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 19.29421,
+        "cooling_setpoint_c": 29.353146,
+        "chiller_cop": 2.571579,
+        "boiler_efficiency": 0.857119,
+        "lighting_primary_w_m2": 5.70904,
+        "lighting_secondary_w_m2": 0.639702,
+        "infiltration_multiplier": 1.339058,
+        "elevator_power_w": 7492.874873,
+        "eps_thickness_cm": 13.548125,
+        "eps_conductivity_w_mk": 0.039409
+      }
+    },
+    {
+      "index": 69,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 23.29421,
+        "cooling_setpoint_c": 22.953146,
+        "chiller_cop": 3.428721,
+        "boiler_efficiency": 0.892573,
+        "lighting_primary_w_m2": 6.785963,
+        "lighting_secondary_w_m2": 1.080879,
+        "infiltration_multiplier": 1.402216,
+        "elevator_power_w": 7833.139523,
+        "eps_thickness_cm": 14.565366,
+        "eps_conductivity_w_mk": 0.040861
+      }
+    },
+    {
+      "index": 70,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 17.29421,
+        "cooling_setpoint_c": 24.873146,
+        "chiller_cop": 4.408313,
+        "boiler_efficiency": 0.928028,
+        "lighting_primary_w_m2": 7.862887,
+        "lighting_secondary_w_m2": 1.522055,
+        "infiltration_multiplier": 1.465374,
+        "elevator_power_w": 659.22648,
+        "eps_thickness_cm": 15.582608,
+        "eps_conductivity_w_mk": 0.042312
+      }
+    },
+    {
+      "index": 71,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 20.29421,
+        "cooling_setpoint_c": 26.473146,
+        "chiller_cop": 5.265456,
+        "boiler_efficiency": 0.963482,
+        "lighting_primary_w_m2": 8.93981,
+        "lighting_secondary_w_m2": 1.963232,
+        "infiltration_multiplier": 0.328532,
+        "elevator_power_w": 985.313436,
+        "eps_thickness_cm": 16.599849,
+        "eps_conductivity_w_mk": 0.043764
+      }
+    },
+    {
+      "index": 72,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 21.627543,
+        "cooling_setpoint_c": 28.073146,
+        "chiller_cop": 6.122599,
+        "boiler_efficiency": 0.608937,
+        "lighting_primary_w_m2": 10.016733,
+        "lighting_secondary_w_m2": 2.404408,
+        "infiltration_multiplier": 0.39169,
+        "elevator_power_w": 1311.400393,
+        "eps_thickness_cm": 17.617091,
+        "eps_conductivity_w_mk": 0.045216
+      }
+    },
+    {
+      "index": 73,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 15.627543,
+        "cooling_setpoint_c": 29.673146,
+        "chiller_cop": 6.979742,
+        "boiler_efficiency": 0.644391,
+        "lighting_primary_w_m2": 11.093656,
+        "lighting_secondary_w_m2": 2.845585,
+        "infiltration_multiplier": 0.454848,
+        "elevator_power_w": 1637.487349,
+        "eps_thickness_cm": 18.634332,
+        "eps_conductivity_w_mk": 0.046667
+      }
+    },
+    {
+      "index": 74,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 18.627543,
+        "cooling_setpoint_c": 23.273146,
+        "chiller_cop": 7.836885,
+        "boiler_efficiency": 0.679846,
+        "lighting_primary_w_m2": 12.170579,
+        "lighting_secondary_w_m2": 3.286761,
+        "infiltration_multiplier": 0.518005,
+        "elevator_power_w": 1963.574306,
+        "eps_thickness_cm": 19.651573,
+        "eps_conductivity_w_mk": 0.048119
+      }
+    },
+    {
+      "index": 75,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 22.627543,
+        "cooling_setpoint_c": 23.657146,
+        "chiller_cop": 2.694028,
+        "boiler_efficiency": 0.7153,
+        "lighting_primary_w_m2": 13.247502,
+        "lighting_secondary_w_m2": 3.727938,
+        "infiltration_multiplier": 0.581163,
+        "elevator_power_w": 2289.661262,
+        "eps_thickness_cm": 20.668815,
+        "eps_conductivity_w_mk": 0.04957
+      }
+    },
+    {
+      "index": 76,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 16.627543,
+        "cooling_setpoint_c": 25.257146,
+        "chiller_cop": 3.55117,
+        "boiler_efficiency": 0.750755,
+        "lighting_primary_w_m2": 14.324425,
+        "lighting_secondary_w_m2": 4.169114,
+        "infiltration_multiplier": 0.647645,
+        "elevator_power_w": 2615.748219,
+        "eps_thickness_cm": 21.686056,
+        "eps_conductivity_w_mk": 0.051022
+      }
+    },
+    {
+      "index": 77,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 19.627543,
+        "cooling_setpoint_c": 26.857146,
+        "chiller_cop": 4.530762,
+        "boiler_efficiency": 0.789433,
+        "lighting_primary_w_m2": 1.401348,
+        "lighting_secondary_w_m2": 4.610291,
+        "infiltration_multiplier": 0.710803,
+        "elevator_power_w": 2941.835175,
+        "eps_thickness_cm": 22.703297,
+        "eps_conductivity_w_mk": 0.052474
+      }
+    },
+    {
+      "index": 78,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 23.627543,
+        "cooling_setpoint_c": 28.457146,
+        "chiller_cop": 5.387905,
+        "boiler_efficiency": 0.824887,
+        "lighting_primary_w_m2": 2.561111,
+        "lighting_secondary_w_m2": 5.051467,
+        "infiltration_multiplier": 0.773961,
+        "elevator_power_w": 3267.922132,
+        "eps_thickness_cm": 23.720539,
+        "eps_conductivity_w_mk": 0.053925
+      }
+    },
+    {
+      "index": 79,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 17.627543,
+        "cooling_setpoint_c": 22.057146,
+        "chiller_cop": 6.245048,
+        "boiler_efficiency": 0.860342,
+        "lighting_primary_w_m2": 3.638034,
+        "lighting_secondary_w_m2": 5.492644,
+        "infiltration_multiplier": 0.837119,
+        "elevator_power_w": 3594.009089,
+        "eps_thickness_cm": 24.73778,
+        "eps_conductivity_w_mk": 0.055377
+      }
+    },
+    {
+      "index": 80,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.627543,
+        "cooling_setpoint_c": 23.977146,
+        "chiller_cop": 7.102191,
+        "boiler_efficiency": 0.895796,
+        "lighting_primary_w_m2": 4.714958,
+        "lighting_secondary_w_m2": 5.93382,
+        "infiltration_multiplier": 0.900277,
+        "elevator_power_w": 3920.096045,
+        "eps_thickness_cm": 25.755022,
+        "eps_conductivity_w_mk": 0.056828
+      }
+    },
+    {
+      "index": 81,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 20.775691,
+        "cooling_setpoint_c": 25.577146,
+        "chiller_cop": 7.959334,
+        "boiler_efficiency": 0.931251,
+        "lighting_primary_w_m2": 5.791881,
+        "lighting_secondary_w_m2": 6.374996,
+        "infiltration_multiplier": 0.963435,
+        "elevator_power_w": 4246.183002,
+        "eps_thickness_cm": 26.772263,
+        "eps_conductivity_w_mk": 0.05828
+      }
+    },
+    {
+      "index": 82,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 23.775691,
+        "cooling_setpoint_c": 27.177146,
+        "chiller_cop": 2.816476,
+        "boiler_efficiency": 0.966705,
+        "lighting_primary_w_m2": 6.868804,
+        "lighting_secondary_w_m2": 6.816173,
+        "infiltration_multiplier": 1.026593,
+        "elevator_power_w": 4572.269958,
+        "eps_thickness_cm": 27.789504,
+        "eps_conductivity_w_mk": 0.059732
+      }
+    },
+    {
+      "index": 83,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 17.775691,
+        "cooling_setpoint_c": 28.777146,
+        "chiller_cop": 3.673619,
+        "boiler_efficiency": 0.61216,
+        "lighting_primary_w_m2": 7.945727,
+        "lighting_secondary_w_m2": 7.257349,
+        "infiltration_multiplier": 1.089751,
+        "elevator_power_w": 4898.356915,
+        "eps_thickness_cm": 28.806746,
+        "eps_conductivity_w_mk": 0.016183
+      }
+    },
+    {
+      "index": 84,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 21.775691,
+        "cooling_setpoint_c": 22.377146,
+        "chiller_cop": 4.653211,
+        "boiler_efficiency": 0.647614,
+        "lighting_primary_w_m2": 9.02265,
+        "lighting_secondary_w_m2": 7.698526,
+        "infiltration_multiplier": 1.152909,
+        "elevator_power_w": 5224.443871,
+        "eps_thickness_cm": 29.823987,
+        "eps_conductivity_w_mk": 0.017635
+      }
+    },
+    {
+      "index": 85,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 15.775691,
+        "cooling_setpoint_c": 24.297146,
+        "chiller_cop": 5.510354,
+        "boiler_efficiency": 0.683069,
+        "lighting_primary_w_m2": 10.099573,
+        "lighting_secondary_w_m2": 0.665654,
+        "infiltration_multiplier": 1.216066,
+        "elevator_power_w": 5550.530828,
+        "eps_thickness_cm": 1.341228,
+        "eps_conductivity_w_mk": 0.019087
+      }
+    },
+    {
+      "index": 86,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 18.775691,
+        "cooling_setpoint_c": 25.897146,
+        "chiller_cop": 6.367497,
+        "boiler_efficiency": 0.718524,
+        "lighting_primary_w_m2": 11.176496,
+        "lighting_secondary_w_m2": 1.10683,
+        "infiltration_multiplier": 1.279224,
+        "elevator_power_w": 5876.617784,
+        "eps_thickness_cm": 2.35847,
+        "eps_conductivity_w_mk": 0.020538
+      }
+    },
+    {
+      "index": 87,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 22.775691,
+        "cooling_setpoint_c": 27.497146,
+        "chiller_cop": 7.22464,
+        "boiler_efficiency": 0.753978,
+        "lighting_primary_w_m2": 12.253419,
+        "lighting_secondary_w_m2": 1.548007,
+        "infiltration_multiplier": 1.342382,
+        "elevator_power_w": 6202.704741,
+        "eps_thickness_cm": 3.410788,
+        "eps_conductivity_w_mk": 0.02199
+      }
+    },
+    {
+      "index": 88,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 16.775691,
+        "cooling_setpoint_c": 29.097146,
+        "chiller_cop": 2.081783,
+        "boiler_efficiency": 0.792656,
+        "lighting_primary_w_m2": 13.330342,
+        "lighting_secondary_w_m2": 1.989183,
+        "infiltration_multiplier": 1.40554,
+        "elevator_power_w": 6528.791697,
+        "eps_thickness_cm": 4.42803,
+        "eps_conductivity_w_mk": 0.023441
+      }
+    },
+    {
+      "index": 89,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 19.775691,
+        "cooling_setpoint_c": 22.697146,
+        "chiller_cop": 2.938925,
+        "boiler_efficiency": 0.82811,
+        "lighting_primary_w_m2": 14.407265,
+        "lighting_secondary_w_m2": 2.43036,
+        "infiltration_multiplier": 1.468698,
+        "elevator_power_w": 6854.878654,
+        "eps_thickness_cm": 5.445271,
+        "eps_conductivity_w_mk": 0.024893
+      }
+    },
+    {
+      "index": 90,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 21.109025,
+        "cooling_setpoint_c": 24.617146,
+        "chiller_cop": 3.796068,
+        "boiler_efficiency": 0.863565,
+        "lighting_primary_w_m2": 1.484188,
+        "lighting_secondary_w_m2": 2.871536,
+        "infiltration_multiplier": 0.331856,
+        "elevator_power_w": 7180.96561,
+        "eps_thickness_cm": 6.462513,
+        "eps_conductivity_w_mk": 0.026345
+      }
+    },
+    {
+      "index": 91,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 15.109025,
+        "cooling_setpoint_c": 26.217146,
+        "chiller_cop": 4.77566,
+        "boiler_efficiency": 0.899019,
+        "lighting_primary_w_m2": 2.643952,
+        "lighting_secondary_w_m2": 3.312713,
+        "infiltration_multiplier": 0.395014,
+        "elevator_power_w": 7507.052567,
+        "eps_thickness_cm": 7.479754,
+        "eps_conductivity_w_mk": 0.027796
+      }
+    },
+    {
+      "index": 92,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 18.109025,
+        "cooling_setpoint_c": 27.817146,
+        "chiller_cop": 5.632803,
+        "boiler_efficiency": 0.934474,
+        "lighting_primary_w_m2": 3.720875,
+        "lighting_secondary_w_m2": 3.753889,
+        "infiltration_multiplier": 0.458172,
+        "elevator_power_w": 7847.317217,
+        "eps_thickness_cm": 8.496995,
+        "eps_conductivity_w_mk": 0.029248
+      }
+    },
+    {
+      "index": 93,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 22.109025,
+        "cooling_setpoint_c": 29.417146,
+        "chiller_cop": 6.489946,
+        "boiler_efficiency": 0.969929,
+        "lighting_primary_w_m2": 4.797798,
+        "lighting_secondary_w_m2": 4.195066,
+        "infiltration_multiplier": 0.52133,
+        "elevator_power_w": 673.404174,
+        "eps_thickness_cm": 9.514237,
+        "eps_conductivity_w_mk": 0.030746
+      }
+    },
+    {
+      "index": 94,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 16.109025,
+        "cooling_setpoint_c": 23.017146,
+        "chiller_cop": 7.347089,
+        "boiler_efficiency": 0.615383,
+        "lighting_primary_w_m2": 5.874721,
+        "lighting_secondary_w_m2": 4.636242,
+        "infiltration_multiplier": 0.584487,
+        "elevator_power_w": 999.49113,
+        "eps_thickness_cm": 10.531478,
+        "eps_conductivity_w_mk": 0.032198
+      }
+    },
+    {
+      "index": 95,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.109025,
+        "cooling_setpoint_c": 24.937146,
+        "chiller_cop": 2.204232,
+        "boiler_efficiency": 0.650838,
+        "lighting_primary_w_m2": 6.951644,
+        "lighting_secondary_w_m2": 5.077419,
+        "infiltration_multiplier": 0.650969,
+        "elevator_power_w": 1325.578087,
+        "eps_thickness_cm": 11.54872,
+        "eps_conductivity_w_mk": 0.03365
+      }
+    },
+    {
+      "index": 96,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 23.109025,
+        "cooling_setpoint_c": 26.537146,
+        "chiller_cop": 3.061374,
+        "boiler_efficiency": 0.686292,
+        "lighting_primary_w_m2": 8.028567,
+        "lighting_secondary_w_m2": 5.518595,
+        "infiltration_multiplier": 0.714127,
+        "elevator_power_w": 1651.665043,
+        "eps_thickness_cm": 12.565961,
+        "eps_conductivity_w_mk": 0.035101
+      }
+    },
+    {
+      "index": 97,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 17.109025,
+        "cooling_setpoint_c": 28.137146,
+        "chiller_cop": 3.918517,
+        "boiler_efficiency": 0.721747,
+        "lighting_primary_w_m2": 9.10549,
+        "lighting_secondary_w_m2": 5.959772,
+        "infiltration_multiplier": 0.777285,
+        "elevator_power_w": 1977.752,
+        "eps_thickness_cm": 13.583202,
+        "eps_conductivity_w_mk": 0.036553
+      }
+    },
+    {
+      "index": 98,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 20.109025,
+        "cooling_setpoint_c": 29.737146,
+        "chiller_cop": 4.058459,
+        "boiler_efficiency": 0.757201,
+        "lighting_primary_w_m2": 10.182413,
+        "lighting_secondary_w_m2": 6.400948,
+        "infiltration_multiplier": 0.840443,
+        "elevator_power_w": 2303.838956,
+        "eps_thickness_cm": 14.600444,
+        "eps_conductivity_w_mk": 0.038004
+      }
+    },
+    {
+      "index": 99,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 21.442358,
+        "cooling_setpoint_c": 23.337146,
+        "chiller_cop": 4.915602,
+        "boiler_efficiency": 0.795879,
+        "lighting_primary_w_m2": 11.259336,
+        "lighting_secondary_w_m2": 6.842124,
+        "infiltration_multiplier": 0.903601,
+        "elevator_power_w": 2629.925913,
+        "eps_thickness_cm": 15.617685,
+        "eps_conductivity_w_mk": 0.039456
+      }
+    },
+    {
+      "index": 100,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 15.442358,
+        "cooling_setpoint_c": 23.721146,
+        "chiller_cop": 5.772745,
+        "boiler_efficiency": 0.831333,
+        "lighting_primary_w_m2": 12.336259,
+        "lighting_secondary_w_m2": 7.283301,
+        "infiltration_multiplier": 0.966759,
+        "elevator_power_w": 2956.012869,
+        "eps_thickness_cm": 16.634926,
+        "eps_conductivity_w_mk": 0.040908
+      }
+    },
+    {
+      "index": 101,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 18.442358,
+        "cooling_setpoint_c": 25.321146,
+        "chiller_cop": 6.629888,
+        "boiler_efficiency": 0.866788,
+        "lighting_primary_w_m2": 13.413182,
+        "lighting_secondary_w_m2": 7.724477,
+        "infiltration_multiplier": 1.029917,
+        "elevator_power_w": 3282.099826,
+        "eps_thickness_cm": 17.652168,
+        "eps_conductivity_w_mk": 0.042359
+      }
+    },
+    {
+      "index": 102,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 22.442358,
+        "cooling_setpoint_c": 26.921146,
+        "chiller_cop": 7.48703,
+        "boiler_efficiency": 0.902243,
+        "lighting_primary_w_m2": 14.490105,
+        "lighting_secondary_w_m2": 0.691605,
+        "infiltration_multiplier": 1.093075,
+        "elevator_power_w": 3608.186782,
+        "eps_thickness_cm": 18.669409,
+        "eps_conductivity_w_mk": 0.043811
+      }
+    },
+    {
+      "index": 103,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 16.442358,
+        "cooling_setpoint_c": 28.521146,
+        "chiller_cop": 2.344173,
+        "boiler_efficiency": 0.937697,
+        "lighting_primary_w_m2": 1.567029,
+        "lighting_secondary_w_m2": 1.132782,
+        "infiltration_multiplier": 1.156233,
+        "elevator_power_w": 3934.273739,
+        "eps_thickness_cm": 19.686651,
+        "eps_conductivity_w_mk": 0.045262
+      }
+    },
+    {
+      "index": 104,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 19.442358,
+        "cooling_setpoint_c": 22.121146,
+        "chiller_cop": 3.201316,
+        "boiler_efficiency": 0.973152,
+        "lighting_primary_w_m2": 2.726792,
+        "lighting_secondary_w_m2": 1.573958,
+        "infiltration_multiplier": 1.219391,
+        "elevator_power_w": 4260.360695,
+        "eps_thickness_cm": 20.703892,
+        "eps_conductivity_w_mk": 0.046714
+      }
+    },
+    {
+      "index": 105,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 23.442358,
+        "cooling_setpoint_c": 24.041146,
+        "chiller_cop": 4.180908,
+        "boiler_efficiency": 0.618606,
+        "lighting_primary_w_m2": 3.803715,
+        "lighting_secondary_w_m2": 2.015135,
+        "infiltration_multiplier": 1.282548,
+        "elevator_power_w": 4586.447652,
+        "eps_thickness_cm": 21.721133,
+        "eps_conductivity_w_mk": 0.048166
+      }
+    },
+    {
+      "index": 106,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 17.442358,
+        "cooling_setpoint_c": 25.641146,
+        "chiller_cop": 5.038051,
+        "boiler_efficiency": 0.654061,
+        "lighting_primary_w_m2": 4.880638,
+        "lighting_secondary_w_m2": 2.456311,
+        "infiltration_multiplier": 1.345706,
+        "elevator_power_w": 4912.534608,
+        "eps_thickness_cm": 22.738375,
+        "eps_conductivity_w_mk": 0.049617
+      }
+    },
+    {
+      "index": 107,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 20.442358,
+        "cooling_setpoint_c": 27.241146,
+        "chiller_cop": 5.895194,
+        "boiler_efficiency": 0.689515,
+        "lighting_primary_w_m2": 5.957561,
+        "lighting_secondary_w_m2": 2.897488,
+        "infiltration_multiplier": 1.408864,
+        "elevator_power_w": 5238.621565,
+        "eps_thickness_cm": 23.755616,
+        "eps_conductivity_w_mk": 0.051069
+      }
+    },
+    {
+      "index": 108,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 20.886802,
+        "cooling_setpoint_c": 28.841146,
+        "chiller_cop": 6.752337,
+        "boiler_efficiency": 0.72497,
+        "lighting_primary_w_m2": 7.034484,
+        "lighting_secondary_w_m2": 3.338664,
+        "infiltration_multiplier": 1.472022,
+        "elevator_power_w": 5564.708521,
+        "eps_thickness_cm": 24.772857,
+        "eps_conductivity_w_mk": 0.05252
+      }
+    },
+    {
+      "index": 109,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 23.886802,
+        "cooling_setpoint_c": 22.441146,
+        "chiller_cop": 7.609479,
+        "boiler_efficiency": 0.760424,
+        "lighting_primary_w_m2": 8.111407,
+        "lighting_secondary_w_m2": 3.779841,
+        "infiltration_multiplier": 0.33518,
+        "elevator_power_w": 5890.795478,
+        "eps_thickness_cm": 25.790099,
+        "eps_conductivity_w_mk": 0.053972
+      }
+    },
+    {
+      "index": 110,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 17.886802,
+        "cooling_setpoint_c": 24.361146,
+        "chiller_cop": 2.466622,
+        "boiler_efficiency": 0.799102,
+        "lighting_primary_w_m2": 9.18833,
+        "lighting_secondary_w_m2": 4.221017,
+        "infiltration_multiplier": 0.398338,
+        "elevator_power_w": 6216.882434,
+        "eps_thickness_cm": 26.80734,
+        "eps_conductivity_w_mk": 0.055424
+      }
+    },
+    {
+      "index": 111,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 21.886802,
+        "cooling_setpoint_c": 25.961146,
+        "chiller_cop": 3.323765,
+        "boiler_efficiency": 0.834557,
+        "lighting_primary_w_m2": 10.265253,
+        "lighting_secondary_w_m2": 4.662194,
+        "infiltration_multiplier": 0.461496,
+        "elevator_power_w": 6542.969391,
+        "eps_thickness_cm": 27.824582,
+        "eps_conductivity_w_mk": 0.056875
+      }
+    },
+    {
+      "index": 112,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 15.886802,
+        "cooling_setpoint_c": 27.561146,
+        "chiller_cop": 4.303357,
+        "boiler_efficiency": 0.870011,
+        "lighting_primary_w_m2": 11.342176,
+        "lighting_secondary_w_m2": 5.10337,
+        "infiltration_multiplier": 0.524654,
+        "elevator_power_w": 6869.056348,
+        "eps_thickness_cm": 28.841823,
+        "eps_conductivity_w_mk": 0.058327
+      }
+    },
+    {
+      "index": 113,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 18.886802,
+        "cooling_setpoint_c": 29.161146,
+        "chiller_cop": 5.1605,
+        "boiler_efficiency": 0.905466,
+        "lighting_primary_w_m2": 12.4191,
+        "lighting_secondary_w_m2": 5.544547,
+        "infiltration_multiplier": 0.587812,
+        "elevator_power_w": 7195.143304,
+        "eps_thickness_cm": 29.859064,
+        "eps_conductivity_w_mk": 0.059779
+      }
+    },
+    {
+      "index": 114,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 22.886802,
+        "cooling_setpoint_c": 22.761146,
+        "chiller_cop": 6.017643,
+        "boiler_efficiency": 0.94092,
+        "lighting_primary_w_m2": 13.496023,
+        "lighting_secondary_w_m2": 5.985723,
+        "infiltration_multiplier": 0.654294,
+        "elevator_power_w": 7521.230261,
+        "eps_thickness_cm": 1.376306,
+        "eps_conductivity_w_mk": 0.01623
+      }
+    },
+    {
+      "index": 115,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 16.886802,
+        "cooling_setpoint_c": 24.681146,
+        "chiller_cop": 6.874786,
+        "boiler_efficiency": 0.976375,
+        "lighting_primary_w_m2": 14.572946,
+        "lighting_secondary_w_m2": 6.4269,
+        "infiltration_multiplier": 0.717451,
+        "elevator_power_w": 7861.494911,
+        "eps_thickness_cm": 2.393547,
+        "eps_conductivity_w_mk": 0.017682
+      }
+    },
+    {
+      "index": 116,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 19.886802,
+        "cooling_setpoint_c": 26.281146,
+        "chiller_cop": 7.731928,
+        "boiler_efficiency": 0.621829,
+        "lighting_primary_w_m2": 1.649869,
+        "lighting_secondary_w_m2": 6.868076,
+        "infiltration_multiplier": 0.780609,
+        "elevator_power_w": 687.581867,
+        "eps_thickness_cm": 3.445866,
+        "eps_conductivity_w_mk": 0.019133
+      }
+    },
+    {
+      "index": 117,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 21.220136,
+        "cooling_setpoint_c": 27.881146,
+        "chiller_cop": 2.589071,
+        "boiler_efficiency": 0.657284,
+        "lighting_primary_w_m2": 2.809632,
+        "lighting_secondary_w_m2": 7.309253,
+        "infiltration_multiplier": 0.843767,
+        "elevator_power_w": 1013.668824,
+        "eps_thickness_cm": 4.463107,
+        "eps_conductivity_w_mk": 0.020585
+      }
+    },
+    {
+      "index": 118,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 15.220136,
+        "cooling_setpoint_c": 29.481146,
+        "chiller_cop": 3.446214,
+        "boiler_efficiency": 0.692738,
+        "lighting_primary_w_m2": 3.886555,
+        "lighting_secondary_w_m2": 7.750429,
+        "infiltration_multiplier": 0.906925,
+        "elevator_power_w": 1339.75578,
+        "eps_thickness_cm": 5.480349,
+        "eps_conductivity_w_mk": 0.022037
+      }
+    },
+    {
+      "index": 119,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 18.220136,
+        "cooling_setpoint_c": 23.081146,
+        "chiller_cop": 4.425806,
+        "boiler_efficiency": 0.728193,
+        "lighting_primary_w_m2": 4.963478,
+        "lighting_secondary_w_m2": 0.717557,
+        "infiltration_multiplier": 0.970083,
+        "elevator_power_w": 1665.842737,
+        "eps_thickness_cm": 6.49759,
+        "eps_conductivity_w_mk": 0.023488
+      }
+    },
+    {
+      "index": 120,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 22.220136,
+        "cooling_setpoint_c": 25.001146,
+        "chiller_cop": 5.282949,
+        "boiler_efficiency": 0.763648,
+        "lighting_primary_w_m2": 6.040401,
+        "lighting_secondary_w_m2": 1.158733,
+        "infiltration_multiplier": 1.033241,
+        "elevator_power_w": 1991.929693,
+        "eps_thickness_cm": 7.514831,
+        "eps_conductivity_w_mk": 0.02494
+      }
+    },
+    {
+      "index": 121,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 16.220136,
+        "cooling_setpoint_c": 26.601146,
+        "chiller_cop": 6.140092,
+        "boiler_efficiency": 0.767164,
+        "lighting_primary_w_m2": 7.117324,
+        "lighting_secondary_w_m2": 1.59991,
+        "infiltration_multiplier": 1.096399,
+        "elevator_power_w": 2318.01665,
+        "eps_thickness_cm": 8.532073,
+        "eps_conductivity_w_mk": 0.026391
+      }
+    },
+    {
+      "index": 122,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 19.220136,
+        "cooling_setpoint_c": 28.201146,
+        "chiller_cop": 6.997235,
+        "boiler_efficiency": 0.802618,
+        "lighting_primary_w_m2": 8.194247,
+        "lighting_secondary_w_m2": 2.041086,
+        "infiltration_multiplier": 1.159557,
+        "elevator_power_w": 2644.103606,
+        "eps_thickness_cm": 9.549314,
+        "eps_conductivity_w_mk": 0.027843
+      }
+    },
+    {
+      "index": 123,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 23.220136,
+        "cooling_setpoint_c": 29.801146,
+        "chiller_cop": 7.854377,
+        "boiler_efficiency": 0.838073,
+        "lighting_primary_w_m2": 9.271171,
+        "lighting_secondary_w_m2": 2.482263,
+        "infiltration_multiplier": 1.222715,
+        "elevator_power_w": 2970.190563,
+        "eps_thickness_cm": 10.566555,
+        "eps_conductivity_w_mk": 0.029295
+      }
+    },
+    {
+      "index": 124,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 17.220136,
+        "cooling_setpoint_c": 23.401146,
+        "chiller_cop": 2.71152,
+        "boiler_efficiency": 0.873527,
+        "lighting_primary_w_m2": 10.348094,
+        "lighting_secondary_w_m2": 2.923439,
+        "infiltration_multiplier": 1.285873,
+        "elevator_power_w": 3296.27752,
+        "eps_thickness_cm": 11.583797,
+        "eps_conductivity_w_mk": 0.030793
+      }
+    },
+    {
+      "index": 125,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 20.220136,
+        "cooling_setpoint_c": 23.477946,
+        "chiller_cop": 3.568663,
+        "boiler_efficiency": 0.908982,
+        "lighting_primary_w_m2": 11.425017,
+        "lighting_secondary_w_m2": 3.364616,
+        "infiltration_multiplier": 1.34903,
+        "elevator_power_w": 3622.364476,
+        "eps_thickness_cm": 12.601038,
+        "eps_conductivity_w_mk": 0.032245
+      }
+    },
+    {
+      "index": 126,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 21.553469,
+        "cooling_setpoint_c": 25.077946,
+        "chiller_cop": 4.548255,
+        "boiler_efficiency": 0.944436,
+        "lighting_primary_w_m2": 12.50194,
+        "lighting_secondary_w_m2": 3.805792,
+        "infiltration_multiplier": 1.412188,
+        "elevator_power_w": 3948.451433,
+        "eps_thickness_cm": 13.61828,
+        "eps_conductivity_w_mk": 0.033696
+      }
+    },
+    {
+      "index": 127,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 15.553469,
+        "cooling_setpoint_c": 26.677946,
+        "chiller_cop": 5.405398,
+        "boiler_efficiency": 0.979891,
+        "lighting_primary_w_m2": 13.578863,
+        "lighting_secondary_w_m2": 4.246969,
+        "infiltration_multiplier": 1.475346,
+        "elevator_power_w": 4274.538389,
+        "eps_thickness_cm": 14.635521,
+        "eps_conductivity_w_mk": 0.035148
+      }
+    },
+    {
+      "index": 128,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 18.553469,
+        "cooling_setpoint_c": 28.277946,
+        "chiller_cop": 6.262541,
+        "boiler_efficiency": 0.625346,
+        "lighting_primary_w_m2": 14.655786,
+        "lighting_secondary_w_m2": 4.688145,
+        "infiltration_multiplier": 0.338504,
+        "elevator_power_w": 4600.625346,
+        "eps_thickness_cm": 15.652762,
+        "eps_conductivity_w_mk": 0.0366
+      }
+    },
+    {
+      "index": 129,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 22.553469,
+        "cooling_setpoint_c": 29.877946,
+        "chiller_cop": 7.119683,
+        "boiler_efficiency": 0.6608,
+        "lighting_primary_w_m2": 1.732709,
+        "lighting_secondary_w_m2": 5.129322,
+        "infiltration_multiplier": 0.401662,
+        "elevator_power_w": 4926.712302,
+        "eps_thickness_cm": 16.670004,
+        "eps_conductivity_w_mk": 0.038051
+      }
+    },
+    {
+      "index": 130,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 16.553469,
+        "cooling_setpoint_c": 23.797946,
+        "chiller_cop": 7.976826,
+        "boiler_efficiency": 0.696255,
+        "lighting_primary_w_m2": 2.892472,
+        "lighting_secondary_w_m2": 5.570498,
+        "infiltration_multiplier": 0.46482,
+        "elevator_power_w": 5252.799259,
+        "eps_thickness_cm": 17.687245,
+        "eps_conductivity_w_mk": 0.039503
+      }
+    },
+    {
+      "index": 131,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 19.553469,
+        "cooling_setpoint_c": 25.397946,
+        "chiller_cop": 2.833969,
+        "boiler_efficiency": 0.731709,
+        "lighting_primary_w_m2": 3.969395,
+        "lighting_secondary_w_m2": 6.011675,
+        "infiltration_multiplier": 0.527978,
+        "elevator_power_w": 5578.886215,
+        "eps_thickness_cm": 18.704486,
+        "eps_conductivity_w_mk": 0.040954
+      }
+    },
+    {
+      "index": 132,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 23.553469,
+        "cooling_setpoint_c": 26.997946,
+        "chiller_cop": 3.691112,
+        "boiler_efficiency": 0.770387,
+        "lighting_primary_w_m2": 5.046318,
+        "lighting_secondary_w_m2": 6.452851,
+        "infiltration_multiplier": 0.591136,
+        "elevator_power_w": 5904.973172,
+        "eps_thickness_cm": 19.721728,
+        "eps_conductivity_w_mk": 0.042406
+      }
+    },
+    {
+      "index": 133,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 17.553469,
+        "cooling_setpoint_c": 28.597946,
+        "chiller_cop": 4.670704,
+        "boiler_efficiency": 0.805841,
+        "lighting_primary_w_m2": 6.123242,
+        "lighting_secondary_w_m2": 6.894028,
+        "infiltration_multiplier": 0.657618,
+        "elevator_power_w": 6231.060128,
+        "eps_thickness_cm": 20.738969,
+        "eps_conductivity_w_mk": 0.043858
+      }
+    },
+    {
+      "index": 134,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.553469,
+        "cooling_setpoint_c": 22.197946,
+        "chiller_cop": 5.527847,
+        "boiler_efficiency": 0.841296,
+        "lighting_primary_w_m2": 7.200165,
+        "lighting_secondary_w_m2": 7.335204,
+        "infiltration_multiplier": 0.720776,
+        "elevator_power_w": 6557.147085,
+        "eps_thickness_cm": 21.756211,
+        "eps_conductivity_w_mk": 0.045309
+      }
+    },
+    {
+      "index": 135,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 20.997913,
+        "cooling_setpoint_c": 24.117946,
+        "chiller_cop": 6.38499,
+        "boiler_efficiency": 0.87675,
+        "lighting_primary_w_m2": 8.277088,
+        "lighting_secondary_w_m2": 7.776381,
+        "infiltration_multiplier": 0.783933,
+        "elevator_power_w": 6883.234041,
+        "eps_thickness_cm": 22.773452,
+        "eps_conductivity_w_mk": 0.046761
+      }
+    },
+    {
+      "index": 136,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 23.997913,
+        "cooling_setpoint_c": 25.717946,
+        "chiller_cop": 7.242132,
+        "boiler_efficiency": 0.912205,
+        "lighting_primary_w_m2": 9.354011,
+        "lighting_secondary_w_m2": 0.743509,
+        "infiltration_multiplier": 0.847091,
+        "elevator_power_w": 7209.320998,
+        "eps_thickness_cm": 23.790693,
+        "eps_conductivity_w_mk": 0.048212
+      }
+    },
+    {
+      "index": 137,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 17.997913,
+        "cooling_setpoint_c": 27.317946,
+        "chiller_cop": 2.099275,
+        "boiler_efficiency": 0.94766,
+        "lighting_primary_w_m2": 10.430934,
+        "lighting_secondary_w_m2": 1.184685,
+        "infiltration_multiplier": 0.910249,
+        "elevator_power_w": 7535.407954,
+        "eps_thickness_cm": 24.807935,
+        "eps_conductivity_w_mk": 0.049664
+      }
+    },
+    {
+      "index": 138,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 21.997913,
+        "cooling_setpoint_c": 28.917946,
+        "chiller_cop": 2.956418,
+        "boiler_efficiency": 0.983114,
+        "lighting_primary_w_m2": 11.507857,
+        "lighting_secondary_w_m2": 1.625862,
+        "infiltration_multiplier": 0.973407,
+        "elevator_power_w": 7875.672605,
+        "eps_thickness_cm": 25.825176,
+        "eps_conductivity_w_mk": 0.051116
+      }
+    },
+    {
+      "index": 139,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_renk_6mm",
+        "heating_setpoint_c": 15.997913,
+        "cooling_setpoint_c": 22.517946,
+        "chiller_cop": 3.813561,
+        "boiler_efficiency": 0.628569,
+        "lighting_primary_w_m2": 12.58478,
+        "lighting_secondary_w_m2": 2.067038,
+        "infiltration_multiplier": 1.036565,
+        "elevator_power_w": 701.759561,
+        "eps_thickness_cm": 26.842418,
+        "eps_conductivity_w_mk": 0.052567
+      }
+    },
+    {
+      "index": 140,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 18.997913,
+        "cooling_setpoint_c": 24.437946,
+        "chiller_cop": 4.793153,
+        "boiler_efficiency": 0.664023,
+        "lighting_primary_w_m2": 13.661703,
+        "lighting_secondary_w_m2": 2.508214,
+        "infiltration_multiplier": 1.099723,
+        "elevator_power_w": 1027.846518,
+        "eps_thickness_cm": 27.859659,
+        "eps_conductivity_w_mk": 0.054019
+      }
+    },
+    {
+      "index": 141,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 22.997913,
+        "cooling_setpoint_c": 26.037946,
+        "chiller_cop": 5.650296,
+        "boiler_efficiency": 0.699478,
+        "lighting_primary_w_m2": 14.738626,
+        "lighting_secondary_w_m2": 2.949391,
+        "infiltration_multiplier": 1.162881,
+        "elevator_power_w": 1353.933474,
+        "eps_thickness_cm": 28.8769,
+        "eps_conductivity_w_mk": 0.055471
+      }
+    },
+    {
+      "index": 142,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 16.997913,
+        "cooling_setpoint_c": 27.637946,
+        "chiller_cop": 6.507439,
+        "boiler_efficiency": 0.734932,
+        "lighting_primary_w_m2": 1.815549,
+        "lighting_secondary_w_m2": 3.390567,
+        "infiltration_multiplier": 1.226039,
+        "elevator_power_w": 1680.020431,
+        "eps_thickness_cm": 29.894142,
+        "eps_conductivity_w_mk": 0.056922
+      }
+    },
+    {
+      "index": 143,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.997913,
+        "cooling_setpoint_c": 29.237946,
+        "chiller_cop": 7.364581,
+        "boiler_efficiency": 0.77361,
+        "lighting_primary_w_m2": 2.975313,
+        "lighting_secondary_w_m2": 3.831744,
+        "infiltration_multiplier": 1.289197,
+        "elevator_power_w": 2006.107387,
+        "eps_thickness_cm": 1.411383,
+        "eps_conductivity_w_mk": 0.058374
+      }
+    },
+    {
+      "index": 144,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 21.331247,
+        "cooling_setpoint_c": 22.837946,
+        "chiller_cop": 2.221724,
+        "boiler_efficiency": 0.809065,
+        "lighting_primary_w_m2": 4.052236,
+        "lighting_secondary_w_m2": 4.27292,
+        "infiltration_multiplier": 1.352355,
+        "elevator_power_w": 2332.194344,
+        "eps_thickness_cm": 2.428624,
+        "eps_conductivity_w_mk": 0.059825
+      }
+    },
+    {
+      "index": 145,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_triple_lowe_4mm",
+        "heating_setpoint_c": 15.331247,
+        "cooling_setpoint_c": 24.757946,
+        "chiller_cop": 3.078867,
+        "boiler_efficiency": 0.844519,
+        "lighting_primary_w_m2": 5.129159,
+        "lighting_secondary_w_m2": 4.714097,
+        "infiltration_multiplier": 1.415512,
+        "elevator_power_w": 2658.2813,
+        "eps_thickness_cm": 3.480943,
+        "eps_conductivity_w_mk": 0.016277
+      }
+    },
+    {
+      "index": 146,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_argon_4mm",
+        "heating_setpoint_c": 18.331247,
+        "cooling_setpoint_c": 26.357946,
+        "chiller_cop": 3.93601,
+        "boiler_efficiency": 0.879974,
+        "lighting_primary_w_m2": 6.206082,
+        "lighting_secondary_w_m2": 5.155273,
+        "infiltration_multiplier": 1.47867,
+        "elevator_power_w": 2984.368257,
+        "eps_thickness_cm": 4.498184,
+        "eps_conductivity_w_mk": 0.017729
+      }
+    },
+    {
+      "index": 147,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 22.331247,
+        "cooling_setpoint_c": 27.957946,
+        "chiller_cop": 4.075952,
+        "boiler_efficiency": 0.915428,
+        "lighting_primary_w_m2": 7.283005,
+        "lighting_secondary_w_m2": 5.59645,
+        "infiltration_multiplier": 0.341828,
+        "elevator_power_w": 3310.455213,
+        "eps_thickness_cm": 5.515426,
+        "eps_conductivity_w_mk": 0.01918
+      }
+    },
+    {
+      "index": 148,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_lowe_4mm",
+        "heating_setpoint_c": 16.331247,
+        "cooling_setpoint_c": 29.557946,
+        "chiller_cop": 4.933095,
+        "boiler_efficiency": 0.950883,
+        "lighting_primary_w_m2": 8.359928,
+        "lighting_secondary_w_m2": 6.037626,
+        "infiltration_multiplier": 0.404986,
+        "elevator_power_w": 3636.54217,
+        "eps_thickness_cm": 6.532667,
+        "eps_conductivity_w_mk": 0.020632
+      }
+    },
+    {
+      "index": 149,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_snerji_4mm",
+        "heating_setpoint_c": 19.331247,
+        "cooling_setpoint_c": 23.157946,
+        "chiller_cop": 5.790237,
+        "boiler_efficiency": 0.986337,
+        "lighting_primary_w_m2": 9.436851,
+        "lighting_secondary_w_m2": 6.478803,
+        "infiltration_multiplier": 0.468144,
+        "elevator_power_w": 3962.629126,
+        "eps_thickness_cm": 7.549909,
+        "eps_conductivity_w_mk": 0.022083
+      }
+    },
+    {
+      "index": 150,
+      "role": "sample",
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 23.331247,
+        "cooling_setpoint_c": 23.541946,
+        "chiller_cop": 6.64738,
+        "boiler_efficiency": 0.631792,
+        "lighting_primary_w_m2": 10.513774,
+        "lighting_secondary_w_m2": 6.919979,
+        "infiltration_multiplier": 0.531302,
+        "elevator_power_w": 4288.716083,
+        "eps_thickness_cm": 8.56715,
+        "eps_conductivity_w_mk": 0.023535
       }
     }
   ]

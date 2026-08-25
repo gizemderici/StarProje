@@ -144,5 +144,34 @@ class UniquenessReportTests(unittest.TestCase):
         self.assertEqual(different["unique_result_count"], 2)
 
 
+
+class SamplerSelectionTests(unittest.TestCase):
+    def test_sampler_choice_is_recorded_not_silent(self) -> None:
+        # Ornekleyici yorumlayiciya gore degisir; hangisinin kullanildigi
+        # design.json icine yazilmazsa calisma tekrar uretilemez.
+        from engine.sampling import available_sampler, build_design, write_design
+
+        build_design(count=8)
+        self.assertIn(build_design.last_sampler, ("sobol", "halton"))
+        self.assertEqual(build_design.last_sampler, available_sampler())
+
+        with tempfile.TemporaryDirectory() as temp:
+            path = write_design(build_design(count=8), Path(temp) / "design.json", 7)
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        self.assertIn(payload["sampler"], ("sobol", "halton"))
+
+    def test_halton_can_be_forced_without_scipy(self) -> None:
+        from engine.sampling import build_design
+
+        design = build_design(count=8, sampler="halton")
+        self.assertEqual(build_design.last_sampler, "halton")
+        self.assertEqual(len(design), 9)
+
+    def test_unknown_sampler_is_rejected(self) -> None:
+        from engine.sampling import build_design
+
+        with self.assertRaises(ValueError):
+            build_design(count=4, sampler="rastgele")
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,129 @@
+{
+  "energy_baseline": {
+    "source": "data/baseline_v1 (Faz 1 onarimi sonrasi taban kosusu)",
+    "measured": false,
+    "site_energy_gj": 1920.0,
+    "site_energy_kwh": 533333.3,
+    "total_area_m2": 4246.18,
+    "occupant_count": 201.7,
+    "hdd": 1782.5,
+    "cdd": 557.5,
+    "notice": "Simulasyon tabanli referans senaryo. Olculmus taban cizgisi degildir; model faturaya kalibre edilmemistir."
+  },
+  "significant_energy_uses": {
+    "threshold_percent": 80.0,
+    "total_gj": 1920.01,
+    "significant_uses": [
+      "Sogutma",
+      "Ic ekipman",
+      "Fanlar"
+    ],
+    "significant_share_percent": 84.4,
+    "uses": [
+      {
+        "name": "Cooling",
+        "label": "Sogutma",
+        "energy_gj": 1119.56,
+        "share_percent": 58.3,
+        "cumulative_percent": 58.3,
+        "significant": true
+      },
+      {
+        "name": "Interior Equipment",
+        "label": "Ic ekipman",
+        "energy_gj": 261.13,
+        "share_percent": 13.6,
+        "cumulative_percent": 71.9,
+        "significant": true
+      },
+      {
+        "name": "Fans",
+        "label": "Fanlar",
+        "energy_gj": 239.9,
+        "share_percent": 12.5,
+        "cumulative_percent": 84.4,
+        "significant": true
+      },
+      {
+        "name": "Interior Lighting",
+        "label": "Ic aydinlatma",
+        "energy_gj": 230.27,
+        "share_percent": 12.0,
+        "cumulative_percent": 96.4,
+        "significant": false
+      },
+      {
+        "name": "Heating",
+        "label": "Isitma",
+        "energy_gj": 46.2,
+        "share_percent": 2.4,
+        "cumulative_percent": 98.8,
+        "significant": false
+      },
+      {
+        "name": "Pumps",
+        "label": "Pompalar",
+        "energy_gj": 22.95,
+        "share_percent": 1.2,
+        "cumulative_percent": 100.0,
+        "significant": false
+      }
+    ]
+  },
+  "climate": {
+    "heating_base_c": 18.0,
+    "cooling_base_c": 22.0,
+    "hdd": 1782.55,
+    "cdd": 557.47,
+    "monthly_hdd": [
+      372.78,
+      301.47,
+      278.69,
+      150.13,
+      78.28,
+      11.33,
+      0.0,
+      0.17,
+      6.74,
+      96.26,
+      189.17,
+      297.52
+    ],
+    "monthly_cdd": [
+      0.0,
+      0.0,
+      0.0,
+      10.19,
+      24.92,
+      75.05,
+      189.99,
+      171.72,
+      71.94,
+      12.05,
+      1.6,
+      0.0
+    ],
+    "hours_used": 8760,
+    "mean_temperature_c": 15.99
+  },
+  "baseline_indicators": [
+    {
+      "key": "eui_kwh_m2",
+      "label": "Birim alan basina yillik enerji",
+      "value": 125.6031,
+      "unit": "kWh/m2-yil"
+    },
+    {
+      "key": "energy_per_occupant_kwh",
+      "label": "Kisi basina yillik enerji",
+      "value": 2643.6668,
+      "unit": "kWh/kisi-yil"
+    },
+    {
+      "key": "eui_per_degree_day",
+      "label": "Derece-gun normalize gosterge",
+      "value": 0.0537,
+      "unit": "kWh/m2-DG"
+    }
+  ]
+}
