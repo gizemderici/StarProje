@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>set_thermostat_setpoints</name>
+  <uid>3a9deabd-2e13-4173-ac75-eecaae12e792</uid>
+  <version_id>7e2db8b0-68f3-446c-85b6-c7c538fc59ff</version_id>
+  <version_modified>2026-08-25T12:00:00Z</version_modified>
+  <xml_checksum>00000000</xml_checksum>
+  <class_name>SetThermostatSetpoints</class_name>
+  <display_name>Set Thermostat Setpoints</display_name>
+  <description>Applies constant heating and cooling setpoints to every thermostat in the model.</description>
+  <modeler_description>Replaces thermostat schedules with constant schedules so the dead band is defined by the arguments.</modeler_description>
+  <arguments>
+    <argument><name>heating_setpoint_c</name><display_name>Heating setpoint (C)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>22.0</default_value></argument>
+    <argument><name>cooling_setpoint_c</name><display_name>Cooling setpoint (C)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>24.0</default_value></argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags><tag>HVAC.HVAC Controls</tag></tags>
+  <attributes>
+    <attribute><name>Measure Type</name><value>ModelMeasure</value><datatype>string</datatype></attribute>
+    <attribute><name>Measure Language</name><value>Ruby</value><datatype>string</datatype></attribute>
+  </attributes>
+  <files>
+    <file><filename>README.md</filename><filetype>md</filetype><usage_type>readme</usage_type><checksum>00000000</checksum></file>
+    <file>
+      <version><software_program>OpenStudio</software_program><identifier>3.10.0</identifier><min_compatible>3.10.0</min_compatible></version>
+      <filename>measure.rb</filename><filetype>rb</filetype><usage_type>script</usage_type><checksum>00000000</checksum>
+    </file>
+  </files>
+</measure>

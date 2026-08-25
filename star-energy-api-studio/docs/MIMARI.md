@@ -22,7 +22,9 @@ ModelRepository
 | HTTP API | `api_server.py`, `api_layer/` | Sürümlü `/api/v1` uç noktaları ve istek doğrulaması. |
 | Servis | `services/openstudio_service.py` | OpenStudio SDK adaptörü, OSW hazırlama ve EnergyPlus simülasyon yönetimi. |
 | OpenStudio adaptörü | `integrations/OpenStudio/model_api_worker.py` | OSM'yi resmi `VersionTranslator` API'siyle açıp JSON izdüşümü üretir. |
-| Simülasyon adaptörü | `integrations/OpenStudio/simulation_api_worker.py` | EPS katmanını resmi SDK ile yerinde değiştirip EnergyPlus girdisi üretir. |
+| Simülasyon | `engine/openstudio_runner.py` | Senaryoyu OSW adımlarına çevirir, OpenStudio CLI ile paralel çalıştırır. |
+| Parametre kaydı | `engine/parameters.py` | Karar değişkenlerinin tek doğruluk kaynağı; OSW adımları, doğrulama ve tasarım uzayı buradan üretilir. |
+| Model onarımı | `integrations/OpenStudio/model_repair_worker.py` | Faz 1 kusurlarını resmi SDK ile giderip onarılmış modeli yazar. |
 | Model deposu | `model_store/`, `data/model_store/models.json` | Dışarıya dosya yolu vermeden model kimliğini izinli dosyaya çözer. |
 | Analiz | `engine/` | SQL sonuçları, hızlı tahmin ve OSW/CLI yardımcıları. |
 

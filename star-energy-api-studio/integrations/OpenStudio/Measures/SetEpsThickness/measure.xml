@@ -10,7 +10,6 @@
   <display_name>Set EPS Thickness</display_name>
   <description>Changes the EPS layer of a named opaque construction before simulation.</description>
   <modeler_description>Edits the target construction in place so all existing references use the new EPS layer.</modeler_description>
-  <measure_type>ModelMeasure</measure_type>
   <arguments>
     <argument><name>target_construction</name><display_name>Target construction</display_name><type>String</type><required>true</required><model_dependent>false</model_dependent><default_value>duvr_std_eps</default_value></argument>
     <argument><name>eps_thickness_cm</name><display_name>EPS thickness (cm)</display_name><type>Double</type><required>true</required><model_dependent>false</model_dependent><default_value>10.0</default_value></argument>

@@ -63,12 +63,15 @@ class SetEpsThickness < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    layers = construction.layers.to_a
+    # construction.layers OpenStudio 3.11'de donmus (frozen) bir dizi dondurur;
+    # dogrudan yazmak 'can't modify frozen Array' hatasi verir.
+    layers = construction.layers.to_a.dup
     eps_indices = layers.each_index.select { |index| layers[index].nameString.downcase.include?('eps') }
     if eps_indices.empty?
       runner.registerError("No EPS layer was found in construction: #{target_name}")
       return false
     end
+    replaced_names = eps_indices.map { |index| layers[index].nameString }
 
     eps = OpenStudio::Model::StandardOpaqueMaterial.new(model)
     eps.setName(format('eps %.2f cm', thickness_cm))
@@ -79,13 +82,18 @@ class SetEpsThickness < OpenStudio::Measure::ModelMeasure
     eps.setSpecificHeat(specific_heat)
 
     eps_indices.each { |index| layers[index] = eps }
-    construction.setLayers(layers)
-    construction.setName(format('%s_alt_%gcm', target_name, thickness_cm))
+    unless construction.setLayers(layers)
+      runner.registerError("Could not update layers of #{target_name}.")
+      return false
+    end
+    # Konstruksiyon YENIDEN ADLANDIRILMAZ. Onceki surum
+    # "#{target_name}_alt_#{thickness}cm" adini veriyordu; bu, measure'i idempotent
+    # olmaktan cikariyor ve ikinci calistirmada hedef bulunamiyordu.
 
     runner.registerValue('eps_thickness_cm', thickness_cm, 'cm')
     runner.registerValue('eps_conductivity_w_mk', conductivity, 'W/m-K')
     runner.registerFinalCondition(
-      "Updated #{eps_indices.length} EPS layer(s) in #{target_name}; all existing references remain connected."
+      "Replaced #{replaced_names.join(', ')} in #{target_name} with #{eps.nameString}; "         'construction name and all existing references unchanged.'
     )
     true
   rescue StandardError => e

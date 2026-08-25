@@ -1,29 +1,99 @@
+"""OSW uretimi ve OpenStudio CLI ile kosu yonetimi.
+
+Faz 2 oncesinde bu modul yalnizca EPS kalinligini tasiyordu ve kosu klasorlerini
+"eps_10cm" gibi adlandiriyordu. Artik senaryolar engine.parameters icindeki
+kayittan beslenir; yeni bir karar degiskeni eklemek icin bu dosyayi degistirmek
+gerekmez.
+"""
+
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import shutil
 import subprocess
-from dataclasses import asdict, dataclass
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Mapping
+
+from engine.parameters import (
+    BY_KEY,
+    MEASURE_ORDER,
+    REPORTING_MEASURES,
+    baseline_parameters,
+    validate_parameters,
+)
+
+DEFAULT_SEED = "data/input/gsf_fng_6mayis_onarilmis.osm"
+DEFAULT_WEATHER = "data/input/weather_tmyx.epw"
 
 
-@dataclass(slots=True)
+@dataclass(frozen=True)
 class OpenStudioCase:
-    thickness_cm: float
-    conductivity_w_mk: float = 0.039
-    density_kg_m3: float = 16.0
-    specific_heat_j_kgk: float = 1250.0
-    target_construction: str = "duvr_std_eps"
+    """Tek bir simulasyon senaryosu.
 
-    @property
-    def slug(self) -> str:
-        value = f"{self.thickness_cm:g}".replace(".", "_")
-        return f"eps_{value}cm"
+    parameters yalnizca referanstan sapan degerleri icerebilir; eksik kalanlar
+    OSW uretilirken referans degerle doldurulur.
+    """
+
+    parameters: Mapping[str, float | str] = field(default_factory=dict)
+    case_id: str = ""
+
+    def __post_init__(self) -> None:
+        validated = validate_parameters(self.parameters)
+        object.__setattr__(self, "parameters", validated)
+        if not self.case_id:
+            object.__setattr__(self, "case_id", self._derive_id(self.resolved()))
+
+    @staticmethod
+    def _derive_id(resolved: Mapping[str, float | str]) -> str:
+        """Parametrelerden turetilen kararli kimlik.
+
+        Ayni parametre kumesi her zaman ayni klasore yazar; boylece kesintiye
+        ugrayan bir toplu kosu kaldigi yerden devam edebilir.
+        """
+        canonical = json.dumps(dict(sorted(resolved.items())), sort_keys=True)
+        digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:12]
+        return "case_" + digest
+
+    def resolved(self) -> dict[str, float | str]:
+        """Eksik parametreler referans degerle tamamlanmis tam kume."""
+        values = baseline_parameters()
+        values.update(self.parameters)
+        return values
+
+    def changes_from_baseline(self) -> dict[str, float | str]:
+        baseline = baseline_parameters()
+        return {
+            key: value
+            for key, value in self.resolved().items()
+            if value != baseline[key]
+        }
+
+    def label(self) -> str:
+        """Insan tarafindan okunabilir kisa ozet."""
+        changes = self.changes_from_baseline()
+        if not changes:
+            return "referans"
+        parts = []
+        for key, value in sorted(changes.items()):
+            spec = BY_KEY[key]
+            text = value if isinstance(value, str) else format(value, "g")
+            parts.append(spec.label + "=" + text + spec.unit)
+        return " | ".join(parts)
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "case_id": self.case_id,
+            "label": self.label(),
+            "parameters": self.resolved(),
+            "changes": self.changes_from_baseline(),
+        }
 
 
-@dataclass(slots=True)
+@dataclass(frozen=True, slots=True)
 class RunResult:
     case: OpenStudioCase
     success: bool
@@ -43,19 +113,43 @@ def find_openstudio(explicit_path: str | Path | None = None) -> Path | None:
     resolved = shutil.which("openstudio")
     if resolved:
         candidates.append(Path(resolved))
-    program_files = Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
+    program_files = Path(os.environ.get("ProgramFiles", "C:/Program Files"))
     if program_files.exists():
-        candidates.extend(
-            sorted(
-                program_files.glob("OpenStudio-*/bin/openstudio.exe"),
-                reverse=True,
-            )
+        # Kurulum klasoru "OpenStudio-3.11.0" veya "openstudio-3.11.0" olabilir.
+        patterns = (
+            "OpenStudio-*/bin/openstudio.exe",
+            "openstudio-*/bin/openstudio.exe",
         )
+        for pattern in patterns:
+            candidates.extend(sorted(program_files.glob(pattern), reverse=True))
         candidates.append(program_files / "OpenStudio/bin/openstudio.exe")
     for path in candidates:
         if path.is_file():
             return path.resolve()
     return None
+
+
+def build_steps(case: OpenStudioCase) -> list[dict[str, object]]:
+    """Senaryoyu OSW adimlarina cevirir.
+
+    Tum measure'lar her kosuda calisir; belirtilmeyen parametreler referans
+    degerle doldurulur. Boylece sonuc, tohum modelin o anki durumuna degil
+    yalnizca senaryo tanimina baglidir.
+    """
+    values = case.resolved()
+    grouped: dict[str, dict[str, object]] = {}
+    for spec in BY_KEY.values():
+        grouped.setdefault(spec.measure, {})[spec.argument] = values[spec.key]
+
+    steps: list[dict[str, object]] = [
+        {"measure_dir_name": name, "arguments": grouped[name]}
+        for name in MEASURE_ORDER
+        if name in grouped
+    ]
+    steps.extend(
+        {"measure_dir_name": name, "arguments": {}} for name in REPORTING_MEASURES
+    )
+    return steps
 
 
 def build_workflow(
@@ -65,9 +159,13 @@ def build_workflow(
     measures_root: Path,
     workflow_dir: Path,
 ) -> Path:
-    for required in (seed_file, weather_file, measures_root / "SetEpsThickness"):
-        if not required.exists():
-            raise FileNotFoundError(f"Gerekli OpenStudio girdisi bulunamadı: {required}")
+    required = [seed_file, weather_file]
+    required += [measures_root / name for name in MEASURE_ORDER]
+    required += [measures_root / name for name in REPORTING_MEASURES]
+    for item in required:
+        if not item.exists():
+            raise FileNotFoundError("Gerekli OpenStudio girdisi bulunamadi: " + str(item))
+
     workflow_dir.mkdir(parents=True, exist_ok=True)
     workflow_path = workflow_dir / "workflow.osw"
     payload = {
@@ -75,21 +173,13 @@ def build_workflow(
         "weather_file": str(weather_file.resolve()),
         "measure_paths": [str(measures_root.resolve())],
         "run_directory": str((workflow_dir / "run").resolve()),
-        "steps": [
-            {
-                "measure_dir_name": "SetEpsThickness",
-                "arguments": {
-                    "target_construction": case.target_construction,
-                    "eps_thickness_cm": case.thickness_cm,
-                    "conductivity_w_mk": case.conductivity_w_mk,
-                    "density_kg_m3": case.density_kg_m3,
-                    "specific_heat_j_kgk": case.specific_heat_j_kgk,
-                },
-            }
-        ],
+        "steps": build_steps(case),
     }
     workflow_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    (workflow_dir / "case.json").write_text(
+        json.dumps(case.as_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
     )
     return workflow_path
 
@@ -98,31 +188,37 @@ def prepare_workflows(
     cases: Iterable[OpenStudioCase],
     project_root: Path,
     output_root: Path,
+    seed_file: Path | None = None,
+    weather_file: Path | None = None,
 ) -> list[Path]:
-    workflows = []
-    for case in cases:
-        workflows.append(
-            build_workflow(
-                case=case,
-                seed_file=project_root / "data/input/bina_orijinal.osm",
-                weather_file=project_root / "data/input/weather.epw",
-                measures_root=project_root / "integrations/OpenStudio/Measures",
-                workflow_dir=output_root / case.slug,
-            )
+    return [
+        build_workflow(
+            case=case,
+            seed_file=seed_file or project_root / DEFAULT_SEED,
+            weather_file=weather_file or project_root / DEFAULT_WEATHER,
+            measures_root=project_root / "integrations/OpenStudio/Measures",
+            workflow_dir=output_root / case.case_id,
         )
-    return workflows
+        for case in cases
+    ]
 
 
-def run_case(openstudio_exe: Path, workflow_path: Path, case: OpenStudioCase) -> RunResult:
+def run_case(
+    openstudio_exe: Path, workflow_path: Path, case: OpenStudioCase
+) -> RunResult:
     if not openstudio_exe.is_file():
-        raise FileNotFoundError(f"OpenStudio CLI bulunamadı: {openstudio_exe}")
+        raise FileNotFoundError("OpenStudio CLI bulunamadi: " + str(openstudio_exe))
     run_root = workflow_path.parent
+    options: dict[str, object] = {}
+    if os.name == "nt":
+        options["creationflags"] = subprocess.CREATE_NO_WINDOW
     completed = subprocess.run(
         [str(openstudio_exe), "run", "-w", str(workflow_path)],
         cwd=run_root,
         capture_output=True,
         text=True,
         check=False,
+        **options,
     )
     (run_root / "openstudio_stdout.log").write_text(
         completed.stdout, encoding="utf-8", errors="replace"
@@ -130,11 +226,14 @@ def run_case(openstudio_exe: Path, workflow_path: Path, case: OpenStudioCase) ->
     (run_root / "openstudio_stderr.log").write_text(
         completed.stderr, encoding="utf-8", errors="replace"
     )
-    sql_candidates = [
-        run_root / "run/eplusout.sql",
-        run_root / "eplusout.sql",
-    ]
-    sql_path = next((path for path in sql_candidates if path.exists()), None)
+    sql_path = next(
+        (
+            path
+            for path in (run_root / "run/eplusout.sql", run_root / "eplusout.sql")
+            if path.exists()
+        ),
+        None,
+    )
     success = completed.returncode == 0 and sql_path is not None
     return RunResult(
         case=case,
@@ -144,11 +243,29 @@ def run_case(openstudio_exe: Path, workflow_path: Path, case: OpenStudioCase) ->
         sql_path=sql_path,
         return_code=completed.returncode,
         message=(
-            "OpenStudio koşusu tamamlandı."
+            "OpenStudio kosusu tamamlandi."
             if success
-            else "OpenStudio koşusu başarısız; log dosyalarını inceleyin."
+            else "OpenStudio kosusu basarisiz; log dosyalarini inceleyin."
         ),
     )
+
+
+def _run_one(payload: tuple[str, str, dict]) -> dict:
+    """ProcessPoolExecutor icin ust duzey sarmalayici; pickle edilebilir olmali."""
+    exe, workflow, case_payload = payload
+    case = OpenStudioCase(
+        parameters=case_payload["parameters"], case_id=case_payload["case_id"]
+    )
+    result = run_case(Path(exe), Path(workflow), case)
+    return {
+        "case": case.as_dict(),
+        "success": result.success,
+        "run_dir": str(result.run_dir),
+        "workflow_path": str(result.workflow_path),
+        "sql_path": str(result.sql_path) if result.sql_path else None,
+        "return_code": result.return_code,
+        "message": result.message,
+    }
 
 
 def run_cases(
@@ -156,33 +273,59 @@ def run_cases(
     project_root: Path,
     output_root: Path,
     openstudio_exe: Path | None = None,
-) -> list[RunResult]:
+    seed_file: Path | None = None,
+    weather_file: Path | None = None,
+    max_workers: int | None = None,
+    skip_completed: bool = True,
+) -> list[dict]:
+    """Senaryolari paralel calistirir ve manifest yazar.
+
+    skip_completed acikken SQL ciktisi zaten olusmus senaryolar atlanir; boylece
+    kesintiye ugrayan toplu kosu kaldigi yerden devam eder.
+    """
     executable = find_openstudio(openstudio_exe)
     if executable is None:
         raise FileNotFoundError(
-            "OpenStudio CLI bulunamadı. OPENSTUDIO_EXE ortam değişkenini ayarlayın."
+            "OpenStudio CLI bulunamadi. OPENSTUDIO_EXE ortam degiskenini ayarlayin."
         )
-    workflows = prepare_workflows(cases, project_root, output_root)
-    results = [
-        run_case(executable, workflow, case)
-        for case, workflow in zip(cases, workflows)
-    ]
-    manifest = {
-        "openstudio_exe": str(executable),
-        "runs": [
-            {
-                "case": asdict(result.case),
-                "success": result.success,
-                "run_dir": str(result.run_dir),
-                "workflow_path": str(result.workflow_path),
-                "sql_path": str(result.sql_path) if result.sql_path else None,
-                "return_code": result.return_code,
-                "message": result.message,
-            }
-            for result in results
-        ],
-    }
+    workflows = prepare_workflows(
+        cases, project_root, output_root, seed_file, weather_file
+    )
+
+    pending: list[tuple[str, str, dict]] = []
+    results: list[dict] = []
+    for case, workflow in zip(cases, workflows):
+        existing = workflow.parent / "run/eplusout.sql"
+        if skip_completed and existing.exists():
+            results.append(
+                {
+                    "case": case.as_dict(),
+                    "success": True,
+                    "run_dir": str(workflow.parent),
+                    "workflow_path": str(workflow),
+                    "sql_path": str(existing),
+                    "return_code": 0,
+                    "message": "Onceki kosu bulundu, atlandi.",
+                }
+            )
+            continue
+        pending.append((str(executable), str(workflow), case.as_dict()))
+
+    if pending:
+        workers = max_workers or max(1, (os.cpu_count() or 2) - 1)
+        if workers == 1 or len(pending) == 1:
+            results.extend(_run_one(item) for item in pending)
+        else:
+            with ProcessPoolExecutor(max_workers=workers) as pool:
+                results.extend(pool.map(_run_one, pending))
+
+    output_root.mkdir(parents=True, exist_ok=True)
     (output_root / "run_manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(
+            {"openstudio_exe": str(executable), "runs": results},
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
     )
     return results

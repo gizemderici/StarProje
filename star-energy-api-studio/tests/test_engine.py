@@ -60,18 +60,60 @@ class EstimatorTests(unittest.TestCase):
 
 
 class WorkflowTests(unittest.TestCase):
-    def test_workflow_uses_eps_measure(self) -> None:
+    def _build(self, case: OpenStudioCase) -> dict:
         with tempfile.TemporaryDirectory() as temp:
             workflow = build_workflow(
-                OpenStudioCase(thickness_cm=12),
-                ROOT / "data/input/bina_orijinal.osm",
-                ROOT / "data/input/weather.epw",
+                case,
+                ROOT / "data/input/gsf_fng_6mayis_onarilmis.osm",
+                ROOT / "data/input/weather_tmyx.epw",
                 ROOT / "integrations/OpenStudio/Measures",
                 Path(temp),
             )
-            payload = json.loads(workflow.read_text(encoding="utf-8"))
-        self.assertEqual(payload["steps"][0]["measure_dir_name"], "SetEpsThickness")
+            return json.loads(workflow.read_text(encoding="utf-8"))
+
+    def test_workflow_contains_every_measure_in_order(self) -> None:
+        payload = self._build(OpenStudioCase({"eps_thickness_cm": 12}))
+        names = [step["measure_dir_name"] for step in payload["steps"]]
+        self.assertEqual(
+            names,
+            [
+                "SetEpsThickness",
+                "SetWindowConstruction",
+                "SetThermostatSetpoints",
+                "SetPlantEfficiency",
+                "SetLightingPower",
+                "CreateCSVOutput",
+                "OpenStudioResults",
+            ],
+        )
         self.assertEqual(payload["steps"][0]["arguments"]["eps_thickness_cm"], 12)
+
+    def test_unspecified_parameters_fall_back_to_baseline(self) -> None:
+        payload = self._build(OpenStudioCase({"eps_thickness_cm": 12}))
+        setpoints = next(
+            step for step in payload["steps"]
+            if step["measure_dir_name"] == "SetThermostatSetpoints"
+        )
+        self.assertEqual(setpoints["arguments"]["heating_setpoint_c"], 22.0)
+        self.assertEqual(setpoints["arguments"]["cooling_setpoint_c"], 24.0)
+
+    def test_case_id_is_stable_and_order_independent(self) -> None:
+        first = OpenStudioCase({"chiller_cop": 4.0, "cooling_setpoint_c": 26.0})
+        second = OpenStudioCase({"cooling_setpoint_c": 26.0, "chiller_cop": 4.0})
+        self.assertEqual(first.case_id, second.case_id)
+        self.assertNotEqual(first.case_id, OpenStudioCase().case_id)
+
+    def test_unknown_parameter_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            OpenStudioCase({"bilinmeyen_parametre": 1.0})
+
+    def test_out_of_range_parameter_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            OpenStudioCase({"chiller_cop": 99.0})
+
+    def test_unknown_window_construction_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            OpenStudioCase({"window_construction": "olmayan_cam"})
 
 
 class StarStudyTests(unittest.TestCase):

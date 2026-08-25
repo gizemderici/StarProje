@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from dataclasses import asdict
 from pathlib import Path
 
 from engine.estimator import EstimatorAssumptions, export_results, run_parametric
@@ -25,6 +24,16 @@ def parse_args() -> argparse.Namespace:
         choices=("quick", "openstudio"),
         default="quick",
         help="quick: anlık kalibre tahmini, openstudio: gerçek EnergyPlus koşusu",
+    )
+    parser.add_argument(
+        "--scenarios",
+        help="Senaryo listesi iceren JSON dosyasi. Verilirse --thicknesses yok sayilir.",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=None,
+        help="Paralel kosu sayisi (varsayilan: cekirdek sayisi - 1).",
     )
     parser.add_argument(
         "--thicknesses",
@@ -59,20 +68,31 @@ def quick_simulation(args: argparse.Namespace) -> None:
         )
 
 
-def openstudio_simulation(args: argparse.Namespace) -> None:
-    cases = [
+def _cases_from_args(args: argparse.Namespace) -> list[OpenStudioCase]:
+    """Senaryo dosyasi verildiyse onu, verilmediyse EPS taramasini kullanir."""
+    if args.scenarios:
+        payload = json.loads(Path(args.scenarios).read_text(encoding="utf-8"))
+        items = payload["scenarios"] if isinstance(payload, dict) else payload
+        return [OpenStudioCase(parameters=item) for item in items]
+    return [
         OpenStudioCase(
-            thickness_cm=value,
-            conductivity_w_mk=args.conductivity,
+            parameters={
+                "eps_thickness_cm": value,
+                "eps_conductivity_w_mk": args.conductivity,
+            }
         )
         for value in args.thicknesses
     ]
+
+
+def openstudio_simulation(args: argparse.Namespace) -> None:
+    cases = _cases_from_args(args)
     output_root = GENERATED / "openstudio_runs"
     if args.prepare_only:
         workflows = prepare_workflows(cases, ROOT, output_root)
         manifest = {
             "mode": "openstudio_prepare_only",
-            "cases": [asdict(case) for case in cases],
+            "cases": [case.as_dict() for case in cases],
             "workflows": [str(path) for path in workflows],
         }
         (output_root / "prepared_workflows.json").write_text(
@@ -87,10 +107,11 @@ def openstudio_simulation(args: argparse.Namespace) -> None:
         project_root=ROOT,
         output_root=output_root,
         openstudio_exe=Path(args.openstudio_exe) if args.openstudio_exe else None,
+        max_workers=args.workers,
     )
     for result in results:
-        state = "BAŞARILI" if result.success else "HATALI"
-        print(f"{state}: {result.case.thickness_cm:g} cm -> {result.run_dir}")
+        state = "BAŞARILI" if result["success"] else "HATALI"
+        print(f"{state}: {result['case']['label']} -> {result['run_dir']}")
 
 
 def main() -> None:

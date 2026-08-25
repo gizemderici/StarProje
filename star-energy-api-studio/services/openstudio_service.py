@@ -4,12 +4,16 @@ import json
 import os
 import sqlite3
 import subprocess
-from dataclasses import asdict
 from pathlib import Path
 from threading import Lock
 from typing import Iterable
 
-from engine.openstudio_runner import OpenStudioCase, build_workflow, find_openstudio
+from engine.openstudio_runner import (
+    OpenStudioCase,
+    build_workflow,
+    find_openstudio,
+    run_cases,
+)
 from model_store import ModelRecord
 
 
@@ -29,9 +33,6 @@ class OpenStudioService:
         self.project_root = project_root.resolve()
         self.openstudio_exe = find_openstudio(openstudio_exe)
         self.worker_path = self.project_root / "integrations/OpenStudio/model_api_worker.py"
-        self.simulation_worker_path = (
-            self.project_root / "integrations/OpenStudio/simulation_api_worker.py"
-        )
         self.measures_root = self.project_root / "integrations/OpenStudio/Measures"
         self.output_root = self.project_root / "data/generated/openstudio_runs"
         self.cache_root = cache_root or self.project_root / "data/generated/model_api_cache"
@@ -156,13 +157,14 @@ class OpenStudioService:
                 seed_file=record.osm_path,
                 weather_file=record.weather_path,
                 measures_root=self.measures_root,
-                workflow_dir=self.output_root / record.model_id / case.slug,
+                workflow_dir=self.output_root / record.model_id / case.case_id,
             )
             prepared.append(
                 {
-                    "case": asdict(case),
+                    "case": case.as_dict(),
                     "status": "prepared",
-                    "workflow_id": f"{record.model_id}/{case.slug}",
+                    "workflow_id": f"{record.model_id}/{case.case_id}",
+                    "workflow_file": workflow_path.name,
                 }
             )
         return prepared
@@ -170,131 +172,58 @@ class OpenStudioService:
     def run_simulations(
         self, record: ModelRecord, cases: list[OpenStudioCase]
     ) -> list[dict[str, object]]:
-        executable = self._require_executable()
+        """Senaryolari OSW + measure yolundan calistirir.
+
+        Faz 2.3 oncesinde burada ikinci bir uygulama vardi: model
+        execute_python_script ile ForwardTranslator'dan gecirilip energyplus.exe
+        dogrudan cagriliyordu. Ayni isi yapan iki yol, her yeni measure'in iki kez
+        yazilmasini gerektiriyordu. Artik tek yol var: engine.openstudio_runner.
+        """
+        self._require_executable()
         if record.weather_path is None:
             raise ValueError(f"{record.model_id} için hava dosyası tanımlı değil.")
-        if self.energyplus_exe is None or not self.energyplus_exe.is_file():
-            raise OpenStudioUnavailable("OpenStudio EnergyPlus yürütücüsü bulunamadı.")
-        results = []
-        for case in cases:
-            case_root = self.output_root / record.model_id / case.slug
-            run_root = case_root / "run"
-            run_root.mkdir(parents=True, exist_ok=True)
-            idf_path = case_root / "in.idf"
-            osm_path = case_root / "in.osm"
-            manifest_path = case_root / "translation.json"
-            translation = subprocess.run(
-                [
-                    str(executable),
-                    "--loglevel",
-                    "Error",
-                    "execute_python_script",
-                    str(self.simulation_worker_path),
-                    "--osm",
-                    str(record.osm_path),
-                    "--output-idf",
-                    str(idf_path),
-                    "--output-osm",
-                    str(osm_path),
-                    "--manifest",
-                    str(manifest_path),
-                    "--target-construction",
-                    case.target_construction,
-                    "--thickness-cm",
-                    str(case.thickness_cm),
-                    "--conductivity",
-                    str(case.conductivity_w_mk),
-                    "--density",
-                    str(case.density_kg_m3),
-                    "--specific-heat",
-                    str(case.specific_heat_j_kgk),
-                ],
-                cwd=case_root,
-                capture_output=True,
-                text=True,
-                check=False,
-                timeout=180,
-                **self._subprocess_options(),
-            )
-            (case_root / "openstudio_translate_stdout.log").write_text(
-                translation.stdout, encoding="utf-8", errors="replace"
-            )
-            (case_root / "openstudio_translate_stderr.log").write_text(
-                translation.stderr, encoding="utf-8", errors="replace"
-            )
-            if translation.returncode != 0 or not idf_path.is_file():
-                results.append(
-                    {
-                        "case": asdict(case),
-                        "status": "failed",
-                        "success": False,
-                        "return_code": translation.returncode,
-                        "message": "OpenStudio SDK modeli EnergyPlus girdisine çeviremedi.",
-                        "sql_available": False,
-                    }
-                )
-                continue
 
-            completed = subprocess.run(
-                [
-                    str(self.energyplus_exe),
-                    "-w",
-                    str(record.weather_path),
-                    "-d",
-                    str(run_root),
-                    str(idf_path),
-                ],
-                cwd=case_root,
-                capture_output=True,
-                text=True,
-                check=False,
-                timeout=1800,
-                **self._subprocess_options(),
-            )
-            (case_root / "energyplus_stdout.log").write_text(
-                completed.stdout, encoding="utf-8", errors="replace"
-            )
-            (case_root / "energyplus_stderr.log").write_text(
-                completed.stderr, encoding="utf-8", errors="replace"
-            )
-            sql_path = run_root / "eplusout.sql"
-            success = completed.returncode == 0 and sql_path.is_file()
-            summary = self._energy_summary(sql_path) if success else None
-            results.append(
+        results = run_cases(
+            cases=list(cases),
+            project_root=self.project_root,
+            output_root=self.output_root / record.model_id,
+            openstudio_exe=self.openstudio_exe,
+            seed_file=record.osm_path,
+            weather_file=record.weather_path,
+        )
+
+        enriched: list[dict[str, object]] = []
+        for item in results:
+            sql_path = item.get("sql_path")
+            enriched.append(
                 {
-                    "case": asdict(case),
-                    "status": "completed" if success else "failed",
-                    "success": success,
-                    "return_code": completed.returncode,
-                    "message": "OpenStudio SDK + EnergyPlus koşusu tamamlandı."
-                    if success
-                    else "EnergyPlus koşusu başarısız; log dosyalarını inceleyin.",
-                    "sql_available": sql_path.is_file(),
-                    "summary": summary,
+                    "case": item["case"],
+                    "status": "completed" if item["success"] else "failed",
+                    "success": item["success"],
+                    "return_code": item["return_code"],
+                    "message": item["message"],
+                    "sql_available": bool(sql_path),
+                    "summary": self._energy_summary(Path(sql_path)) if sql_path else None,
                 }
             )
-        return results
+        return enriched
 
     def list_simulation_results(self, record: ModelRecord) -> list[dict[str, object]]:
         model_root = self.output_root / record.model_id
         if not model_root.is_dir():
             return []
         results = []
-        for case_root in sorted(model_root.glob("eps_*cm")):
+        # Klasor adlari artik parametrelerden turetilen kararli kimliklerdir;
+        # onceki "eps_*cm" deseni yalnizca tek degiskenli kosulari bulabiliyordu.
+        for case_root in sorted(model_root.glob("case_*")):
             sql_path = case_root / "run/eplusout.sql"
             if not sql_path.is_file():
                 continue
-            manifest_path = case_root / "translation.json"
-            manifest = (
-                json.loads(manifest_path.read_text(encoding="utf-8"))
-                if manifest_path.is_file()
-                else {}
-            )
-            thickness = float(
-                manifest.get(
-                    "thickness_cm",
-                    case_root.name.removeprefix("eps_").removesuffix("cm").replace("_", "."),
-                )
+            case_path = case_root / "case.json"
+            case_payload = (
+                json.loads(case_path.read_text(encoding="utf-8"))
+                if case_path.is_file()
+                else {"case_id": case_root.name}
             )
             end_path = case_root / "run/eplusout.end"
             success = end_path.is_file() and "Completed Successfully" in end_path.read_text(
@@ -302,10 +231,10 @@ class OpenStudioService:
             )
             results.append(
                 {
-                    "case": {"thickness_cm": thickness},
+                    "case": case_payload,
                     "status": "completed" if success else "failed",
                     "success": success,
-                    "message": "Kayıtlı OpenStudio SDK + EnergyPlus sonucu.",
+                    "message": "Kayıtlı OpenStudio + EnergyPlus sonucu.",
                     "sql_available": True,
                     "summary": self._energy_summary(sql_path),
                 }

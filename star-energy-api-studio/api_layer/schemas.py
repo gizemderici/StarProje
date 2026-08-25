@@ -1,30 +1,48 @@
 from __future__ import annotations
 
+from typing import Any
+
 from pydantic import BaseModel, Field, field_validator
 
+from engine.parameters import BY_KEY, design_space, validate_parameters
 
-class SimulationRequest(BaseModel):
-    thicknesses_cm: list[float] = Field(min_length=1, max_length=50)
-    conductivity_w_mk: float = Field(default=0.039, gt=0.0, le=1.0)
-    density_kg_m3: float = Field(default=16.0, gt=0.0)
-    specific_heat_j_kgk: float = Field(default=1250.0, gt=0.0)
-    target_construction: str = Field(default="duvr_std_eps", min_length=1, max_length=200)
 
-    @field_validator("thicknesses_cm")
+class ScenarioRequest(BaseModel):
+    """Bir veya daha fazla senaryo; her senaryo bir parametre sozlugudur.
+
+    Yalnizca referanstan sapan parametreler verilir; eksik kalanlar
+    engine.parameters icindeki referans degerlerle doldurulur.
+    """
+
+    scenarios: list[dict[str, Any]] = Field(min_length=1, max_length=250)
+
+    @field_validator("scenarios")
     @classmethod
-    def validate_thicknesses(cls, values: list[float]) -> list[float]:
-        if any(value <= 0 or value > 100 for value in values):
-            raise ValueError("EPS kalınlığı 0–100 cm aralığında olmalıdır.")
-        return values
+    def validate_scenarios(cls, values: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        # Dogrulama tek yerde: engine.parameters. Sinirlar degisince veya yeni
+        # bir degisken eklenince bu sema kendiliginden guncel kalir.
+        return [validate_parameters(item) for item in values]
+
+
+class SimulationRequest(ScenarioRequest):
+    """Gercek EnergyPlus kosusu istegi."""
 
 
 class QuickStudyRequest(BaseModel):
+    """Hizli tahmin yalnizca EPS kalinligina duyarlidir; ayri kalir."""
+
     thicknesses_cm: list[float] = Field(min_length=1, max_length=80)
     conductivity_w_mk: float = Field(default=0.039, gt=0.0, le=1.0)
 
     @field_validator("thicknesses_cm")
     @classmethod
     def validate_thicknesses(cls, values: list[float]) -> list[float]:
-        if any(value <= 0 or value > 100 for value in values):
-            raise ValueError("EPS kalınlığı 0–100 cm aralığında olmalıdır.")
+        spec = BY_KEY["eps_thickness_cm"]
+        for value in values:
+            spec.validate(value)
         return values
+
+
+def parameter_catalog() -> dict[str, object]:
+    """Arayuzun ve Faz 3 ornekleme tasariminin okudugu makine okunur tanim."""
+    return {"parameters": design_space()}

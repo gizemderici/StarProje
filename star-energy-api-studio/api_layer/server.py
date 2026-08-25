@@ -4,7 +4,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 
-from api_layer.schemas import QuickStudyRequest, SimulationRequest
+from api_layer.schemas import QuickStudyRequest, SimulationRequest, parameter_catalog
 from engine.estimator import EstimatorAssumptions, run_parametric
 from engine.openstudio_runner import OpenStudioCase
 from engine.sql_results import ResultsRepository
@@ -35,16 +35,7 @@ def _model(model_id: str):
 
 
 def _cases(payload: SimulationRequest) -> list[OpenStudioCase]:
-    return [
-        OpenStudioCase(
-            thickness_cm=value,
-            conductivity_w_mk=payload.conductivity_w_mk,
-            density_kg_m3=payload.density_kg_m3,
-            specific_heat_j_kgk=payload.specific_heat_j_kgk,
-            target_construction=payload.target_construction,
-        )
-        for value in payload.thicknesses_cm
-    ]
+    return [OpenStudioCase(parameters=item) for item in payload.scenarios]
 
 
 def _archived_repository(model_id: str) -> ResultsRepository:
@@ -87,6 +78,12 @@ async def _uploaded_bytes(
 @api.get("/api/v1/health", tags=["system"])
 def health() -> dict[str, object]:
     return {"status": "ok", "openstudio": service.status()}
+
+
+@api.get("/api/v1/parameters", tags=["system"])
+def list_parameters() -> dict[str, object]:
+    """Senaryo kurulumunda kullanilabilecek karar degiskenleri ve sinirlari."""
+    return parameter_catalog()
 
 
 @api.get("/api/v1/models", tags=["models"])

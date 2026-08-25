@@ -108,6 +108,39 @@ class HttpApiTests(unittest.TestCase):
             self.assertEqual(quick.status_code, 200)
             self.assertEqual(len(quick.json()["results"]), 3)
 
+    def test_parameter_catalog_lists_every_decision_variable(self) -> None:
+        with TestClient(api) as client:
+            response = client.get("/api/v1/parameters")
+            self.assertEqual(response.status_code, 200)
+            parameters = response.json()["parameters"]
+
+        keys = {item["key"] for item in parameters}
+        self.assertIn("window_construction", keys)
+        self.assertIn("chiller_cop", keys)
+        self.assertIn("eps_thickness_cm", keys)
+
+        window = next(item for item in parameters if item["key"] == "window_construction")
+        self.assertEqual(window["type"], "categorical")
+        self.assertEqual(len(window["choices"]), 7)
+
+        cop = next(item for item in parameters if item["key"] == "chiller_cop")
+        self.assertEqual(cop["type"], "continuous")
+        self.assertEqual(cop["baseline"], 5.5)
+
+    def test_scenario_payload_rejects_unknown_and_out_of_range_values(self) -> None:
+        with TestClient(api) as client:
+            unknown = client.post(
+                "/api/v1/models/main-building/workflows",
+                json={"scenarios": [{"bilinmeyen": 1}]},
+            )
+            self.assertEqual(unknown.status_code, 422)
+
+            out_of_range = client.post(
+                "/api/v1/models/main-building/workflows",
+                json={"scenarios": [{"chiller_cop": 99}]},
+            )
+            self.assertEqual(out_of_range.status_code, 422)
+
     def test_nicegui_has_no_direct_osm_sql_or_study_reader(self) -> None:
         source = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("ResultsRepository(", source)
