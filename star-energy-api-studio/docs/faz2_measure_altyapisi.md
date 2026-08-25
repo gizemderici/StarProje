@@ -1,10 +1,10 @@
 # Faz 2 — Measure ve Koşucu Altyapısı
 
-Amaç: tek değişkenli (EPS) altyapıyı dokuz karar değişkenine açmak.
+Amaç: tek değişkenli (EPS) altyapıyı **on bir** karar değişkenine açmak.
 
 ## Tek doğruluk kaynağı
 
-`engine/parameters.py` dokuz karar değişkenini bir kez tanımlar. OSW adımları,
+`engine/parameters.py` on bir karar değişkenini bir kez tanımlar. OSW adımları,
 API doğrulaması ve Faz 3'ün örnekleme tasarımı aynı kayıttan beslenir; yeni bir
 değişken eklemek tek satırdır.
 
@@ -19,6 +19,8 @@ değişken eklemek tek satırdır.
 | `lighting_secondary_w_m2` | SetLightingPower | 3,0 W/m² | 0,5 – 8 |
 | `eps_thickness_cm` | SetEpsThickness | 5,0 cm | 0,5 – 30 |
 | `eps_conductivity_w_mk` | SetEpsThickness | 0,039 | 0,015 – 0,060 |
+| `infiltration_multiplier` | SetInfiltrationRate | 1,0 | 0,3 – 1,5 |
+| `elevator_power_w` | SetElevatorLoad | 5.000 W | 500 – 8.000 |
 
 ## Senaryo kimliği
 
@@ -113,5 +115,47 @@ ve sınır dışı parametre reddi, parametre kataloğu uç noktası.
 - Örnekleme tasarımı `engine.parameters.design_space()` çıktısını kullanmalı.
 - `run_cases(..., max_workers=N)` paralel çalışır, `skip_completed` ile devam eder.
 - `GET /api/v1/parameters` arayüze aynı tanımı verir.
-- Henüz measure'ı olmayan iki değişken: sızdırmazlık çarpanı ve asansör çalışma
-  oranı. Gerekirse aynı desende eklenebilir.
+- On bir değişkenin tamamının measure'ı hazır ve doğrulandı.
+
+
+## Ek: sızdırmazlık ve asansör measure'ları
+
+Faz 2'nin ilk turunda dışarıda kalan iki değişken de eklendi.
+
+**`SetInfiltrationRate`** — Model iki hesap yöntemini karıştırıyor: beş nesne
+`AirChanges/Hour`, dört nesne `Flow/ExteriorArea`. Measure her nesnenin fiilen
+kullandığı yöntemi okuyup o değeri ölçekliyor. Çarpan tohum modele göredir; her
+koşu tohumdan başladığı için sonuç belirlenimlidir.
+
+**`SetElevatorLoad`** — Anma gücünü mutlak değer olarak yazar (idempotent).
+Bu değişken `docs/baseline_assumptions.md` içindeki açık belirsizliği doğrudan
+tarar: tohum modeldeki 5.000 W doğrulanmamış bir **tepe** değeridir.
+
+### Doğrulama koşusu
+
+`infiltration_multiplier = 0.6`, `elevator_power_w = 1500` — dokuz adımın
+dokuzu Success, 0 Severe, 4 dk 36 sn.
+
+| Kalem (GJ/yıl) | Taban v1 | Senaryo | Fark |
+|---|---|---|---|
+| İç ekipman | 261,13 | 220,98 | −40,15 |
+| Isıtma | 46,20 | 30,43 | −15,77 |
+| Soğutma | 1.119,56 | 1.125,43 | +5,87 |
+| Fanlar | 239,90 | 235,25 | −4,65 |
+| Pompalar | 22,95 | 20,96 | −1,99 |
+| **Toplam saha enerjisi** | 1.920,00 | 1.863,32 | −56,68 |
+
+Net tasarruf %2,95. İç ekipmandaki düşüş bağımsız olarak doğrulanabilir:
+3.500 W × 3.247 saat = 40,9 GJ; ölçülen 40,15 GJ.
+
+Soğutmanın hafifçe artması beklenen davranıştır — sızdırmazlık arttıkça yaz
+gecelerindeki serbest soğutma azalır.
+
+### İkinci turda bulunan iki kusur
+
+- `SetElevatorLoad`: `definition.instances` bir SWIG vektörüdür, `.length`
+  tanımlı değil; `.size` kullanıldı.
+- `SetWindowConstruction`: measure boş bırakılmış varsayılan alanları da
+  dolduruyordu. Bu, modelde hiç tanımlanmamış bir çatı penceresi veya cam kapı
+  varsayılanı üretip iç mekân setini dış cam konstrüksiyonuyla kirletebilirdi.
+  Artık yalnızca zaten dolu olan alanlar güncelleniyor.

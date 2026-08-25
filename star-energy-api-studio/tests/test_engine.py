@@ -7,6 +7,7 @@ from pathlib import Path
 
 from engine.estimator import EstimatorAssumptions, run_parametric, wall_performance
 from engine.openstudio_runner import OpenStudioCase, build_workflow
+from engine.parameters import MEASURE_ORDER, REPORTING_MEASURES
 from engine.sql_results import ResultsRepository
 from engine.star_study import StarStudy
 
@@ -59,6 +60,9 @@ class EstimatorTests(unittest.TestCase):
         )
 
 
+MEASURES_ROOT = ROOT / "integrations/OpenStudio/Measures"
+
+
 class WorkflowTests(unittest.TestCase):
     def _build(self, case: OpenStudioCase) -> dict:
         with tempfile.TemporaryDirectory() as temp:
@@ -74,17 +78,12 @@ class WorkflowTests(unittest.TestCase):
     def test_workflow_contains_every_measure_in_order(self) -> None:
         payload = self._build(OpenStudioCase({"eps_thickness_cm": 12}))
         names = [step["measure_dir_name"] for step in payload["steps"]]
-        self.assertEqual(
-            names,
-            [
-                "SetEpsThickness",
-                "SetWindowConstruction",
-                "SetThermostatSetpoints",
-                "SetPlantEfficiency",
-                "SetLightingPower",
-                "CreateCSVOutput",
-                "OpenStudioResults",
-            ],
+        # Beklenen liste kayittan turetilir; yeni bir karar degiskeni eklenince
+        # test kendiliginden guncel kalir.
+        self.assertEqual(names, list(MEASURE_ORDER) + list(REPORTING_MEASURES))
+        self.assertTrue(
+            all((MEASURES_ROOT / name).is_dir() for name in names),
+            "OSW adimlarindan biri icin measure klasoru yok.",
         )
         self.assertEqual(payload["steps"][0]["arguments"]["eps_thickness_cm"], 12)
 

@@ -145,6 +145,25 @@ PARAMETERS: tuple[ParameterSpec, ...] = (
         maximum=8.0,
     ),
     ParameterSpec(
+        key="infiltration_multiplier",
+        measure="SetInfiltrationRate",
+        argument="infiltration_multiplier",
+        baseline=1.0,
+        label="Sizdirmazlik carpani",
+        minimum=0.3,
+        maximum=1.5,
+    ),
+    ParameterSpec(
+        key="elevator_power_w",
+        measure="SetElevatorLoad",
+        argument="elevator_power_w",
+        baseline=5000.0,
+        label="Asansor motoru gucu",
+        unit="W",
+        minimum=500.0,
+        maximum=8000.0,
+    ),
+    ParameterSpec(
         key="eps_thickness_cm",
         measure="SetEpsThickness",
         argument="eps_thickness_cm",
@@ -174,9 +193,11 @@ BY_KEY: Mapping[str, ParameterSpec] = {spec.key: spec for spec in PARAMETERS}
 MEASURE_ORDER: tuple[str, ...] = (
     "SetEpsThickness",
     "SetWindowConstruction",
+    "SetInfiltrationRate",
     "SetThermostatSetpoints",
     "SetPlantEfficiency",
     "SetLightingPower",
+    "SetElevatorLoad",
 )
 
 # Her kosuya eklenen raporlama measure'lari. CreateCSVOutput her senaryo icin

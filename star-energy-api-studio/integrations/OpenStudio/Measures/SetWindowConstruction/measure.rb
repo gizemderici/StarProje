@@ -69,7 +69,11 @@ class SetWindowConstruction < OpenStudio::Measure::ModelMeasure
         setter = "set#{field}Construction"
         getter = "#{field[0].downcase}#{field[1..]}Construction"
         current = default_set.public_send(getter)
-        next if current.is_initialized && current.get.handle == construction.handle
+        # Bos birakilmis alanlar doldurulmaz. Aksi halde modelde hic tanimlanmamis
+        # bir cati penceresi veya cam kapi varsayilani uretilir ve ic mekan
+        # varsayilan seti dis cam konstruksiyonuyla kirletilir.
+        next unless current.is_initialized
+        next if current.get.handle == construction.handle
 
         default_set.public_send(setter, construction)
         changed_defaults += 1
