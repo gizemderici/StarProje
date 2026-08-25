@@ -52,6 +52,9 @@ class RunOutcome:
     comfort_violation_hours: float
     severe_errors: int
     warnings: int
+    glass_u_factor: float = 0.0
+    glass_shgc: float = 0.0
+    window_area_m2: float = 0.0
     end_uses_gj: dict[str, float] = field(default_factory=dict)
 
     def to_row(self) -> dict[str, object]:
@@ -70,6 +73,8 @@ class RunOutcome:
             "unmet_cooling_hours",
             "ashrae55_discomfort_hours",
             "comfort_violation_hours",
+            "glass_u_factor",
+            "glass_shgc",
             "severe_errors",
             "warnings",
         ):
@@ -118,6 +123,33 @@ def _end_uses(cursor: sqlite3.Cursor) -> dict[str, float]:
         if number:
             totals[row_name] = totals.get(row_name, 0.0) + number
     return totals
+
+
+def _envelope(cursor: sqlite3.Cursor) -> dict[str, float]:
+    """Cam U, SHGC ve alan degerleri.
+
+    EnergyPlus bunlari her kosuda raporlar; boylece TS 825 kisit kontrolu
+    varsayima degil kosunun kendi ciktisina dayanir.
+    """
+    cursor.execute(
+        """
+        SELECT ColumnName, Value FROM TabularDataWithStrings
+        WHERE ReportName = 'EnvelopeSummary'
+          AND TableName = 'Exterior Fenestration'
+          AND RowName = 'Total or Average'
+        """
+    )
+    values: dict[str, float] = {}
+    for column, raw in cursor.fetchall():
+        try:
+            values[column] = float(raw)
+        except (TypeError, ValueError):
+            continue
+    return {
+        "glass_u_factor": values.get("Glass U-Factor", 0.0),
+        "glass_shgc": values.get("Glass SHGC", 0.0),
+        "window_area_m2": values.get("Area of Multiplied Openings", 0.0),
+    }
 
 
 def _comfort_hours(run_dir: Path) -> float:
@@ -200,6 +232,7 @@ def harvest_run(case_dir: Path) -> RunOutcome | None:
         # Bozuk veya eksik bir SQL dosyasi tum hasadi dusurmemeli; o kosu
         # tamamlanmamis sayilir ve tekrar calistirilir.
         end_uses = _end_uses(cursor)
+        envelope = _envelope(cursor)
         severe, warnings = _error_counts(run_dir)
         return RunOutcome(
             case_id=case_payload.get("case_id", case_dir.name),
@@ -242,6 +275,9 @@ def harvest_run(case_dir: Path) -> RunOutcome | None:
             comfort_violation_hours=_comfort_hours(run_dir),
             severe_errors=severe,
             warnings=warnings,
+            glass_u_factor=envelope["glass_u_factor"],
+            glass_shgc=envelope["glass_shgc"],
+            window_area_m2=envelope["window_area_m2"],
             end_uses_gj=end_uses,
         )
     except sqlite3.Error:
