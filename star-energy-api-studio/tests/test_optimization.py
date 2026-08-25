@@ -148,5 +148,58 @@ class WindowLookupTests(unittest.TestCase):
         self.assertEqual(window_u_from_results(rows), {})
 
 
+
+class ProblemTests(unittest.TestCase):
+    def test_dead_band_constraint_blocks_overlapping_setpoints(self) -> None:
+        # Isitma 15-24, sogutma 22-30 araliklari ust uste biner. Kisit olmadan
+        # optimizasyon SetThermostatSetpoints measure'inin reddedecegi
+        # tasarimlar uretir.
+        _, checks, _ = evaluate(
+            {"heating_setpoint_c": 23.8, "cooling_setpoint_c": 23.9},
+            _flat_evaluator(),
+        )
+        self.assertGreater(checks.dead_band, 0)
+        self.assertFalse(checks.feasible)
+
+    def test_baseline_dead_band_is_accepted(self) -> None:
+        _, checks, _ = evaluate({}, _flat_evaluator())
+        self.assertLessEqual(checks.dead_band, 0)
+
+    def test_variable_definitions_cover_every_parameter(self) -> None:
+        from optimization.problem import build_variables
+
+        variables = build_variables()
+        self.assertEqual(set(variables), set(baseline_parameters()))
+
+    def test_categorical_variable_is_a_choice_not_a_rounded_number(self) -> None:
+        from pymoo.core.variable import Choice, Real
+
+        from optimization.problem import build_variables
+
+        variables = build_variables()
+        self.assertIsInstance(variables["window_construction"], Choice)
+        self.assertIsInstance(variables["chiller_cop"], Real)
+
+    def test_topsis_prefers_the_balanced_solution(self) -> None:
+        import numpy as np
+
+        from optimization.problem import topsis
+
+        # Ilk iki satir uc noktalar, ucuncusu dengeli.
+        front = np.array([[0.0, 100.0, 100.0], [100.0, 0.0, 100.0], [40.0, 40.0, 40.0]])
+        self.assertEqual(topsis(front), 2)
+
+    def test_normalise_removes_scale_dominance(self) -> None:
+        import numpy as np
+
+        from optimization.problem import normalise
+
+        # Maliyet ekseni digerlerinden 10.000 kat buyuk; normalizasyon
+        # olmadan hipervolum ve TOPSIS bu ekseni baskin hale getirir.
+        front = np.array([[100.0, 1_000_000.0, 10.0], [120.0, 5_000_000.0, 90.0]])
+        scaled = normalise(front)
+        self.assertAlmostEqual(float(scaled.min()), 0.0)
+        self.assertAlmostEqual(float(scaled.max()), 1.0)
+
 if __name__ == "__main__":
     unittest.main()

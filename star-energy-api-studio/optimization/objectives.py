@@ -58,6 +58,12 @@ MAX_COMFORT_VIOLATION_HOURS = 500.0
 # Butce tavani (TRY). Birim fiyatlar gibi bu da bir kabuldur.
 MAX_BUDGET = 6_000_000.0
 
+# Asgari olu bant. SetThermostatSetpoints measure'i bunun altini reddeder;
+# kisit olmadan optimizasyon simulasyonun kosamayacagi tasarimlar uretir.
+# Isitma ve sogutma araliklari ust uste bindigi icin (isitma 15-24, sogutma
+# 22-30) bu kisit sart.
+MIN_DEAD_BAND_K = 0.5
+
 
 def wall_u_value(thickness_cm: float, conductivity_w_mk: float) -> float:
     """EPS kalinligi ve iletkenliginden duvar U degeri."""
@@ -89,17 +95,15 @@ class ConstraintCheck:
     window_u: float
     comfort: float
     budget: float
+    dead_band: float = 0.0
     notes: list[str] = field(default_factory=list)
 
     @property
     def feasible(self) -> bool:
-        return all(
-            value <= 0
-            for value in (self.wall_u, self.window_u, self.comfort, self.budget)
-        )
+        return all(value <= 0 for value in self.as_vector())
 
     def as_vector(self) -> list[float]:
-        return [self.wall_u, self.window_u, self.comfort, self.budget]
+        return [self.wall_u, self.window_u, self.comfort, self.budget, self.dead_band]
 
 
 def evaluate(
@@ -140,11 +144,13 @@ def evaluate(
             "degerlendirilmedi."
         )
 
+    dead_band = float(values["cooling_setpoint_c"]) - float(values["heating_setpoint_c"])
     checks = ConstraintCheck(
         wall_u=wall_u - limits["wall"],
         window_u=window_violation,
         comfort=comfort_hours - MAX_COMFORT_VIOLATION_HOURS,
         budget=cost.total - MAX_BUDGET,
+        dead_band=MIN_DEAD_BAND_K - dead_band,
         notes=notes,
     )
     return objectives, checks, cost
@@ -173,6 +179,7 @@ def describe_limits() -> dict[str, object]:
         "max_window_u_w_m2k": limits["window"],
         "max_comfort_violation_hours": MAX_COMFORT_VIOLATION_HOURS,
         "max_budget": MAX_BUDGET,
+        "min_dead_band_k": MIN_DEAD_BAND_K,
         "baseline_wall_u_w_m2k": round(
             wall_u_value(
                 float(baseline_parameters()["eps_thickness_cm"]),
