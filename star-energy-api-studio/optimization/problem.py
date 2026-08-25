@@ -167,9 +167,17 @@ def write_front(
     solutions: Sequence[ParetoSolution],
     history: Sequence[dict[str, float]],
     path: Path,
+    evaluator: str = "unknown",
 ) -> Path:
+    """Cepheyi diske yazar.
+
+    `evaluator` alani zorunludur: analitik taslakla uretilmis bir cephe
+    arayuzde gercek sonuc gibi gorunmemelidir.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
+        "evaluator": evaluator,
+        "usable_in_thesis": evaluator == "surrogate",
         "objective_labels": list(OBJECTIVE_LABELS),
         "constraint_labels": list(CONSTRAINT_LABELS),
         "baseline_parameters": baseline_parameters(),
