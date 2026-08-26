@@ -12,11 +12,52 @@ warnings.filterwarnings(
 from fastapi.testclient import TestClient
 
 from api_layer.server import api
+from engine.sql_results import load_run
 from model_store import ModelRepository
 from services import OpenStudioService
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class BaselineResultsTests(unittest.TestCase):
+    """Genel Bakis sekmesi eski arsiv kosusunu gostermemelidir.
+
+    ResultsRepository klasor adlarini "eps_{kalinlik}cm" desenine bagliydi,
+    bu yuzden Faz 1 onarimi sonrasi taban kosusu arayuze hic ulasmiyor ve
+    ekranda eski modelin sonuclari (1941,6 GJ) gorunuyordu.
+    """
+
+    def test_baseline_is_read_from_a_directory_outside_the_eps_pattern(self) -> None:
+        scenario = load_run(ROOT / "data/baseline_v1")
+        # Taban kosusu bir EPS senaryosu degildir; kalinlik anahtari tasimaz.
+        self.assertIsNone(scenario.thickness_cm)
+        self.assertEqual(scenario.run_status, "Success")
+        # Faz 1'in kazanimi: sifir ciddi hata.
+        self.assertEqual(scenario.severe_errors, 0)
+
+    def test_baseline_endpoint_does_not_return_the_archived_run(self) -> None:
+        client = TestClient(api)
+        baseline = client.get(
+            "/api/v1/models/main-building/baseline-results"
+        ).json()["baseline"]
+        archive = client.get(
+            "/api/v1/models/main-building/archived-results"
+        ).json()["scenarios"]["5"]
+
+        self.assertNotAlmostEqual(
+            baseline["site_energy_gj"], archive["site_energy_gj"], places=1
+        )
+        self.assertAlmostEqual(baseline["site_energy_gj"], 1920.00, places=1)
+        self.assertAlmostEqual(baseline["eui_mj_m2"], 452.17, places=1)
+        # Yerel dosya yollari istemciye sizmamalidir.
+        self.assertNotIn("sql_path", baseline)
+
+    def test_model_without_a_baseline_run_reports_404(self) -> None:
+        response = TestClient(api).get(
+            "/api/v1/models/legacy-eps-5cm/baseline-results"
+        )
+        self.assertEqual(response.status_code, 404)
 
 
 class ModelRepositoryTests(unittest.TestCase):
@@ -27,6 +68,7 @@ class ModelRepositoryTests(unittest.TestCase):
         self.assertNotIn("osm_path", public)
         self.assertNotIn("weather_path", public)
         self.assertTrue(public["archived_results_available"])
+        self.assertTrue(public["baseline_results_available"])
 
     def test_uploaded_model_gets_generated_id_and_stays_inside_store(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

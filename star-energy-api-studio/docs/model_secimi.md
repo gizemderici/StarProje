@@ -55,21 +55,44 @@ Bu tekrarın yeniden oluşmaması için depoya `.gitattributes` eklendi.
    sürümüne aittir. Kanonik model seçildikten sonra karşılaştırma tek sürüm
    üzerinden yapılacaktır.
 
-## Bilinen tutarsızlık
+## Giderilen tutarsızlık: arayüz eski arşiv koşusunu gösteriyordu
 
-`models.json` içinde `main-building` kaydının `archived_results` alanı halen
-`data/archived_runs` klasörünü gösteriyor; bu koşular aslında `legacy-eps-5cm`
-modeline aittir. Alan şimdilik korundu, aksi halde `/quick-study` uç noktası
-404 döndürürdü.
+**Belirti.** Genel Bakış sekmesi taban çizgisi olarak **1.941,6 GJ / 457,3 MJ/m²**
+gösteriyordu. Bu değerler `legacy-eps-5cm` modeline aittir. Faz 1 onarımı sonrası
+gerçek taban çizgisi **1.920,00 GJ / 452,17 MJ/m²**'dir.
 
-Alan Faz 1'de **güncellenemez**, çünkü `engine/sql_results.py` içindeki
-`ResultsRepository`, klasör adlarını `eps_{kalinlik}cm` deseniyle ve kalınlıkları
-`(5, 10, 15)` listesiyle sabitlemiş durumda. Yeni taban koşusu bu desene uymuyor.
+**Kök neden.** `engine/sql_results.py` içindeki `ResultsRepository`, klasör
+adlarını `eps_{kalinlik}cm` desenine ve kalınlıkları `(5, 10, 15)` listesine
+sabitlemişti. `data/baseline_v1` bu desene uymadığı için onarılmış taban koşusu
+arayüze hiç ulaşamıyordu; `models.json` içindeki `main-building` kaydı da
+zorunlu olarak `data/archived_runs` klasörünü gösteriyordu.
 
-Repoint, **Faz 2.1–2.2**'deki genelleştirme işine bağlıdır: `OpenStudioCase`
-parametre sözlüğüne dönüştürülüp `eps_*cm` slug bağımlılığı kırıldığında sonuç
-okuyucu da senaryo-adı bağımsız hale gelecek. `engine/estimator.py` içindeki baz
-senaryo aynı anda gözden geçirilmelidir (Faz 4.7).
+**Çözüm.** Desen bağımlılığı kırıldı:
+
+- `engine/sql_results.py` içine **`load_run(run_dir, thickness_cm=None)`**
+  eklendi. Çıkarım kodu artık klasör adından bağımsızdır; `ResultsRepository`
+  de aynı fonksiyonu çağırır, yani arşiv ile taban koşusu tek koddan okunur.
+- `ArchivedScenario.thickness_cm` artık `int | None`. Taban koşusu bir EPS
+  senaryosu olmadığı için kalınlık anahtarı taşımaz.
+- `ModelRecord` yeni bir **`baseline_results_path`** alanı taşır; `models.json`
+  içinde `main-building` kaydına `"baseline_results": "data/baseline_v1"`
+  eklendi. `archived_results` alanı **kasıtlı olarak korundu** — arşiv koşuları
+  veri kalitesi bulgusunun kanıtıdır ve `/quick-study` karşılaştırmasını besler.
+- Yeni uç: `GET /api/v1/models/{id}/baseline-results`. Taban koşusu olmayan
+  modeller (`legacy-eps-5cm`) 404 döndürür.
+- Arayüzde "Koşu" seçicisi varsayılan olarak **Onarılmış taban (güncel)**
+  gelir; üç arşiv koşusu "Arşiv · EPS n cm" olarak ayrıca seçilebilir ve
+  yalnızca seçildiklerinde veri kalitesi uyarısı görünür.
+
+Böylece 1.941,6 GJ değeri ekrandan kaldırılmadı, **doğru biçimde etiketlendi**:
+tarihsel referans olduğu açıkça yazılıdır.
+
+**Gerileme koruması.** `tests/test_api_architecture.py::BaselineResultsTests`
+taban koşusunun arşiv koşusundan farklı olduğunu, sıfır Ciddi Hata taşıdığını
+ve yerel dosya yollarının istemciye sızmadığını doğrular.
+
+`engine/estimator.py` içindeki baz senaryo ayrıca Faz 4.7'de gözden geçirilmiş
+ve kalibre edilmemiş hızlı tahmin olarak etiketlenmiştir.
 
 ## Kanonik modelin bilinen kusurları
 

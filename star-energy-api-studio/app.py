@@ -19,7 +19,7 @@ model_catalog = api_client.list_models()
 active_model_state = {"id": "main-building"}
 osm_model = api_client.get_model("main-building")
 repository = api_client.get_archived_results("main-building")
-baseline = repository.scenarios[5]
+baseline = api_client.get_baseline_results("main-building")
 star_study = api_client.get_study_results("star-baseline")
 star_model = api_client.get_model("star-baseline")
 stored_api_runs = api_client.list_simulations("main-building").get("runs", [])
@@ -120,14 +120,43 @@ def comparison_chart() -> dict[str, Any]:
     }
 
 
-scenario_state = {"value": 5}
+# "baseline" onarilmis taban kosusu, tam sayilar eski arsiv kosulari.
+scenario_state: dict[str, Any] = {"value": "baseline"}
+
+ARCHIVE_LABELS = {5: "Arsiv - EPS 5 cm", 10: "Arsiv - EPS 10 cm", 15: "Arsiv - EPS 15 cm"}
+
+
+def selected_scenario():
+    value = scenario_state["value"]
+    return baseline if value == "baseline" else repository.scenarios[int(value)]
+
+
+def viewing_archive() -> bool:
+    return scenario_state["value"] != "baseline"
+
+
+@ui.refreshable
+def archive_notice() -> None:
+    """Uyari yalnizca eski arsiv kosusu goruntulenirken anlamlidir."""
+    if not (viewing_archive() and repository.archived_runs_are_identical):
+        return
+    with ui.element("div").classes("quality-alert w-full"):
+        ui.icon("warning_amber", size="24px")
+        with ui.column().classes("gap-0"):
+            ui.label("Arşiv koşuları eski modele aittir ve üçü birbirinin aynısıdır").classes("font-semibold")
+            ui.label(
+                "Eski kod alternatif konstrüksiyonu oluşturmuş fakat modele uygulamamış; "
+                "bu üç koşu parametrik veri olarak kullanılamaz, yalnızca tarihsel referanstır. "
+                "Güncel değerler için \"Onarılmış taban\" koşusunu seçin."
+            ).classes("text-sm opacity-80")
 
 
 @ui.refreshable
 def dashboard_content() -> None:
-    scenario = repository.scenarios[scenario_state["value"]]
+    scenario = selected_scenario()
     with ui.element("div").classes("metric-grid w-full"):
-        metric_card("bolt", "TOPLAM SAHA ENERJİSİ", f"{number(scenario.site_energy_gj, 1)} GJ", "EnergyPlus yıllık sonuç", "teal")
+        metric_card("bolt", "TOPLAM SAHA ENERJİSİ", f"{number(scenario.site_energy_gj, 1)} GJ",
+                    "Eski arşiv koşusu" if viewing_archive() else "Onarılmış taban çizgisi", "teal")
         metric_card("speed", "ENERJİ YOĞUNLUĞU", f"{number(scenario.eui_mj_m2, 1)} MJ/m²", "Toplam bina alanına göre", "gold")
         metric_card("apartment", "TOPLAM ALAN", f"{number(scenario.total_area_m2, 0)} m²", f"{number(scenario.conditioned_area_m2, 0)} m² iklimlendirilmiş", "blue")
         metric_card("device_thermostat", "KONFOR AŞIMI", f"{number(scenario.unmet_cooling_hours, 2)} saat", "Soğutma set değeri aşımı", "coral")
@@ -135,7 +164,11 @@ def dashboard_content() -> None:
     with ui.element("div").classes("chart-grid w-full"):
         with ui.card().classes("panel-card"):
             ui.label("Son kullanımlara göre enerji").classes("card-title")
-            ui.label(f"EPS {scenario.thickness_cm} cm · arşiv EnergyPlus koşusu").classes("card-subtitle")
+            ui.label(
+                f"Arşiv · EPS {scenario.thickness_cm} cm (eski model)"
+                if viewing_archive()
+                else "Faz 1 onarımı sonrası taban koşusu · 0 Ciddi Hata"
+            ).classes("card-subtitle")
             ui.echart(energy_pie(scenario)).classes("w-full h-80")
         with ui.card().classes("panel-card"):
             ui.label("Aylık tüketim profili").classes("card-title")
@@ -250,6 +283,7 @@ def star_study_panel() -> None:
                 ui.label(
                     f"Referans HVAC {number(reference.hvac_gj, 2)} GJ; en iyi alternatif {number(best.hvac_gj, 2)} GJ. Bunun nedeni referans EPS'nin 10 cm ve λ=0,020 W/mK ile test aralığından daha güçlü olmasıdır."
                 ).classes("text-sm opacity-80")
+
     with ui.card().classes("panel-card w-full"):
         ui.label("Gerçek EnergyPlus sonuç yüzeyi").classes("card-title")
         ui.label("Aynı λ değerindeki noktalar kalınlığa göre bağlanmıştır; elmas işaret referanstır.").classes("card-subtitle")
@@ -728,22 +762,23 @@ def main_page() -> None:
             with ui.tab_panel(overview_tab).classes("p-0"):
                 with ui.column().classes("w-full gap-6"):
                     with ui.row().classes("w-full justify-between items-end gap-4"):
-                        section_heading("01 · GENEL BAKIŞ", "Arşivlenmiş EnergyPlus sonuçları", "Gerçek SQL çıktıları doğrudan okunur; ekran görüntülerinden veri kopyalanmaz.")
+                        section_heading("01 · GENEL BAKIŞ", "EnergyPlus koşu sonuçları", "Gerçek SQL çıktıları doğrudan okunur; ekran görüntülerinden veri kopyalanmaz.")
                         ui.select(
-                            options={5: "EPS 5 cm", 10: "EPS 10 cm", 15: "EPS 15 cm"},
-                            value=5,
-                            label="Arşiv senaryosu",
+                            options={
+                                "baseline": "Onarılmış taban (güncel)",
+                                5: "Arşiv · EPS 5 cm",
+                                10: "Arşiv · EPS 10 cm",
+                                15: "Arşiv · EPS 15 cm",
+                            },
+                            value="baseline",
+                            label="Koşu",
                             on_change=lambda event: (
-                                scenario_state.update(value=int(event.value)),
+                                scenario_state.update(value=event.value),
                                 dashboard_content.refresh(),
+                                archive_notice.refresh(),
                             ),
-                        ).classes("scenario-select w-48")
-                    if repository.archived_runs_are_identical:
-                        with ui.element("div").classes("quality-alert w-full"):
-                            ui.icon("warning_amber", size="24px")
-                            with ui.column().classes("gap-0"):
-                                ui.label("Üç arşiv koşusunun enerji sonuçları aynı").classes("font-semibold")
-                                ui.label("Eski kod alternatif konstrüksiyonu oluşturmuş fakat modele uygulamamış. Düzeltilmiş akış, konstrüksiyonu yerinde güncelliyor.").classes("text-sm opacity-80")
+                        ).classes("scenario-select w-56")
+                    archive_notice()
                     dashboard_content()
 
             with ui.tab_panel(parametric_tab).classes("p-0"):
@@ -1025,7 +1060,10 @@ def main_page() -> None:
 
         with ui.row().classes("w-full justify-between items-center pt-4 text-xs text-slate-500"):
             ui.label("Enerji Optimizasyon Stüdyosu · NiceGUI + OpenStudio + EnergyPlus")
-            ui.label("Veri kaynağı: 12.05.2026 arşiv koşuları")
+            ui.label(
+                "Veri kaynağı: Faz 1 onarımı sonrası taban koşusu "
+                "(data/baseline_v1) · arşiv koşuları tarihsel referanstır"
+            )
 
 
 ui.add_head_html(

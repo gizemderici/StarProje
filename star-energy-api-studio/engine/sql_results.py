@@ -21,7 +21,8 @@ class SimulationIssue:
 
 @dataclass(slots=True)
 class ArchivedScenario:
-    thickness_cm: int
+    # Taban kosusu bir EPS senaryosu degildir; onun icin None kalir.
+    thickness_cm: int | None
     sql_path: Path
     run_status: str
     site_energy_gj: float
@@ -83,79 +84,7 @@ class ResultsRepository:
         return self
 
     def _load_scenario(self, thickness_cm: int) -> ArchivedScenario:
-        run_dir = self.archived_root / f"eps_{thickness_cm}cm"
-        sql_path = run_dir / "eplusout.sql"
-        if not sql_path.exists():
-            raise FileNotFoundError(f"EnergyPlus SQL sonucu bulunamadı: {sql_path}")
-
-        with sqlite3.connect(sql_path) as connection:
-            connection.row_factory = sqlite3.Row
-            cursor = connection.cursor()
-            scenario = ArchivedScenario(
-                thickness_cm=thickness_cm,
-                sql_path=sql_path,
-                run_status=_run_status(run_dir),
-                site_energy_gj=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Site and Source Energy",
-                    "Total Site Energy",
-                    "Total Energy",
-                ),
-                source_energy_gj=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Site and Source Energy",
-                    "Total Source Energy",
-                    "Total Energy",
-                ),
-                eui_mj_m2=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Site and Source Energy",
-                    "Total Site Energy",
-                    "Energy Per Total Building Area",
-                ),
-                total_area_m2=_tabular_float(
-                    cursor, ANNUAL_REPORT, "Building Area", "Total Building Area", "Area"
-                ),
-                conditioned_area_m2=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Building Area",
-                    "Net Conditioned Building Area",
-                    "Area",
-                ),
-                unmet_heating_hours=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Comfort and Setpoint Not Met Summary",
-                    "Time Setpoint Not Met During Occupied Heating",
-                    "Facility",
-                ),
-                unmet_cooling_hours=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Comfort and Setpoint Not Met Summary",
-                    "Time Setpoint Not Met During Occupied Cooling",
-                    "Facility",
-                ),
-                discomfort_hours=_tabular_float(
-                    cursor,
-                    ANNUAL_REPORT,
-                    "Comfort and Setpoint Not Met Summary",
-                    "Time Not Comfortable Based on Simple ASHRAE 55-2004",
-                    "Facility",
-                ),
-                end_uses_gj=_end_uses(cursor),
-                fuels_gj=_fuels(cursor),
-                monthly_gj=_monthly_energy(cursor),
-                general=_general(cursor),
-                window_wall_ratio=_wwr(cursor),
-                zones=_zones(cursor),
-                issues=_issues(cursor),
-            )
-        return scenario
+        return load_run(self.archived_root / f"eps_{thickness_cm}cm", thickness_cm)
 
     @property
     def archived_runs_are_identical(self) -> bool:
@@ -182,6 +111,89 @@ class ResultsRepository:
             thickness: hashlib.sha256(scenario.sql_path.read_bytes()).hexdigest()
             for thickness, scenario in self.scenarios.items()
         }
+
+
+def load_run(run_dir: Path, thickness_cm: int | None = None) -> ArchivedScenario:
+    """Tek bir EnergyPlus kosu klasorunu okur.
+
+    ResultsRepository klasor adlarini "eps_{kalinlik}cm" desenine bagliydi ve
+    yalnizca (5, 10, 15) kalinliklarini taniyordu. Onarilmis taban kosusu bu
+    desene uymadigi icin arayuzde eski arsiv sonuclari gosteriliyordu.
+    Bu fonksiyon desenden bagimsizdir; taban cizgisi de arsiv senaryolari da
+    ayni cikarim koduyla okunur.
+    """
+    sql_path = run_dir / "eplusout.sql"
+    if not sql_path.exists():
+        raise FileNotFoundError(f"EnergyPlus SQL sonucu bulunamadı: {sql_path}")
+
+    with sqlite3.connect(sql_path) as connection:
+        connection.row_factory = sqlite3.Row
+        cursor = connection.cursor()
+        scenario = ArchivedScenario(
+            thickness_cm=thickness_cm,
+            sql_path=sql_path,
+            run_status=_run_status(run_dir),
+            site_energy_gj=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Site and Source Energy",
+                "Total Site Energy",
+                "Total Energy",
+            ),
+            source_energy_gj=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Site and Source Energy",
+                "Total Source Energy",
+                "Total Energy",
+            ),
+            eui_mj_m2=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Site and Source Energy",
+                "Total Site Energy",
+                "Energy Per Total Building Area",
+            ),
+            total_area_m2=_tabular_float(
+                cursor, ANNUAL_REPORT, "Building Area", "Total Building Area", "Area"
+            ),
+            conditioned_area_m2=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Building Area",
+                "Net Conditioned Building Area",
+                "Area",
+            ),
+            unmet_heating_hours=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Comfort and Setpoint Not Met Summary",
+                "Time Setpoint Not Met During Occupied Heating",
+                "Facility",
+            ),
+            unmet_cooling_hours=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Comfort and Setpoint Not Met Summary",
+                "Time Setpoint Not Met During Occupied Cooling",
+                "Facility",
+            ),
+            discomfort_hours=_tabular_float(
+                cursor,
+                ANNUAL_REPORT,
+                "Comfort and Setpoint Not Met Summary",
+                "Time Not Comfortable Based on Simple ASHRAE 55-2004",
+                "Facility",
+            ),
+            end_uses_gj=_end_uses(cursor),
+            fuels_gj=_fuels(cursor),
+            monthly_gj=_monthly_energy(cursor),
+            general=_general(cursor),
+            window_wall_ratio=_wwr(cursor),
+            zones=_zones(cursor),
+            issues=_issues(cursor),
+        )
+    return scenario
 
 
 def _tabular_float(

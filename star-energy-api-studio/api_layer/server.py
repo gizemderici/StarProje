@@ -7,7 +7,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from api_layer.schemas import QuickStudyRequest, SimulationRequest, parameter_catalog
 from engine.estimator import EstimatorAssumptions, run_parametric
 from engine.openstudio_runner import OpenStudioCase
-from engine.sql_results import ResultsRepository
+from engine.sql_results import ResultsRepository, load_run
 from engine.star_study import StarStudy
 from model_store import ModelRepository
 from services import OpenStudioService, OpenStudioUnavailable
@@ -161,6 +161,28 @@ def archived_results(model_id: str) -> dict[str, object]:
     payload["model"] = _model(model_id).public_dict()
     payload["source"] = "energyplus-sql-service"
     return payload
+
+
+@api.get("/api/v1/models/{model_id}/baseline-results", tags=["results"])
+def baseline_results(model_id: str) -> dict[str, object]:
+    """Onarilmis taban kosusu. Arsiv ucundan farkli olarak tek kosu dondurur."""
+    record = _model(model_id)
+    if record.baseline_results_path is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"{model_id} icin taban kosusu bulunmuyor.",
+        )
+    try:
+        scenario = load_run(record.baseline_results_path)
+    except (FileNotFoundError, ValueError) as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    payload = scenario.to_dict()
+    payload.pop("sql_path", None)
+    return {
+        "baseline": payload,
+        "model": record.public_dict(),
+        "source": "energyplus-sql-service",
+    }
 
 
 @api.get("/api/v1/models/{model_id}/study-results", tags=["results"])

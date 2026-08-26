@@ -15,6 +15,8 @@ class ModelRecord:
     osm_path: Path
     weather_path: Path | None
     archived_results_path: Path | None = None
+    # Faz 1 onarimi sonrasi taban kosusu; arsiv kosularindan ayridir.
+    baseline_results_path: Path | None = None
     study_path: Path | None = None
 
     def public_dict(self) -> dict[str, object]:
@@ -25,6 +27,7 @@ class ModelRecord:
             "osm_filename": self.osm_path.name,
             "weather_available": self.weather_path is not None,
             "archived_results_available": self.archived_results_path is not None,
+            "baseline_results_available": self.baseline_results_path is not None,
             "study_results_available": self.study_path is not None,
         }
 
@@ -85,6 +88,12 @@ class ModelRepository:
                 if archived_value
                 else None
             )
+            baseline_value = item.get("baseline_results")
+            baseline_results_path = (
+                self._resolve_project_directory(str(baseline_value))
+                if baseline_value
+                else None
+            )
             study_value = item.get("study")
             study_path = (
                 self._resolve_project_directory(str(study_value))
@@ -97,6 +106,7 @@ class ModelRepository:
                 osm_path=osm_path,
                 weather_path=weather_path,
                 archived_results_path=archived_results_path,
+                baseline_results_path=baseline_results_path,
                 study_path=study_path,
             )
         if not records:

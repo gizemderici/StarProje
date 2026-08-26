@@ -143,7 +143,7 @@ class ApiIssue:
 
 @dataclass(frozen=True, slots=True)
 class ApiArchivedScenario:
-    thickness_cm: int
+    thickness_cm: int | None
     run_status: str
     site_energy_gj: float
     source_energy_gj: float
@@ -166,7 +166,11 @@ class ApiArchivedScenario:
     @classmethod
     def from_payload(cls, payload: dict[str, Any]) -> "ApiArchivedScenario":
         return cls(
-            thickness_cm=int(payload.get("thickness_cm", 0)),
+            thickness_cm=(
+                int(payload["thickness_cm"])
+                if payload.get("thickness_cm") is not None
+                else None
+            ),
             run_status=str(payload.get("run_status", "Unknown")),
             site_energy_gj=float(payload.get("site_energy_gj", 0.0)),
             source_energy_gj=float(payload.get("source_energy_gj", 0.0)),
@@ -431,6 +435,17 @@ class EnergyApiClient:
         return ApiArchivedResults.from_payload(
             self._request("GET", f"/api/v1/models/{model_id}/archived-results", timeout=180)
         )
+
+    def get_baseline_results(self, model_id: str) -> ApiArchivedScenario:
+        """Faz 1 onarimi sonrasi taban kosusunu getirir.
+
+        Arsiv ucu eski eps_{kalinlik}cm kosularini dondurur; bu uc ise
+        calisma modelinin guncel taban cizgisidir.
+        """
+        payload = self._request(
+            "GET", f"/api/v1/models/{model_id}/baseline-results", timeout=180
+        )
+        return ApiArchivedScenario.from_payload(payload["baseline"])
 
     def get_study_results(self, model_id: str) -> ApiStarStudy:
         return ApiStarStudy.from_payload(
