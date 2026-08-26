@@ -20,6 +20,7 @@ class _Fixture:
             mock.patch.object(study_data, "OPTIMIZATION_DIR", root / "optimization"),
             mock.patch.object(study_data, "VALIDATION_DIR", root / "validation"),
             mock.patch.object(study_data, "BASELINE_DIR", root / "baseline"),
+            mock.patch.object(study_data, "SURROGATE_DIR", root / "surrogate"),
         ]
 
     def __enter__(self) -> "_Fixture":
@@ -163,6 +164,31 @@ class NumericColumnTests(unittest.TestCase):
         rows = [{"x": "1.5"}, {"x": ""}, {"y": "3"}, {"x": "2.5"}]
         self.assertEqual(study_data.numeric_column(rows, "x"), [1.5, 2.5])
 
+
+
+class NumberFormatTests(unittest.TestCase):
+    """Turkce sayi bicimi.
+
+    Python'un varsayilan bicimi ("1,920.50") arayuzun geri kalaniyla
+    tutarsizdi; bu binada 1.920 ile 1,920 farkli sayilar gibi okunuyordu.
+    """
+
+    def test_thousands_and_decimal_separators_are_swapped(self) -> None:
+        from ui_pages.panels import tr
+
+        self.assertEqual(tr(1920.5, 2), "1.920,50")
+        self.assertEqual(tr(21872773.0, 0), "21.872.773")
+        self.assertEqual(tr(4.5651, 2), "4,57")
+
+    def test_negative_values_keep_their_sign(self) -> None:
+        from ui_pages.panels import tr
+
+        self.assertEqual(tr(-1.47, 2), "-1,47")
+
+    def test_zero_digits_drops_the_decimal_part(self) -> None:
+        from ui_pages.panels import tr
+
+        self.assertEqual(tr(631.0, 0), "631")
 
 if __name__ == "__main__":
     unittest.main()

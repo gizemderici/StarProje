@@ -9,6 +9,7 @@ from nicegui import run, ui
 
 from client import ApiArchivedScenario, ApiMaterial, EnergyApiClient, EnergyApiError
 from engine.estimator import balance_point
+from ui_pages import panels
 
 
 API_BASE_URL = os.getenv("ENERJI_API_URL", "http://127.0.0.1:8091")
@@ -658,6 +659,10 @@ def main_page() -> None:
                 runner_tab = ui.tab("live", label="Canlı Akış", icon="graphic_eq")
                 model_tab = ui.tab("assets", label="Model ve Varlıklar", icon="widgets")
                 diagnostics_tab = ui.tab("history", label="Geçmiş ve Tanılama", icon="history")
+                surrogate_tab = ui.tab("surrogate", label="Vekil Model", icon="insights")
+                pareto_tab = ui.tab("pareto", label="Pareto", icon="scatter_plot")
+                iso_tab = ui.tab("iso", label="ISO 50001", icon="fact_check")
+                validation_tab = ui.tab("validation", label="Doğrulama", icon="rule")
             right_nav = ui.button(
                 icon="chevron_right", on_click=lambda: scroll_navigation(280)
             ).props("flat round dense").classes("nav-scroll-button")
@@ -999,6 +1004,24 @@ def main_page() -> None:
                                 {"name": "state", "label": "Durum", "field": "state", "align": "left"},
                             ], rows=source_rows, row_key="source"
                         ).classes("w-full studio-table")
+
+
+            with ui.tab_panel(surrogate_tab).classes("p-0"):
+                with ui.column().classes("w-full gap-4"):
+                    panels.phase_strip()
+                    panels.surrogate_panel()
+
+            with ui.tab_panel(pareto_tab).classes("p-0"):
+                with ui.column().classes("w-full gap-4"):
+                    panels.pareto_panel()
+
+            with ui.tab_panel(iso_tab).classes("p-0"):
+                with ui.column().classes("w-full gap-4"):
+                    panels.iso50001_panel()
+
+            with ui.tab_panel(validation_tab).classes("p-0"):
+                with ui.column().classes("w-full gap-4"):
+                    panels.validation_panel()
 
         with ui.row().classes("w-full justify-between items-center pt-4 text-xs text-slate-500"):
             ui.label("Enerji Optimizasyon Stüdyosu · NiceGUI + OpenStudio + EnergyPlus")

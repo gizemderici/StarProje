@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PARAMETRIC_DIR = ROOT / "data/parametric"
 ISO_DIR = ROOT / "data/iso50001"
 OPTIMIZATION_DIR = ROOT / "data/optimization"
+SURROGATE_DIR = ROOT / "data/surrogate"
 VALIDATION_DIR = ROOT / "data/validation"
 BASELINE_DIR = ROOT / "data/baseline_v1"
 
@@ -196,6 +197,69 @@ def load_pareto() -> ParetoView:
 
 
 @dataclass(slots=True)
+class SurrogateView:
+    ready: bool = False
+    rows: int = 0
+    features: int = 0
+    gate_passed: bool = False
+    gate_targets: list[str] = field(default_factory=list)
+    test_scores: list[dict[str, Any]] = field(default_factory=list)
+    sensitivity: list[dict[str, Any]] = field(default_factory=list)
+    speedup_ratio: float = 0.0
+    seconds_per_call: float = 0.0
+
+    def test_rows(self) -> list[dict[str, Any]]:
+        """Test kumesi tablosunu arayuz icin duzlestirir.
+
+        Hedefe gore olcut degistigi icin (seyrek hedeflerde CVRMSE yaniltir)
+        gosterilen hata sutunu da hedefe gore secilir.
+        """
+        rows = []
+        for item in self.test_scores:
+            sparse = item.get("metric", "").startswith("NRMSE")
+            error = (
+                item.get("nrmse_range_percent", 0.0)
+                if sparse
+                else item.get("cvrmse_percent", 0.0)
+            )
+            gating = item["target"] in self.gate_targets
+            if gating:
+                gate = "GECTI" if item.get("meets_target") else "KALDI"
+            else:
+                gate = "kapi disi"
+            rows.append(
+                {
+                    "target": item["target"],
+                    "model": item["model"],
+                    "r2": round(float(item.get("r2", 0.0)), 3),
+                    "metric": item.get("metric", "-"),
+                    "error": f"%{float(error):.2f}",
+                    "gate": gate,
+                }
+            )
+        return rows
+
+
+def load_surrogate() -> SurrogateView:
+    payload = _read_json(SURROGATE_DIR / "surrogate_report.json")
+    if not payload:
+        return SurrogateView()
+    dataset = payload.get("dataset", {})
+    speedup = payload.get("speedup", {})
+    return SurrogateView(
+        ready=True,
+        rows=int(dataset.get("rows", 0)),
+        features=int(dataset.get("features", 0)),
+        gate_passed=bool(payload.get("gate_passed", False)),
+        gate_targets=list(payload.get("gate_targets", [])),
+        test_scores=list(payload.get("test_scores", [])),
+        sensitivity=list(payload.get("sensitivity", {}).get("indices", [])),
+        speedup_ratio=float(speedup.get("ratio", 0.0)),
+        seconds_per_call=float(speedup.get("surrogate_seconds_per_call", 0.0)),
+    )
+
+
+@dataclass(slots=True)
 class ValidationView:
     ready: bool = False
     points: list[dict[str, Any]] = field(default_factory=list)
@@ -241,6 +305,7 @@ def load_baseline_diagnostics() -> DiagnosticsView:
 def phase_overview() -> list[dict[str, Any]]:
     """Arayuzun ust seridinde gosterilecek faz durumu."""
     study = load_study_status()
+    surrogate = load_surrogate()
     iso = load_iso50001()
     pareto = load_pareto()
     validation = load_validation()
@@ -266,8 +331,13 @@ def phase_overview() -> list[dict[str, Any]]:
         {
             "phase": "Faz 4",
             "title": "Vekil model",
-            "ready": False,
-            "detail": "Faz 3 sonuclari bekleniyor",
+            "ready": surrogate.ready and surrogate.gate_passed,
+            "detail": (
+                f"{surrogate.rows} satir, kapi "
+                + ("gecildi" if surrogate.gate_passed else "gecilmedi")
+                if surrogate.ready
+                else "egitilmedi"
+            ),
         },
         {
             "phase": "Faz 5",
@@ -292,7 +362,7 @@ def phase_overview() -> list[dict[str, Any]]:
         {
             "phase": "Faz 7",
             "title": "Dogrulama",
-            "ready": validation.ready,
+            "ready": validation.ready and validation.within_tolerance,
             "detail": (
                 f"en buyuk sapma %{validation.max_deviation_percent:.2f}"
                 if validation.ready
