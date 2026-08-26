@@ -1,9 +1,10 @@
 # OpenStudio OSM Veri Okuma ve Analiz Projesi
 
-> ## Proje Durumu — Faz 0 karari
+> ## Proje Durumu — bu klasor ARSIVDIR
 >
-> **Canli proje `star-energy-api-studio/` klasorudur.** Gelistirme, simulasyon ve
-> analiz isleri orada yapilir.
+> **Canli proje [`star-energy-api-studio/`](star-energy-api-studio/README.md)
+> klasorudur.** Tez calismasi, simulasyon ve analiz isleri orada yapilir;
+> Faz 0'dan Faz 8'e kadar butun asamalar orada tamamlanmistir.
 >
 > Kok dizindeki `nicegui_csv_viewer.py` ve cevresindeki CSV/senaryo betikleri
 > **arsiv durumundadir**. Bu taraf EnergyPlus calistirmaz: kok projede hicbir
@@ -12,9 +13,29 @@
 > CSV farki uretir, simulasyon sonucu uretmez. Ayrica `csv_output/` klasoru
 > 176 m2'lik ikinci modeli tarif eder, 4.246 m2'lik kampus binasini degil.
 >
+> Asagidaki metin bu arsiv tarafini anlatir ve tarihsel kayit olarak tutulur.
+>
+> ### Canli projenin ozeti
+>
+> | | |
+> |---|---|
+> | Taban cizgisi | 1.920,00 GJ/yil · 452,17 MJ/m² · 0 Ciddi Hata |
+> | Karar degiskeni | 11 (7 OpenStudio measure) |
+> | Egitim kumesi | 175 gercek EnergyPlus kosusu |
+> | Vekil model | Kriging · CVRMSE %2,75 · R² 0,994 |
+> | Optimizasyon | NSGA-II · 80 cozumlu Pareto cephesi |
+> | Dogrulama | 8 taze nokta · ortalama sapma %1,89 (kapi %5) |
+>
+> **Merkezi bulgu:** EPS yalitim kalinligi enerji varyansinin binde ikisini bile
+> aciklamaz (Sobol S1 = 0,0002); chiller COP tek basina %57'sini aciklar. Bina
+> sogutma agirliklidir (%58,3), isitma payi %2,4'tur. Baslangictaki yalitim
+> odakli tasarim hipotezi veriyle reddedilmistir.
+>
+> - **Canli projenin README'si: [star-energy-api-studio/README.md](star-energy-api-studio/README.md)**
 > - Kanonik model ve gerekcesi: [star-energy-api-studio/docs/model_secimi.md](star-energy-api-studio/docs/model_secimi.md)
 > - Referans kosu: [star-energy-api-studio/data/reference_run/README.md](star-energy-api-studio/data/reference_run/README.md)
 > - Faz 1 icin olculmus bulgular: [star-energy-api-studio/docs/bulgular_faz1.md](star-energy-api-studio/docs/bulgular_faz1.md)
+> - Dogrulama yontemi: [star-energy-api-studio/docs/faz7_dogrulama.md](star-energy-api-studio/docs/faz7_dogrulama.md)
 > - Bagimliliklar: `pip install -r requirements.txt`
 
 
