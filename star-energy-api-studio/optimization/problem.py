@@ -168,16 +168,22 @@ def write_front(
     history: Sequence[dict[str, float]],
     path: Path,
     evaluator: str = "unknown",
+    settings: dict[str, object] | None = None,
 ) -> Path:
     """Cepheyi diske yazar.
 
     `evaluator` alani zorunludur: analitik taslakla uretilmis bir cephe
     arayuzde gercek sonuc gibi gorunmemelidir.
+
+    `settings` kosuyu ureten argumanlari kaydeder. Kaydedilmezse cepheyi
+    yeniden uretmek icin hangi nesil/birey sayisinin kullanildigi
+    bilinemez ve varsayilanlarla kosulan komut farkli bir cephe uretir.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "evaluator": evaluator,
         "usable_in_thesis": evaluator == "surrogate",
+        "settings": dict(settings or {}),
         "objective_labels": list(OBJECTIVE_LABELS),
         "constraint_labels": list(CONSTRAINT_LABELS),
         "baseline_parameters": baseline_parameters(),

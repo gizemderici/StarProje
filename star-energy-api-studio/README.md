@@ -206,7 +206,7 @@ Faz 5 — ISO 50001 raporu:
 Faz 6 — NSGA-II, belirsizlik cezası katsayısıyla:
 
 ```powershell
-.\.venv\Scripts\python.exe .\run_optimization.py --uncertainty-penalty 0.5
+.\.venv\Scripts\python.exe .\run_optimization.py --evaluator surrogate --generations 120 --population 80 --uncertainty-penalty 0.5
 ```
 
 Faz 7 — doğrulama:

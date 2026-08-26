@@ -84,6 +84,20 @@ def appendices(document, facts: dict[str, Any]) -> None:
     )
     kit.body(
         document,
+        "Çok amaçlı optimizasyon adımı varsayılan argümanlarla değil, 120 nesil "
+        "ve 80 bireylik popülasyonla; belirsizlik ceza katsayısı 0,5 alınarak "
+        "koşulmuştur. Bu ayarlar üretilen cephe dosyasına kaydedilir; "
+        "varsayılan argümanlarla koşulan bir komut farklı bir cephe üretir ve "
+        "doğrulama raporuyla uyuşmaz.",
+    )
+    kit.body(
+        document,
+        "Adımlar birbirine bağımlıdır ve sırayla koşulmalıdır: vekil model, "
+        "optimizasyon, doğrulama. Doğrulama belirli bir cepheden seçilen "
+        "noktalara aittir; cephe yeniden üretilirse doğrulama da yenilenmelidir.",
+    )
+    kit.body(
+        document,
         "Raporun tüm sayısal değerleri, yukarıdaki betiklerin ürettiği JSON "
         "dosyalarından okunarak yerleştirilmektedir; metinde elle yazılmış sonuç "
         "değeri bulunmamaktadır. Analiz yeniden koşulduğunda rapor da yeniden "

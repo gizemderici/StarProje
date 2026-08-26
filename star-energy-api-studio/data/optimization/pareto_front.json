@@ -1,6 +1,13 @@
 {
   "evaluator": "surrogate",
   "usable_in_thesis": true,
+  "settings": {
+    "generations": 120,
+    "population": 80,
+    "seed": 20260825,
+    "uncertainty_penalty": 0.5,
+    "note": "Ayarlar kosu sonrasi belgelendi; cephe yeniden uretilmedi."
+  },
   "objective_labels": [
     "EnPI (kWh/m2-yil)",
     "Yatirim maliyeti (TRY)",

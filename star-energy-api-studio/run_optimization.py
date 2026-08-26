@@ -221,7 +221,18 @@ def main() -> None:
     extremes = extreme_indices(front)
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    path = write_front(solutions, history, OUTPUT / "pareto_front.json", args.evaluator)
+    path = write_front(
+        solutions,
+        history,
+        OUTPUT / "pareto_front.json",
+        args.evaluator,
+        settings={
+            "generations": args.generations,
+            "population": args.population,
+            "seed": args.seed,
+            "uncertainty_penalty": args.uncertainty_penalty,
+        },
+    )
 
     print(f"\nDegerlendirme: {problem.evaluator.__name__ if hasattr(problem.evaluator, '__name__') else args.evaluator}")
     print(f"Nesil {args.generations} x popülasyon {args.population} -> {elapsed:.1f} sn")
