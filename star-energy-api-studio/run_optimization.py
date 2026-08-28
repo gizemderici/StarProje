@@ -264,11 +264,31 @@ def main() -> None:
             "sonuclar tezde kullanilamaz. Faz 4 vekil modeli baglanmalidir."
         )
     else:
+        # Olcutler rapordan okunur. Elle yazildiginda vekil model yeniden
+        # egitilince mesaj eskiyor ve yanlis dogruluk bildiriyordu.
         print(
-            "Degerlendirme Faz 4 vekil modeliyle yapildi (site_energy_gj "
-            "CVRMSE %6,19; comfort_violation_hours NRMSE %4,28). Cephe Faz 7'de "
-            "gercek EnergyPlus kosulariyla dogrulanmalidir."
+            "Degerlendirme Faz 4 vekil modeliyle yapildi "
+            f"({_surrogate_accuracy_note()}). Cephe Faz 7'de gercek "
+            "EnergyPlus kosulariyla dogrulanmalidir."
         )
+
+
+def _surrogate_accuracy_note() -> str:
+    report = ROOT / "data/surrogate/surrogate_report.json"
+    if not report.is_file():
+        return "dogruluk raporu bulunamadi"
+    scores = json.loads(report.read_text(encoding="utf-8"))["test_scores"]
+    parts = []
+    for row in scores:
+        if row["target"] not in ("site_energy_gj", "comfort_violation_hours"):
+            continue
+        value = (row["cvrmse_percent"] if row["metric"] == "CVRMSE"
+                 else row["nrmse_range_percent"])
+        name = "CVRMSE" if row["metric"] == "CVRMSE" else "NRMSE"
+        parts.append(
+            f"{row['target']} {name} %" + f"{value:.2f}".replace(".", ",")
+        )
+    return "; ".join(parts)
 
 
 if __name__ == "__main__":

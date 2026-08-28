@@ -148,6 +148,15 @@ def main() -> None:
             }
         )
 
+    if not rows:
+        # Hicbir kosu hasat edilemedi. Mevcut rapor korunur; aksi halde
+        # gecerli bir dogrulama kaydi bos bir sonucla ezilir.
+        raise SystemExit(
+            "Hicbir dogrulama kosusu hasat edilemedi; mevcut rapor "
+            "degistirilmedi. Kosu gunluklerini inceleyin: "
+            "data/validation/runs/*/openstudio_stderr.log"
+        )
+
     summary = summarise(rows, args.tolerance)
     OUTPUT.mkdir(parents=True, exist_ok=True)
     report = {

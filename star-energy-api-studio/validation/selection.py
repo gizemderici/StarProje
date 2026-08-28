@@ -158,7 +158,12 @@ def deviation(predicted: float, actual: float) -> float:
 def summarise(
     rows: Sequence[Mapping[str, object]], tolerance_percent: float = 5.0
 ) -> dict[str, object]:
-    """Dogrulama tablosunun ozeti; Faz 7 kapisi buradan okunur."""
+    """Dogrulama tablosunun ozeti; Faz 7 kapisi buradan okunur.
+
+    Sifir nokta kapiyi GECEMEZ. Onceki surumde bos bir sonuc kumesinde
+    `worst = 0.0` oluyor ve `within_tolerance` True donuyordu; boylece butun
+    kosulari basarisiz olmus bir dogrulama, kapiyi gecmis gibi raporlaniyordu.
+    """
     deviations = [abs(float(row["deviation_percent"])) for row in rows if "deviation_percent" in row]
     worst = max(deviations) if deviations else 0.0
     return {
@@ -168,7 +173,7 @@ def summarise(
         "mean_absolute_deviation_percent": round(
             float(np.mean(deviations)) if deviations else 0.0, 3
         ),
-        "within_tolerance": worst <= tolerance_percent,
+        "within_tolerance": bool(deviations) and worst <= tolerance_percent,
         "failing_points": [
             row["case_id"]
             for row in rows

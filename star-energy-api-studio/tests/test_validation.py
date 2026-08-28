@@ -121,10 +121,13 @@ class SummaryTests(unittest.TestCase):
         self.assertFalse(summary["within_tolerance"])
         self.assertEqual(summary["failing_points"], ["b"])
 
-    def test_empty_input_is_handled(self) -> None:
+    def test_empty_input_cannot_pass_the_gate(self) -> None:
+        # Sifir nokta kapiyi GECEMEZ. Onceki surumde bos sonuc kumesi
+        # within_tolerance=True donuyordu; boylece butun EnergyPlus kosulari
+        # basarisiz olmus bir dogrulama, kapiyi gecmis gibi raporlaniyordu.
         summary = summarise([], tolerance_percent=5.0)
         self.assertEqual(summary["point_count"], 0)
-        self.assertTrue(summary["within_tolerance"])
+        self.assertFalse(summary["within_tolerance"])
 
 
 

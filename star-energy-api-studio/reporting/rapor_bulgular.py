@@ -271,6 +271,17 @@ def _pareto(document, facts: dict[str, Any], figure_dir: Path) -> None:
         "yatırımlarla belirgin kazanım elde edilirken, düşük enerji bölgesinde aynı "
         "kazanım için gereken yatırım hızla artmaktadır.",
     )
+    if not facts.get("front_validated", True):
+        kit.body(
+            document,
+            "UYARI — DOĞRULAMA BEKLİYOR. Bu cephe, TS 825 cam ısı geçirgenlik "
+            "sınırındaki bir hatanın düzeltilmesinin ardından yeniden "
+            "üretilmiştir (ayrıntı: Bölüm 5.4). Bölüm 4.6'da sunulan doğrulama "
+            "sonuçları, düzeltmeden önceki cepheden seçilen noktalara aittir ve "
+            "bu cepheyle ortak noktası yoktur. Buradaki çözümler bağımsız "
+            "EnergyPlus koşularıyla henüz sınanmamıştır; Faz 7 kapısı bu cephe "
+            "için yeniden işletilmelidir.",
+        )
 
 
 def _validation(document, facts: dict[str, Any], figure_dir: Path) -> None:
@@ -283,6 +294,15 @@ def _validation(document, facts: dict[str, Any], figure_dir: Path) -> None:
     topsis = facts["topsis"]
 
     kit.heading2(document, "4.6 Sayısal Doğrulama")
+    if not facts.get("front_validated", True):
+        kit.body(
+            document,
+            "Bu bölümdeki sonuçlar, Bölüm 4.5'te sunulan güncel cepheye değil, "
+            "TS 825 düzeltmesinden önceki cepheye aittir. Bölüm, doğrulama "
+            "yönteminin kurulumunu ve ölçülen davranışını belgelemek üzere "
+            "korunmuştur; sayıları güncel cephenin doğruluk beyanı olarak "
+            "okunmamalıdır.",
+        )
     kit.body(
         document,
         "Doğrulama süreci dört tur olarak yürütülmüştür. İlk iki turda kabul "
@@ -347,15 +367,18 @@ def _validation(document, facts: dict[str, Any], figure_dir: Path) -> None:
         "Şekil 4.4. Doğrulama noktalarında vekil model tahmininin EnergyPlus "
         "sonucundan sapması; kesikli çizgiler ±%5 kabul toleransını göstermektedir",
     )
-    kit.body(
-        document,
-        "Değerler enerji performans göstergesi cinsindendir. Tezde önerilecek TOPSIS "
-        f"uzlaşı çözümünün sapması %{tr(abs(topsis['deviation_percent']), 2)}'dir. Bu "
-        "çözüm, taban çizgisindeki 1.920,00 GJ tüketimi "
-        f"{tr(topsis['actual_site_energy_gj'], 2)} GJ seviyesine indirmekte, enerji "
-        "performans göstergesini ise "
-        f"{tr(topsis['actual_enpi_kwh_m2'], 2)} kWh/m²·yıl değerine çekmektedir.",
-    )
+    if topsis is not None:
+        kit.body(
+            document,
+            "Değerler enerji performans göstergesi cinsindendir. İlgili turda "
+            "önerilen TOPSIS uzlaşı çözümünün sapması "
+            f"%{tr(abs(topsis['deviation_percent']), 2)}'dir. Bu çözüm, taban "
+            "çizgisindeki 1.920,00 GJ tüketimi "
+            f"{tr(topsis['actual_site_energy_gj'], 2)} GJ seviyesine indirmekte, "
+            "enerji performans göstergesini ise "
+            f"{tr(topsis['actual_enpi_kwh_m2'], 2)} kWh/m²·yıl değerine "
+            "çekmektedir.",
+        )
     kit.body(
         document,
         "Konfor ihlali hedefinde vekil model, doğrulanan çözümlerde sıfır ihlal "
@@ -505,6 +528,57 @@ def discussion(document, facts: dict[str, Any]) -> None:
         "bulunmayan bir değere kadar genişletilmiştir. Duyarlılık sonuçları göz "
         "önüne alındığında bu aralığın daraltılması, hesaplama maliyetini önemli "
         "ölçüde azaltacaktır.",
+    )
+
+
+    kit.heading2(document, "5.4 Kısıt Değerinde Bulunan Hata ve Etkisi")
+    kit.body(
+        document,
+        "Raporun kaynakçası doğrulanırken TS 825 standardının EK 1-C "
+        "çizelgesine ulaşılmış ve optimizasyon kısıtlarında kullanılan cam ısı "
+        "geçirgenlik sınırının hatalı olduğu görülmüştür. Kullanılan değer "
+        "2,00 W/m²K, standarttaki değer ise dört iklim bölgesinde de "
+        "2,80 W/m²K'dir. Duvar sınırı (0,50 W/m²K) doğruydu.",
+    )
+    kit.body(
+        document,
+        "Hatanın iki sonucu olmuştur. Birincisi, taban çizgisindeki camın "
+        "(U = 2,718 W/m²K) standarda uygun olmadığı yönünde yanlış bir "
+        "değerlendirmedir; doğru sınırla cam uygundur. İkincisi, kısıtın mevcut "
+        "camın korunmasını yasaklamasıdır: düzeltme öncesi cephedeki seksen "
+        "çözümün tamamı bir pencere değişimi içermek zorunda kalmış ve cam alanı "
+        "1.628,77 m² olduğundan her çözüme yaklaşık 1,5 milyon TL'lik bir zorunlu "
+        "yatırım tabanı binmiştir.",
+    )
+    kit.table_caption(
+        document,
+        "Tablo 5.1. Cam sınırı düzeltmesinin Pareto cephesine etkisi",
+    )
+    kit.data_table(
+        document,
+        ["Ölçüt", "Düzeltme öncesi (2,00)", "Düzeltme sonrası (2,80)"],
+        [
+            ["En düşük EnPİ (kWh/m²·yıl)", "52,73", "46,38"],
+            ["En düşük yatırım maliyeti", "1,466 milyon TL", "0 TL"],
+            ["Mevcut camı koruyan çözüm sayısı", "0 / 80", "28 / 80"],
+        ],
+        widths=[6.4, 4.5, 4.6],
+    )
+    kit.body(
+        document,
+        "Kısıt hiçbir çözümde bağlayıcı olmadığından, düzeltme öncesi cephedeki "
+        "çözümlerin tamamı doğru sınıra göre de uygundur; sonuçlar geçersiz "
+        "değil, eksiktir. Düzeltilmiş cephe, mevcut camın korunduğu ve yatırım "
+        "maliyetinin sıfıra indiği bir bölgeyi de kapsamaktadır.",
+    )
+    kit.body(
+        document,
+        "Bu bulgu, yöntemin kendisine ilişkin bir uyarı da taşımaktadır: "
+        "kısıtların sayısal değerleri, tıpkı vekil modelin doğruluğu gibi, "
+        "sonuçların geçerliliğini doğrudan belirler ve kaynağından "
+        "doğrulanmalıdır. Standarda dayalı bir kısıt, standardın metnine "
+        "bakılmadan yazıldığında, yöntemin geri kalanı kusursuz çalışsa bile "
+        "cepheyi sistematik olarak daraltır.",
     )
 
 

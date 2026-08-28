@@ -65,8 +65,20 @@ def collect_facts() -> dict[str, Any]:
     scores = {row["target"]: row for row in surrogate["test_scores"]}
     seu = iso["significant_energy_uses"]
     summary = validation["summary"]
+    # Dogrulama kaydi, cephe yeniden uretildiginde eskir. Ortak nokta
+    # kalmamissa rapor eski sayilari yeni cepheyle eslestirmemelidir.
+    from engine.openstudio_runner import OpenStudioCase
+
+    front_ids = {
+        OpenStudioCase(parameters=item["parameters"]).case_id
+        for item in front["solutions"]
+    }
+    validation_matches_front = any(
+        item["case_id"] in front_ids for item in validation["points"]
+    )
     topsis = next(
-        item for item in validation["points"] if "TOPSIS" in item["reason"]
+        (item for item in validation["points"] if "TOPSIS" in item["reason"]),
+        None,
     )
 
     return {
@@ -79,6 +91,7 @@ def collect_facts() -> dict[str, Any]:
         "seu": seu,
         "summary": summary,
         "topsis": topsis,
+        "front_validated": validation_matches_front,
         "sensitivity": surrogate["sensitivity"]["indices"],
     }
 
@@ -251,14 +264,24 @@ def build_abstracts(document, facts: dict[str, Any]) -> None:
 
 
 def _topsis_parameters(facts):
-    """Dogrulanan TOPSIS cozumunun parametrelerini cephede case_id ile bulur."""
-    from engine.openstudio_runner import OpenStudioCase
+    """Guncel cephenin TOPSIS uzlasi cozumunun parametrelerini dondurur.
 
-    target = facts["topsis"]["case_id"]
-    for solution in facts["front"]["solutions"]:
-        if OpenStudioCase(parameters=solution["parameters"]).case_id == target:
-            return solution["parameters"]
-    raise LookupError(f"TOPSIS cozumu cephede bulunamadi: {target}")
+    Onceki surum cozumu dogrulama kaydindaki case_id ile ariyordu; cephe
+    yeniden uretildiginde bu kayit eskidigi icin LookupError olusuyordu.
+    Uzlasi cozumu artik dogrudan cepheden hesaplanir.
+    """
+    import numpy as np
+
+    from optimization.problem import topsis
+
+    front = facts["front"]
+    labels = front["objective_labels"]
+    matrix = np.asarray(
+        [[item["objectives"][label] for label in labels]
+         for item in front["solutions"]],
+        dtype=float,
+    )
+    return front["solutions"][topsis(matrix)]["parameters"]
 
 
 def build() -> Path:

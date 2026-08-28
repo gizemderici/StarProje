@@ -82,36 +82,79 @@ mevcut camın korunduğu düşük maliyetli bir bölge açılacaktır.
 
 ---
 
-## Durum
+## Durum — cephe yeniden üretildi, doğrulama engellendi
 
 | Öge | Durum |
 |---|---|
-| `TS825_MAX_U` tablosu | **düzeltildi** |
-| `tests/test_optimization.py` | düzeltildi; ayrıca sınır üstü camı eleyen yeni test eklendi |
-| README, rapor Bölüm 5.1 ve 6.1 | **düzeltildi** |
-| `data/optimization/pareto_front.json` | **eski kısıtla üretildi** — yeniden üretilmedi |
-| `data/validation/validation_report.json` | eski cepheye ait — yeniden üretilmedi |
+| `TS825_MAX_U` tablosu | düzeltildi |
+| Testler | düzeltildi; sınır üstü camı eleyen yeni test eklendi |
+| README, rapor Bölüm 5.1 / 6.1 | düzeltildi |
+| Rapor Bölüm 5.4 | **eklendi** — hatanın cepheye etkisi |
+| `pareto_front.json` | **doğru sınırla yeniden üretildi** |
+| `validation_report.json` | **eski cepheye ait** — yenilenemedi |
 
-Cephe ve doğrulama kasıtlı olarak yeniden üretilmemiştir: doğrulama belirli bir
-cepheden seçilen noktalara aittir ve cephe yenilenirse doğrulama da
-yenilenmelidir (8 gerçek EnergyPlus koşusu, ~20 dk; kapı ilk turda geçmeyebilir).
-Bu, sonuçları etkileyen bir karardır ve proje yürütücüsüne bırakılmıştır.
+### Yeniden üretilen cephenin karşılaştırması
 
-Yeniden üretmek için:
+| Ölçüt | Düzeltme öncesi (2,00) | Düzeltme sonrası (2,80) |
+|---|---|---|
+| En düşük EnPİ | 52,73 kWh/m²·yıl | **46,38 kWh/m²·yıl** |
+| En düşük yatırım | 1,466 milyon TL | **0 TL** |
+| En yüksek yatırım | 4,253 milyon TL | 5,061 milyon TL |
+| Mevcut camı koruyan çözüm | 0 / 80 | **28 / 80** |
+| Cam dağılımı | `cont_6_4mm` 71, `lowe_4mm` 9 | `cont_6_4mm` 52, **`std_4mm` 28** |
 
-```powershell
-.\.venv\Scripts\python.exe .\run_optimization.py --evaluator surrogate --generations 120 --population 80 --uncertainty-penalty 0.5
+Öngörü doğrulandı: doğru sınırla mevcut camın korunduğu **sıfır maliyetli**
+bölge açıldı ve erişilebilir en iyi EnPİ değeri iyileşti.
+
+### Doğrulama neden yapılamadı
+
+Yeni cephenin Faz 7 doğrulaması başlatıldı, ancak sekiz koşunun sekizi de
+başarısız oldu:
+
+```
+Found error in state 'EnergyPlus' with message:
+  'CreateProcess failed: An Application Control policy has blocked this file.'
 ```
 
+Makinede **Windows Application Control politikası `energyplus.exe`
+dosyasının çalıştırılmasını engelliyor**. Aynı politika OpenStudio'nun Python
+bağındaki `_openstudioairflow` DLL'ini de engellemektedir; bu nedenle
+`tests/test_api_architecture.py::OpenStudioApiServiceTests` de hata vermektedir.
+OpenStudio komut satırı aracının kendisi (`openstudio.exe --version`) çalışır
+durumdadır; engellenen yalnızca EnergyPlus çalıştırılabiliridir.
+
+Bu bir güvenlik politikasıdır ve aşılmaya çalışılmamıştır. Çözüm için
+`C:\Program Files\openstudio-3.11.0\EnergyPlus\energyplus.exe` dosyasının
+politikada izinli hale getirilmesi gerekir.
+
+Engel kalktığında:
+
 ```powershell
-.\.venv\Scripts\python.exe .\run_validation.py
+.\.venv\Scripts\python.exe .\run_validation.py --points 8 --workers 4
 ```
 
 ```powershell
 .\.venv\Scripts\python.exe -m reporting.sonuc_raporu
 ```
 
----
+### Bu arada rapor ne söylüyor
+
+Rapor, güncel cepheyi doğrulanmış gibi sunmaz. Bölüm 4.5'te cephenin
+doğrulama beklediği açıkça yazılıdır; Bölüm 4.6'daki doğrulama sonuçları ise
+önceki cepheye ait olduğu belirtilerek, yöntemin kurulumunu belgelemek üzere
+korunmuştur. `pareto_front.json` içindeki `validated` alanı `false`'tur.
+
+### Yol boyunca bulunan ikinci kusur
+
+Başarısız doğrulama koşusu, mevcut doğrulama raporunun üzerine **sıfır nokta
+ve `within_tolerance: true`** yazdı — yani hiçbir koşusu başarılı olmayan bir
+doğrulama, kapıyı geçmiş gibi göründü. İki düzeltme yapıldı:
+
+- `validation/selection.py::summarise` — sıfır nokta artık kapıyı geçemez.
+- `run_validation.py` — hiçbir koşu hasat edilemediğinde mevcut rapor
+  korunur, üzerine yazılmaz.
+
+Bu davranışı kodlayan test (`test_empty_input_is_handled`) de düzeltildi.
 
 ## Ayrıca: standardın güncel sürümü
 

@@ -6,10 +6,7 @@
     "population": 80,
     "seed": 20260825,
     "uncertainty_penalty": 0.5,
-    "note": "Ayarlar kosu sonrasi belgelendi; cephe yeniden uretilmedi.",
-    "ts825_window_limit_used": 2.0,
-    "ts825_window_limit_correct": 2.8,
-    "stale_reason": "Cephe, TS 825 cam siniri yanlislikla 2,00 W/m2K alinarak uretilmistir; dogrusu 2,80'dir. Cozumlerin tamami dogru sinira gore de uygundur, ancak taban cami yasaklandigi icin dusuk maliyetli bolge cephede yer almaz. Ayrinti: docs/ts825_duzeltmesi.md"
+    "ts825_window_limit": 2.8
   },
   "objective_labels": [
     "EnPI (kWh/m2-yil)",
@@ -41,2764 +38,2766 @@
     {
       "generation": 1,
       "front_size": 5,
-      "hypervolume": 0.657217
+      "hypervolume": 0.560549
     },
     {
       "generation": 2,
-      "front_size": 7,
-      "hypervolume": 0.71751
+      "front_size": 10,
+      "hypervolume": 0.767407
     },
     {
       "generation": 3,
-      "front_size": 9,
-      "hypervolume": 0.737689
+      "front_size": 14,
+      "hypervolume": 0.770353
     },
     {
       "generation": 4,
-      "front_size": 12,
-      "hypervolume": 0.639655
+      "front_size": 15,
+      "hypervolume": 0.608964
     },
     {
       "generation": 5,
-      "front_size": 14,
-      "hypervolume": 0.50869
+      "front_size": 12,
+      "hypervolume": 0.706658
     },
     {
       "generation": 6,
-      "front_size": 18,
-      "hypervolume": 0.780662
+      "front_size": 12,
+      "hypervolume": 0.718486
     },
     {
       "generation": 7,
-      "front_size": 9,
-      "hypervolume": 0.881122
+      "front_size": 12,
+      "hypervolume": 0.799418
     },
     {
       "generation": 8,
-      "front_size": 11,
-      "hypervolume": 0.885163
+      "front_size": 17,
+      "hypervolume": 0.830118
     },
     {
       "generation": 9,
-      "front_size": 9,
-      "hypervolume": 0.941737
+      "front_size": 18,
+      "hypervolume": 0.84106
     },
     {
       "generation": 10,
-      "front_size": 12,
-      "hypervolume": 0.852923
+      "front_size": 19,
+      "hypervolume": 0.829849
     },
     {
       "generation": 11,
-      "front_size": 13,
-      "hypervolume": 0.860052
+      "front_size": 17,
+      "hypervolume": 0.923428
     },
     {
       "generation": 12,
-      "front_size": 16,
-      "hypervolume": 0.871282
+      "front_size": 22,
+      "hypervolume": 0.9537
     },
     {
       "generation": 13,
-      "front_size": 20,
-      "hypervolume": 0.882614
+      "front_size": 22,
+      "hypervolume": 0.951267
     },
     {
       "generation": 14,
-      "front_size": 27,
-      "hypervolume": 0.901561
+      "front_size": 23,
+      "hypervolume": 0.783675
     },
     {
       "generation": 15,
-      "front_size": 33,
-      "hypervolume": 0.91701
+      "front_size": 29,
+      "hypervolume": 0.796437
     },
     {
       "generation": 16,
-      "front_size": 35,
-      "hypervolume": 0.91967
+      "front_size": 30,
+      "hypervolume": 0.822155
     },
     {
       "generation": 17,
-      "front_size": 37,
-      "hypervolume": 0.925369
+      "front_size": 34,
+      "hypervolume": 0.840769
     },
     {
       "generation": 18,
-      "front_size": 35,
-      "hypervolume": 0.933107
+      "front_size": 37,
+      "hypervolume": 0.853906
     },
     {
       "generation": 19,
-      "front_size": 24,
-      "hypervolume": 0.970845
+      "front_size": 48,
+      "hypervolume": 0.857744
     },
     {
       "generation": 20,
-      "front_size": 26,
-      "hypervolume": 0.98246
+      "front_size": 47,
+      "hypervolume": 0.8618
     },
     {
       "generation": 21,
-      "front_size": 29,
-      "hypervolume": 0.992655
+      "front_size": 48,
+      "hypervolume": 0.877097
     },
     {
       "generation": 22,
-      "front_size": 28,
-      "hypervolume": 0.953437
+      "front_size": 52,
+      "hypervolume": 0.858617
     },
     {
       "generation": 23,
-      "front_size": 32,
-      "hypervolume": 0.952577
+      "front_size": 50,
+      "hypervolume": 0.865668
     },
     {
       "generation": 24,
-      "front_size": 31,
-      "hypervolume": 0.949054
+      "front_size": 49,
+      "hypervolume": 0.819725
     },
     {
       "generation": 25,
-      "front_size": 28,
-      "hypervolume": 0.957756
+      "front_size": 59,
+      "hypervolume": 0.822176
     },
     {
       "generation": 26,
-      "front_size": 33,
-      "hypervolume": 0.933999
+      "front_size": 57,
+      "hypervolume": 0.824484
     },
     {
       "generation": 27,
-      "front_size": 40,
-      "hypervolume": 0.938636
+      "front_size": 64,
+      "hypervolume": 0.830384
     },
     {
       "generation": 28,
-      "front_size": 42,
-      "hypervolume": 0.88531
+      "front_size": 63,
+      "hypervolume": 0.834997
     },
     {
       "generation": 29,
-      "front_size": 45,
-      "hypervolume": 0.88672
+      "front_size": 58,
+      "hypervolume": 0.813204
     },
     {
       "generation": 30,
-      "front_size": 43,
-      "hypervolume": 0.931652
+      "front_size": 61,
+      "hypervolume": 0.821318
     },
     {
       "generation": 31,
-      "front_size": 52,
-      "hypervolume": 0.940336
+      "front_size": 55,
+      "hypervolume": 0.875061
     },
     {
       "generation": 32,
-      "front_size": 45,
-      "hypervolume": 0.945341
+      "front_size": 65,
+      "hypervolume": 0.877833
     },
     {
       "generation": 33,
-      "front_size": 48,
-      "hypervolume": 0.95026
+      "front_size": 74,
+      "hypervolume": 0.844223
     },
     {
       "generation": 34,
-      "front_size": 57,
-      "hypervolume": 0.954835
+      "front_size": 72,
+      "hypervolume": 0.854356
     },
     {
       "generation": 35,
-      "front_size": 46,
-      "hypervolume": 0.965916
+      "front_size": 80,
+      "hypervolume": 0.817774
     },
     {
       "generation": 36,
-      "front_size": 51,
-      "hypervolume": 0.972593
+      "front_size": 80,
+      "hypervolume": 0.820944
     },
     {
       "generation": 37,
-      "front_size": 49,
-      "hypervolume": 0.910821
+      "front_size": 80,
+      "hypervolume": 0.816272
     },
     {
       "generation": 38,
-      "front_size": 50,
-      "hypervolume": 0.914311
+      "front_size": 80,
+      "hypervolume": 0.817552
     },
     {
       "generation": 39,
-      "front_size": 51,
-      "hypervolume": 0.91523
+      "front_size": 80,
+      "hypervolume": 0.818479
     },
     {
       "generation": 40,
-      "front_size": 59,
-      "hypervolume": 0.900752
+      "front_size": 80,
+      "hypervolume": 0.825127
     },
     {
       "generation": 41,
-      "front_size": 52,
-      "hypervolume": 0.915511
+      "front_size": 80,
+      "hypervolume": 0.826761
     },
     {
       "generation": 42,
-      "front_size": 56,
-      "hypervolume": 0.912923
+      "front_size": 80,
+      "hypervolume": 0.828795
     },
     {
       "generation": 43,
-      "front_size": 61,
-      "hypervolume": 0.915875
+      "front_size": 80,
+      "hypervolume": 0.831875
     },
     {
       "generation": 44,
-      "front_size": 59,
-      "hypervolume": 0.920304
+      "front_size": 80,
+      "hypervolume": 0.831692
     },
     {
       "generation": 45,
-      "front_size": 66,
-      "hypervolume": 0.887626
+      "front_size": 80,
+      "hypervolume": 0.785171
     },
     {
       "generation": 46,
-      "front_size": 77,
-      "hypervolume": 0.871828
+      "front_size": 80,
+      "hypervolume": 0.789602
     },
     {
       "generation": 47,
-      "front_size": 75,
-      "hypervolume": 0.876443
+      "front_size": 80,
+      "hypervolume": 0.791176
     },
     {
       "generation": 48,
-      "front_size": 78,
-      "hypervolume": 0.877636
+      "front_size": 80,
+      "hypervolume": 0.794113
     },
     {
       "generation": 49,
-      "front_size": 79,
-      "hypervolume": 0.880782
+      "front_size": 80,
+      "hypervolume": 0.797403
     },
     {
       "generation": 50,
       "front_size": 80,
-      "hypervolume": 0.869001
+      "hypervolume": 0.799507
     },
     {
       "generation": 51,
-      "front_size": 75,
-      "hypervolume": 0.874488
+      "front_size": 80,
+      "hypervolume": 0.801559
     },
     {
       "generation": 52,
-      "front_size": 76,
-      "hypervolume": 0.87691
+      "front_size": 80,
+      "hypervolume": 0.801863
     },
     {
       "generation": 53,
       "front_size": 80,
-      "hypervolume": 0.879314
+      "hypervolume": 0.802219
     },
     {
       "generation": 54,
       "front_size": 80,
-      "hypervolume": 0.881815
+      "hypervolume": 0.791027
     },
     {
       "generation": 55,
       "front_size": 80,
-      "hypervolume": 0.883085
+      "hypervolume": 0.78927
     },
     {
       "generation": 56,
       "front_size": 80,
-      "hypervolume": 0.884139
+      "hypervolume": 0.79128
     },
     {
       "generation": 57,
       "front_size": 80,
-      "hypervolume": 0.884487
+      "hypervolume": 0.792324
     },
     {
       "generation": 58,
       "front_size": 80,
-      "hypervolume": 0.885669
+      "hypervolume": 0.790447
     },
     {
       "generation": 59,
       "front_size": 80,
-      "hypervolume": 0.877771
+      "hypervolume": 0.789616
     },
     {
       "generation": 60,
       "front_size": 80,
-      "hypervolume": 0.882225
+      "hypervolume": 0.785686
     },
     {
       "generation": 61,
       "front_size": 80,
-      "hypervolume": 0.890066
+      "hypervolume": 0.790834
     },
     {
       "generation": 62,
       "front_size": 80,
-      "hypervolume": 0.881728
+      "hypervolume": 0.790601
     },
     {
       "generation": 63,
       "front_size": 80,
-      "hypervolume": 0.8822
+      "hypervolume": 0.789133
     },
     {
       "generation": 64,
       "front_size": 80,
-      "hypervolume": 0.877546
+      "hypervolume": 0.789189
     },
     {
       "generation": 65,
       "front_size": 80,
-      "hypervolume": 0.885496
+      "hypervolume": 0.790059
     },
     {
       "generation": 66,
       "front_size": 80,
-      "hypervolume": 0.886275
+      "hypervolume": 0.790652
     },
     {
       "generation": 67,
-      "front_size": 77,
-      "hypervolume": 0.885965
+      "front_size": 80,
+      "hypervolume": 0.787676
     },
     {
       "generation": 68,
       "front_size": 80,
-      "hypervolume": 0.884853
+      "hypervolume": 0.785858
     },
     {
       "generation": 69,
       "front_size": 80,
-      "hypervolume": 0.885574
+      "hypervolume": 0.777571
     },
     {
       "generation": 70,
       "front_size": 80,
-      "hypervolume": 0.887541
+      "hypervolume": 0.772471
     },
     {
       "generation": 71,
       "front_size": 80,
-      "hypervolume": 0.887963
+      "hypervolume": 0.772831
     },
     {
       "generation": 72,
       "front_size": 80,
-      "hypervolume": 0.890421
+      "hypervolume": 0.775391
     },
     {
       "generation": 73,
       "front_size": 80,
-      "hypervolume": 0.89046
+      "hypervolume": 0.777918
     },
     {
       "generation": 74,
       "front_size": 80,
-      "hypervolume": 0.89016
+      "hypervolume": 0.774421
     },
     {
       "generation": 75,
       "front_size": 80,
-      "hypervolume": 0.878224
+      "hypervolume": 0.775427
     },
     {
       "generation": 76,
       "front_size": 80,
-      "hypervolume": 0.878387
+      "hypervolume": 0.776075
     },
     {
       "generation": 77,
       "front_size": 80,
-      "hypervolume": 0.881423
+      "hypervolume": 0.774768
     },
     {
       "generation": 78,
       "front_size": 80,
-      "hypervolume": 0.880762
+      "hypervolume": 0.775193
     },
     {
       "generation": 79,
       "front_size": 80,
-      "hypervolume": 0.882351
+      "hypervolume": 0.775385
     },
     {
       "generation": 80,
       "front_size": 80,
-      "hypervolume": 0.871847
+      "hypervolume": 0.777269
     },
     {
       "generation": 81,
       "front_size": 80,
-      "hypervolume": 0.89596
+      "hypervolume": 0.771562
     },
     {
       "generation": 82,
       "front_size": 80,
-      "hypervolume": 0.89859
+      "hypervolume": 0.771062
     },
     {
       "generation": 83,
       "front_size": 80,
-      "hypervolume": 0.899431
+      "hypervolume": 0.770306
     },
     {
       "generation": 84,
       "front_size": 80,
-      "hypervolume": 0.895104
+      "hypervolume": 0.770658
     },
     {
       "generation": 85,
       "front_size": 80,
-      "hypervolume": 0.885922
+      "hypervolume": 0.772966
     },
     {
       "generation": 86,
       "front_size": 80,
-      "hypervolume": 0.887122
+      "hypervolume": 0.774316
     },
     {
       "generation": 87,
       "front_size": 80,
-      "hypervolume": 0.888261
+      "hypervolume": 0.773755
     },
     {
       "generation": 88,
       "front_size": 80,
-      "hypervolume": 0.890091
+      "hypervolume": 0.77451
     },
     {
       "generation": 89,
-      "front_size": 79,
-      "hypervolume": 0.89377
+      "front_size": 80,
+      "hypervolume": 0.7758
     },
     {
       "generation": 90,
       "front_size": 80,
-      "hypervolume": 0.898574
+      "hypervolume": 0.77437
     },
     {
       "generation": 91,
       "front_size": 80,
-      "hypervolume": 0.898406
+      "hypervolume": 0.766146
     },
     {
       "generation": 92,
       "front_size": 80,
-      "hypervolume": 0.898703
+      "hypervolume": 0.767345
     },
     {
       "generation": 93,
       "front_size": 80,
-      "hypervolume": 0.899311
+      "hypervolume": 0.766967
     },
     {
       "generation": 94,
       "front_size": 80,
-      "hypervolume": 0.902315
+      "hypervolume": 0.766504
     },
     {
       "generation": 95,
       "front_size": 80,
-      "hypervolume": 0.902919
+      "hypervolume": 0.76595
     },
     {
       "generation": 96,
-      "front_size": 79,
-      "hypervolume": 0.904566
+      "front_size": 80,
+      "hypervolume": 0.766797
     },
     {
       "generation": 97,
       "front_size": 80,
-      "hypervolume": 0.893561
+      "hypervolume": 0.767181
     },
     {
       "generation": 98,
       "front_size": 80,
-      "hypervolume": 0.895224
+      "hypervolume": 0.767274
     },
     {
       "generation": 99,
       "front_size": 80,
-      "hypervolume": 0.899011
+      "hypervolume": 0.767352
     },
     {
       "generation": 100,
       "front_size": 80,
-      "hypervolume": 0.89893
+      "hypervolume": 0.760456
     },
     {
       "generation": 101,
       "front_size": 80,
-      "hypervolume": 0.897417
+      "hypervolume": 0.758213
     },
     {
       "generation": 102,
       "front_size": 80,
-      "hypervolume": 0.898773
+      "hypervolume": 0.758116
     },
     {
       "generation": 103,
       "front_size": 80,
-      "hypervolume": 0.899602
+      "hypervolume": 0.758854
     },
     {
       "generation": 104,
       "front_size": 80,
-      "hypervolume": 0.899732
+      "hypervolume": 0.75857
     },
     {
       "generation": 105,
       "front_size": 80,
-      "hypervolume": 0.900192
+      "hypervolume": 0.759576
     },
     {
       "generation": 106,
       "front_size": 80,
-      "hypervolume": 0.900087
+      "hypervolume": 0.759427
     },
     {
       "generation": 107,
       "front_size": 80,
-      "hypervolume": 0.901751
+      "hypervolume": 0.757373
     },
     {
       "generation": 108,
       "front_size": 80,
-      "hypervolume": 0.901679
+      "hypervolume": 0.756157
     },
     {
       "generation": 109,
       "front_size": 80,
-      "hypervolume": 0.895374
+      "hypervolume": 0.756935
     },
     {
       "generation": 110,
       "front_size": 80,
-      "hypervolume": 0.892353
+      "hypervolume": 0.758415
     },
     {
       "generation": 111,
       "front_size": 80,
-      "hypervolume": 0.890515
+      "hypervolume": 0.757522
     },
     {
       "generation": 112,
       "front_size": 80,
-      "hypervolume": 0.892076
+      "hypervolume": 0.756326
     },
     {
       "generation": 113,
       "front_size": 80,
-      "hypervolume": 0.893198
+      "hypervolume": 0.755995
     },
     {
       "generation": 114,
       "front_size": 80,
-      "hypervolume": 0.894405
+      "hypervolume": 0.750875
     },
     {
       "generation": 115,
       "front_size": 80,
-      "hypervolume": 0.894696
+      "hypervolume": 0.752413
     },
     {
       "generation": 116,
       "front_size": 80,
-      "hypervolume": 0.887528
+      "hypervolume": 0.752189
     },
     {
       "generation": 117,
       "front_size": 80,
-      "hypervolume": 0.888615
+      "hypervolume": 0.752583
     },
     {
       "generation": 118,
       "front_size": 80,
-      "hypervolume": 0.884956
+      "hypervolume": 0.753319
     },
     {
       "generation": 119,
       "front_size": 80,
-      "hypervolume": 0.883399
+      "hypervolume": 0.753045
     },
     {
       "generation": 120,
       "front_size": 80,
-      "hypervolume": 0.885321
+      "hypervolume": 0.754364
     }
   ],
   "solutions": [
     {
       "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 19.753156,
-        "cooling_setpoint_c": 25.523098,
-        "chiller_cop": 5.402196,
-        "boiler_efficiency": 0.897551,
-        "lighting_primary_w_m2": 7.190478,
-        "lighting_secondary_w_m2": 3.405603,
-        "infiltration_multiplier": 1.265284,
-        "elevator_power_w": 5245.258411,
-        "eps_thickness_cm": 2.93862,
-        "eps_conductivity_w_mk": 0.043199
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.149941,
+        "cooling_setpoint_c": 25.70019,
+        "chiller_cop": 5.357756,
+        "boiler_efficiency": 0.891313,
+        "lighting_primary_w_m2": 1.221058,
+        "lighting_secondary_w_m2": 3.030689,
+        "infiltration_multiplier": 0.664859,
+        "elevator_power_w": 573.853053,
+        "eps_thickness_cm": 3.549825,
+        "eps_conductivity_w_mk": 0.0153
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 110.7669,
-        "Yatirim maliyeti (TRY)": 1465893.0,
-        "Konfor ihlali (bolge-saat)": 95.8139
+        "EnPI (kWh/m2-yil)": 58.4497,
+        "Yatirim maliyeti (TRY)": 3226874.9936,
+        "Konfor ihlali (bolge-saat)": 487.8911
       },
       "constraints": {
-        "TS 825 duvar U": -0.1486,
-        "TS 825 cam U": -0.057,
-        "Konfor tavani": -404.1861,
-        "Butce tavani": -4534107.0,
-        "Asgari olu bant": -5.2699
+        "TS 825 duvar U": -0.2771,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -12.1089,
+        "Butce tavani": -2773125.0064,
+        "Asgari olu bant": -5.0502
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.269263,
-        "cooling_setpoint_c": 25.72168,
-        "chiller_cop": 7.563663,
-        "boiler_efficiency": 0.959695,
-        "lighting_primary_w_m2": 1.089108,
-        "lighting_secondary_w_m2": 3.263633,
-        "infiltration_multiplier": 1.003753,
-        "elevator_power_w": 2655.042027,
-        "eps_thickness_cm": 10.270115,
-        "eps_conductivity_w_mk": 0.044067
+        "heating_setpoint_c": 20.173892,
+        "cooling_setpoint_c": 25.725512,
+        "chiller_cop": 7.967296,
+        "boiler_efficiency": 0.987685,
+        "lighting_primary_w_m2": 1.273519,
+        "lighting_secondary_w_m2": 2.295765,
+        "infiltration_multiplier": 0.462523,
+        "elevator_power_w": 525.036791,
+        "eps_thickness_cm": 3.413886,
+        "eps_conductivity_w_mk": 0.015825
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 53.8516,
-        "Yatirim maliyeti (TRY)": 4252696.6445,
+        "EnPI (kWh/m2-yil)": 46.7414,
+        "Yatirim maliyeti (TRY)": 5061417.9471,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2776,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2687,
+        "TS 825 cam U": -1.118,
         "Konfor tavani": -500.0,
-        "Butce tavani": -1747303.3555,
-        "Asgari olu bant": -4.9524
+        "Butce tavani": -938582.0529,
+        "Asgari olu bant": -5.0516
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 20.045267,
-        "cooling_setpoint_c": 25.506578,
-        "chiller_cop": 5.481645,
-        "boiler_efficiency": 0.868966,
-        "lighting_primary_w_m2": 7.398353,
-        "lighting_secondary_w_m2": 3.234067,
-        "infiltration_multiplier": 1.391301,
-        "elevator_power_w": 5457.613783,
-        "eps_thickness_cm": 2.722628,
-        "eps_conductivity_w_mk": 0.017535
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.193397,
+        "cooling_setpoint_c": 25.690916,
+        "chiller_cop": 5.430405,
+        "boiler_efficiency": 0.896954,
+        "lighting_primary_w_m2": 7.054565,
+        "lighting_secondary_w_m2": 3.086665,
+        "infiltration_multiplier": 1.16757,
+        "elevator_power_w": 5595.630853,
+        "eps_thickness_cm": 4.052705,
+        "eps_conductivity_w_mk": 0.018956
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 111.6778,
-        "Yatirim maliyeti (TRY)": 1465893.0,
+        "EnPI (kWh/m2-yil)": 112.8032,
+        "Yatirim maliyeti (TRY)": 0.0,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2311,
-        "TS 825 cam U": -0.057,
+        "TS 825 duvar U": -0.2676,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4534107.0,
-        "Asgari olu bant": -4.9613
+        "Butce tavani": -6000000.0,
+        "Asgari olu bant": -4.9975
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.182667,
-        "cooling_setpoint_c": 25.721161,
-        "chiller_cop": 7.616926,
-        "boiler_efficiency": 0.970147,
-        "lighting_primary_w_m2": 1.061185,
-        "lighting_secondary_w_m2": 3.767702,
-        "infiltration_multiplier": 1.006811,
-        "elevator_power_w": 1866.895019,
-        "eps_thickness_cm": 8.64236,
-        "eps_conductivity_w_mk": 0.04152
+        "heating_setpoint_c": 20.000013,
+        "cooling_setpoint_c": 25.722172,
+        "chiller_cop": 7.967356,
+        "boiler_efficiency": 0.986406,
+        "lighting_primary_w_m2": 1.083611,
+        "lighting_secondary_w_m2": 2.365407,
+        "infiltration_multiplier": 0.463427,
+        "elevator_power_w": 560.847069,
+        "eps_thickness_cm": 3.349264,
+        "eps_conductivity_w_mk": 0.022255
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 52.7284,
-        "Yatirim maliyeti (TRY)": 4213028.2784,
-        "Konfor ihlali (bolge-saat)": 198.8845
+        "EnPI (kWh/m2-yil)": 46.3843,
+        "Yatirim maliyeti (TRY)": 5060459.0678,
+        "Konfor ihlali (bolge-saat)": 142.1021
       },
       "constraints": {
-        "TS 825 duvar U": -0.2645,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -301.1155,
-        "Butce tavani": -1786971.7216,
-        "Asgari olu bant": -5.0385
+        "TS 825 duvar U": -0.2276,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -357.8979,
+        "Butce tavani": -939540.9322,
+        "Asgari olu bant": -5.2222
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.173301,
+        "cooling_setpoint_c": 25.940347,
+        "chiller_cop": 5.511582,
+        "boiler_efficiency": 0.896568,
+        "lighting_primary_w_m2": 7.011544,
+        "lighting_secondary_w_m2": 3.093804,
+        "infiltration_multiplier": 1.206108,
+        "elevator_power_w": 506.431546,
+        "eps_thickness_cm": 3.928414,
+        "eps_conductivity_w_mk": 0.015738
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 104.1772,
+        "Yatirim maliyeti (TRY)": 190394.047,
+        "Konfor ihlali (bolge-saat)": 231.1186
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2855,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -268.8814,
+        "Butce tavani": -5809605.953,
+        "Asgari olu bant": -5.267
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.181055,
-        "cooling_setpoint_c": 25.718251,
-        "chiller_cop": 5.577102,
-        "boiler_efficiency": 0.955689,
-        "lighting_primary_w_m2": 1.235333,
-        "lighting_secondary_w_m2": 3.254647,
-        "infiltration_multiplier": 1.101977,
-        "elevator_power_w": 1937.224479,
-        "eps_thickness_cm": 7.590459,
-        "eps_conductivity_w_mk": 0.046415
+        "heating_setpoint_c": 20.193738,
+        "cooling_setpoint_c": 25.702734,
+        "chiller_cop": 5.796001,
+        "boiler_efficiency": 0.981891,
+        "lighting_primary_w_m2": 7.06704,
+        "lighting_secondary_w_m2": 4.63107,
+        "infiltration_multiplier": 1.153826,
+        "elevator_power_w": 5595.630853,
+        "eps_thickness_cm": 3.899473,
+        "eps_conductivity_w_mk": 0.018905
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 61.2065,
-        "Yatirim maliyeti (TRY)": 3213070.4294,
-        "Konfor ihlali (bolge-saat)": 498.0841
+        "EnPI (kWh/m2-yil)": 75.6019,
+        "Yatirim maliyeti (TRY)": 1880036.5379,
+        "Konfor ihlali (bolge-saat)": 306.2522
       },
       "constraints": {
-        "TS 825 duvar U": -0.2369,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -1.9159,
-        "Butce tavani": -2786929.5706,
-        "Asgari olu bant": -5.0372
+        "TS 825 duvar U": -0.2635,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -193.7478,
+        "Butce tavani": -4119963.4621,
+        "Asgari olu bant": -5.009
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 19.535951,
-        "cooling_setpoint_c": 25.72237,
-        "chiller_cop": 5.83493,
-        "boiler_efficiency": 0.955386,
-        "lighting_primary_w_m2": 7.056471,
-        "lighting_secondary_w_m2": 4.11491,
-        "infiltration_multiplier": 1.093926,
-        "elevator_power_w": 5187.020973,
-        "eps_thickness_cm": 6.482232,
-        "eps_conductivity_w_mk": 0.044945
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.180239,
+        "cooling_setpoint_c": 25.934823,
+        "chiller_cop": 5.981883,
+        "boiler_efficiency": 0.989833,
+        "lighting_primary_w_m2": 7.024002,
+        "lighting_secondary_w_m2": 3.198896,
+        "infiltration_multiplier": 1.113131,
+        "elevator_power_w": 808.529346,
+        "eps_thickness_cm": 4.08768,
+        "eps_conductivity_w_mk": 0.016644
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 104.6946,
-        "Yatirim maliyeti (TRY)": 1705929.7799,
+        "EnPI (kWh/m2-yil)": 98.9873,
+        "Yatirim maliyeti (TRY)": 444499.9755,
+        "Konfor ihlali (bolge-saat)": 255.8051
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2836,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -244.1949,
+        "Butce tavani": -5555500.0245,
+        "Asgari olu bant": -5.2546
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.149949,
+        "cooling_setpoint_c": 25.701653,
+        "chiller_cop": 5.469442,
+        "boiler_efficiency": 0.904709,
+        "lighting_primary_w_m2": 1.135351,
+        "lighting_secondary_w_m2": 3.237361,
+        "infiltration_multiplier": 1.157926,
+        "elevator_power_w": 616.61618,
+        "eps_thickness_cm": 7.486653,
+        "eps_conductivity_w_mk": 0.017518
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 59.0804,
+        "Yatirim maliyeti (TRY)": 3152886.4077,
+        "Konfor ihlali (bolge-saat)": 295.5821
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3447,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -204.4179,
+        "Butce tavani": -2847113.5923,
+        "Asgari olu bant": -5.0517
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.128339,
+        "cooling_setpoint_c": 25.696281,
+        "chiller_cop": 7.673054,
+        "boiler_efficiency": 0.912944,
+        "lighting_primary_w_m2": 1.044815,
+        "lighting_secondary_w_m2": 3.081243,
+        "infiltration_multiplier": 1.161381,
+        "elevator_power_w": 530.29349,
+        "eps_thickness_cm": 7.437106,
+        "eps_conductivity_w_mk": 0.023891
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 51.1913,
+        "Yatirim maliyeti (TRY)": 4166075.1379,
+        "Konfor ihlali (bolge-saat)": 435.1976
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3106,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -64.8024,
+        "Butce tavani": -1833924.8621,
+        "Asgari olu bant": -5.0679
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.152513,
+        "cooling_setpoint_c": 25.934823,
+        "chiller_cop": 7.981349,
+        "boiler_efficiency": 0.989833,
+        "lighting_primary_w_m2": 7.024247,
+        "lighting_secondary_w_m2": 3.199231,
+        "infiltration_multiplier": 1.239055,
+        "elevator_power_w": 516.446117,
+        "eps_thickness_cm": 4.08768,
+        "eps_conductivity_w_mk": 0.019714
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 84.3717,
+        "Yatirim maliyeti (TRY)": 1375715.2084,
+        "Konfor ihlali (bolge-saat)": 62.8965
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2641,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -437.1035,
+        "Butce tavani": -4624284.7916,
+        "Asgari olu bant": -5.2823
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.000013,
+        "cooling_setpoint_c": 25.686883,
+        "chiller_cop": 7.689031,
+        "boiler_efficiency": 0.986406,
+        "lighting_primary_w_m2": 1.026782,
+        "lighting_secondary_w_m2": 2.026981,
+        "infiltration_multiplier": 0.762716,
+        "elevator_power_w": 559.770067,
+        "eps_thickness_cm": 3.334131,
+        "eps_conductivity_w_mk": 0.022255
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 47.5511,
+        "Yatirim maliyeti (TRY)": 4769593.3002,
+        "Konfor ihlali (bolge-saat)": 381.8254
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2271,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -118.1746,
+        "Butce tavani": -1230406.6998,
+        "Asgari olu bant": -5.1869
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.128339,
+        "cooling_setpoint_c": 25.696271,
+        "chiller_cop": 7.394867,
+        "boiler_efficiency": 0.906048,
+        "lighting_primary_w_m2": 1.434112,
+        "lighting_secondary_w_m2": 3.461209,
+        "infiltration_multiplier": 1.161381,
+        "elevator_power_w": 536.0296,
+        "eps_thickness_cm": 7.437106,
+        "eps_conductivity_w_mk": 0.023656
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 52.938,
+        "Yatirim maliyeti (TRY)": 4033822.8473,
+        "Konfor ihlali (bolge-saat)": 473.9012
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3117,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -26.0988,
+        "Butce tavani": -1966177.1527,
+        "Asgari olu bant": -5.0679
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.115422,
+        "cooling_setpoint_c": 25.687835,
+        "chiller_cop": 7.631169,
+        "boiler_efficiency": 0.977081,
+        "lighting_primary_w_m2": 7.057313,
+        "lighting_secondary_w_m2": 3.132285,
+        "infiltration_multiplier": 0.803323,
+        "elevator_power_w": 559.728383,
+        "eps_thickness_cm": 3.851773,
+        "eps_conductivity_w_mk": 0.018742
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 61.0987,
+        "Yatirim maliyeti (TRY)": 3023814.1897,
+        "Konfor ihlali (bolge-saat)": 152.2144
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2631,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -347.7856,
+        "Butce tavani": -2976185.8103,
+        "Asgari olu bant": -5.0724
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.18053,
+        "cooling_setpoint_c": 25.926873,
+        "chiller_cop": 5.706931,
+        "boiler_efficiency": 0.989372,
+        "lighting_primary_w_m2": 7.033613,
+        "lighting_secondary_w_m2": 3.400565,
+        "infiltration_multiplier": 1.186176,
+        "elevator_power_w": 516.216373,
+        "eps_thickness_cm": 4.037318,
+        "eps_conductivity_w_mk": 0.021478
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 101.9683,
+        "Yatirim maliyeti (TRY)": 316266.0982,
+        "Konfor ihlali (bolge-saat)": 356.8361
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2528,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -143.1639,
+        "Butce tavani": -5683733.9018,
+        "Asgari olu bant": -5.2463
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.137551,
+        "cooling_setpoint_c": 25.702097,
+        "chiller_cop": 7.84609,
+        "boiler_efficiency": 0.987516,
+        "lighting_primary_w_m2": 1.134804,
+        "lighting_secondary_w_m2": 1.788894,
+        "infiltration_multiplier": 0.629717,
+        "elevator_power_w": 503.225702,
+        "eps_thickness_cm": 6.59647,
+        "eps_conductivity_w_mk": 0.017611
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 47.5814,
+        "Yatirim maliyeti (TRY)": 4982064.4412,
+        "Konfor ihlali (bolge-saat)": 54.2279
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3308,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -445.7721,
+        "Butce tavani": -1017935.5588,
+        "Asgari olu bant": -5.0645
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.707678,
+        "cooling_setpoint_c": 25.800912,
+        "chiller_cop": 7.189823,
+        "boiler_efficiency": 0.988114,
+        "lighting_primary_w_m2": 7.131151,
+        "lighting_secondary_w_m2": 3.093351,
+        "infiltration_multiplier": 1.208878,
+        "elevator_power_w": 512.790416,
+        "eps_thickness_cm": 5.609919,
+        "eps_conductivity_w_mk": 0.017539
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 89.8741,
+        "Yatirim maliyeti (TRY)": 1032092.4507,
+        "Konfor ihlali (bolge-saat)": 318.7696
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3136,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -181.2304,
+        "Butce tavani": -4967907.5493,
+        "Asgari olu bant": -5.5932
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.13649,
+        "cooling_setpoint_c": 25.724976,
+        "chiller_cop": 6.18523,
+        "boiler_efficiency": 0.987989,
+        "lighting_primary_w_m2": 7.079023,
+        "lighting_secondary_w_m2": 3.081074,
+        "infiltration_multiplier": 0.987177,
+        "elevator_power_w": 600.636092,
+        "eps_thickness_cm": 4.193694,
+        "eps_conductivity_w_mk": 0.016257
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 66.3774,
+        "Yatirim maliyeti (TRY)": 2255602.3808,
+        "Konfor ihlali (bolge-saat)": 98.8509
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2893,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -401.1491,
+        "Butce tavani": -3744397.6192,
+        "Asgari olu bant": -5.0885
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.172775,
+        "cooling_setpoint_c": 25.725258,
+        "chiller_cop": 7.729613,
+        "boiler_efficiency": 0.982735,
+        "lighting_primary_w_m2": 7.07891,
+        "lighting_secondary_w_m2": 3.485561,
+        "infiltration_multiplier": 1.156477,
+        "elevator_power_w": 549.81928,
+        "eps_thickness_cm": 3.911794,
+        "eps_conductivity_w_mk": 0.021501
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 62.4699,
+        "Yatirim maliyeti (TRY)": 2965911.0072,
+        "Konfor ihlali (bolge-saat)": 34.9283
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2491,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -465.0717,
+        "Butce tavani": -3034088.9928,
+        "Asgari olu bant": -5.0525
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.381497,
+        "cooling_setpoint_c": 25.891829,
+        "chiller_cop": 7.925347,
+        "boiler_efficiency": 0.899469,
+        "lighting_primary_w_m2": 7.013808,
+        "lighting_secondary_w_m2": 3.067673,
+        "infiltration_multiplier": 0.465349,
+        "elevator_power_w": 914.240664,
+        "eps_thickness_cm": 4.006038,
+        "eps_conductivity_w_mk": 0.020767
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 85.5533,
+        "Yatirim maliyeti (TRY)": 1602602.811,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2228,
-        "TS 825 cam U": -0.057,
+        "TS 825 duvar U": -0.2558,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4294070.2201,
-        "Asgari olu bant": -5.6864
+        "Butce tavani": -4397397.189,
+        "Asgari olu bant": -5.0103
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.509978,
-        "cooling_setpoint_c": 25.290481,
-        "chiller_cop": 5.417128,
-        "boiler_efficiency": 0.892773,
-        "lighting_primary_w_m2": 7.015026,
-        "lighting_secondary_w_m2": 5.191815,
-        "infiltration_multiplier": 1.057234,
-        "elevator_power_w": 5389.533901,
-        "eps_thickness_cm": 4.472,
-        "eps_conductivity_w_mk": 0.018459
+        "heating_setpoint_c": 20.193738,
+        "cooling_setpoint_c": 25.690916,
+        "chiller_cop": 5.477653,
+        "boiler_efficiency": 0.951519,
+        "lighting_primary_w_m2": 7.066288,
+        "lighting_secondary_w_m2": 4.650945,
+        "infiltration_multiplier": 1.167347,
+        "elevator_power_w": 5595.630853,
+        "eps_thickness_cm": 3.899473,
+        "eps_conductivity_w_mk": 0.018905
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 81.5099,
+        "EnPI (kWh/m2-yil)": 77.6389,
+        "Yatirim maliyeti (TRY)": 1730321.7399,
+        "Konfor ihlali (bolge-saat)": 225.6898
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2635,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -274.3102,
+        "Butce tavani": -4269678.2601,
+        "Asgari olu bant": -4.9972
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.176221,
+        "cooling_setpoint_c": 25.712844,
+        "chiller_cop": 5.445835,
+        "boiler_efficiency": 0.898557,
+        "lighting_primary_w_m2": 7.284562,
+        "lighting_secondary_w_m2": 4.766411,
+        "infiltration_multiplier": 1.284268,
+        "elevator_power_w": 6480.620443,
+        "eps_thickness_cm": 3.958364,
+        "eps_conductivity_w_mk": 0.019055
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 79.7835,
         "Yatirim maliyeti (TRY)": 1710208.5,
-        "Konfor ihlali (bolge-saat)": 0.0
+        "Konfor ihlali (bolge-saat)": 169.9559
       },
       "constraints": {
-        "TS 825 duvar U": -0.2821,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -500.0,
+        "TS 825 duvar U": -0.2643,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -330.0441,
         "Butce tavani": -4289791.5,
-        "Asgari olu bant": -4.2805
+        "Asgari olu bant": -5.0366
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.178527,
+        "cooling_setpoint_c": 25.934323,
+        "chiller_cop": 6.791694,
+        "boiler_efficiency": 0.989574,
+        "lighting_primary_w_m2": 7.334486,
+        "lighting_secondary_w_m2": 3.096141,
+        "infiltration_multiplier": 1.203318,
+        "elevator_power_w": 801.600871,
+        "eps_thickness_cm": 3.868991,
+        "eps_conductivity_w_mk": 0.017725
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 92.996,
+        "Yatirim maliyeti (TRY)": 821553.7098,
+        "Konfor ihlali (bolge-saat)": 129.9643
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.27,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -370.0357,
+        "Butce tavani": -5178446.2902,
+        "Asgari olu bant": -5.2558
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.057392,
-        "cooling_setpoint_c": 25.723626,
-        "chiller_cop": 6.545721,
-        "boiler_efficiency": 0.960985,
-        "lighting_primary_w_m2": 7.051094,
-        "lighting_secondary_w_m2": 3.674928,
-        "infiltration_multiplier": 1.064806,
-        "elevator_power_w": 2560.873431,
-        "eps_thickness_cm": 2.443331,
-        "eps_conductivity_w_mk": 0.016913
+        "heating_setpoint_c": 20.137551,
+        "cooling_setpoint_c": 25.701734,
+        "chiller_cop": 7.663088,
+        "boiler_efficiency": 0.970184,
+        "lighting_primary_w_m2": 1.134804,
+        "lighting_secondary_w_m2": 1.768953,
+        "infiltration_multiplier": 0.694185,
+        "elevator_power_w": 502.860725,
+        "eps_thickness_cm": 6.591056,
+        "eps_conductivity_w_mk": 0.018853
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 67.8991,
-        "Yatirim maliyeti (TRY)": 2406043.1543,
-        "Konfor ihlali (bolge-saat)": 327.5614
+        "EnPI (kWh/m2-yil)": 48.2501,
+        "Yatirim maliyeti (TRY)": 4855108.6379,
+        "Konfor ihlali (bolge-saat)": 178.9052
       },
       "constraints": {
-        "TS 825 duvar U": -0.223,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -172.4386,
-        "Butce tavani": -3593956.8457,
-        "Asgari olu bant": -5.1662
+        "TS 825 duvar U": -0.3234,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -321.0948,
+        "Butce tavani": -1144891.3621,
+        "Asgari olu bant": -5.0642
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.177327,
+        "cooling_setpoint_c": 25.892611,
+        "chiller_cop": 7.77191,
+        "boiler_efficiency": 0.959119,
+        "lighting_primary_w_m2": 7.07483,
+        "lighting_secondary_w_m2": 3.917134,
+        "infiltration_multiplier": 1.203325,
+        "elevator_power_w": 508.16546,
+        "eps_thickness_cm": 4.035943,
+        "eps_conductivity_w_mk": 0.021773
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 86.5922,
+        "Yatirim maliyeti (TRY)": 1266181.904,
+        "Konfor ihlali (bolge-saat)": 89.8785
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2512,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -410.1215,
+        "Butce tavani": -4733818.096,
+        "Asgari olu bant": -5.2153
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.288149,
-        "cooling_setpoint_c": 25.671649,
-        "chiller_cop": 5.497474,
-        "boiler_efficiency": 0.899337,
-        "lighting_primary_w_m2": 1.268555,
-        "lighting_secondary_w_m2": 3.40287,
-        "infiltration_multiplier": 1.063061,
-        "elevator_power_w": 2641.169325,
-        "eps_thickness_cm": 7.473205,
-        "eps_conductivity_w_mk": 0.015124
+        "heating_setpoint_c": 20.127254,
+        "cooling_setpoint_c": 25.703025,
+        "chiller_cop": 7.668948,
+        "boiler_efficiency": 0.892402,
+        "lighting_primary_w_m2": 1.126869,
+        "lighting_secondary_w_m2": 3.011933,
+        "infiltration_multiplier": 1.158401,
+        "elevator_power_w": 549.439148,
+        "eps_thickness_cm": 9.702857,
+        "eps_conductivity_w_mk": 0.017884
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 61.2409,
-        "Yatirim maliyeti (TRY)": 3150481.6716,
-        "Konfor ihlali (bolge-saat)": 369.1077
+        "EnPI (kWh/m2-yil)": 52.0597,
+        "Yatirim maliyeti (TRY)": 4254534.7737,
+        "Konfor ihlali (bolge-saat)": 191.453
       },
       "constraints": {
-        "TS 825 duvar U": -0.3593,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -130.8923,
-        "Butce tavani": -2849518.3284,
-        "Asgari olu bant": -4.8835
+        "TS 825 duvar U": -0.3683,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -308.547,
+        "Butce tavani": -1745465.2263,
+        "Asgari olu bant": -5.0758
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.242777,
-        "cooling_setpoint_c": 25.28764,
-        "chiller_cop": 5.679482,
-        "boiler_efficiency": 0.891316,
-        "lighting_primary_w_m2": 7.147324,
-        "lighting_secondary_w_m2": 3.124358,
-        "infiltration_multiplier": 1.057234,
-        "elevator_power_w": 5415.809878,
-        "eps_thickness_cm": 2.650428,
-        "eps_conductivity_w_mk": 0.018459
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.128155,
+        "cooling_setpoint_c": 25.715824,
+        "chiller_cop": 6.513056,
+        "boiler_efficiency": 0.892299,
+        "lighting_primary_w_m2": 1.126809,
+        "lighting_secondary_w_m2": 3.013342,
+        "infiltration_multiplier": 1.318186,
+        "elevator_power_w": 562.50058,
+        "eps_thickness_cm": 3.934871,
+        "eps_conductivity_w_mk": 0.016702
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 77.8285,
-        "Yatirim maliyeti (TRY)": 1793798.9512,
-        "Konfor ihlali (bolge-saat)": 451.2107
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2223,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -48.7893,
-        "Butce tavani": -4206201.0488,
-        "Asgari olu bant": -4.5449
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 20.050273,
-        "cooling_setpoint_c": 25.72237,
-        "chiller_cop": 5.818929,
-        "boiler_efficiency": 0.905751,
-        "lighting_primary_w_m2": 7.058664,
-        "lighting_secondary_w_m2": 4.109365,
-        "infiltration_multiplier": 1.069495,
-        "elevator_power_w": 5467.917018,
-        "eps_thickness_cm": 2.423024,
-        "eps_conductivity_w_mk": 0.043993
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 106.1928,
-        "Yatirim maliyeti (TRY)": 1616673.7326,
-        "Konfor ihlali (bolge-saat)": 284.4881
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.1319,
-        "TS 825 cam U": -0.057,
-        "Konfor tavani": -215.5119,
-        "Butce tavani": -4383326.2674,
-        "Asgari olu bant": -5.1721
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.042836,
-        "cooling_setpoint_c": 25.721115,
-        "chiller_cop": 7.695617,
-        "boiler_efficiency": 0.959501,
-        "lighting_primary_w_m2": 7.032336,
-        "lighting_secondary_w_m2": 3.225263,
-        "infiltration_multiplier": 1.0034,
-        "elevator_power_w": 2577.336162,
-        "eps_thickness_cm": 2.807815,
-        "eps_conductivity_w_mk": 0.015905
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 64.0532,
-        "Yatirim maliyeti (TRY)": 2941007.4964,
-        "Konfor ihlali (bolge-saat)": 162.3576
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2456,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -337.6424,
-        "Butce tavani": -3058992.5036,
-        "Asgari olu bant": -5.1783
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.277151,
-        "cooling_setpoint_c": 25.672135,
-        "chiller_cop": 6.632014,
-        "boiler_efficiency": 0.955342,
-        "lighting_primary_w_m2": 7.056595,
-        "lighting_secondary_w_m2": 3.253196,
-        "infiltration_multiplier": 1.185158,
-        "elevator_power_w": 2586.746013,
-        "eps_thickness_cm": 2.438911,
-        "eps_conductivity_w_mk": 0.017424
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 68.1916,
-        "Yatirim maliyeti (TRY)": 2444029.4135,
+        "EnPI (kWh/m2-yil)": 82.3647,
+        "Yatirim maliyeti (TRY)": 1807923.3024,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2195,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2788,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3555970.5865,
-        "Asgari olu bant": -4.895
+        "Butce tavani": -4192076.6976,
+        "Asgari olu bant": -5.0877
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.294541,
-        "cooling_setpoint_c": 25.695508,
-        "chiller_cop": 7.063541,
-        "boiler_efficiency": 0.891468,
-        "lighting_primary_w_m2": 7.058039,
-        "lighting_secondary_w_m2": 3.887215,
-        "infiltration_multiplier": 1.166657,
-        "elevator_power_w": 1451.86353,
-        "eps_thickness_cm": 4.32558,
-        "eps_conductivity_w_mk": 0.017089
+        "heating_setpoint_c": 20.150769,
+        "cooling_setpoint_c": 25.693732,
+        "chiller_cop": 7.791998,
+        "boiler_efficiency": 0.986996,
+        "lighting_primary_w_m2": 1.198663,
+        "lighting_secondary_w_m2": 3.584935,
+        "infiltration_multiplier": 1.162637,
+        "elevator_power_w": 549.819889,
+        "eps_thickness_cm": 10.640222,
+        "eps_conductivity_w_mk": 0.024172
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 67.2618,
-        "Yatirim maliyeti (TRY)": 2623399.7089,
-        "Konfor ihlali (bolge-saat)": 232.2159
+        "EnPI (kWh/m2-yil)": 51.7253,
+        "Yatirim maliyeti (TRY)": 4385285.5934,
+        "Konfor ihlali (bolge-saat)": 275.2188
       },
       "constraints": {
-        "TS 825 duvar U": -0.2871,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -267.7841,
-        "Butce tavani": -3376600.2911,
-        "Asgari olu bant": -4.901
+        "TS 825 duvar U": -0.3477,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -224.7812,
+        "Butce tavani": -1614714.4066,
+        "Asgari olu bant": -5.043
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.061059,
-        "cooling_setpoint_c": 25.617185,
-        "chiller_cop": 7.948325,
-        "boiler_efficiency": 0.898695,
-        "lighting_primary_w_m2": 7.173355,
-        "lighting_secondary_w_m2": 3.224776,
-        "infiltration_multiplier": 1.067516,
-        "elevator_power_w": 819.376561,
-        "eps_thickness_cm": 2.889907,
-        "eps_conductivity_w_mk": 0.015176
+        "heating_setpoint_c": 20.127409,
+        "cooling_setpoint_c": 25.702189,
+        "chiller_cop": 7.673054,
+        "boiler_efficiency": 0.986329,
+        "lighting_primary_w_m2": 1.03739,
+        "lighting_secondary_w_m2": 3.016661,
+        "infiltration_multiplier": 0.613861,
+        "elevator_power_w": 548.692622,
+        "eps_thickness_cm": 7.501375,
+        "eps_conductivity_w_mk": 0.023667
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 63.3731,
-        "Yatirim maliyeti (TRY)": 3035471.9753,
-        "Konfor ihlali (bolge-saat)": 140.9238
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2543,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -359.0762,
-        "Butce tavani": -2964528.0247,
-        "Asgari olu bant": -5.0561
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.2628,
-        "cooling_setpoint_c": 25.615333,
-        "chiller_cop": 5.533541,
-        "boiler_efficiency": 0.944615,
-        "lighting_primary_w_m2": 7.112431,
-        "lighting_secondary_w_m2": 3.187018,
-        "infiltration_multiplier": 1.079436,
-        "elevator_power_w": 5457.625759,
-        "eps_thickness_cm": 7.582112,
-        "eps_conductivity_w_mk": 0.044874
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 76.4743,
-        "Yatirim maliyeti (TRY)": 1851996.7749,
-        "Konfor ihlali (bolge-saat)": 82.7501
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2406,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -417.2499,
-        "Butce tavani": -4148003.2251,
-        "Asgari olu bant": -4.8525
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 20.246787,
-        "cooling_setpoint_c": 25.614291,
-        "chiller_cop": 5.492409,
-        "boiler_efficiency": 0.942065,
-        "lighting_primary_w_m2": 7.030382,
-        "lighting_secondary_w_m2": 3.07053,
-        "infiltration_multiplier": 1.009503,
-        "elevator_power_w": 5102.684699,
-        "eps_thickness_cm": 2.850644,
-        "eps_conductivity_w_mk": 0.042995
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 109.184,
-        "Yatirim maliyeti (TRY)": 1482315.5557,
+        "EnPI (kWh/m2-yil)": 48.9283,
+        "Yatirim maliyeti (TRY)": 4405462.6502,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.1465,
-        "TS 825 cam U": -0.057,
+        "TS 825 duvar U": -0.3126,
+        "TS 825 cam U": -1.118,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4517684.4443,
-        "Asgari olu bant": -4.8675
+        "Butce tavani": -1594537.3498,
+        "Asgari olu bant": -5.0748
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.058728,
-        "cooling_setpoint_c": 25.718369,
-        "chiller_cop": 5.945157,
-        "boiler_efficiency": 0.984925,
-        "lighting_primary_w_m2": 7.037633,
-        "lighting_secondary_w_m2": 3.237084,
-        "infiltration_multiplier": 1.027437,
-        "elevator_power_w": 1843.759821,
-        "eps_thickness_cm": 2.481007,
-        "eps_conductivity_w_mk": 0.016
+        "heating_setpoint_c": 20.012506,
+        "cooling_setpoint_c": 25.701313,
+        "chiller_cop": 7.944756,
+        "boiler_efficiency": 0.984907,
+        "lighting_primary_w_m2": 1.292346,
+        "lighting_secondary_w_m2": 3.156553,
+        "infiltration_multiplier": 0.463427,
+        "elevator_power_w": 560.847069,
+        "eps_thickness_cm": 7.458514,
+        "eps_conductivity_w_mk": 0.017986
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 68.8086,
-        "Yatirim maliyeti (TRY)": 2135687.7557,
-        "Konfor ihlali (bolge-saat)": 271.1922
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2309,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -228.8078,
-        "Butce tavani": -3864312.2443,
-        "Asgari olu bant": -5.1596
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.248187,
-        "cooling_setpoint_c": 25.718917,
-        "chiller_cop": 6.093585,
-        "boiler_efficiency": 0.945282,
-        "lighting_primary_w_m2": 1.121536,
-        "lighting_secondary_w_m2": 3.221807,
-        "infiltration_multiplier": 1.01363,
-        "elevator_power_w": 1443.290358,
-        "eps_thickness_cm": 7.583911,
-        "eps_conductivity_w_mk": 0.016825
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 56.3285,
-        "Yatirim maliyeti (TRY)": 3449273.9614,
-        "Konfor ihlali (bolge-saat)": 385.2984
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.3501,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -114.7016,
-        "Butce tavani": -2550726.0386,
-        "Asgari olu bant": -4.9707
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 20.061464,
-        "cooling_setpoint_c": 25.699937,
-        "chiller_cop": 5.839817,
-        "boiler_efficiency": 0.95425,
-        "lighting_primary_w_m2": 7.044198,
-        "lighting_secondary_w_m2": 3.441573,
-        "infiltration_multiplier": 1.090031,
-        "elevator_power_w": 5096.124889,
-        "eps_thickness_cm": 2.770765,
-        "eps_conductivity_w_mk": 0.042434
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 104.7575,
-        "Yatirim maliyeti (TRY)": 1645335.9149,
-        "Konfor ihlali (bolge-saat)": 19.878
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.1452,
-        "TS 825 cam U": -0.057,
-        "Konfor tavani": -480.122,
-        "Butce tavani": -4354664.0851,
-        "Asgari olu bant": -5.1385
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.060958,
-        "cooling_setpoint_c": 25.617015,
-        "chiller_cop": 7.56644,
-        "boiler_efficiency": 0.899497,
-        "lighting_primary_w_m2": 1.013072,
-        "lighting_secondary_w_m2": 3.297256,
-        "infiltration_multiplier": 1.067137,
-        "elevator_power_w": 2647.58057,
-        "eps_thickness_cm": 7.540367,
-        "eps_conductivity_w_mk": 0.015293
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 53.9165,
-        "Yatirim maliyeti (TRY)": 4115717.5262,
-        "Konfor ihlali (bolge-saat)": 476.8028
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.3591,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -23.1972,
-        "Butce tavani": -1884282.4738,
-        "Asgari olu bant": -5.0561
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.283197,
-        "cooling_setpoint_c": 25.695271,
-        "chiller_cop": 5.84493,
-        "boiler_efficiency": 0.956733,
-        "lighting_primary_w_m2": 1.235333,
-        "lighting_secondary_w_m2": 3.675006,
-        "infiltration_multiplier": 1.027548,
-        "elevator_power_w": 1675.312503,
-        "eps_thickness_cm": 8.14254,
-        "eps_conductivity_w_mk": 0.017072
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 58.4781,
-        "Yatirim maliyeti (TRY)": 3361465.5813,
-        "Konfor ihlali (bolge-saat)": 441.6676
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.3558,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -58.3324,
-        "Butce tavani": -2638534.4187,
-        "Asgari olu bant": -4.9121
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.297887,
-        "cooling_setpoint_c": 25.720737,
-        "chiller_cop": 6.069292,
-        "boiler_efficiency": 0.956211,
-        "lighting_primary_w_m2": 7.128192,
-        "lighting_secondary_w_m2": 3.250657,
-        "infiltration_multiplier": 1.012988,
-        "elevator_power_w": 2667.005835,
-        "eps_thickness_cm": 7.485673,
-        "eps_conductivity_w_mk": 0.015915
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 70.7199,
-        "Yatirim maliyeti (TRY)": 2286978.5422,
+        "EnPI (kWh/m2-yil)": 48.5749,
+        "Yatirim maliyeti (TRY)": 4610688.7909,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.3544,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.3416,
+        "TS 825 cam U": -1.118,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3713021.4578,
-        "Asgari olu bant": -4.9228
+        "Butce tavani": -1389311.2091,
+        "Asgari olu bant": -5.1888
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.238524,
-        "cooling_setpoint_c": 25.722367,
-        "chiller_cop": 7.326683,
-        "boiler_efficiency": 0.985705,
-        "lighting_primary_w_m2": 1.235333,
-        "lighting_secondary_w_m2": 3.673559,
-        "infiltration_multiplier": 1.19161,
-        "elevator_power_w": 1906.705072,
-        "eps_thickness_cm": 7.745162,
-        "eps_conductivity_w_mk": 0.044372
+        "heating_setpoint_c": 20.175492,
+        "cooling_setpoint_c": 25.717317,
+        "chiller_cop": 5.800615,
+        "boiler_efficiency": 0.971943,
+        "lighting_primary_w_m2": 7.00517,
+        "lighting_secondary_w_m2": 3.132323,
+        "infiltration_multiplier": 0.988454,
+        "elevator_power_w": 517.671098,
+        "eps_thickness_cm": 3.892461,
+        "eps_conductivity_w_mk": 0.015762
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 54.153,
-        "Yatirim maliyeti (TRY)": 4046140.0213,
-        "Konfor ihlali (bolge-saat)": 221.1896
+        "EnPI (kWh/m2-yil)": 68.314,
+        "Yatirim maliyeti (TRY)": 2069522.3952,
+        "Konfor ihlali (bolge-saat)": 124.8101
       },
       "constraints": {
-        "TS 825 duvar U": -0.2443,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -278.8104,
-        "Butce tavani": -1953859.9787,
-        "Asgari olu bant": -4.9838
+        "TS 825 duvar U": -0.2843,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -375.1899,
+        "Butce tavani": -3930477.6048,
+        "Asgari olu bant": -5.0418
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.29878,
-        "cooling_setpoint_c": 25.722829,
-        "chiller_cop": 5.351346,
-        "boiler_efficiency": 0.901715,
-        "lighting_primary_w_m2": 7.031991,
-        "lighting_secondary_w_m2": 3.348235,
-        "infiltration_multiplier": 1.001166,
-        "elevator_power_w": 2575.427212,
-        "eps_thickness_cm": 2.765194,
-        "eps_conductivity_w_mk": 0.01599
+        "heating_setpoint_c": 19.954214,
+        "cooling_setpoint_c": 25.725258,
+        "chiller_cop": 6.325021,
+        "boiler_efficiency": 0.942878,
+        "lighting_primary_w_m2": 1.622643,
+        "lighting_secondary_w_m2": 3.128128,
+        "infiltration_multiplier": 0.466936,
+        "elevator_power_w": 560.847195,
+        "eps_thickness_cm": 7.547219,
+        "eps_conductivity_w_mk": 0.022275
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 74.0207,
-        "Yatirim maliyeti (TRY)": 1895878.2342,
-        "Konfor ihlali (bolge-saat)": 144.7919
+        "EnPI (kWh/m2-yil)": 54.3994,
+        "Yatirim maliyeti (TRY)": 3841764.0726,
+        "Konfor ihlali (bolge-saat)": 81.5928
       },
       "constraints": {
-        "TS 825 duvar U": -0.2433,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -355.2081,
-        "Butce tavani": -4104121.7658,
-        "Asgari olu bant": -4.924
+        "TS 825 duvar U": -0.3199,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -418.4072,
+        "Butce tavani": -2158235.9274,
+        "Asgari olu bant": -5.271
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.058728,
-        "cooling_setpoint_c": 25.718369,
-        "chiller_cop": 5.910314,
-        "boiler_efficiency": 0.984925,
-        "lighting_primary_w_m2": 7.181534,
-        "lighting_secondary_w_m2": 3.237084,
-        "infiltration_multiplier": 1.027437,
-        "elevator_power_w": 1843.759821,
-        "eps_thickness_cm": 2.890685,
-        "eps_conductivity_w_mk": 0.016
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.959228,
+        "cooling_setpoint_c": 25.85396,
+        "chiller_cop": 6.378096,
+        "boiler_efficiency": 0.948282,
+        "lighting_primary_w_m2": 7.057313,
+        "lighting_secondary_w_m2": 3.146479,
+        "infiltration_multiplier": 1.000824,
+        "elevator_power_w": 515.228947,
+        "eps_thickness_cm": 3.890699,
+        "eps_conductivity_w_mk": 0.022907
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 69.2852,
-        "Yatirim maliyeti (TRY)": 2119460.0648,
-        "Konfor ihlali (bolge-saat)": 210.0817
+        "EnPI (kWh/m2-yil)": 95.994,
+        "Yatirim maliyeti (TRY)": 612807.005,
+        "Konfor ihlali (bolge-saat)": 390.2929
       },
       "constraints": {
-        "TS 825 duvar U": -0.2483,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -289.9183,
-        "Butce tavani": -3880539.9352,
-        "Asgari olu bant": -5.1596
+        "TS 825 duvar U": -0.2412,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -109.7071,
+        "Butce tavani": -5387192.995,
+        "Asgari olu bant": -5.3947
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.260839,
-        "cooling_setpoint_c": 25.716988,
-        "chiller_cop": 5.655814,
-        "boiler_efficiency": 0.918491,
-        "lighting_primary_w_m2": 1.012694,
-        "lighting_secondary_w_m2": 3.135499,
-        "infiltration_multiplier": 1.056092,
-        "elevator_power_w": 2492.605913,
-        "eps_thickness_cm": 7.488977,
-        "eps_conductivity_w_mk": 0.043043
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.193397,
+        "cooling_setpoint_c": 25.70822,
+        "chiller_cop": 5.665753,
+        "boiler_efficiency": 0.896954,
+        "lighting_primary_w_m2": 7.0548,
+        "lighting_secondary_w_m2": 3.086665,
+        "infiltration_multiplier": 1.170767,
+        "elevator_power_w": 5417.997988,
+        "eps_thickness_cm": 4.04927,
+        "eps_conductivity_w_mk": 0.018956
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 60.505,
-        "Yatirim maliyeti (TRY)": 3230932.2303,
-        "Konfor ihlali (bolge-saat)": 33.8288
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2439,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -466.1712,
-        "Butce tavani": -2769067.7697,
-        "Asgari olu bant": -4.9561
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 19.968922,
-        "cooling_setpoint_c": 25.720158,
-        "chiller_cop": 5.760834,
-        "boiler_efficiency": 0.928688,
-        "lighting_primary_w_m2": 1.013307,
-        "lighting_secondary_w_m2": 3.242078,
-        "infiltration_multiplier": 1.004419,
-        "elevator_power_w": 2650.816506,
-        "eps_thickness_cm": 7.59681,
-        "eps_conductivity_w_mk": 0.045043
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 59.7126,
-        "Yatirim maliyeti (TRY)": 3288366.2967,
-        "Konfor ihlali (bolge-saat)": 431.376
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2404,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -68.624,
-        "Butce tavani": -2711633.7033,
-        "Asgari olu bant": -5.2512
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.288149,
-        "cooling_setpoint_c": 25.722127,
-        "chiller_cop": 6.374865,
-        "boiler_efficiency": 0.984098,
-        "lighting_primary_w_m2": 1.268314,
-        "lighting_secondary_w_m2": 3.668315,
-        "infiltration_multiplier": 1.112787,
-        "elevator_power_w": 2493.077124,
-        "eps_thickness_cm": 7.63576,
-        "eps_conductivity_w_mk": 0.043836
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 57.569,
-        "Yatirim maliyeti (TRY)": 3597613.1717,
-        "Konfor ihlali (bolge-saat)": 131.9011
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2441,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -368.0989,
-        "Butce tavani": -2402386.8283,
-        "Asgari olu bant": -4.934
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.276785,
-        "cooling_setpoint_c": 25.722243,
-        "chiller_cop": 7.251603,
-        "boiler_efficiency": 0.94719,
-        "lighting_primary_w_m2": 7.179307,
-        "lighting_secondary_w_m2": 3.462482,
-        "infiltration_multiplier": 1.192893,
-        "elevator_power_w": 1805.378075,
-        "eps_thickness_cm": 2.465036,
-        "eps_conductivity_w_mk": 0.017584
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 65.8606,
-        "Yatirim maliyeti (TRY)": 2729409.7639,
-        "Konfor ihlali (bolge-saat)": 22.9505
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2197,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -477.0495,
-        "Butce tavani": -3270590.2361,
-        "Asgari olu bant": -4.9455
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.045639,
-        "cooling_setpoint_c": 25.722367,
-        "chiller_cop": 7.192924,
-        "boiler_efficiency": 0.944303,
-        "lighting_primary_w_m2": 7.10709,
-        "lighting_secondary_w_m2": 3.673559,
-        "infiltration_multiplier": 1.19161,
-        "elevator_power_w": 1906.705072,
-        "eps_thickness_cm": 7.745162,
-        "eps_conductivity_w_mk": 0.044847
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 66.6918,
-        "Yatirim maliyeti (TRY)": 2816569.7607,
+        "EnPI (kWh/m2-yil)": 109.8828,
+        "Yatirim maliyeti (TRY)": 77196.6468,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2431,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2675,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3183430.2393,
-        "Asgari olu bant": -5.1767
+        "Butce tavani": -5922803.3532,
+        "Asgari olu bant": -5.0148
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.045427,
-        "cooling_setpoint_c": 25.331829,
-        "chiller_cop": 5.522529,
-        "boiler_efficiency": 0.902879,
-        "lighting_primary_w_m2": 7.414756,
-        "lighting_secondary_w_m2": 3.069203,
-        "infiltration_multiplier": 1.163673,
-        "elevator_power_w": 5437.69885,
-        "eps_thickness_cm": 2.511139,
-        "eps_conductivity_w_mk": 0.017412
+        "heating_setpoint_c": 20.124515,
+        "cooling_setpoint_c": 25.708326,
+        "chiller_cop": 5.424589,
+        "boiler_efficiency": 0.89966,
+        "lighting_primary_w_m2": 7.033657,
+        "lighting_secondary_w_m2": 3.085038,
+        "infiltration_multiplier": 1.170846,
+        "elevator_power_w": 559.184904,
+        "eps_thickness_cm": 3.712477,
+        "eps_conductivity_w_mk": 0.018194
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 78.9869,
-        "Yatirim maliyeti (TRY)": 1721824.721,
-        "Konfor ihlali (bolge-saat)": 185.3547
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2228,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -314.6453,
-        "Butce tavani": -4278175.279,
-        "Asgari olu bant": -4.7864
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.294764,
-        "cooling_setpoint_c": 25.695602,
-        "chiller_cop": 6.159689,
-        "boiler_efficiency": 0.951714,
-        "lighting_primary_w_m2": 7.056593,
-        "lighting_secondary_w_m2": 3.133534,
-        "infiltration_multiplier": 1.060806,
-        "elevator_power_w": 2666.209225,
-        "eps_thickness_cm": 2.637179,
-        "eps_conductivity_w_mk": 0.016892
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 69.53,
-        "Yatirim maliyeti (TRY)": 2222636.3161,
-        "Konfor ihlali (bolge-saat)": 75.2734
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2317,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -424.7266,
-        "Butce tavani": -3777363.6839,
-        "Asgari olu bant": -4.9008
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 20.230631,
-        "cooling_setpoint_c": 25.613048,
-        "chiller_cop": 5.667732,
-        "boiler_efficiency": 0.897551,
-        "lighting_primary_w_m2": 7.030999,
-        "lighting_secondary_w_m2": 3.068835,
-        "infiltration_multiplier": 1.261207,
-        "elevator_power_w": 5677.162003,
-        "eps_thickness_cm": 2.659647,
-        "eps_conductivity_w_mk": 0.043026
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 107.2109,
-        "Yatirim maliyeti (TRY)": 1544011.22,
-        "Konfor ihlali (bolge-saat)": 0.0
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.1408,
-        "TS 825 cam U": -0.057,
-        "Konfor tavani": -500.0,
-        "Butce tavani": -4455988.78,
-        "Asgari olu bant": -4.8824
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.297756,
-        "cooling_setpoint_c": 25.698543,
-        "chiller_cop": 5.667508,
-        "boiler_efficiency": 0.957996,
-        "lighting_primary_w_m2": 7.047053,
-        "lighting_secondary_w_m2": 3.451408,
-        "infiltration_multiplier": 1.066288,
-        "elevator_power_w": 2725.84688,
-        "eps_thickness_cm": 2.46315,
-        "eps_conductivity_w_mk": 0.015956
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 72.2166,
-        "Yatirim maliyeti (TRY)": 1995864.2215,
-        "Konfor ihlali (bolge-saat)": 232.6528
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2304,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -267.3472,
-        "Butce tavani": -4004135.7785,
-        "Asgari olu bant": -4.9008
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.260839,
-        "cooling_setpoint_c": 25.717789,
-        "chiller_cop": 7.172904,
-        "boiler_efficiency": 0.899868,
-        "lighting_primary_w_m2": 1.012694,
-        "lighting_secondary_w_m2": 3.135499,
-        "infiltration_multiplier": 1.056092,
-        "elevator_power_w": 2483.987859,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.043043
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 54.8069,
-        "Yatirim maliyeti (TRY)": 3928517.8783,
-        "Konfor ihlali (bolge-saat)": 57.9205
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2433,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -442.0795,
-        "Butce tavani": -2071482.1217,
-        "Asgari olu bant": -4.957
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.248886,
-        "cooling_setpoint_c": 25.722524,
-        "chiller_cop": 7.192924,
-        "boiler_efficiency": 0.985339,
-        "lighting_primary_w_m2": 1.243459,
-        "lighting_secondary_w_m2": 3.189857,
-        "infiltration_multiplier": 1.006594,
-        "elevator_power_w": 1906.705072,
-        "eps_thickness_cm": 7.745162,
-        "eps_conductivity_w_mk": 0.01621
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 53.4595,
-        "Yatirim maliyeti (TRY)": 3983701.6411,
-        "Konfor ihlali (bolge-saat)": 482.4186
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.356,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -17.5814,
-        "Butce tavani": -2016298.3589,
-        "Asgari olu bant": -4.9736
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.049761,
-        "cooling_setpoint_c": 25.332265,
-        "chiller_cop": 5.520954,
-        "boiler_efficiency": 0.945896,
-        "lighting_primary_w_m2": 7.145832,
-        "lighting_secondary_w_m2": 3.22182,
-        "infiltration_multiplier": 1.17379,
-        "elevator_power_w": 5457.623212,
-        "eps_thickness_cm": 2.635279,
-        "eps_conductivity_w_mk": 0.017199
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 78.3444,
-        "Yatirim maliyeti (TRY)": 1737885.5575,
-        "Konfor ihlali (bolge-saat)": 241.7163
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2296,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -258.2837,
-        "Butce tavani": -4262114.4425,
-        "Asgari olu bant": -4.7825
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.300802,
-        "cooling_setpoint_c": 25.713398,
-        "chiller_cop": 6.560188,
-        "boiler_efficiency": 0.926483,
-        "lighting_primary_w_m2": 1.041649,
-        "lighting_secondary_w_m2": 3.789814,
-        "infiltration_multiplier": 1.150404,
-        "elevator_power_w": 2692.083161,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.041922
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 57.1279,
-        "Yatirim maliyeti (TRY)": 3653495.5871,
-        "Konfor ihlali (bolge-saat)": 11.5092
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2463,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -488.4908,
-        "Butce tavani": -2346504.4129,
-        "Asgari olu bant": -4.9126
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.294541,
-        "cooling_setpoint_c": 25.698104,
-        "chiller_cop": 6.17448,
-        "boiler_efficiency": 0.897968,
-        "lighting_primary_w_m2": 7.056593,
-        "lighting_secondary_w_m2": 3.133534,
-        "infiltration_multiplier": 1.060806,
-        "elevator_power_w": 2576.275866,
-        "eps_thickness_cm": 2.641526,
-        "eps_conductivity_w_mk": 0.016892
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 69.8977,
-        "Yatirim maliyeti (TRY)": 2209335.2332,
-        "Konfor ihlali (bolge-saat)": 103.4069
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2319,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -396.5931,
-        "Butce tavani": -3790664.7668,
-        "Asgari olu bant": -4.9036
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.005283,
-        "cooling_setpoint_c": 25.698281,
-        "chiller_cop": 5.239303,
-        "boiler_efficiency": 0.894653,
-        "lighting_primary_w_m2": 7.056936,
-        "lighting_secondary_w_m2": 3.462194,
-        "infiltration_multiplier": 1.068078,
-        "elevator_power_w": 2651.747012,
-        "eps_thickness_cm": 2.465534,
-        "eps_conductivity_w_mk": 0.017444
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 75.0473,
+        "EnPI (kWh/m2-yil)": 71.9794,
         "Yatirim maliyeti (TRY)": 1895208.5,
-        "Konfor ihlali (bolge-saat)": 408.4799
+        "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2206,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -91.5201,
+        "TS 825 duvar U": -0.2623,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -500.0,
         "Butce tavani": -4104791.5,
-        "Asgari olu bant": -5.193
+        "Asgari olu bant": -5.0838
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.042836,
-        "cooling_setpoint_c": 25.722357,
-        "chiller_cop": 7.702649,
-        "boiler_efficiency": 0.983059,
-        "lighting_primary_w_m2": 7.032336,
-        "lighting_secondary_w_m2": 3.223954,
-        "infiltration_multiplier": 1.009956,
-        "elevator_power_w": 2683.387855,
-        "eps_thickness_cm": 7.539482,
-        "eps_conductivity_w_mk": 0.020391
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.952631,
+        "cooling_setpoint_c": 25.801517,
+        "chiller_cop": 6.464376,
+        "boiler_efficiency": 0.985335,
+        "lighting_primary_w_m2": 7.060322,
+        "lighting_secondary_w_m2": 3.15201,
+        "infiltration_multiplier": 1.007545,
+        "elevator_power_w": 508.899177,
+        "eps_thickness_cm": 3.989884,
+        "eps_conductivity_w_mk": 0.017539
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 64.5747,
-        "Yatirim maliyeti (TRY)": 3060433.5787,
+        "EnPI (kWh/m2-yil)": 94.9902,
+        "Yatirim maliyeti (TRY)": 667456.3781,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.3294,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2748,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -2939566.4213,
-        "Asgari olu bant": -5.1795
+        "Butce tavani": -5332543.6219,
+        "Asgari olu bant": -5.3489
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.182416,
-        "cooling_setpoint_c": 25.718212,
-        "chiller_cop": 5.508421,
-        "boiler_efficiency": 0.984701,
-        "lighting_primary_w_m2": 1.235333,
-        "lighting_secondary_w_m2": 3.25446,
-        "infiltration_multiplier": 1.101977,
-        "elevator_power_w": 2742.989295,
-        "eps_thickness_cm": 7.570761,
-        "eps_conductivity_w_mk": 0.046415
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.173301,
+        "cooling_setpoint_c": 25.940347,
+        "chiller_cop": 6.707253,
+        "boiler_efficiency": 0.989046,
+        "lighting_primary_w_m2": 7.024247,
+        "lighting_secondary_w_m2": 3.131735,
+        "infiltration_multiplier": 1.183599,
+        "elevator_power_w": 517.394786,
+        "eps_thickness_cm": 3.92848,
+        "eps_conductivity_w_mk": 0.015738
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 61.7041,
-        "Yatirim maliyeti (TRY)": 3191580.3886,
-        "Konfor ihlali (bolge-saat)": 260.7357
+        "EnPI (kWh/m2-yil)": 92.5203,
+        "Yatirim maliyeti (TRY)": 782020.8008,
+        "Konfor ihlali (bolge-saat)": 199.4568
       },
       "constraints": {
-        "TS 825 duvar U": -0.2366,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -239.2643,
-        "Butce tavani": -2808419.6114,
-        "Asgari olu bant": -5.0358
+        "TS 825 duvar U": -0.2855,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -300.5432,
+        "Butce tavani": -5217979.1992,
+        "Asgari olu bant": -5.267
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.229131,
-        "cooling_setpoint_c": 25.722258,
-        "chiller_cop": 6.414558,
-        "boiler_efficiency": 0.955521,
-        "lighting_primary_w_m2": 1.367345,
-        "lighting_secondary_w_m2": 3.232712,
-        "infiltration_multiplier": 1.009088,
-        "elevator_power_w": 1959.787239,
-        "eps_thickness_cm": 7.592417,
-        "eps_conductivity_w_mk": 0.016357
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.192642,
+        "cooling_setpoint_c": 25.92771,
+        "chiller_cop": 5.430857,
+        "boiler_efficiency": 0.896582,
+        "lighting_primary_w_m2": 7.011544,
+        "lighting_secondary_w_m2": 3.086963,
+        "infiltration_multiplier": 1.190635,
+        "elevator_power_w": 503.684197,
+        "eps_thickness_cm": 3.928414,
+        "eps_conductivity_w_mk": 0.015698
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 56.0892,
-        "Yatirim maliyeti (TRY)": 3603117.4106,
-        "Konfor ihlali (bolge-saat)": 428.8769
+        "EnPI (kWh/m2-yil)": 105.1695,
+        "Yatirim maliyeti (TRY)": 185000.0,
+        "Konfor ihlali (bolge-saat)": 331.2096
       },
       "constraints": {
-        "TS 825 duvar U": -0.3531,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -71.1231,
-        "Butce tavani": -2396882.5894,
-        "Asgari olu bant": -4.9931
+        "TS 825 duvar U": -0.2858,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -168.7904,
+        "Butce tavani": -5815000.0,
+        "Asgari olu bant": -5.2351
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.288149,
-        "cooling_setpoint_c": 25.722341,
-        "chiller_cop": 6.60677,
-        "boiler_efficiency": 0.984098,
-        "lighting_primary_w_m2": 1.268314,
-        "lighting_secondary_w_m2": 3.67416,
-        "infiltration_multiplier": 1.112787,
-        "elevator_power_w": 2684.660871,
-        "eps_thickness_cm": 7.642614,
-        "eps_conductivity_w_mk": 0.043871
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.959228,
+        "cooling_setpoint_c": 25.85396,
+        "chiller_cop": 6.35206,
+        "boiler_efficiency": 0.894994,
+        "lighting_primary_w_m2": 7.054302,
+        "lighting_secondary_w_m2": 3.146479,
+        "infiltration_multiplier": 0.994952,
+        "elevator_power_w": 761.27392,
+        "eps_thickness_cm": 3.890699,
+        "eps_conductivity_w_mk": 0.022907
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 56.8342,
-        "Yatirim maliyeti (TRY)": 3705907.4602,
-        "Konfor ihlali (bolge-saat)": 131.9011
+        "EnPI (kWh/m2-yil)": 96.9484,
+        "Yatirim maliyeti (TRY)": 584551.1449,
+        "Konfor ihlali (bolge-saat)": 404.3847
       },
       "constraints": {
-        "TS 825 duvar U": -0.2441,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -368.0989,
-        "Butce tavani": -2294092.5398,
-        "Asgari olu bant": -4.9342
+        "TS 825 duvar U": -0.2412,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -95.6153,
+        "Butce tavani": -5415448.8551,
+        "Asgari olu bant": -5.3947
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.045427,
-        "cooling_setpoint_c": 25.331474,
-        "chiller_cop": 5.522529,
-        "boiler_efficiency": 0.90328,
-        "lighting_primary_w_m2": 7.407726,
-        "lighting_secondary_w_m2": 3.016479,
-        "infiltration_multiplier": 1.059681,
-        "elevator_power_w": 5437.69885,
-        "eps_thickness_cm": 3.38726,
-        "eps_conductivity_w_mk": 0.016909
+        "heating_setpoint_c": 19.983156,
+        "cooling_setpoint_c": 25.70898,
+        "chiller_cop": 6.689775,
+        "boiler_efficiency": 0.983141,
+        "lighting_primary_w_m2": 7.090472,
+        "lighting_secondary_w_m2": 3.206165,
+        "infiltration_multiplier": 1.113705,
+        "elevator_power_w": 768.383718,
+        "eps_thickness_cm": 4.008282,
+        "eps_conductivity_w_mk": 0.019054
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 78.6695,
-        "Yatirim maliyeti (TRY)": 1721981.2434,
-        "Konfor ihlali (bolge-saat)": 415.5649
+        "EnPI (kWh/m2-yil)": 65.0749,
+        "Yatirim maliyeti (TRY)": 2481783.7117,
+        "Konfor ihlali (bolge-saat)": 367.2081
       },
       "constraints": {
-        "TS 825 duvar U": -0.2601,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -84.4351,
-        "Butce tavani": -4278018.7566,
-        "Asgari olu bant": -4.786
+        "TS 825 duvar U": -0.2658,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -132.7919,
+        "Butce tavani": -3518216.2883,
+        "Asgari olu bant": -5.2258
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.268594,
-        "cooling_setpoint_c": 25.722326,
-        "chiller_cop": 6.866923,
-        "boiler_efficiency": 0.984098,
-        "lighting_primary_w_m2": 1.269106,
-        "lighting_secondary_w_m2": 3.264434,
-        "infiltration_multiplier": 1.112787,
-        "elevator_power_w": 2684.625042,
-        "eps_thickness_cm": 7.642614,
-        "eps_conductivity_w_mk": 0.043871
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.125628,
+        "cooling_setpoint_c": 25.799033,
+        "chiller_cop": 5.798848,
+        "boiler_efficiency": 0.981965,
+        "lighting_primary_w_m2": 7.089914,
+        "lighting_secondary_w_m2": 3.202463,
+        "infiltration_multiplier": 1.154019,
+        "elevator_power_w": 6320.201529,
+        "eps_thickness_cm": 4.031322,
+        "eps_conductivity_w_mk": 0.016707
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 55.7434,
-        "Yatirim maliyeti (TRY)": 3827069.0142,
-        "Konfor ihlali (bolge-saat)": 175.3327
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2441,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -324.6673,
-        "Butce tavani": -2172930.9858,
-        "Asgari olu bant": -4.9537
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.055145,
-        "cooling_setpoint_c": 25.721161,
-        "chiller_cop": 7.145667,
-        "boiler_efficiency": 0.956803,
-        "lighting_primary_w_m2": 1.227055,
-        "lighting_secondary_w_m2": 3.075254,
-        "infiltration_multiplier": 1.155728,
-        "elevator_power_w": 2659.598548,
-        "eps_thickness_cm": 8.648524,
-        "eps_conductivity_w_mk": 0.041865
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 54.6528,
-        "Yatirim maliyeti (TRY)": 3988597.8829,
-        "Konfor ihlali (bolge-saat)": 304.1335
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2637,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -195.8665,
-        "Butce tavani": -2011402.1171,
-        "Asgari olu bant": -5.166
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.049289,
-        "cooling_setpoint_c": 25.714855,
-        "chiller_cop": 5.827134,
-        "boiler_efficiency": 0.956782,
-        "lighting_primary_w_m2": 1.232532,
-        "lighting_secondary_w_m2": 3.673559,
-        "infiltration_multiplier": 0.945963,
-        "elevator_power_w": 1906.705072,
-        "eps_thickness_cm": 7.869014,
-        "eps_conductivity_w_mk": 0.041522
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 59.1446,
-        "Yatirim maliyeti (TRY)": 3370789.115,
-        "Konfor ihlali (bolge-saat)": 254.6345
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2537,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -245.3655,
-        "Butce tavani": -2629210.885,
-        "Asgari olu bant": -5.1656
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.049289,
-        "cooling_setpoint_c": 25.722367,
-        "chiller_cop": 6.642477,
-        "boiler_efficiency": 0.985705,
-        "lighting_primary_w_m2": 1.235333,
-        "lighting_secondary_w_m2": 3.673559,
-        "infiltration_multiplier": 1.19161,
-        "elevator_power_w": 1906.705072,
-        "eps_thickness_cm": 7.745162,
-        "eps_conductivity_w_mk": 0.044372
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 55.9096,
-        "Yatirim maliyeti (TRY)": 3727483.502,
-        "Konfor ihlali (bolge-saat)": 302.1137
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2443,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -197.8863,
-        "Butce tavani": -2272516.498,
-        "Asgari olu bant": -5.1731
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.049587,
-        "cooling_setpoint_c": 25.718917,
-        "chiller_cop": 5.520964,
-        "boiler_efficiency": 0.945282,
-        "lighting_primary_w_m2": 7.066822,
-        "lighting_secondary_w_m2": 3.221807,
-        "infiltration_multiplier": 1.020943,
-        "elevator_power_w": 1683.187031,
-        "eps_thickness_cm": 2.56566,
-        "eps_conductivity_w_mk": 0.017211
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 71.43,
-        "Yatirim maliyeti (TRY)": 1922650.446,
-        "Konfor ihlali (bolge-saat)": 236.6449
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2265,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -263.3551,
-        "Butce tavani": -4077349.554,
-        "Asgari olu bant": -5.1693
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.268594,
-        "cooling_setpoint_c": 25.722326,
-        "chiller_cop": 6.866923,
-        "boiler_efficiency": 0.986342,
-        "lighting_primary_w_m2": 1.269353,
-        "lighting_secondary_w_m2": 3.264434,
-        "infiltration_multiplier": 1.112787,
-        "elevator_power_w": 2684.625042,
-        "eps_thickness_cm": 7.642614,
-        "eps_conductivity_w_mk": 0.043871
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 55.7202,
-        "Yatirim maliyeti (TRY)": 3827944.9292,
-        "Konfor ihlali (bolge-saat)": 175.3327
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2441,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -324.6673,
-        "Butce tavani": -2172055.0708,
-        "Asgari olu bant": -4.9537
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.294968,
-        "cooling_setpoint_c": 25.698281,
-        "chiller_cop": 6.069923,
-        "boiler_efficiency": 0.952377,
-        "lighting_primary_w_m2": 7.047053,
-        "lighting_secondary_w_m2": 3.456992,
-        "infiltration_multiplier": 1.068078,
-        "elevator_power_w": 2727.981284,
-        "eps_thickness_cm": 2.465534,
-        "eps_conductivity_w_mk": 0.017246
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 70.3072,
-        "Yatirim maliyeti (TRY)": 2181088.4086,
-        "Konfor ihlali (bolge-saat)": 99.3946
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2219,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -400.6054,
-        "Butce tavani": -3818911.5914,
-        "Asgari olu bant": -4.9033
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.258688,
-        "cooling_setpoint_c": 25.722671,
-        "chiller_cop": 5.8237,
-        "boiler_efficiency": 0.954474,
-        "lighting_primary_w_m2": 7.063226,
-        "lighting_secondary_w_m2": 3.708116,
-        "infiltration_multiplier": 1.190812,
-        "elevator_power_w": 1916.844905,
-        "eps_thickness_cm": 2.445501,
-        "eps_conductivity_w_mk": 0.015182
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 71.0972,
-        "Yatirim maliyeti (TRY)": 2067232.8814,
-        "Konfor ihlali (bolge-saat)": 49.9152
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2352,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -450.0848,
-        "Butce tavani": -3932767.1186,
-        "Asgari olu bant": -4.964
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.107525,
-        "cooling_setpoint_c": 25.717607,
-        "chiller_cop": 5.864818,
-        "boiler_efficiency": 0.983246,
-        "lighting_primary_w_m2": 7.157679,
-        "lighting_secondary_w_m2": 3.046898,
-        "infiltration_multiplier": 1.161106,
-        "elevator_power_w": 2884.416012,
-        "eps_thickness_cm": 2.890685,
-        "eps_conductivity_w_mk": 0.015502
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 70.9224,
-        "Yatirim maliyeti (TRY)": 2097615.5381,
-        "Konfor ihlali (bolge-saat)": 115.1085
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2519,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -384.8915,
-        "Butce tavani": -3902384.4619,
-        "Asgari olu bant": -5.1101
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.276783,
-        "cooling_setpoint_c": 25.722243,
-        "chiller_cop": 7.240707,
-        "boiler_efficiency": 0.891596,
-        "lighting_primary_w_m2": 7.044492,
-        "lighting_secondary_w_m2": 3.464235,
-        "infiltration_multiplier": 1.192893,
-        "elevator_power_w": 2874.621624,
-        "eps_thickness_cm": 2.467925,
-        "eps_conductivity_w_mk": 0.017427
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 67.3105,
-        "Yatirim maliyeti (TRY)": 2705911.6583,
-        "Konfor ihlali (bolge-saat)": 63.0617
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2208,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -436.9383,
-        "Butce tavani": -3294088.3417,
-        "Asgari olu bant": -4.9455
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.260839,
-        "cooling_setpoint_c": 25.717789,
-        "chiller_cop": 7.172904,
-        "boiler_efficiency": 0.928884,
-        "lighting_primary_w_m2": 1.012694,
-        "lighting_secondary_w_m2": 3.133743,
-        "infiltration_multiplier": 1.056092,
-        "elevator_power_w": 2650.816506,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.043043
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 54.6589,
-        "Yatirim maliyeti (TRY)": 3939794.5067,
-        "Konfor ihlali (bolge-saat)": 40.4552
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2433,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -459.5448,
-        "Butce tavani": -2060205.4933,
-        "Asgari olu bant": -4.957
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.015697,
-        "cooling_setpoint_c": 25.713398,
-        "chiller_cop": 6.560188,
-        "boiler_efficiency": 0.926483,
-        "lighting_primary_w_m2": 1.041649,
-        "lighting_secondary_w_m2": 3.172225,
-        "infiltration_multiplier": 1.125028,
-        "elevator_power_w": 2692.083161,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.043336
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 56.3603,
-        "Yatirim maliyeti (TRY)": 3653495.5871,
-        "Konfor ihlali (bolge-saat)": 228.8028
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2425,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -271.1972,
-        "Butce tavani": -2346504.4129,
-        "Asgari olu bant": -5.1977
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.261011,
-        "cooling_setpoint_c": 25.717789,
-        "chiller_cop": 5.83503,
-        "boiler_efficiency": 0.929293,
-        "lighting_primary_w_m2": 1.013307,
-        "lighting_secondary_w_m2": 3.708325,
-        "infiltration_multiplier": 1.004419,
-        "elevator_power_w": 2650.816506,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.045037
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 60.1676,
-        "Yatirim maliyeti (TRY)": 3316863.251,
-        "Konfor ihlali (bolge-saat)": 122.7308
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2382,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -377.2692,
-        "Butce tavani": -2683136.749,
-        "Asgari olu bant": -4.9568
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.040893,
-        "cooling_setpoint_c": 25.717806,
-        "chiller_cop": 5.520954,
-        "boiler_efficiency": 0.984393,
-        "lighting_primary_w_m2": 7.279932,
-        "lighting_secondary_w_m2": 3.223899,
-        "infiltration_multiplier": 1.100347,
-        "elevator_power_w": 5474.947766,
-        "eps_thickness_cm": 7.583911,
-        "eps_conductivity_w_mk": 0.044841
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 75.6331,
-        "Yatirim maliyeti (TRY)": 1861740.2611,
-        "Konfor ihlali (bolge-saat)": 47.6479
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2407,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -452.3521,
-        "Butce tavani": -4138259.7389,
-        "Asgari olu bant": -5.1769
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.055145,
-        "cooling_setpoint_c": 25.721161,
-        "chiller_cop": 7.254191,
-        "boiler_efficiency": 0.928654,
-        "lighting_primary_w_m2": 1.227055,
-        "lighting_secondary_w_m2": 3.075254,
-        "infiltration_multiplier": 1.155728,
-        "elevator_power_w": 2659.598548,
-        "eps_thickness_cm": 8.648524,
-        "eps_conductivity_w_mk": 0.041619
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 54.5949,
-        "Yatirim maliyeti (TRY)": 4028151.2463,
-        "Konfor ihlali (bolge-saat)": 27.708
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2644,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -472.292,
-        "Butce tavani": -1971848.7537,
-        "Asgari olu bant": -5.166
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.27865,
-        "cooling_setpoint_c": 25.722266,
-        "chiller_cop": 5.593789,
-        "boiler_efficiency": 0.899145,
-        "lighting_primary_w_m2": 1.164924,
-        "lighting_secondary_w_m2": 3.439894,
-        "infiltration_multiplier": 0.995004,
-        "elevator_power_w": 2727.289766,
-        "eps_thickness_cm": 7.623303,
-        "eps_conductivity_w_mk": 0.044454
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 61.788,
-        "Yatirim maliyeti (TRY)": 3203175.3329,
-        "Konfor ihlali (bolge-saat)": 237.8213
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2423,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -262.1787,
-        "Butce tavani": -2796824.6671,
-        "Asgari olu bant": -4.9436
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.260219,
-        "cooling_setpoint_c": 25.721,
-        "chiller_cop": 7.567027,
-        "boiler_efficiency": 0.928492,
-        "lighting_primary_w_m2": 1.012667,
-        "lighting_secondary_w_m2": 3.137868,
-        "infiltration_multiplier": 1.005891,
-        "elevator_power_w": 2484.984012,
-        "eps_thickness_cm": 7.540367,
-        "eps_conductivity_w_mk": 0.04305
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 53.4921,
-        "Yatirim maliyeti (TRY)": 4127114.3245,
-        "Konfor ihlali (bolge-saat)": 63.2427
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2447,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -436.7573,
-        "Butce tavani": -1872885.6755,
-        "Asgari olu bant": -4.9608
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.262639,
-        "cooling_setpoint_c": 25.72056,
-        "chiller_cop": 7.555017,
-        "boiler_efficiency": 0.947244,
-        "lighting_primary_w_m2": 7.177996,
-        "lighting_secondary_w_m2": 3.399156,
-        "infiltration_multiplier": 1.067182,
-        "elevator_power_w": 2115.22241,
-        "eps_thickness_cm": 2.462414,
-        "eps_conductivity_w_mk": 0.016149
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 64.9293,
-        "Yatirim maliyeti (TRY)": 2870739.9588,
-        "Konfor ihlali (bolge-saat)": 126.7682
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.229,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -373.2318,
-        "Butce tavani": -3129260.0412,
-        "Asgari olu bant": -4.9579
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.262639,
-        "cooling_setpoint_c": 25.720723,
-        "chiller_cop": 7.520625,
-        "boiler_efficiency": 0.947244,
-        "lighting_primary_w_m2": 7.177996,
-        "lighting_secondary_w_m2": 3.39727,
-        "infiltration_multiplier": 1.067182,
-        "elevator_power_w": 1843.206708,
-        "eps_thickness_cm": 7.643198,
-        "eps_conductivity_w_mk": 0.016146
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 65.9333,
-        "Yatirim maliyeti (TRY)": 2966044.446,
+        "EnPI (kWh/m2-yil)": 109.0591,
+        "Yatirim maliyeti (TRY)": 171182.8216,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.3551,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2816,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3033955.554,
-        "Asgari olu bant": -4.9581
+        "Butce tavani": -5828817.1784,
+        "Asgari olu bant": -5.1734
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.262058,
-        "cooling_setpoint_c": 25.723871,
-        "chiller_cop": 6.708775,
-        "boiler_efficiency": 0.953867,
-        "lighting_primary_w_m2": 1.054884,
-        "lighting_secondary_w_m2": 3.686635,
-        "infiltration_multiplier": 1.065145,
-        "elevator_power_w": 2732.116197,
-        "eps_thickness_cm": 7.447355,
-        "eps_conductivity_w_mk": 0.043586
+        "heating_setpoint_c": 19.986858,
+        "cooling_setpoint_c": 25.725519,
+        "chiller_cop": 5.981494,
+        "boiler_efficiency": 0.987754,
+        "lighting_primary_w_m2": 7.066486,
+        "lighting_secondary_w_m2": 3.204978,
+        "infiltration_multiplier": 1.113593,
+        "elevator_power_w": 526.244681,
+        "eps_thickness_cm": 3.413065,
+        "eps_conductivity_w_mk": 0.022329
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 56.2871,
-        "Yatirim maliyeti (TRY)": 3733388.1307,
-        "Konfor ihlali (bolge-saat)": 97.8169
+        "EnPI (kWh/m2-yil)": 67.5926,
+        "Yatirim maliyeti (TRY)": 2153715.5889,
+        "Konfor ihlali (bolge-saat)": 367.2081
       },
       "constraints": {
-        "TS 825 duvar U": -0.2419,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -402.1831,
-        "Butce tavani": -2266611.8693,
-        "Asgari olu bant": -4.9618
+        "TS 825 duvar U": -0.2293,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -132.7919,
+        "Butce tavani": -3846284.4111,
+        "Asgari olu bant": -5.2387
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.262639,
-        "cooling_setpoint_c": 25.720723,
-        "chiller_cop": 5.985576,
-        "boiler_efficiency": 0.947244,
-        "lighting_primary_w_m2": 1.086464,
-        "lighting_secondary_w_m2": 3.39727,
-        "infiltration_multiplier": 1.067113,
-        "elevator_power_w": 1843.206708,
-        "eps_thickness_cm": 7.622435,
-        "eps_conductivity_w_mk": 0.015221
+        "heating_setpoint_c": 20.127168,
+        "cooling_setpoint_c": 25.703278,
+        "chiller_cop": 5.796256,
+        "boiler_efficiency": 0.989707,
+        "lighting_primary_w_m2": 1.126809,
+        "lighting_secondary_w_m2": 3.012465,
+        "infiltration_multiplier": 1.109029,
+        "elevator_power_w": 549.803185,
+        "eps_thickness_cm": 7.62162,
+        "eps_conductivity_w_mk": 0.015709
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 57.4325,
-        "Yatirim maliyeti (TRY)": 3401359.6414,
-        "Konfor ihlali (bolge-saat)": 399.2764
+        "EnPI (kWh/m2-yil)": 56.6385,
+        "Yatirim maliyeti (TRY)": 3329730.5011,
+        "Konfor ihlali (bolge-saat)": 399.1661
       },
       "constraints": {
-        "TS 825 duvar U": -0.3606,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -100.7236,
-        "Butce tavani": -2598640.3586,
-        "Asgari olu bant": -4.9581
+        "TS 825 duvar U": -0.3575,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -100.8339,
+        "Butce tavani": -2670269.4989,
+        "Asgari olu bant": -5.0761
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.29768,
-        "cooling_setpoint_c": 25.714448,
-        "chiller_cop": 6.069304,
-        "boiler_efficiency": 0.894512,
-        "lighting_primary_w_m2": 1.102332,
-        "lighting_secondary_w_m2": 3.250657,
-        "infiltration_multiplier": 1.068076,
-        "elevator_power_w": 2684.506203,
-        "eps_thickness_cm": 7.623057,
-        "eps_conductivity_w_mk": 0.01527
+        "heating_setpoint_c": 20.192961,
+        "cooling_setpoint_c": 25.693664,
+        "chiller_cop": 7.144946,
+        "boiler_efficiency": 0.954984,
+        "lighting_primary_w_m2": 7.089621,
+        "lighting_secondary_w_m2": 3.128462,
+        "infiltration_multiplier": 1.127253,
+        "elevator_power_w": 515.520521,
+        "eps_thickness_cm": 4.054333,
+        "eps_conductivity_w_mk": 0.019266
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 58.0242,
-        "Yatirim maliyeti (TRY)": 3421935.8604,
-        "Konfor ihlali (bolge-saat)": 398.5437
+        "EnPI (kWh/m2-yil)": 64.1581,
+        "Yatirim maliyeti (TRY)": 2682778.4814,
+        "Konfor ihlali (bolge-saat)": 166.9572
       },
       "constraints": {
-        "TS 825 duvar U": -0.3603,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -101.4563,
-        "Butce tavani": -2578064.1396,
-        "Asgari olu bant": -4.9168
+        "TS 825 duvar U": -0.2658,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -333.0428,
+        "Butce tavani": -3317221.5186,
+        "Asgari olu bant": -5.0007
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.509978,
-        "cooling_setpoint_c": 25.28764,
-        "chiller_cop": 5.601729,
-        "boiler_efficiency": 0.891316,
-        "lighting_primary_w_m2": 7.147324,
-        "lighting_secondary_w_m2": 5.173183,
-        "infiltration_multiplier": 1.057234,
-        "elevator_power_w": 5392.888193,
-        "eps_thickness_cm": 2.650428,
-        "eps_conductivity_w_mk": 0.018459
+        "heating_setpoint_c": 20.145659,
+        "cooling_setpoint_c": 25.725258,
+        "chiller_cop": 6.200607,
+        "boiler_efficiency": 0.986636,
+        "lighting_primary_w_m2": 7.079715,
+        "lighting_secondary_w_m2": 3.076262,
+        "infiltration_multiplier": 1.113593,
+        "elevator_power_w": 549.489256,
+        "eps_thickness_cm": 3.823804,
+        "eps_conductivity_w_mk": 0.022329
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 80.9029,
-        "Yatirim maliyeti (TRY)": 1757586.7918,
+        "EnPI (kWh/m2-yil)": 66.7232,
+        "Yatirim maliyeti (TRY)": 2255327.392,
+        "Konfor ihlali (bolge-saat)": 17.6608
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2421,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -482.3392,
+        "Butce tavani": -3744672.608,
+        "Asgari olu bant": -5.0796
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.158434,
+        "cooling_setpoint_c": 25.703383,
+        "chiller_cop": 5.80941,
+        "boiler_efficiency": 0.898114,
+        "lighting_primary_w_m2": 1.116293,
+        "lighting_secondary_w_m2": 3.22152,
+        "infiltration_multiplier": 0.994135,
+        "elevator_power_w": 549.772567,
+        "eps_thickness_cm": 7.432904,
+        "eps_conductivity_w_mk": 0.023379
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 57.0691,
+        "Yatirim maliyeti (TRY)": 3296046.2881,
+        "Konfor ihlali (bolge-saat)": 467.7637
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3129,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -32.2363,
+        "Butce tavani": -2703953.7119,
+        "Asgari olu bant": -5.0449
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.137551,
+        "cooling_setpoint_c": 25.615176,
+        "chiller_cop": 7.844489,
+        "boiler_efficiency": 0.987516,
+        "lighting_primary_w_m2": 1.277144,
+        "lighting_secondary_w_m2": 1.788894,
+        "infiltration_multiplier": 0.468724,
+        "elevator_power_w": 503.225702,
+        "eps_thickness_cm": 3.482026,
+        "eps_conductivity_w_mk": 0.017611
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 47.0176,
+        "Yatirim maliyeti (TRY)": 5000815.5453,
+        "Konfor ihlali (bolge-saat)": 5.8447
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2586,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -494.1553,
+        "Butce tavani": -999184.4547,
+        "Asgari olu bant": -4.9776
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.426528,
+        "cooling_setpoint_c": 25.705348,
+        "chiller_cop": 6.73424,
+        "boiler_efficiency": 0.9857,
+        "lighting_primary_w_m2": 1.307045,
+        "lighting_secondary_w_m2": 3.082879,
+        "infiltration_multiplier": 1.18367,
+        "elevator_power_w": 560.287056,
+        "eps_thickness_cm": 7.437119,
+        "eps_conductivity_w_mk": 0.017046
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 54.2114,
+        "Yatirim maliyeti (TRY)": 3757245.1016,
+        "Konfor ihlali (bolge-saat)": 415.8713
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3468,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -84.1287,
+        "Butce tavani": -2242754.8984,
+        "Asgari olu bant": -4.7788
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 19.992541,
+        "cooling_setpoint_c": 25.702047,
+        "chiller_cop": 6.710309,
+        "boiler_efficiency": 0.901279,
+        "lighting_primary_w_m2": 7.053843,
+        "lighting_secondary_w_m2": 3.100369,
+        "infiltration_multiplier": 0.79507,
+        "elevator_power_w": 618.488969,
+        "eps_thickness_cm": 4.042159,
+        "eps_conductivity_w_mk": 0.021424
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 64.9928,
+        "Yatirim maliyeti (TRY)": 2569792.7954,
+        "Konfor ihlali (bolge-saat)": 454.3893
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2532,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -45.6107,
+        "Butce tavani": -3430207.2046,
+        "Asgari olu bant": -5.2095
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.193397,
+        "cooling_setpoint_c": 25.70822,
+        "chiller_cop": 5.433183,
+        "boiler_efficiency": 0.896954,
+        "lighting_primary_w_m2": 7.054562,
+        "lighting_secondary_w_m2": 3.087875,
+        "infiltration_multiplier": 1.170767,
+        "elevator_power_w": 5417.997988,
+        "eps_thickness_cm": 4.049199,
+        "eps_conductivity_w_mk": 0.018957
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 76.3643,
+        "Yatirim maliyeti (TRY)": 1710208.5,
+        "Konfor ihlali (bolge-saat)": 441.5339
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2675,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -58.4661,
+        "Butce tavani": -4289791.5,
+        "Asgari olu bant": -5.0148
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.150376,
+        "cooling_setpoint_c": 25.723554,
+        "chiller_cop": 5.356039,
+        "boiler_efficiency": 0.890663,
+        "lighting_primary_w_m2": 1.137635,
+        "lighting_secondary_w_m2": 3.23877,
+        "infiltration_multiplier": 1.183502,
+        "elevator_power_w": 615.740914,
+        "eps_thickness_cm": 9.368692,
+        "eps_conductivity_w_mk": 0.017474
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 60.0911,
+        "Yatirim maliyeti (TRY)": 3230312.6697,
+        "Konfor ihlali (bolge-saat)": 277.145
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3671,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -222.855,
+        "Butce tavani": -2769687.3303,
+        "Asgari olu bant": -5.0732
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 19.982875,
+        "cooling_setpoint_c": 25.67888,
+        "chiller_cop": 6.464376,
+        "boiler_efficiency": 0.985335,
+        "lighting_primary_w_m2": 7.053331,
+        "lighting_secondary_w_m2": 3.203233,
+        "infiltration_multiplier": 1.019796,
+        "elevator_power_w": 507.125938,
+        "eps_thickness_cm": 4.286805,
+        "eps_conductivity_w_mk": 0.017539
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 65.3837,
+        "Yatirim maliyeti (TRY)": 2377664.8781,
+        "Konfor ihlali (bolge-saat)": 424.8207
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2831,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -75.1793,
+        "Butce tavani": -3622335.1219,
+        "Asgari olu bant": -5.196
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.180239,
+        "cooling_setpoint_c": 25.934823,
+        "chiller_cop": 6.011168,
+        "boiler_efficiency": 0.910195,
+        "lighting_primary_w_m2": 7.440319,
+        "lighting_secondary_w_m2": 3.198896,
+        "infiltration_multiplier": 1.114987,
+        "elevator_power_w": 544.955981,
+        "eps_thickness_cm": 4.08768,
+        "eps_conductivity_w_mk": 0.016644
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 100.1149,
+        "Yatirim maliyeti (TRY)": 427047.7594,
+        "Konfor ihlali (bolge-saat)": 211.0383
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2836,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -288.9617,
+        "Butce tavani": -5572952.2406,
+        "Asgari olu bant": -5.2546
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.174068,
+        "cooling_setpoint_c": 25.705348,
+        "chiller_cop": 6.73424,
+        "boiler_efficiency": 0.9857,
+        "lighting_primary_w_m2": 1.307045,
+        "lighting_secondary_w_m2": 3.200281,
+        "infiltration_multiplier": 1.100499,
+        "elevator_power_w": 549.190767,
+        "eps_thickness_cm": 7.437119,
+        "eps_conductivity_w_mk": 0.021568
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 53.4157,
+        "Yatirim maliyeti (TRY)": 3757245.1016,
+        "Konfor ihlali (bolge-saat)": 476.2667
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3219,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -23.7333,
+        "Butce tavani": -2242754.8984,
+        "Asgari olu bant": -5.0313
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.158434,
+        "cooling_setpoint_c": 25.70172,
+        "chiller_cop": 5.319347,
+        "boiler_efficiency": 0.898114,
+        "lighting_primary_w_m2": 1.116293,
+        "lighting_secondary_w_m2": 1.716226,
+        "infiltration_multiplier": 0.994135,
+        "elevator_power_w": 549.772567,
+        "eps_thickness_cm": 7.432904,
+        "eps_conductivity_w_mk": 0.018453
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 58.1672,
+        "Yatirim maliyeti (TRY)": 3694147.4025,
+        "Konfor ihlali (bolge-saat)": 83.9613
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3385,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -416.0387,
+        "Butce tavani": -2305852.5975,
+        "Asgari olu bant": -5.0433
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.124111,
+        "cooling_setpoint_c": 25.701782,
+        "chiller_cop": 5.468612,
+        "boiler_efficiency": 0.897306,
+        "lighting_primary_w_m2": 7.033652,
+        "lighting_secondary_w_m2": 3.086929,
+        "infiltration_multiplier": 1.206688,
+        "elevator_power_w": 559.123274,
+        "eps_thickness_cm": 3.923695,
+        "eps_conductivity_w_mk": 0.016628
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 106.6424,
+        "Yatirim maliyeti (TRY)": 185000.0,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2223,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.279,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4242413.2082,
-        "Asgari olu bant": -4.2777
+        "Butce tavani": -5815000.0,
+        "Asgari olu bant": -5.0777
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.277039,
-        "cooling_setpoint_c": 25.719186,
-        "chiller_cop": 7.254537,
-        "boiler_efficiency": 0.95401,
-        "lighting_primary_w_m2": 1.424731,
-        "lighting_secondary_w_m2": 4.656196,
-        "infiltration_multiplier": 1.189228,
-        "elevator_power_w": 3051.847332,
-        "eps_thickness_cm": 7.674356,
-        "eps_conductivity_w_mk": 0.042042
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.175477,
+        "cooling_setpoint_c": 25.708742,
+        "chiller_cop": 5.507653,
+        "boiler_efficiency": 0.89645,
+        "lighting_primary_w_m2": 7.05468,
+        "lighting_secondary_w_m2": 3.201473,
+        "infiltration_multiplier": 1.196748,
+        "elevator_power_w": 5850.191775,
+        "eps_thickness_cm": 4.031948,
+        "eps_conductivity_w_mk": 0.02296
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 56.2697,
-        "Yatirim maliyeti (TRY)": 3997183.4131,
-        "Konfor ihlali (bolge-saat)": 4.2213
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.2494,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -495.7787,
-        "Butce tavani": -2002816.5869,
-        "Asgari olu bant": -4.9421
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.259383,
-        "cooling_setpoint_c": 25.719001,
-        "chiller_cop": 7.480723,
-        "boiler_efficiency": 0.959792,
-        "lighting_primary_w_m2": 1.44467,
-        "lighting_secondary_w_m2": 4.656196,
-        "infiltration_multiplier": 1.05629,
-        "elevator_power_w": 2491.045028,
-        "eps_thickness_cm": 7.487214,
-        "eps_conductivity_w_mk": 0.044347
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 55.2296,
-        "Yatirim maliyeti (TRY)": 4096900.919,
+        "EnPI (kWh/m2-yil)": 112.2174,
+        "Yatirim maliyeti (TRY)": 3564.4338,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2405,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.245,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -1903099.081,
-        "Asgari olu bant": -4.9596
+        "Butce tavani": -5996435.5662,
+        "Asgari olu bant": -5.0333
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.261923,
-        "cooling_setpoint_c": 25.698699,
-        "chiller_cop": 5.510426,
-        "boiler_efficiency": 0.927349,
-        "lighting_primary_w_m2": 7.031437,
-        "lighting_secondary_w_m2": 3.081695,
-        "infiltration_multiplier": 1.253169,
-        "elevator_power_w": 1975.542048,
-        "eps_thickness_cm": 2.501094,
-        "eps_conductivity_w_mk": 0.016426
+        "heating_setpoint_c": 20.127254,
+        "cooling_setpoint_c": 25.702684,
+        "chiller_cop": 6.11161,
+        "boiler_efficiency": 0.959992,
+        "lighting_primary_w_m2": 1.126869,
+        "lighting_secondary_w_m2": 3.011933,
+        "infiltration_multiplier": 1.138122,
+        "elevator_power_w": 504.470338,
+        "eps_thickness_cm": 7.565976,
+        "eps_conductivity_w_mk": 0.017667
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 72.749,
-        "Yatirim maliyeti (TRY)": 1910741.5522,
+        "EnPI (kWh/m2-yil)": 55.419,
+        "Yatirim maliyeti (TRY)": 3462656.6996,
+        "Konfor ihlali (bolge-saat)": 341.014
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3449,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -158.986,
+        "Butce tavani": -2537343.3004,
+        "Asgari olu bant": -5.0754
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.149949,
+        "cooling_setpoint_c": 25.700194,
+        "chiller_cop": 5.356039,
+        "boiler_efficiency": 0.890663,
+        "lighting_primary_w_m2": 1.137635,
+        "lighting_secondary_w_m2": 3.23877,
+        "infiltration_multiplier": 1.183502,
+        "elevator_power_w": 615.740914,
+        "eps_thickness_cm": 9.572892,
+        "eps_conductivity_w_mk": 0.017474
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 60.283,
+        "Yatirim maliyeti (TRY)": 3238912.812,
+        "Konfor ihlali (bolge-saat)": 68.1915
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3692,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -431.8085,
+        "Butce tavani": -2761087.188,
+        "Asgari olu bant": -5.0502
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.173719,
+        "cooling_setpoint_c": 25.723961,
+        "chiller_cop": 5.800615,
+        "boiler_efficiency": 0.977393,
+        "lighting_primary_w_m2": 7.00517,
+        "lighting_secondary_w_m2": 3.132323,
+        "infiltration_multiplier": 1.111171,
+        "elevator_power_w": 549.775387,
+        "eps_thickness_cm": 3.849453,
+        "eps_conductivity_w_mk": 0.015762
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 68.6581,
+        "Yatirim maliyeti (TRY)": 2065429.3619,
+        "Konfor ihlali (bolge-saat)": 29.6079
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.283,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -470.3921,
+        "Butce tavani": -3934570.6381,
+        "Asgari olu bant": -5.0502
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.002829,
+        "cooling_setpoint_c": 25.686771,
+        "chiller_cop": 7.597815,
+        "boiler_efficiency": 0.983025,
+        "lighting_primary_w_m2": 7.002795,
+        "lighting_secondary_w_m2": 3.068812,
+        "infiltration_multiplier": 1.156589,
+        "elevator_power_w": 559.770067,
+        "eps_thickness_cm": 3.334131,
+        "eps_conductivity_w_mk": 0.022255
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 62.1131,
+        "Yatirim maliyeti (TRY)": 2904641.7931,
+        "Konfor ihlali (bolge-saat)": 164.4356
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2271,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -335.5644,
+        "Butce tavani": -3095358.2069,
+        "Asgari olu bant": -5.1839
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.173719,
+        "cooling_setpoint_c": 25.704046,
+        "chiller_cop": 5.566641,
+        "boiler_efficiency": 0.983298,
+        "lighting_primary_w_m2": 7.078481,
+        "lighting_secondary_w_m2": 3.201669,
+        "infiltration_multiplier": 1.113593,
+        "elevator_power_w": 549.775387,
+        "eps_thickness_cm": 4.008333,
+        "eps_conductivity_w_mk": 0.021571
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 70.2548,
+        "Yatirim maliyeti (TRY)": 1958765.5068,
+        "Konfor ihlali (bolge-saat)": 158.8012
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2515,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -341.1988,
+        "Butce tavani": -4041234.4932,
+        "Asgari olu bant": -5.0303
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.176221,
+        "cooling_setpoint_c": 25.626999,
+        "chiller_cop": 5.445835,
+        "boiler_efficiency": 0.897432,
+        "lighting_primary_w_m2": 7.284551,
+        "lighting_secondary_w_m2": 4.715951,
+        "infiltration_multiplier": 1.28256,
+        "elevator_power_w": 6414.363155,
+        "eps_thickness_cm": 3.958364,
+        "eps_conductivity_w_mk": 0.015199
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 80.5772,
+        "Yatirim maliyeti (TRY)": 1710208.5,
+        "Konfor ihlali (bolge-saat)": 137.4561
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2904,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -362.5439,
+        "Butce tavani": -4289791.5,
+        "Asgari olu bant": -4.9508
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.149941,
+        "cooling_setpoint_c": 25.70019,
+        "chiller_cop": 5.361386,
+        "boiler_efficiency": 0.972179,
+        "lighting_primary_w_m2": 1.270972,
+        "lighting_secondary_w_m2": 3.030689,
+        "infiltration_multiplier": 0.664859,
+        "elevator_power_w": 573.853053,
+        "eps_thickness_cm": 3.840937,
+        "eps_conductivity_w_mk": 0.015818
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 58.0146,
+        "Yatirim maliyeti (TRY)": 3255054.3355,
+        "Konfor ihlali (bolge-saat)": 459.7577
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2823,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -40.2423,
+        "Butce tavani": -2744945.6645,
+        "Asgari olu bant": -5.0502
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.174573,
+        "cooling_setpoint_c": 25.688865,
+        "chiller_cop": 6.841855,
+        "boiler_efficiency": 0.979713,
+        "lighting_primary_w_m2": 7.000307,
+        "lighting_secondary_w_m2": 3.225553,
+        "infiltration_multiplier": 0.772368,
+        "elevator_power_w": 559.147242,
+        "eps_thickness_cm": 3.873476,
+        "eps_conductivity_w_mk": 0.015041
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 63.4373,
+        "Yatirim maliyeti (TRY)": 2673910.1108,
+        "Konfor ihlali (bolge-saat)": 221.7184
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2891,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -278.2816,
+        "Butce tavani": -3326089.8892,
+        "Asgari olu bant": -5.0143
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.174625,
+        "cooling_setpoint_c": 25.692389,
+        "chiller_cop": 6.769275,
+        "boiler_efficiency": 0.979788,
+        "lighting_primary_w_m2": 7.053843,
+        "lighting_secondary_w_m2": 3.217485,
+        "infiltration_multiplier": 0.772368,
+        "elevator_power_w": 559.124695,
+        "eps_thickness_cm": 3.873822,
+        "eps_conductivity_w_mk": 0.015046
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 63.7755,
+        "Yatirim maliyeti (TRY)": 2640136.2589,
+        "Konfor ihlali (bolge-saat)": 185.7721
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.289,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -314.2279,
+        "Butce tavani": -3359863.7411,
+        "Asgari olu bant": -5.0178
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 19.770554,
+        "cooling_setpoint_c": 25.704741,
+        "chiller_cop": 7.426526,
+        "boiler_efficiency": 0.979918,
+        "lighting_primary_w_m2": 7.057275,
+        "lighting_secondary_w_m2": 3.626832,
+        "infiltration_multiplier": 1.026283,
+        "elevator_power_w": 656.527694,
+        "eps_thickness_cm": 4.108551,
+        "eps_conductivity_w_mk": 0.018753
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 88.8602,
+        "Yatirim maliyeti (TRY)": 1113445.5473,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2289,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2705,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4089258.4478,
-        "Asgari olu bant": -4.9368
+        "Butce tavani": -4886554.4527,
+        "Asgari olu bant": -5.4342
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.041733,
-        "cooling_setpoint_c": 25.332071,
-        "chiller_cop": 5.520954,
-        "boiler_efficiency": 0.899605,
-        "lighting_primary_w_m2": 7.404025,
-        "lighting_secondary_w_m2": 3.222241,
-        "infiltration_multiplier": 1.391301,
-        "elevator_power_w": 5469.002791,
-        "eps_thickness_cm": 2.635279,
-        "eps_conductivity_w_mk": 0.017538
+        "heating_setpoint_c": 20.150447,
+        "cooling_setpoint_c": 25.701643,
+        "chiller_cop": 6.734631,
+        "boiler_efficiency": 0.890663,
+        "lighting_primary_w_m2": 1.144161,
+        "lighting_secondary_w_m2": 3.23877,
+        "infiltration_multiplier": 1.183502,
+        "elevator_power_w": 615.740914,
+        "eps_thickness_cm": 9.572892,
+        "eps_conductivity_w_mk": 0.017474
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 79.7233,
-        "Yatirim maliyeti (TRY)": 1719967.5227,
-        "Konfor ihlali (bolge-saat)": 167.3077
+        "EnPI (kWh/m2-yil)": 54.6023,
+        "Yatirim maliyeti (TRY)": 3813919.7889,
+        "Konfor ihlali (bolge-saat)": 212.7686
       },
       "constraints": {
-        "TS 825 duvar U": -0.2274,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -332.6923,
-        "Butce tavani": -4280032.4773,
-        "Asgari olu bant": -4.7903
+        "TS 825 duvar U": -0.3692,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -287.2314,
+        "Butce tavani": -2186080.2111,
+        "Asgari olu bant": -5.0512
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.040893,
-        "cooling_setpoint_c": 25.718917,
-        "chiller_cop": 5.522084,
-        "boiler_efficiency": 0.945282,
-        "lighting_primary_w_m2": 7.052267,
-        "lighting_secondary_w_m2": 3.221807,
-        "infiltration_multiplier": 1.020943,
-        "elevator_power_w": 1443.290358,
-        "eps_thickness_cm": 7.583911,
-        "eps_conductivity_w_mk": 0.016854
+        "heating_setpoint_c": 20.127254,
+        "cooling_setpoint_c": 25.702684,
+        "chiller_cop": 6.11161,
+        "boiler_efficiency": 0.892402,
+        "lighting_primary_w_m2": 1.126869,
+        "lighting_secondary_w_m2": 3.011933,
+        "infiltration_multiplier": 1.138122,
+        "elevator_power_w": 561.267035,
+        "eps_thickness_cm": 7.565976,
+        "eps_conductivity_w_mk": 0.017732
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 71.782,
-        "Yatirim maliyeti (TRY)": 2031997.2195,
+        "EnPI (kWh/m2-yil)": 55.7693,
+        "Yatirim maliyeti (TRY)": 3439235.1969,
+        "Konfor ihlali (bolge-saat)": 354.2593
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.3445,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -145.7407,
+        "Butce tavani": -2560764.8031,
+        "Asgari olu bant": -5.0754
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.173719,
+        "cooling_setpoint_c": 25.723961,
+        "chiller_cop": 5.697954,
+        "boiler_efficiency": 0.969394,
+        "lighting_primary_w_m2": 7.078409,
+        "lighting_secondary_w_m2": 3.079971,
+        "infiltration_multiplier": 1.090608,
+        "elevator_power_w": 716.496108,
+        "eps_thickness_cm": 4.091712,
+        "eps_conductivity_w_mk": 0.018008
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 69.4896,
+        "Yatirim maliyeti (TRY)": 2014494.0984,
+        "Konfor ihlali (bolge-saat)": 198.6981
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2747,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -301.3019,
+        "Butce tavani": -3985505.9016,
+        "Asgari olu bant": -5.0502
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.174393,
+        "cooling_setpoint_c": 25.70418,
+        "chiller_cop": 6.719515,
+        "boiler_efficiency": 0.98743,
+        "lighting_primary_w_m2": 7.054114,
+        "lighting_secondary_w_m2": 3.211402,
+        "infiltration_multiplier": 0.772368,
+        "elevator_power_w": 559.530384,
+        "eps_thickness_cm": 10.827104,
+        "eps_conductivity_w_mk": 0.015058
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 65.3206,
+        "Yatirim maliyeti (TRY)": 2865361.4028,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.35,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.3931,
+        "TS 825 cam U": -1.118,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3968002.7805,
-        "Asgari olu bant": -5.178
+        "Butce tavani": -3134638.5972,
+        "Asgari olu bant": -5.0298
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.29878,
-        "cooling_setpoint_c": 25.722829,
-        "chiller_cop": 5.351346,
-        "boiler_efficiency": 0.901715,
-        "lighting_primary_w_m2": 7.069675,
-        "lighting_secondary_w_m2": 3.462408,
-        "infiltration_multiplier": 1.10531,
-        "elevator_power_w": 2646.482426,
-        "eps_thickness_cm": 2.767124,
-        "eps_conductivity_w_mk": 0.017582
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.152513,
+        "cooling_setpoint_c": 25.930487,
+        "chiller_cop": 7.455636,
+        "boiler_efficiency": 0.989833,
+        "lighting_primary_w_m2": 7.024247,
+        "lighting_secondary_w_m2": 3.199231,
+        "infiltration_multiplier": 1.271067,
+        "elevator_power_w": 558.848789,
+        "eps_thickness_cm": 4.08768,
+        "eps_conductivity_w_mk": 0.021356
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 74.5238,
-        "Yatirim maliyeti (TRY)": 1895878.2342,
-        "Konfor ihlali (bolge-saat)": 57.2472
+        "EnPI (kWh/m2-yil)": 87.6399,
+        "Yatirim maliyeti (TRY)": 1130874.0118,
+        "Konfor ihlali (bolge-saat)": 19.4436
       },
       "constraints": {
-        "TS 825 duvar U": -0.2326,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -442.7528,
-        "Butce tavani": -4104121.7658,
-        "Asgari olu bant": -4.924
+        "TS 825 duvar U": -0.2549,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -480.5564,
+        "Butce tavani": -4869125.9882,
+        "Asgari olu bant": -5.278
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 19.56027,
-        "cooling_setpoint_c": 25.726111,
-        "chiller_cop": 5.550499,
-        "boiler_efficiency": 0.933092,
-        "lighting_primary_w_m2": 7.029664,
-        "lighting_secondary_w_m2": 3.543583,
-        "infiltration_multiplier": 1.190305,
-        "elevator_power_w": 5163.766272,
-        "eps_thickness_cm": 6.358004,
-        "eps_conductivity_w_mk": 0.044889
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.175492,
+        "cooling_setpoint_c": 25.717317,
+        "chiller_cop": 5.800615,
+        "boiler_efficiency": 0.971943,
+        "lighting_primary_w_m2": 7.00517,
+        "lighting_secondary_w_m2": 3.132323,
+        "infiltration_multiplier": 0.96368,
+        "elevator_power_w": 517.671098,
+        "eps_thickness_cm": 3.892461,
+        "eps_conductivity_w_mk": 0.015762
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 106.9518,
-        "Yatirim maliyeti (TRY)": 1559525.4536,
+        "EnPI (kWh/m2-yil)": 101.9101,
+        "Yatirim maliyeti (TRY)": 372660.3695,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2208,
-        "TS 825 cam U": -0.057,
+        "TS 825 duvar U": -0.2843,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4440474.5464,
-        "Asgari olu bant": -5.6658
+        "Butce tavani": -5627339.6305,
+        "Asgari olu bant": -5.0418
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.248187,
-        "cooling_setpoint_c": 25.718872,
-        "chiller_cop": 6.093585,
-        "boiler_efficiency": 0.945253,
-        "lighting_primary_w_m2": 1.121536,
-        "lighting_secondary_w_m2": 3.221807,
-        "infiltration_multiplier": 1.01363,
-        "elevator_power_w": 1443.290358,
-        "eps_thickness_cm": 7.583911,
-        "eps_conductivity_w_mk": 0.016825
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.18881,
+        "cooling_setpoint_c": 25.734477,
+        "chiller_cop": 6.035371,
+        "boiler_efficiency": 0.906546,
+        "lighting_primary_w_m2": 7.035443,
+        "lighting_secondary_w_m2": 3.199032,
+        "infiltration_multiplier": 0.990817,
+        "elevator_power_w": 517.185964,
+        "eps_thickness_cm": 5.496866,
+        "eps_conductivity_w_mk": 0.019815
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 56.3289,
-        "Yatirim maliyeti (TRY)": 3449262.5568,
-        "Konfor ihlali (bolge-saat)": 385.2984
-      },
-      "constraints": {
-        "TS 825 duvar U": -0.3501,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -114.7016,
-        "Butce tavani": -2550737.4432,
-        "Asgari olu bant": -4.9707
-      }
-    },
-    {
-      "parameters": {
-        "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.297887,
-        "cooling_setpoint_c": 25.720737,
-        "chiller_cop": 6.844155,
-        "boiler_efficiency": 0.956211,
-        "lighting_primary_w_m2": 7.128192,
-        "lighting_secondary_w_m2": 3.264597,
-        "infiltration_multiplier": 1.012988,
-        "elevator_power_w": 2667.648628,
-        "eps_thickness_cm": 7.478203,
-        "eps_conductivity_w_mk": 0.015915
-      },
-      "objectives": {
-        "EnPI (kWh/m2-yil)": 68.016,
-        "Yatirim maliyeti (TRY)": 2647542.4165,
+        "EnPI (kWh/m2-yil)": 100.2513,
+        "Yatirim maliyeti (TRY)": 462768.453,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.3543,
-        "TS 825 cam U": -0.318,
+        "TS 825 duvar U": -0.2976,
+        "TS 825 cam U": -0.082,
         "Konfor tavani": -500.0,
-        "Butce tavani": -3352457.5835,
-        "Asgari olu bant": -4.9228
+        "Butce tavani": -5537231.547,
+        "Asgari olu bant": -5.0457
       }
     },
     {
       "parameters": {
         "window_construction": "penc_cont_6_4mm",
-        "heating_setpoint_c": 20.250215,
-        "cooling_setpoint_c": 25.666183,
-        "chiller_cop": 7.520625,
-        "boiler_efficiency": 0.944389,
-        "lighting_primary_w_m2": 7.181914,
-        "lighting_secondary_w_m2": 3.39727,
-        "infiltration_multiplier": 1.064201,
-        "elevator_power_w": 1843.206708,
-        "eps_thickness_cm": 2.890685,
-        "eps_conductivity_w_mk": 0.016955
+        "heating_setpoint_c": 20.149949,
+        "cooling_setpoint_c": 25.700194,
+        "chiller_cop": 6.195752,
+        "boiler_efficiency": 0.890819,
+        "lighting_primary_w_m2": 1.137635,
+        "lighting_secondary_w_m2": 3.23877,
+        "infiltration_multiplier": 1.183502,
+        "elevator_power_w": 615.740914,
+        "eps_thickness_cm": 9.563206,
+        "eps_conductivity_w_mk": 0.017474
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 64.9782,
-        "Yatirim maliyeti (TRY)": 2853608.0128,
-        "Konfor ihlali (bolge-saat)": 126.7682
+        "EnPI (kWh/m2-yil)": 56.3604,
+        "Yatirim maliyeti (TRY)": 3562538.8818,
+        "Konfor ihlali (bolge-saat)": 135.9907
       },
       "constraints": {
-        "TS 825 duvar U": -0.2416,
-        "TS 825 cam U": -0.318,
-        "Konfor tavani": -373.2318,
-        "Butce tavani": -3146391.9872,
-        "Asgari olu bant": -4.916
+        "TS 825 duvar U": -0.3691,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -364.0093,
+        "Butce tavani": -2437461.1182,
+        "Asgari olu bant": -5.0502
       }
     },
     {
       "parameters": {
-        "window_construction": "penc_lowe_4mm",
-        "heating_setpoint_c": 19.57956,
-        "cooling_setpoint_c": 25.722671,
-        "chiller_cop": 5.8237,
-        "boiler_efficiency": 0.881021,
-        "lighting_primary_w_m2": 7.062942,
-        "lighting_secondary_w_m2": 3.708116,
-        "infiltration_multiplier": 1.067825,
-        "elevator_power_w": 5240.302681,
-        "eps_thickness_cm": 2.434699,
-        "eps_conductivity_w_mk": 0.01571
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.193847,
+        "cooling_setpoint_c": 25.899838,
+        "chiller_cop": 7.102931,
+        "boiler_efficiency": 0.895908,
+        "lighting_primary_w_m2": 7.088075,
+        "lighting_secondary_w_m2": 4.050247,
+        "infiltration_multiplier": 1.167525,
+        "elevator_power_w": 650.164113,
+        "eps_thickness_cm": 4.053868,
+        "eps_conductivity_w_mk": 0.019017
       },
       "objectives": {
-        "EnPI (kWh/m2-yil)": 106.4742,
-        "Yatirim maliyeti (TRY)": 1616650.2276,
+        "EnPI (kWh/m2-yil)": 91.7077,
+        "Yatirim maliyeti (TRY)": 931536.1822,
+        "Konfor ihlali (bolge-saat)": 450.9927
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2673,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -49.0073,
+        "Butce tavani": -5068463.8178,
+        "Asgari olu bant": -5.206
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.193847,
+        "cooling_setpoint_c": 25.901228,
+        "chiller_cop": 7.112054,
+        "boiler_efficiency": 0.895908,
+        "lighting_primary_w_m2": 7.089362,
+        "lighting_secondary_w_m2": 3.956185,
+        "infiltration_multiplier": 1.167525,
+        "elevator_power_w": 650.164113,
+        "eps_thickness_cm": 4.053868,
+        "eps_conductivity_w_mk": 0.018956
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 91.5605,
+        "Yatirim maliyeti (TRY)": 935784.9087,
+        "Konfor ihlali (bolge-saat)": 450.9927
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2677,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -49.0073,
+        "Butce tavani": -5064215.0913,
+        "Asgari olu bant": -5.2074
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.137551,
+        "cooling_setpoint_c": 25.701734,
+        "chiller_cop": 7.783872,
+        "boiler_efficiency": 0.903755,
+        "lighting_primary_w_m2": 7.218435,
+        "lighting_secondary_w_m2": 1.768953,
+        "infiltration_multiplier": 1.285674,
+        "elevator_power_w": 502.860725,
+        "eps_thickness_cm": 6.654915,
+        "eps_conductivity_w_mk": 0.018853
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 63.7018,
+        "Yatirim maliyeti (TRY)": 3572248.8883,
         "Konfor ihlali (bolge-saat)": 0.0
       },
       "constraints": {
-        "TS 825 duvar U": -0.2308,
-        "TS 825 cam U": -0.057,
+        "TS 825 duvar U": -0.3244,
+        "TS 825 cam U": -1.118,
         "Konfor tavani": -500.0,
-        "Butce tavani": -4383349.7724,
-        "Asgari olu bant": -5.6431
+        "Butce tavani": -2427751.1117,
+        "Asgari olu bant": -5.0642
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.152513,
+        "cooling_setpoint_c": 25.934823,
+        "chiller_cop": 7.478879,
+        "boiler_efficiency": 0.989833,
+        "lighting_primary_w_m2": 7.024247,
+        "lighting_secondary_w_m2": 3.199231,
+        "infiltration_multiplier": 1.239055,
+        "elevator_power_w": 516.446117,
+        "eps_thickness_cm": 4.08768,
+        "eps_conductivity_w_mk": 0.021356
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 87.325,
+        "Yatirim maliyeti (TRY)": 1141698.6883,
+        "Konfor ihlali (bolge-saat)": 62.8965
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.2549,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -437.1035,
+        "Butce tavani": -4858301.3117,
+        "Asgari olu bant": -5.2823
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_cont_6_4mm",
+        "heating_setpoint_c": 20.173129,
+        "cooling_setpoint_c": 25.697466,
+        "chiller_cop": 6.391919,
+        "boiler_efficiency": 0.9066,
+        "lighting_primary_w_m2": 1.289094,
+        "lighting_secondary_w_m2": 3.213947,
+        "infiltration_multiplier": 1.163925,
+        "elevator_power_w": 527.829515,
+        "eps_thickness_cm": 7.522979,
+        "eps_conductivity_w_mk": 0.018771
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 55.3366,
+        "Yatirim maliyeti (TRY)": 3570549.6133,
+        "Konfor ihlali (bolge-saat)": 348.9309
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.338,
+        "TS 825 cam U": -1.118,
+        "Konfor tavani": -151.0691,
+        "Butce tavani": -2429450.3867,
+        "Asgari olu bant": -5.0243
+      }
+    },
+    {
+      "parameters": {
+        "window_construction": "penc_std_4mm",
+        "heating_setpoint_c": 20.176821,
+        "cooling_setpoint_c": 25.936488,
+        "chiller_cop": 7.143966,
+        "boiler_efficiency": 0.989798,
+        "lighting_primary_w_m2": 7.089362,
+        "lighting_secondary_w_m2": 3.956185,
+        "infiltration_multiplier": 1.209745,
+        "elevator_power_w": 525.530788,
+        "eps_thickness_cm": 4.097233,
+        "eps_conductivity_w_mk": 0.019265
+      },
+      "objectives": {
+        "EnPI (kWh/m2-yil)": 90.0909,
+        "Yatirim maliyeti (TRY)": 985705.4579,
+        "Konfor ihlali (bolge-saat)": 422.8593
+      },
+      "constraints": {
+        "TS 825 duvar U": -0.267,
+        "TS 825 cam U": -0.082,
+        "Konfor tavani": -77.1407,
+        "Butce tavani": -5014294.5421,
+        "Asgari olu bant": -5.2597
       }
     }
-  ]
+  ],
+  "validated": false,
+  "validation_status": "BEKLIYOR. Cephe, duzeltilmis TS 825 cam siniri (2,80 W/m2K) ile yeniden uretilmistir. data/validation altindaki dogrulama kaydi onceki cepheye aittir ve bu cepheyle eslesmez; ortak nokta sayisi: 0. Dogrulama, EnergyPlus calistirilabilir hale geldiginde yenilenmelidir (run_validation.py). Ayrinti: docs/ts825_duzeltmesi.md"
 }
