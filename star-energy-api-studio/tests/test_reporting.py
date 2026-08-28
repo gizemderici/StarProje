@@ -61,10 +61,14 @@ class ReportFormatTests(unittest.TestCase):
         self.assertEqual(formats, [None, "lowerRoman", "decimal"])
 
     def test_captions_are_at_least_ten_point_single_spaced(self) -> None:
+        # Alanlar guncellendikten sonra Tablo/Sekil Listesi girdileri de
+        # "Tablo ..." ile baslar; onlar "toc" stilindedir ve 10 punto kurali
+        # baslik paragraflari icindir, liste girdileri icin degil.
         captions = [
             paragraph
             for paragraph in self.document.paragraphs
             if paragraph.text.startswith(("Tablo ", "Şekil "))
+            and not paragraph.style.name.lower().startswith("toc")
         ]
         self.assertGreater(len(captions), 10)
         for paragraph in captions:

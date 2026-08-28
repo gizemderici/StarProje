@@ -17,6 +17,12 @@ otomatik olarak derler.
 .\.venv\Scripts\python.exe -m reporting.sonuc_raporu
 ```
 
+Son adım — Word alanlarını (İçindekiler, listeler, sayfa numaraları) doldur:
+
+```powershell
+.\.venv\Scripts\python.exe -m reporting.alanlari_guncelle
+```
+
 Çıktı: `data/rapor/Proje_Sonuc_Raporu.docx`
 Şekiller: `data/rapor/sekiller/` · ekran görüntüleri: `data/rapor/ekran_goruntuleri/`
 
@@ -57,6 +63,7 @@ belgesinden alınmıştır.
 | `rapor_bulgular.py` | 4. Bulgular, 5. Tartışma, 6. Sonuç ve Öneriler, Kaynaklar |
 | `rapor_ekler.py` | Ekler A–C |
 | `sonuc_raporu.py` | Kapak, ön kısımlar, Özet/Abstract ve derleme |
+| `alanlari_guncelle.py` | Word alanlarını Word/WPS COM ile günceller |
 
 ---
 
@@ -83,9 +90,9 @@ yapar; doğrusu `İ`'dir. Düzeltilmezse başlıklar "GIRIS" ve "ICINDEKILER" ol
 
 ## Word'de açtıktan sonra yapılması gerekenler
 
-1. **Alanları güncelleyin.** İçindekiler, Tablo Listesi ve Şekil Listesi birer
-   Word alanıdır; sayfa numaraları ancak güncellendiğinde dolar.
-   Ctrl+A ile tümünü seçip **F9** tuşuna basın.
+1. **Alanlar.** `reporting.alanlari_guncelle` bunu sizin için yapar. Elle
+   yapmak isterseniz Ctrl+A ile tümünü seçip **F9**. Rapor her yeniden
+   derlendiğinde alanlar boşalır; derlemeden sonra tekrar güncellenmelidir.
 2. **Kapak bilgilerini doldurun.** Aşağıdaki yer tutucular üreteçte tanımlıdır
    (`sonuc_raporu.py` içindeki `KUNYE` sözlüğü):
    `[PROGRAM KODU]`, `[PROJE NO]`, `[PROJE YÜRÜTÜCÜSÜ]`, `[ARAŞTIRMACI]`,
@@ -102,4 +109,9 @@ yapar; doğrusu `İ`'dir. Düzeltilmezse başlıklar "GIRIS" ve "ICINDEKILER" ol
 ## Fikri Ürün Bildirim Formu
 
 Sonuç raporuyla birlikte gönderilmesi zorunludur ve bu üretecin kapsamı
-dışındadır. ARDEB-PTS üzerinden ayrıca doldurulur.
+dışındadır; ARDEB-PTS üzerinden ayrıca doldurulur.
+
+Formun sorduğu bilgiler ve bu projenin yazılım envanteri
+[docs/fikri_urun_bildirimi.md](../docs/fikri_urun_bildirimi.md) içinde
+toplanmıştır. **Dikkat:** şablon bilgisayar programlarını ve kaynak kodlarını
+açıkça fikri ürün sayar; bu projede "hayır" cevabı muhtemelen doğru değildir.

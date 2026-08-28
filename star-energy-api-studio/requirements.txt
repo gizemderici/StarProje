@@ -19,3 +19,6 @@ python-docx==1.2.0
 # Arayuz ekran goruntuleri (rapor Sekil 3.2-3.4 ve 4.5-4.8)
 # Kurulum sonrasi: python -m playwright install chromium
 playwright==1.62.0
+
+# Word/WPS COM otomasyonu (rapor alanlarini guncellemek icin)
+pywin32==312
