@@ -1,5 +1,17 @@
 # Faz 7 — Simülasyon Destekli Sayısal Doğrulama
 
+> ## ⚠️ Bu belge önceki cepheyi anlatır
+>
+> Aşağıdaki dört tur, **TS 825 cam sınırı düzeltilmeden önceki** Pareto
+> cephesinde yürütülmüştür. Cam sınırı düzeltilip cephe yeniden üretildikten
+> sonra doğrulama yenilenememiştir: EnergyPlus, makinede Smart App Control
+> tarafından engellenmektedir.
+>
+> **Güncel cephe doğrulanmamıştır.** Bu belge doğrulama *yöntemini* ve
+> ölçülen davranışı belgeler; güncel cephenin doğruluk beyanı değildir.
+>
+> Ayrıntı: [ts825_duzeltmesi.md](ts825_duzeltmesi.md)
+
 Tez başlığındaki son ifadenin karşılığı bu bölümdür: Pareto cephesinden seçilen
 noktalar **gerçek EnergyPlus** ile koşulur ve vekil model tahminiyle
 karşılaştırılır.
@@ -123,7 +135,7 @@ Toleransı gevşetmek çözüm değildir ve yapılmamalıdır.
 
 ## Nihai sonuç
 
-**Faz 7 kapısı dördüncü turda geçildi.**
+**Faz 7 kapısı dördüncü turda geçildi** — düzeltme öncesi cephe için.
 
 | case_id | Vekil | Gerçek | Sapma | Gerekçe |
 |---|---|---|---|---|
@@ -140,6 +152,16 @@ Ortalama mutlak sapma **%1,89**, en büyük **%4,57**, tolerans %5,0.
 
 Değerler EnPI cinsindendir (kWh/m²·yıl). Tezde önerilecek TOPSIS uzlaşı
 çözümünün sapması **%1,47**'dir.
+
+### Güncel durum
+
+Yukarıdaki sekiz nokta, cam sınırı düzeltilmeden önceki cepheden seçilmiştir.
+Düzeltilmiş cephe ile ortak noktası yoktur; `pareto_front.json` içindeki
+`validated` alanı `false`'tur. Engel kalktığında tek komutla yenilenir:
+
+```powershell
+.\.venv\Scripts\python.exe .un_validation.py --points 8 --workers 4
+```
 
 ### Yöntem açısından çıkarım
 
