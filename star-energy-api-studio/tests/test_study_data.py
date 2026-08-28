@@ -190,5 +190,67 @@ class NumberFormatTests(unittest.TestCase):
 
         self.assertEqual(tr(631.0, 0), "631")
 
+class UnvalidatedFrontTests(unittest.TestCase):
+    """Cephe yeniden uretildiginde dogrulama kaydi eskir.
+
+    Arayuz, onceki cepheye ait sapma sayilarini yeni cepheyi doguluyormus
+    gibi gostermemelidir.
+    """
+
+    def _project(self, fixture, *, validated: bool) -> None:
+        fixture.write_json(
+            "optimization/pareto_front.json",
+            {
+                "evaluator": "surrogate",
+                "usable_in_thesis": True,
+                "validated": validated,
+                "validation_status": "guncel cephe icin bekliyor",
+                "solution_count": 80,
+                "objective_labels": ["EnPI"],
+                "solutions": [],
+                "convergence": [{"generation": 1, "hypervolume": 0.4}],
+            },
+        )
+        fixture.write_json(
+            "validation/validation_report.json",
+            {
+                "evaluator": "surrogate",
+                "usable_in_thesis": True,
+                "summary": {
+                    "point_count": 8,
+                    "tolerance_percent": 5.0,
+                    "max_absolute_deviation_percent": 4.57,
+                    "mean_absolute_deviation_percent": 1.89,
+                    "within_tolerance": True,
+                    "failing_points": [],
+                },
+                "points": [
+                    {"case_id": "case_a", "deviation_percent": 4.57},
+                    {"case_id": "case_b", "deviation_percent": -1.47},
+                ],
+            },
+        )
+
+    def test_phase_seven_is_not_ready_when_the_front_was_regenerated(self) -> None:
+        with tempfile.TemporaryDirectory() as temp, _Fixture(Path(temp)) as fixture:
+            self._project(fixture, validated=False)
+            phase = next(
+                item for item in study_data.phase_overview() if item["phase"] == "Faz 7"
+            )
+            view = study_data.load_pareto()
+        self.assertFalse(phase["ready"])
+        self.assertIn("bekliyor", phase["detail"])
+        self.assertFalse(view.validated)
+
+    def test_phase_seven_is_ready_when_the_front_matches(self) -> None:
+        with tempfile.TemporaryDirectory() as temp, _Fixture(Path(temp)) as fixture:
+            self._project(fixture, validated=True)
+            phase = next(
+                item for item in study_data.phase_overview() if item["phase"] == "Faz 7"
+            )
+        self.assertTrue(phase["ready"])
+        self.assertIn("4.57", phase["detail"])
+
+
 if __name__ == "__main__":
     unittest.main()

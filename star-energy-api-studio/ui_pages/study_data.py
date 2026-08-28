@@ -163,6 +163,10 @@ class ParetoView:
     objective_labels: list[str] = field(default_factory=list)
     solutions: list[dict[str, Any]] = field(default_factory=list)
     convergence: list[dict[str, float]] = field(default_factory=list)
+    # Cephe yeniden uretildiginde dogrulama kaydi eskir; bunu tasimadan
+    # arayuz eski sapma sayilarini yeni cepheye aitmis gibi gosterir.
+    validated: bool = True
+    validation_status: str = ""
 
     @property
     def hypervolume_start(self) -> float:
@@ -193,6 +197,8 @@ def load_pareto() -> ParetoView:
         objective_labels=list(payload.get("objective_labels", [])),
         solutions=list(payload.get("solutions", [])),
         convergence=list(payload.get("convergence", [])),
+        validated=bool(payload.get("validated", True)),
+        validation_status=str(payload.get("validation_status", "")),
     )
 
 
@@ -278,7 +284,9 @@ def load_validation(tolerance_percent: float = 5.0) -> ValidationView:
         ready=True,
         points=points,
         max_deviation_percent=worst,
-        within_tolerance=worst <= tolerance_percent,
+        # Sifir nokta kapiyi GECEMEZ; bos bir sonuc kumesinde worst = 0,0
+        # oldugu icin onceki surum "tolerans icinde" diyordu.
+        within_tolerance=bool(deviations) and worst <= tolerance_percent,
     )
 
 
@@ -362,9 +370,18 @@ def phase_overview() -> list[dict[str, Any]]:
         {
             "phase": "Faz 7",
             "title": "Dogrulama",
-            "ready": validation.ready and validation.within_tolerance,
+            # Guncel cephe dogrulanmamissa faz HAZIR sayilmaz; aksi halde
+            # onceki cepheye ait sapma sayilari yeni cepheyi dogruluyormus
+            # gibi gorunur.
+            "ready": (
+                validation.ready
+                and validation.within_tolerance
+                and pareto.validated
+            ),
             "detail": (
-                f"en buyuk sapma %{validation.max_deviation_percent:.2f}"
+                "guncel cephe icin bekliyor"
+                if validation.ready and not pareto.validated
+                else f"en buyuk sapma %{validation.max_deviation_percent:.2f}"
                 if validation.ready
                 else "dogrulama kosusu yok"
             ),

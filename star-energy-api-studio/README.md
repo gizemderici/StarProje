@@ -15,7 +15,8 @@ bir Türkçe NiceGUI arayüzünde birleştirir.
 | **Karar değişkeni** | 11 (7 OpenStudio measure) |
 | **Eğitim kümesi** | 175 gerçek EnergyPlus koşusu |
 | **Vekil model doğruluğu** | CVRMSE %2,75 · R² 0,994 |
-| **Doğrulama** | 8 taze nokta · ortalama sapma %1,89 · en büyük %4,57 |
+| **Pareto cephesi** | 80 çözüm · TS 825 düzeltmesinden sonra yeniden üretildi |
+| **Doğrulama** | ⚠️ güncel cephe için **bekliyor** — bkz. [durum](#doğrulama-durumu) |
 
 ---
 
@@ -109,8 +110,8 @@ Faz 2  Measure altyapısı        -> 11 değişken, 7 measure
 Faz 3  Parametrik koşu          -> 151 benzersiz EnergyPlus sonucu (313,5 dk)
 Faz 4  Vekil model              -> Kriging, CVRMSE %2,75
 Faz 5  ISO 50001                -> SEU, HDD/CDD, EnPI
-Faz 6  NSGA-II optimizasyon     -> 80 çözümlü Pareto cephesi
-Faz 7  Sayısal doğrulama        -> ortalama sapma %1,89 (kapı: %5)
+Faz 6  NSGA-II optimizasyon     -> 80 çözümlü Pareto cephesi (yeniden üretildi)
+Faz 7  Sayısal doğrulama        -> yöntem kuruldu; güncel cephe için BEKLIYOR
 Faz 8  Arayüz entegrasyonu
 ```
 
@@ -177,16 +178,48 @@ dairesel hale gelir ve modelin ezberini ölçer. Ayrıntı:
 
 ## Sonuç: önerilen çözüm
 
-TOPSIS uzlaşı çözümü, gerçek EnergyPlus koşusuyla doğrulanmıştır:
+Güncel cephenin TOPSIS uzlaşı çözümü:
 
 | | Taban çizgisi | TOPSIS çözümü |
 |---|---|---|
-| Saha enerjisi | 1.920,00 GJ | 1.128,65 GJ |
-| EnPI | 125,60 kWh/m²·yıl | **73,83 kWh/m²·yıl** |
-| Vekil model sapması | — | **%1,47** |
+| EnPİ | 125,60 kWh/m²·yıl | **71,98 kWh/m²·yıl** (−%42,7) |
+| Yatırım maliyeti | — | 1,895 milyon TL |
+| Konfor ihlali | — | 0 bölge·saat |
+
+> ⚠️ Bu çözüm **vekil model tahminidir, doğrulanmamıştır.** Aşağıdaki duruma
+> bakınız.
 
 ISO 50006 iklim normalizasyonu: HDD18 = 1.782,5 · CDD22 = 557,5 (EPW'den
 saatlik kuru termometre sıcaklığıyla hesaplanır).
+
+---
+
+## Doğrulama durumu
+
+Faz 7 doğrulama yöntemi kurulmuş ve dört tur işletilmiştir; ortalama sapma
+%1,89, en büyük %4,57 ile kapı geçilmiştir. **Ancak bu sonuçlar, TS 825 cam
+sınırı düzeltilmeden önceki cepheye aittir.**
+
+Cam sınırı düzeltilip cephe yeniden üretildikten sonra doğrulama
+yenilenememiştir: makinede **Smart App Control** açık ve zorlama modunda olup
+imzasız `energyplus.exe` dosyasının çalıştırılmasını engellemektedir. Politika
+uygulama bazında istisna kabul etmez ve kapatıldığında Windows yeniden
+kurulmadan geri açılamaz; bu nedenle kapatılmamıştır.
+
+Sonuç olarak:
+
+- Faz 7 **yöntemi** kurulu ve belgelidir ([docs/faz7_dogrulama.md](docs/faz7_dogrulama.md))
+- Güncel cephe **doğrulanmamıştır**; `pareto_front.json` içinde `validated: false`
+- Rapor bunu gizlemez: Bölüm 4.5 uyarıyı taşır, Bölüm 4.6 sonuçların önceki
+  cepheye ait olduğunu belirtir
+
+Engel kalktığında tek komutla yenilenir:
+
+```powershell
+.\.venv\Scripts\python.exe .un_validation.py --points 8 --workers 4
+```
+
+Ayrıntı: [docs/ts825_duzeltmesi.md](docs/ts825_duzeltmesi.md)
 
 ---
 

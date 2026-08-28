@@ -262,6 +262,17 @@ def pareto_panel() -> None:
                         "Yalnızca altyapı sınamasıdır; sonuçları tezde kullanılamaz."
                     ).classes("card-subtitle")
 
+    if not view.validated:
+        with ui.element("div").classes("quality-alert w-full"):
+            ui.icon("pending_actions").classes("metric-icon tone-gold")
+            with ui.column().classes("gap-0"):
+                ui.label("Bu cephe doğrulanmadı").classes("font-semibold")
+                ui.label(
+                    view.validation_status
+                    or "Cephe yeniden üretildi; Faz 7 doğrulaması bu cephe için "
+                       "henüz işletilmedi."
+                ).classes("text-sm opacity-80")
+
     with ui.grid(columns=3).classes("w-full gap-3"):
         _metric("hub", "ÇÖZÜM SAYISI", f"{view.solution_count}", "Pareto cephesi")
         _metric(
@@ -396,6 +407,7 @@ def iso50001_panel() -> None:
 
 def validation_panel() -> None:
     view = study_data.load_validation()
+    pareto = study_data.load_pareto()
     _heading(
         "FAZ 7",
         "Simülasyon destekli sayısal doğrulama",
@@ -422,6 +434,19 @@ def validation_panel() -> None:
             "her noktada sapma < %5",
             "teal" if view.within_tolerance else "coral",
         )
+
+    if pareto.ready and not pareto.validated:
+        with ui.element("div").classes("quality-alert w-full"):
+            ui.icon("history").classes("metric-icon tone-gold")
+            with ui.column().classes("gap-0"):
+                ui.label(
+                    "Bu sonuçlar önceki cepheye aittir"
+                ).classes("font-semibold")
+                ui.label(
+                    "Pareto sekmesindeki güncel cephe TS 825 düzeltmesinden "
+                    "sonra yeniden üretildi; buradaki noktalar o cepheden "
+                    "seçilmemiştir. Yöntemin kurulumunu belgeler."
+                ).classes("text-sm opacity-80")
 
     with ui.card().classes(CARD):
         ui.label("Vekil model tahmini ile gerçek koşu karşılaştırması").classes("card-title")
