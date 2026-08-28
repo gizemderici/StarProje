@@ -2799,5 +2799,5 @@
     }
   ],
   "validated": false,
-  "validation_status": "BEKLIYOR. Cephe, duzeltilmis TS 825 cam siniri (2,80 W/m2K) ile yeniden uretilmistir. data/validation altindaki dogrulama kaydi onceki cepheye aittir ve bu cepheyle eslesmez; ortak nokta sayisi: 0. Dogrulama, EnergyPlus calistirilabilir hale geldiginde yenilenmelidir (run_validation.py). Ayrinti: docs/ts825_duzeltmesi.md"
+  "validation_status": "Cephe, düzeltilmiş TS 825 cam sınırı (2,80 W/m²K) ile yeniden üretildi. Doğrulama kaydı önceki cepheye aittir; ortak nokta yoktur. EnergyPlus makinede Smart App Control tarafından engellendiği için Faz 7 bu cephe için işletilemedi. Ayrıntı: docs/ts825_duzeltmesi.md"
 }
