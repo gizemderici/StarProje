@@ -13,3 +13,6 @@ data/generated/openstudio_runs/run_manifest.json
 data/generated/model_api_cache/
 data/generated/direct_energyplus_*
 data/generated/simulation_worker_test/
+
+# Word/WPS gecici kilit dosyalari
+~$*
