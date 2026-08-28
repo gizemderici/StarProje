@@ -35,7 +35,7 @@ KUNYE = {
     "arastirmacilar": ["[ARAŞTIRMACI]"],
     "danismanlar": ["[DANIŞMAN]"],
     "bursiyerler": ["[BURSİYER]"],
-    "tarih": "[AY YIL]",
+    "tarih": "AĞUSTOS 2026",
     "yer": "[ŞEHİR]",
 }
 
