@@ -387,16 +387,19 @@ def discussion(document, facts: dict[str, Any]) -> None:
         f"%{tr(next(item for item in seu['uses'] if item['name'] == 'Heating')['share_percent'], 1)} "
         "ile sınırlıdır. Üçüncüsü ise standarda uygunluk kontrolüdür: taban "
         "çizgisindeki dış duvarın ısı geçirgenlik katsayısı 0,2901 W/m²K olup "
-        "TS 825'in 0,50 W/m²K sınırının belirgin biçimde altındadır; buna karşılık "
-        "cam ısı geçirgenlik katsayısı 2,718 W/m²K ile 2,00 W/m²K sınırının "
-        "üzerindedir.",
+        "TS 825'in 0,50 W/m²K sınırının belirgin biçimde altındadır; cam ısı "
+        "geçirgenlik katsayısı ise 2,718 W/m²K ile 2,80 W/m²K sınırının altında "
+        "kalmaktadır. Bina kabuğu her iki bileşende de standardı sağlamaktadır.",
     )
     kit.body(
         document,
         "Üç kanıt aynı sonuca işaret etmektedir: bu binada iyileştirme potansiyeli "
-        "opak duvar yalıtımında değil, cam bileşeninde ve soğutma sisteminin "
-        "verimliliğinde bulunmaktadır. Duvar zaten standarda uygun, cam ise uygun "
-        "değildir. Duyarlılık sıralamasının ilk üç basamağını chiller verimi, "
+        "kabuğun standarda uydurulmasında değil, soğutma yükünün azaltılmasında "
+        "bulunmaktadır. Kabuk hâlihazırda uyumlu olduğuna göre, mevzuata uyum "
+        "gerekçesiyle yapılacak bir yalıtım veya cam yenilemesinin dayanağı "
+        "yoktur; cam değişimi ancak güneş kazancını azaltarak soğutma yükünü "
+        "düşürdüğü ölçüde gerekçelendirilebilir. Duyarlılık sıralamasının ilk üç "
+        "basamağını chiller verimi, "
         "soğutma ayar noktası ve cam tipi oluşturmaktadır ki bunların tümü aynı "
         "fiziksel mekanizmaya, yani soğutma yüküne bağlanmaktadır.",
     )
@@ -571,9 +574,11 @@ def conclusions(document, facts: dict[str, Any]) -> None:
     kit.bullet(
         document,
         "İkinci öncelik cam bileşenidir. Bina, modelde tanımlı yedi pencere "
-        "konstrüksiyonunun en zayıfını 114 pencerenin tamamında kullanmaktadır ve "
-        "mevcut cam TS 825 sınırını sağlamamaktadır. Cam-duvar oranının %78,61 "
-        "olması bu kalemin kaldıracını daha da artırmaktadır.",
+        "konstrüksiyonunun en zayıfını 114 pencerenin tamamında kullanmaktadır. "
+        "Mevcut cam TS 825 sınırını sağlamaktadır; dolayısıyla gerekçe mevzuata "
+        "uyum değil, güneş kazancının azaltılmasıyla elde edilecek soğutma "
+        "tasarrufudur. Cam-duvar oranının %78,61 olması bu kalemin kaldıracını "
+        "artırmaktadır. Duyarlılık sıralamasında cam tipi üçüncü basamaktadır.",
     )
     kit.bullet(
         document,
@@ -585,6 +590,13 @@ def conclusions(document, facts: dict[str, Any]) -> None:
         "Dış duvar yalıtımının artırılması, mevcut duvar TS 825 sınırını zaten "
         "sağladığı ve duyarlılık katkısı ihmal edilebilir düzeyde olduğu için "
         "öncelikli müdahale kalemi olarak önerilmemektedir.",
+    )
+    kit.bullet(
+        document,
+        "Bu öncelik sıralaması, TS 825'in raporun hazırlandığı sırada geçerli olan "
+        "önceki sürümüne dayanmaktadır. Standardın Ekim 2024 revizyonu daha sıkı "
+        "değerler getirmiş olup 1 Nisan 2025'te yürürlüğe girmiştir; kabuk "
+        "uygunluğu güncel sürüme göre yeniden denetlenmelidir.",
     )
 
     kit.heading2(document, "6.2 Sonraki Çalışmalar İçin Öneriler")
@@ -635,11 +647,11 @@ REFERENCES = [
     "Evolutionary Computation, 6(2), 182-197.",
 
     "Hwang, C. L., Yoon, K. 1981. Multiple Attribute Decision Making: Methods and "
-    "Applications. Berlin: Springer-Verlag.",
+    "Applications — A State-of-the-Art Survey. Berlin: Springer-Verlag.",
 
-    "ISO. 2014. ISO 50006: Energy management systems — Measuring energy "
-    "performance using energy baselines (EnB) and energy performance indicators "
-    "(EnPI). Cenevre: International Organization for Standardization.",
+    "ISO. 2023. ISO 50006: Energy management systems — Evaluating energy "
+    "performance using energy performance indicators and energy baselines "
+    "(2. baskı). Cenevre: International Organization for Standardization.",
 
     "Jones, D. R., Schonlau, M., Welch, W. J. 1998. “Efficient global "
     "optimization of expensive black-box functions”, Journal of Global "
@@ -668,7 +680,7 @@ REFERENCES = [
     "Simulation, 55(1-3), 271-280.",
 
     "TSE. 2008. TS 825: Binalarda Isı Yalıtım Kuralları. Ankara: Türk Standardları "
-    "Enstitüsü.",
+    "Enstitüsü. (Ekim 2024 revizyonu 1 Nisan 2025 itibarıyla yürürlüktedir.)",
 
     "TSE. 2018. TS EN ISO 50001: Enerji yönetim sistemleri — Şartlar ve "
     "kullanım kılavuzu. Ankara: Türk Standardları Enstitüsü.",

@@ -50,12 +50,19 @@ açıklamaz. Chiller COP tek başına %57'sini açıklar.
 Bina **soğutma ağırlıklıdır**. Isıtma payı %2,4'tür — yalıtımın etkileyeceği
 kalem zaten küçüktür.
 
-**3. TS 825 uygunluk kontrolü** (bölge 3 varsayımı):
+**3. TS 825 uygunluk kontrolü** (bölge 3 varsayımı, EK 1-C çizelgesi):
 
-- Taban duvar U = **0,2901 W/m²K** < 0,50 sınırı → **zaten uygun**
-- Taban cam U = **2,718 W/m²K** > 2,00 sınırı → **uygun değil**
+- Taban duvar U = **0,2901 W/m²K** < 0,50 sınırı → **uygun**
+- Taban cam U = **2,718 W/m²K** < 2,80 sınırı → **uygun**
 
-Yani iyileştirme potansiyeli duvarda değil, **camda ve soğutma sisteminde**.
+Bina kabuğu her iki bileşende de standardı **zaten sağlıyor**. Dolayısıyla
+mevzuata uyum gerekçesiyle yapılacak bir kabuk yenilemesinin dayanağı yoktur;
+kaldıraç işletmede (ayar noktaları) ve **soğutma sisteminde**.
+
+> ⚠️ **Düzeltme.** Bu satır önceki sürümde cam sınırını 2,00 W/m²K göstererek
+> taban camını "uygun değil" diye niteliyordu. Değer standardın EK 1-C
+> çizelgesinden doğrulandı: dört iklim bölgesinde de **2,80 W/m²K**. Hatanın
+> optimizasyona etkisi için bkz. [docs/ts825_duzeltmesi.md](docs/ts825_duzeltmesi.md).
 
 > Bu, tezin yöntem bölümünün ana çıktısıdır: vekil model tabanlı duyarlılık
 > analizi, başlangıçtaki tasarım hipotezini sayısal olarak reddetmiştir.

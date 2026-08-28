@@ -148,7 +148,7 @@ def literature(document, facts: dict[str, Any]) -> None:
     kit.body(
         document,
         "TS EN ISO 50001 (2018) enerji yönetim sisteminin gereklerini, ISO 50006 "
-        "(2014) ise enerji taban çizgisi ve performans göstergelerinin ölçüm "
+        "(2023) ise enerji taban çizgisi ve performans göstergelerinin ölçüm "
         "esaslarını tanımlar. İkinci standart, göstergelerin karşılaştırılabilir "
         "olması için ilgili değişkenlere göre normalize edilmesini şart koşar; bina "
         "uygulamalarında bu değişken tipik olarak derece-gün sayısıdır. Simülasyon "
@@ -157,7 +157,8 @@ def literature(document, facts: dict[str, Any]) -> None:
         "istatistikler, yani değişim katsayılı kök ortalama kare hata (CVRMSE) ve "
         "normalize ortalama yanlılık hatası (NMBE), vekil model ile EnergyPlus "
         "arasındaki uyumun ölçülmesinde kullanılmıştır. Isı yalıtımına ilişkin "
-        "ulusal sınır değerler TS 825 (2008) standardında iklim bölgelerine göre "
+        "ulusal sınır değerler TS 825 standardının EK 1-C çizelgesinde iklim "
+        "bölgelerine göre "
         "tanımlanmıştır. Simülasyon motoru olarak kullanılan EnergyPlus, Crawley vd. "
         "(2001) tarafından tanıtılmıştır.",
     )
@@ -381,7 +382,7 @@ def methods(document, facts: dict[str, Any]) -> None:
             ["Amaç 2", "Yatırım maliyeti", "en küçükle"],
             ["Amaç 3", "Konfor ihlali süresi", "en küçükle"],
             ["Kısıt 1", "TS 825 dış duvar ısı geçirgenlik katsayısı", "≤ 0,50 W/m²K"],
-            ["Kısıt 2", "TS 825 cam ısı geçirgenlik katsayısı", "≤ 2,00 W/m²K"],
+            ["Kısıt 2", "TS 825 cam ısı geçirgenlik katsayısı", "≤ 2,80 W/m²K"],
             ["Kısıt 3", "Konfor ihlali tavanı", "üst sınır"],
             ["Kısıt 4", "Yatırım bütçesi tavanı", "üst sınır"],
             ["Kısıt 5", "Asgari ölü bant", "≥ 0,5 K"],

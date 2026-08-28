@@ -34,15 +34,28 @@ class Evaluator(Protocol):
 
 # --- Kisitlar ---------------------------------------------------------------
 
-# TS 825 azami U degerleri (W/m2K). Bolge secimi VARSAYIMDIR ve dogrulanmalidir:
-# Mugla ili birden fazla iklim bolgesine yayilir; bina 646 m rakimda, ic
-# kesimdedir. Burada 3. bolge kabul edilmistir.
+# TS 825 tavsiye edilen U degerleri (W/m2K), standardin EK 1-C cizelgesi.
+#
+# DUZELTME (dogrulama sonrasi): Bu tablo daha once hafizadan yazilmisti ve
+# pencere sutunu tamamen yanlisti (2,40 / 2,40 / 2,00 / 1,80). Standardin
+# EK 1-C cizelgesinde pencere degeri dort bolgede de 2,80'dir; duvar
+# sutununda da 1. bolge 0,80 olmaliydi. Hatanin sonucu: taban cami
+# (U = 2,718 W/m2K) yanlislikla uygunsuz sayilmis, optimizasyon da mevcut
+# cami korumayi yasaklamisti.
+#
+# Bolge secimi VARSAYIMDIR ve dogrulanmalidir: Mugla ili birden fazla iklim
+# bolgesine yayilir; bina 646 m rakimda, ic kesimdedir. Burada 3. bolge
+# kabul edilmistir.
+#
+# UYARI: TS 825'in Ekim 2024 revizyonu 1 Nisan 2025'te yururluge girmis ve
+# daha siki degerler getirmistir. Asagidaki tablo onceki surume aittir;
+# guncel standart nushasindan yeniden denetlenmelidir.
 TS825_ZONE = 3
 TS825_MAX_U = {
-    1: {"wall": 0.70, "window": 2.40},
-    2: {"wall": 0.60, "window": 2.40},
-    3: {"wall": 0.50, "window": 2.00},
-    4: {"wall": 0.40, "window": 1.80},
+    1: {"wall": 0.80, "window": 2.80},
+    2: {"wall": 0.60, "window": 2.80},
+    3: {"wall": 0.50, "window": 2.80},
+    4: {"wall": 0.40, "window": 2.80},
 }
 
 # Duvar U hesabi icin sabit katman direnci. duvr_std_eps konstruksiyonunun

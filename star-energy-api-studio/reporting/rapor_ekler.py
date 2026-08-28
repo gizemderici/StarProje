@@ -121,6 +121,8 @@ def appendices(document, facts: dict[str, Any]) -> None:
              "Pareto cephesinin maliyet ekseni"],
             ["TS 825 iklim bölgesi", "Üçüncü bölge kabulü",
              "Duvar ve cam ısı geçirgenlik kısıtları"],
+            ["TS 825 sürümü", "Önceki sürüm (EK 1-C); Ekim 2024 revizyonu uygulanmadı",
+             "Kabuk uygunluk değerlendirmesi"],
             ["Bina kullanıcı sayısı", "Model içindeki kullanım yoğunluğundan türetildi",
              "Kişi başına enerji göstergesi"],
             ["Asansör motor gücü", "Onarım sırasında tek mekâna bağlandı",

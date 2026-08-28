@@ -6,7 +6,10 @@
     "population": 80,
     "seed": 20260825,
     "uncertainty_penalty": 0.5,
-    "note": "Ayarlar kosu sonrasi belgelendi; cephe yeniden uretilmedi."
+    "note": "Ayarlar kosu sonrasi belgelendi; cephe yeniden uretilmedi.",
+    "ts825_window_limit_used": 2.0,
+    "ts825_window_limit_correct": 2.8,
+    "stale_reason": "Cephe, TS 825 cam siniri yanlislikla 2,00 W/m2K alinarak uretilmistir; dogrusu 2,80'dir. Cozumlerin tamami dogru sinira gore de uygundur, ancak taban cami yasaklandigi icin dusuk maliyetli bolge cephede yer almaz. Ayrinti: docs/ts825_duzeltmesi.md"
   },
   "objective_labels": [
     "EnPI (kWh/m2-yil)",

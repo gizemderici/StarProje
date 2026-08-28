@@ -122,12 +122,22 @@ class ObjectiveTests(unittest.TestCase):
         self.assertTrue(any("TS 825" in note for note in checks.notes))
 
     def test_window_lookup_enables_the_glazing_constraint(self) -> None:
-        # Taban cami olculen U = 2,718; 3. bolge siniri 2,00. Uygun degil.
+        # Taban cami olculen U = 2,718; 3. bolge siniri (EK 1-C) 2,80.
+        # Deger sinirin ALTINDA kaldigi icin taban cami UYGUNDUR.
+        # Onceki surumde sinir yanlislikla 2,00 yazilmis, bu test de taban
+        # camini uygunsuz sayan hatali beklentiyi kodlamisti.
         lookup = {"penc_std_4mm": 2.718}
         _, checks, _ = evaluate({}, _flat_evaluator(), window_u_lookup=lookup)
-        self.assertAlmostEqual(checks.window_u, 2.718 - 2.00, places=3)
-        self.assertFalse(checks.feasible)
+        self.assertAlmostEqual(checks.window_u, 2.718 - 2.80, places=3)
+        self.assertLess(checks.window_u, 0.0)
         self.assertEqual(checks.notes, [])
+
+    def test_glazing_constraint_still_rejects_a_window_above_the_limit(self) -> None:
+        # Kisitin hala isledigini gosterir: sinirin ustundeki cam elenir.
+        lookup = {"penc_std_4mm": 3.20}
+        _, checks, _ = evaluate({}, _flat_evaluator(), window_u_lookup=lookup)
+        self.assertGreater(checks.window_u, 0.0)
+        self.assertFalse(checks.feasible)
 
 
 class WindowLookupTests(unittest.TestCase):
